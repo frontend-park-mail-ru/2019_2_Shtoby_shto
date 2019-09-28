@@ -16,6 +16,7 @@ a{
 a:hover{
     background:lightblue;
     color:white;
+    border-radius:0 0 15px 15px;
 }
 
 body{

@@ -1,0 +1,96 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title Shtoby shto
+        link(rel="stylesheet" type="text/css" href="T4.css")
+        link(rel="script" href="T4.js")
+        script(src="T4.js")
+    body
+        section.tabbed-header
+            section.tabbed-header-wrapper
+        section(style="text-align-last: center")
+            .tab
+                button#defaultOpen.tablinks(onclick="openTab(event, 'Профиль и доступ')") Профиль и доступ
+                button.tablinks(onclick="openTab(event, 'Действия')") Действия
+                button.tablinks(onclick="openTab(event, 'Карточки')") Карточки
+                button.tablinks(onclick="openTab(event, 'Настройки')") Настройки
+            .tabcontent.word(id="Профиль и доступ")
+                img(style="margin-top: 50px" src="assests/profilewolf.svg" alt="")
+                h1 Управление персональными данными
+                p
+                    | Вы можете менять настройки доступа к информации и улучшениям. Чтобы
+                    wbr
+                    |             узнать больше, читайте следующие документы:
+                    a(href="/")
+                        | Условия использования
+                    |  и
+                    a(href="/") Политика конфиденциальности
+                    | .
+                h2(style="margin-top: 60px; text-align-last: left") О нас
+                hr
+                section
+                    .container
+                        .row
+                            .col-2-3
+                                h3 Полное имя
+                                input.inputLine(type="text" value="Username")
+                                h3 Инициалы
+                                input.inputLine(type="text" value="U")
+                                h3 Имя пользователя
+                                input.inputLine(type="text" value="user12345")
+                                h3 О себе
+                                textarea.aboutYou(placeholder="Something")
+                                form(action="T4.html")
+                                    button.saveButton Сохранить
+                            .col-1-3
+                                a(style="text-align-last: center") Avatar
+                                p
+                                    img(src="assests/userAva.png" alt="")
+                h2(style="margin-top: 60px; text-align-last: left;") Контакт
+                hr
+                h3 Электронная почта
+                textarea(readonly="" style="text-align-last: left;") user@mail.com
+                button(onclick="mailChange(event)") Сменить или добавить почту
+            .tabcontent.word(id="Действия" style="text-align-last: left")
+                h2(style="margin-top: 40px") Команды
+                hr
+                h2 Действия
+                hr
+                button Загрузить больше действий
+            .tabcontent.sorts(id="Карточки")
+                ul(style="line-height: 50px")
+                    li Сортировка по доске
+                    li Показ карточек со всех досок
+                    li Показ активных за последний месяц
+            .tabcontent.setting(id="Настройки")
+                h3 Подробности аккаунта
+                hr
+                a(href="/") Изменить пароль
+                a(href="/") Сменить язык...
+                h3 Уведомления
+                hr
+                a(href="/") Изменить частоту оповещений по электронной почте
+                h3 Макетинговые сообщения
+                hr
+                a(href="/") Отказаться получать макетинговые сообщения
+                h3 Доступность
+                hr
+                a(href="/") Включить режим для дальтоников
+                h3 Доступность
+                hr
+                a(href="/") Включить режим для дальтоников
+                h3 Приложения
+                hr
+                h3 Сеансы
+                hr
+                a(href="/") Настроить двухэтапную аутентификацию
+                h3 Экспорт персональных данных
+                hr
+                p(style="color: gray")
+                    | Нажав кнопку, вы создадите JSON-файл с вашей персональной информацией, которая хранится в
+                    | Trello: учетные данные, сведения о платежах, данные и настройки профиля, а также настройки досок и
+                    | команд.
+                a(style="background-color: lightgray; max-width: 300px" href="/") Скачать персональные данные
+            script.
+                document.getElementById("defaultOpen").click();
