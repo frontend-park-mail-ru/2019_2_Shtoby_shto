@@ -290,3 +290,8 @@ button[type='submit'].temp {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
+
+.errorArea {
+    color: #d43d3a;
+    align-content: center;
+}
