@@ -9,3 +9,4 @@ login/.idea/
 public/login/.idea/
 
 ./package-lock.json
+public/build/*
