@@ -39,9 +39,9 @@ section(style="text-align-last: center")
                         form()
                             button.saveButton Сохранить
                     .col-1-3
-                        a(style="text-align-last: center") Avatar
                         p
-                            img(src="static/img/userAva.png" alt="")
+                            img#avatar(src="static/img/userAva.png" alt="")
+                        button(onclick="img()") Загрузить
             h2(style="margin-top: 60px; text-align-last: left;") Контакт
             hr
             h3 Электронная почта
