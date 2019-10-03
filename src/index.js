@@ -1,7 +1,7 @@
 import './style.css';
 
-import {hashRouter, router} from '../dev/modules/router.js';
-import {createHeader} from '../dev/components/Header/headMenu.js';
+import {hashRouter, router} from './modules/router.js';
+import {createHeader} from './components/Header/headMenu.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   createHeader();

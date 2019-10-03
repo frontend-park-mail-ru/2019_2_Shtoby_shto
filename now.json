@@ -2,11 +2,11 @@
     "version": 2,
     "builds": [
         {
-            "src": "/public/server.js",
+            "src": "server.js",
             "use": "@now/node-server"
         },
         {
-            "src": "/public/**",
+            "src": "/dist/**",
             "use": "@now/static"
         },
         {
@@ -16,12 +16,12 @@
     ],
     "routes": [
         {
-            "src": "/(.*).js",
-            "dest": "/public/$1.js"
-        },
-        {
             "src": "/(.*)",
             "dest": "/public/server.js"
+        },
+        {
+            "src": "(.*).ico",
+            "dest": "/public/$1.ico"
         }
     ]
 }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "node public/server.js",
+    "start": "node server.js",
     "linter": "eslint --fix ./dev"
   },
   "repository": {
