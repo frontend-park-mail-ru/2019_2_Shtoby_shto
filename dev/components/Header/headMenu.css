@@ -28,7 +28,7 @@
     float: right;
 }
 
-a{
+#header a{
     float:left;
     width:130px;
     text-align:center;
@@ -38,7 +38,7 @@ a{
     text-decoration: none;
 }
 
-a:hover{
+#header a:hover{
     background:lightblue;
     color:white;
 }
