@@ -1,3 +1,5 @@
+import './vidymgtu002.jpg';
+
 import {checkEmail} from '../../modules/validation.js';
 import {checkPassword} from '../../modules/validation.js';
 import {checkName} from '../../modules/validation.js';
