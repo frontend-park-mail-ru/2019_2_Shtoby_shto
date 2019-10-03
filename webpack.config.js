@@ -1,18 +1,3 @@
-// const path = require('path');
-
-// module.exports = {
-//     entry: './public/index.js',
-//     output: {
-//         path: __dirname +'/public/build',
-//         filename: 'bundle.js'
-//     },
-//     module: {
-//         rules: [
-//             {test: /\.pug$/, loader: 'pug-loader'}
-//         ]
-//     },
-// };
-
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
