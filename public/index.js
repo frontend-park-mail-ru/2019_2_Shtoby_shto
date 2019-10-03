@@ -1,3 +1,5 @@
+import './style.css';
+
 import {hashRouter, router} from '../dev/modules/router.js';
 import {createHeader} from '../dev/components/Header/headMenu.js';
 

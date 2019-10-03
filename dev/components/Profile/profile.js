@@ -1,3 +1,5 @@
+import './profile.css';
+
 import {doPut, doGet} from '../../modules/ajax';
 import {checkName, checkPassword, checkEmail} from '../../modules/validation';
 
