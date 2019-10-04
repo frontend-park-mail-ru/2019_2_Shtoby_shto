@@ -1,5 +1,5 @@
-import {hashRouter, router} from '../dev/modules/router.js';
-import {createHeader} from '../dev/components/Header/headMenu.js';
+import {hashRouter, router} from '../src/modules/router.js';
+import {createHeader} from '../src/components/Header/headMenu.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   createHeader();
