@@ -12,7 +12,7 @@ const template = require('./profile.pug');
  * @param {Object} app your application
  * @returns {} tabsName some info in header
  */
-export function profile() {
+ export function profile() {
   const user = {};
 
   doGet('/user')
@@ -39,7 +39,10 @@ export function profile() {
             const newPassword = document.getElementById('password');
 
             const validEmail = checkEmail(newName.value);
-            const validPassword = checkPassword(newPassword.value);
+            const validPassword = checkPassword(
+                newPassword.value,
+                newPassword.value
+            );
 
             if (validEmail && validPassword) {
               doPut(`/user`, {'login': newName.value, 'password': newPassword.value})
@@ -66,4 +69,11 @@ export function profile() {
           });
         }
       });
+
+    function img() {
+        let name = 'profilewolf.svg'
+        var imag = document.getElementById("avatar");
+        imag.setAttribute('src', `static/img/${name}`);
+    }
+
 }

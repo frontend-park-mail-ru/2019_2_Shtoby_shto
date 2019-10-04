@@ -1,3 +1,5 @@
+link(rel='stylesheet', href='static/css/profile.css', type='text/css')
+
 section(style="text-align-last: center")
     .tabs
         input#tab_1(type="radio" name="inset" value="" checked="")
@@ -10,7 +12,7 @@ section(style="text-align-last: center")
         label(for="tab_4") Настройки
 
         .tabcontent.word(id="Profile")
-            img(style="margin-top: 50px" src="build/images/profilewolf.svg" alt="")
+            img(style="margin-top: 50px" src="static/img/profilewolf.svg" alt="")
             h1 Управление персональными данными
             p
                 | Вы можете менять настройки доступа к информации и улучшениям. Чтобы
@@ -37,9 +39,9 @@ section(style="text-align-last: center")
                         form()
                             button.saveButton Сохранить
                     .col-1-3
-                        a(style="text-align-last: center") Avatar
                         p
-                            img(src="build/images/userAva.png" alt="")
+                            img#avatar(src="static/img/userAva.png" alt="")
+                        button(onclick="img()") Загрузить
             h2(style="margin-top: 60px; text-align-last: left;") Контакт
             hr
             h3 Электронная почта
