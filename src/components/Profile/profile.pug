@@ -1,18 +1,16 @@
-link(rel='stylesheet', href='static/css/profile.css', type='text/css')
-
 section(style="text-align-last: center")
     .tabs
-        input#tab_1(type="radio" name="inset" value="" checked="")
-        label(for="tab_1") Профиль и доступ
-        input#tab_2(type="radio" name="inset" value="")
-        label(for="tab_2") Действия
-        input#tab_3(type="radio" name="inset" value="")
-        label(for="tab_3") Карточки
-        input#tab_4(type="radio" name="inset" value="")
-        label(for="tab_4") Настройки
+        input.radio#tab_1(type="radio" name="inset" value="" checked="")
+        label.radio(for="tab_1") Профиль и доступ
+        input.radio#tab_2(type="radio" name="inset" value="")
+        label.radio(for="tab_2") Действия
+        input.radio#tab_3(type="radio" name="inset" value="")
+        label.radio(for="tab_3") Карточки
+        input.radio#tab_4(type="radio" name="inset" value="")
+        label.radio(for="tab_4") Настройки
 
         .tabcontent.word(id="Profile")
-            img(style="margin-top: 50px" src="static/img/profilewolf.svg" alt="")
+            img(style="margin-top: 50px; margin-left: -13px" src="build/images/profilewolf.svg" alt="")
             h1 Управление персональными данными
             p
                 | Вы можете менять настройки доступа к информации и улучшениям. Чтобы
@@ -40,8 +38,8 @@ section(style="text-align-last: center")
                             button.saveButton Сохранить
                     .col-1-3
                         p
-                            img#avatar(src="static/img/userAva.png" alt="")
-                        button(onclick="img()") Загрузить
+                            img(src="build/build/images/userAva.png" alt="")
+                        button(id="avatar") Загрузить
             h2(style="margin-top: 60px; text-align-last: left;") Контакт
             hr
             h3 Электронная почта

@@ -1,5 +1,5 @@
 .tabs {
-    display: inline;
+    /*display: inline;*/
     list-style: none;
     padding: 0;
     width: 100%;
@@ -7,30 +7,10 @@
     text-align: center;
     margin: 0 0 0;
     /*border-radius:15px 15px 0 0;*/
-    /*overflow: hidden;*/
     /*border: 1px solid #1b7dbf;*/
-    background-color: #f4f5f7;
     border-collapse: collapse;
+    background-color: darkgray;
 }
-
-.tabs button {
-    height: 100%;
-    font-size: 15px;
-
-    color: black;
-    cursor: pointer;
-
-    background-color: lightgray;
-    border: 1px solid lightgray;
-    border-bottom: 0;
-    border-radius: 3px 3px 0 0;
-    display: inline-block;
-    font-weight: 700;
-    margin: 2px 2px 0;
-    padding: 8px 20px;
-    text-decoration: none;
-}
-
 
 .tabs button:hover {
     background-color: gray;
@@ -49,7 +29,7 @@
     border: 1px solid white;
     border-top: none;
     background: white;
-    margin: -6px;
+    margin: 2px;
 }
 
 .tabcontent h3 {
@@ -57,7 +37,7 @@
 }
 
 .word {
-    margin: auto;
+    margin: 2px auto auto;
     max-width: 530px;
     text-align: left;
     background: white;
@@ -110,7 +90,15 @@
     clear: both;
 }
 
-input {
+input.radio{
+    display: none;
+}
+
+label.radio{
+
+}
+
+input.inputLine {
     display: block;
 }
 
@@ -152,14 +140,14 @@ input {
     text-align-last: center;
 }
 
-h1 {
+.tabcontent h1 {
     font-size: 24px;
     font-weight: 600;
     line-height: 28px;
     margin: 0 0 12px;
 }
 
-h2 {
+.tabcontent h2 {
     font-size: 20px;
     font-weight: 600;
     line-height: 28px;
@@ -167,7 +155,7 @@ h2 {
     color: #0c3953;
 }
 
-h3 {
+.tabcontent h3 {
     font-size: 15px;
     font-weight: 600;
     line-height: 28px;
@@ -175,7 +163,7 @@ h3 {
     color: #091e42;
 }
 
-textarea {
+.tabcontent textarea {
     resize: none;
     width: 90%;
     height: 50px;
@@ -241,18 +229,11 @@ textarea {
 
 .tabs {
     width: 100%;
-    padding: 0;
+    padding: 1px;
     margin: 0 auto;
 }
 
 /*.tabs input { display:none; }*/
-.tabs .tabcontent {
-    display: none;
-    padding: 12px;
-    border: 1px solid #C0C0C0;
-    background: #FFFFFF;
-}
-
 .tabs {
     display: block;
     color: black;
@@ -260,20 +241,30 @@ textarea {
 
 .tabs > label {
     display: inline-block;
-    padding: 7px;
-    margin: 0 -5px -1px 0;
+    margin: 2px 2px 0;
+    padding: 8px 20px;
     text-align: center;
     color: #666666;
     border: 1px solid #C0C0C0;
     background: #E0E0E0;
     cursor: pointer;
+    border-radius:5px 5px 0 0;
+    border-bottom: 2px white;
+}
+
+.tabs > label:hover{
+    background-color: gray;
 }
 
 .tabs > input:checked + label {
-    color: #000000;
-    border: 1px solid #C0C0C0;
-    border-bottom: 1px solid #FFFFFF;
-    background: #FFFFFF;
+    background-color: white;
+    color: black;
+    border: 1px solid #1b7dbf;
+    border-bottom: 0;
+    /*color: #000000;*/
+    /*border: 1px solid #C0C0C0;*/
+    /*border-bottom: 1px solid #FFFFFF;*/
+    /*background: #FFFFFF;*/
 }
 
 #tab_1:checked ~ #Profile {
@@ -292,35 +283,20 @@ textarea {
     display: block;
 }
 
-
-.tabs {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-    height:40px;
-    text-align: center;
-    margin: 0 0 0;
-    /*border-radius:15px 15px 0 0;*/
-    /*overflow: hidden;*/
-    /*border: 1px solid #1b7dbf;*/
-    background-color: #f4f5f7;
-    border-collapse: collapse;
-}
-
-
 .tabs button {
-    height: 100%;
+    /*height: 100%;*/
     font-size: 15px;
+    font-style: revert;
 
     color: black;
     cursor: pointer;
 
-    background-color: lightgray;
     border: 1px solid lightgray;
     border-bottom: 0;
     border-radius: 3px 3px 0 0;
     display: inline-block;
     font-weight: 700;
+
     margin: 2px 2px 0;
     padding: 8px 20px;
     text-decoration: none;
@@ -337,28 +313,8 @@ textarea {
     color: black;
 }
 
-
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid white;
-    border-top: none;
-    background: white;
-    margin: -6px;
-}
-
 .tabcontent h3{
     text-align-last: left;
-}
-
-.word {
-    margin: auto;
-    max-width: 530px;
-    text-align: left;
-    background: white;
-    padding: 10px;
-    font-size: 14px;
-    word-wrap: break-word;
 }
 
 .tabbed-header {
@@ -495,15 +451,6 @@ textarea {
 .sorts ul li:hover{
     background-color: lightgray;
     padding: 10px;
-}
-
-.setting{
-    margin: auto;
-    max-width: 600px;
-    text-align-last: left;
-    background: white;
-    padding: 10px;
-    word-wrap: break-word;
 }
 
 .setting a{

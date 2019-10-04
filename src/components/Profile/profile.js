@@ -16,13 +16,13 @@ const template = require('./profile.pug');
   const user = {};
 
   doGet('/user')
-      .then((response) => {
-        if (!response) {
-          location.href = '#/';
-        } else {
-          user['login'] = response.login;
-          user['password'] = response.password;
-          user['id'] = response.id;
+      // .then((response) => {
+      //   if (!response) {
+      //     location.href = '#/';
+      //   } else {
+      //     user['login'] = response.login;
+      //     user['password'] = response.password;
+      //     user['id'] = response.id;
 
           application.innerHTML = template();
 
@@ -67,13 +67,13 @@ const template = require('./profile.pug');
               }
             }
           });
-        }
-      });
+      //   }
+      // });
 
-    function img() {
-        let name = 'profilewolf.svg'
-        var imag = document.getElementById("avatar");
-        imag.setAttribute('src', `static/img/${name}`);
+    let imag = document.getElementById("avatar");
+    imag.onclick = function img() {
+        let name = 'profilewolf.svg';
+        imag.setAttribute('src', `build/images/${name}`);
     }
 
 }
