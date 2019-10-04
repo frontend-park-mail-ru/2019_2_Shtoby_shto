@@ -1,23 +1,32 @@
 {
     "version": 2,
+    "build": {
+        "env": {
+            "REMOTE_DEPLOY": "remote_deploy"
+        }
+    },
     "builds": [
         {
-            "src": "/public/server.js",
+            "src": "server.js",
             "use": "@now/node-server"
         },
         {
-            "src": "/public/**",
+            "src": "/dist/**",
             "use": "@now/static"
+        },
+        {
+            "src": "package.json",
+            "use": "@now/static-build"
         }
     ],
     "routes": [
         {
-            "src": "/(.*).js",
-            "dest": "/public/$1.js"
-        },
-        {
             "src": "/(.*)",
             "dest": "/public/server.js"
+        },
+        {
+            "src": "(.*).ico",
+            "dest": "/public/$1.ico"
         }
     ]
 }

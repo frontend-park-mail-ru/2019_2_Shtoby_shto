@@ -1,3 +1,5 @@
+import './vidymgtu002.jpg';
+
 import {checkEmail} from '../../modules/validation.js';
 import {checkPassword} from '../../modules/validation.js';
 import {checkName} from '../../modules/validation.js';
@@ -10,53 +12,59 @@ const template = require('./login.pug');
  * Генерирует страницу регистрации
  */
 export function reg() {
-    const application = document.getElementById('application');
-    application.innerHTML = template();
+  const application = document.getElementById('application');
+  application.innerHTML = template();
 
-    const formIn = document.getElementsByTagName('form')[0];
-    const In = (e) => login(e, formIn, false)
-    formIn.addEventListener('submit', In);
+  const formIn = document.getElementsByTagName('form')[0];
 
-    const formUp = document.getElementsByTagName('form')[1];
-    const Up = (e) => login(e, formUp, true)
-    formUp.addEventListener('submit', Up);
-
-    // украшение
-    document.querySelector('.img__btn').addEventListener('click', function () {
-        document.querySelector('.cont').classList.toggle('s--signup');
-    });
-}
-
-function login(e, form, isReg) {
-    console.log('this code executes');
+  formIn.addEventListener('submit', (e) => {
     e.preventDefault();
-    const email = form.elements['email'].value;
-    const password = form.elements['password'].value;
-    let area = document.getElementsByClassName('errorArea').item(0);
+    const email = formIn.elements['email'].value;
+    const password = formIn.elements['password'].value;
+    const area = document.getElementsByClassName('errorArea').item(0);
 
-    let body = {'login': email, 'password': password};
-    let path = '/login';
-    let name = 'user';
-    if (isReg) {
-        name = form.elements['name'].value;
-        body += {'name': name};
-        path = '/registration';
-        area = document.getElementsByClassName('errorArea').item(1);
-    }
-    const check = checkEmail(email).status && checkPassword(password, password).status && checkName(name).status;
-    console.log(check)
-    if (check) {
-        doPost(path, body)
-            .then((response) => {
-                if (response.status !== 200) {
-                    area.innerText = response.message;
-                } else {
-                    createBoard();
-                }
-            }).catch(() => {
-            area.innerText = "Не удалось связаться с сервером!";
-        });
+    if (checkEmail(email) && checkPassword(password)) {
+      doPost('/login', {'login': email, 'password': password})
+          .then((response) => {
+            if (response.status !== 200) {
+              area.innerText = response.message;
+            } else {
+              createBoard();
+            }
+          }).catch(() => {
+            console.log('login unsuccesful');
+          });
     } else {
-        area.innerText = [checkEmail(email).err, checkPassword(password, password).err, checkName(name).err].join(" ");
+      area.innerText = 'Некорректная почта или пароль!';
     }
+  });
+
+  const formUp = document.getElementsByTagName('form')[1];
+
+  console.log(formUp);
+
+  formUp.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = formUp.elements['email'].value;
+    const password = formUp.elements['password'].value;
+    const name = formUp.elements['name'].value;
+    const area = document.getElementsByClassName('errorArea').item(1);
+
+    if (checkEmail(email) && checkPassword(password) && checkName(name)) {
+      doPost('/registration', {'login': email, 'password': password})
+          .then((response) => {
+            createBoard();
+          })
+          .catch(() => {
+            area.innerText = 'такой пользователь мол есть уже';
+          });
+    } else {
+      area.innerText = 'Некорректный ввод!';
+    }
+  });
+
+  // украшение
+  document.querySelector('.img__btn').addEventListener('click', function() {
+    document.querySelector('.cont').classList.toggle('s--signup');
+  });
 }

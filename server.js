@@ -4,6 +4,9 @@ const {join} = require('path');
 
 const url = require('url');
 
+const distDir = 'dist'
+const resolve = (path) => `${distDir}/${path}`
+
 const filetypes = {
   'html': 'text/html',
   'css': 'text/css',
@@ -28,7 +31,7 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', `${filetypes[ft]}`);
   }
 
-  const newPath = join(__dirname, `${currentUrl}`);
+  const newPath = join(__dirname, resolve(`${currentUrl}`));
 
   try {
     body = fs.readFileSync(newPath);
@@ -38,7 +41,6 @@ const server = http.createServer((req, res) => {
 
     return;
   }
-  // res.writeHead(200, {'Content-Type': 'text/html'})
   res.writeHead(200);
 
   res.end(body);
