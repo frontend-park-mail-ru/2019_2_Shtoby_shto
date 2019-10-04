@@ -1,3 +1,11 @@
+const localApiAddr = 'http://localhost'
+const remoteApiAddr = 'https://iamneponyalapi.ru'
+
+const deployVar = process.env.REMOTE_DEPLOY
+
+const apiAddr = (deployVar && remoteApiAddr) ||
+                localApiAddr
+
 /**
  * Отправляет запрос авторизации
  * @param  {string} path
@@ -6,7 +14,7 @@
  */
 export function doPost(path = '/', body = null) {
   console.log(body);
-  return fetch('http://localhost:8080' + path, {
+  return fetch(apiAddr + path, {
     method: 'POST',
     mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -35,7 +43,7 @@ export function doPost(path = '/', body = null) {
  * @return {Promise} promise
  */
 export function doGet(path = '/') {
-  return fetch('http://localhost:8080' + path, {
+  return fetch(apiAddr + path, {
     method: 'GET',
     mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -64,7 +72,7 @@ export function doGet(path = '/') {
  */
 export function doPut(path = '/', body = null) {
   console.log(body);
-  return fetch('http://localhost:8080' + path, {
+  return fetch(apiAddr + path, {
     method: 'PUT',
     mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
