@@ -1,10 +1,10 @@
-const localApiAddr = 'http://localhost'
-const remoteApiAddr = 'https://iamneponyalapi.ru'
+const localApiAddr = 'http://localhost';
+const remoteApiAddr = 'https://iamneponyalapi.ru';
 
-const deployVar = process.env.REMOTE_DEPLOY
+const deployVar = process.env.REMOTE_DEPLOY;
 
 const apiAddr = (deployVar && remoteApiAddr) ||
-                localApiAddr
+                localApiAddr;
 
 /**
  * Отправляет запрос авторизации
@@ -33,13 +33,12 @@ export function doPost(path = '/', body = null) {
         console.log('Успех:', JSON.stringify(response));
         return response;
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => console.log(error.message));
 }
 
 /**
  * Отправляет запрос авторизации
  * @param  {string} path
- * @param {Object} body
  * @return {Promise} promise
  */
 export function doGet(path = '/') {

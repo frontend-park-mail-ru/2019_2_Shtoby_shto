@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node server.js",
-    "linter": "eslint --fix ./dev"
+    "linter": "eslint --fix ./src"
   },
   "repository": {
     "type": "git",

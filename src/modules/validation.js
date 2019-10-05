@@ -1,31 +1,42 @@
-const nameRegexp = /^[a-zA-Z][a-zA-Z0-9_.,-]{4,14}$/;
-const emailRegexp = /^([a-z0-9_\\-]+\.)*[a-z0-9_\\-]+@([a-z0-9][a-z0-9\\-]*[a-z0-9]\.)+[a-z]{2,4}$/i;
-
 const minPassLength = 6;
+const maxPassLength = 20;
 
 /**
  * Проверяет коректность ника
  * @param {String} nickname
- * @return {boolean} validate
+ * @return {Object.<boolean, error>} validate
  */
 export function checkName(nickname = '') {
-  return nickname.match(nameRegexp);
+  if (nickname.length < 3) {
+    return {status: false, err: 'Имя минимум 3 символа!'};
+  }
+  if (nickname.length > 20) {
+    return {status: false, err: 'Имя максимум 20 символов!'};
+  }
+  return {status: true, err: ''};
 }
 
 /**
  * Проверяет коректность почты
  * @param {String} email
- * @return {boolean} validate
+ * @return {Object.<boolean, error>} validate
  */
 export function checkEmail(email = '') {
-  return email.match(emailRegexp);
+  const regex = new RegExp(`([a-z0-9_\\\\-]+\\.)*[a-z0-9_\\\\-]` +
+      `+@([a-z0-9][a-z0-9\\\\-]*[a-z0-9]\\.)+[a-z]{2,4}`);
+  if (email.match(regex)) return {status: true, err: ''};
+  else return {status: false, err: 'Некорректная почта!'};
 }
 
 /**
  * Проверяет коректность пароля
- * @param {String} password Пароль
- * @return {boolean} validate
+ * @param {String} password1 Пароль
+ * @param {String} password2 Подтверждение пароля
+ * @return {Object.<boolean, error>} validate
  */
-export function checkPassword(password) {
-  return password.length >= minPassLength;
+export function checkPassword(password1, password2) {
+  if (password1 !== password2) return {status: false, err: 'Пароли не совпадают!'};
+  if (password1.length < minPassLength) return {status: false, err: 'Слишком короткий пароль!'};
+  if (password1.length > maxPassLength) return {status: false, err: 'Слишком длинный пароль!'};
+  return {status: true, err: ''};
 }

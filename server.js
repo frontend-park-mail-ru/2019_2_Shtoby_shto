@@ -4,8 +4,8 @@ const {join} = require('path');
 
 const url = require('url');
 
-const distDir = 'dist'
-const resolve = (path) => `${distDir}/${path}`
+const distDir = 'dist';
+const resolve = (path) => `${distDir}/${path}`;
 
 const filetypes = {
   'html': 'text/html',

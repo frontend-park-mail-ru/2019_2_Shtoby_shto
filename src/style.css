@@ -217,6 +217,11 @@ button {
     transform: translateY(72px);
 }
 
+.errorArea {
+    color: #d43d3a;
+    align-content: center;
+}
+
 h2 {
     width: 100%;
     font-size: 26px;
@@ -294,4 +299,5 @@ button[type='submit'] {
 .errorArea {
     color: #d43d3a;
     align-content: center;
+    font-weight: bold;
 }
