@@ -23,14 +23,15 @@ export function checkName(nickname = '') {
  */
 export function checkEmail(email = '') {
   const regex = new RegExp(`([a-z0-9_\\\\-]+\\.)*[a-z0-9_\\\\-]` +
-      `+@([a-z0-9][a-z0-9\\\\-]*[a-z0-9]\\.)+[a-z]{2,4}`)
-  if(email.match(regex)) return {status: true, err: ''};
+      `+@([a-z0-9][a-z0-9\\\\-]*[a-z0-9]\\.)+[a-z]{2,4}`);
+  if (email.match(regex)) return {status: true, err: ''};
   else return {status: false, err: 'Некорректная почта!'};
 }
 
 /**
  * Проверяет коректность пароля
- * @param {String} password1, password2 Пароль
+ * @param {String} password1 Пароль
+ * @param {String} password2 Подтверждение пароля
  * @return {Object.<boolean, error>} validate
  */
 export function checkPassword(password1, password2) {

@@ -37,7 +37,7 @@ body {
     flex: 50%;
 }
 
-.cont input, button.temp {
+input, button {
     border: none;
     outline: none;
     background: none;
@@ -78,7 +78,7 @@ body {
     transform: translate3d(-640px, 0, 0);
 }
 
-button.temp {
+button {
     display: block;
     width: 260px;
     height: 36px;
@@ -217,26 +217,31 @@ button.temp {
     transform: translateY(72px);
 }
 
-.cont h2 {
+.errorArea {
+    color: #d43d3a;
+    align-content: center;
+}
+
+h2 {
     width: 100%;
     font-size: 26px;
     text-align: center;
 }
 
-.cont label {
+label {
     display: block;
     width: 260px;
     margin: 25px auto 0;
     text-align: center;
 }
 
-.cont label span {
+label span {
     font-size: 12px;
     color: #cfcfcf;
     text-transform: uppercase;
 }
 
-.cont input {
+input {
     display: block;
     width: 100%;
     margin-top: 5px;
@@ -253,7 +258,7 @@ button.temp {
     color: #afafaf;
 }
 
-button[type='submit'].temp {
+button[type='submit'] {
     background: #d43d3a;
     color: #fff;
     text-transform: uppercase;
@@ -294,4 +299,5 @@ button[type='submit'].temp {
 .errorArea {
     color: #d43d3a;
     align-content: center;
+    font-weight: bold;
 }

@@ -8,9 +8,6 @@ import {checkPassword, checkEmail} from '../../modules/validation';
 const template = require('./profile.pug');
 /**
  * Work with profile
- *
- * @param {Object} app your application
- * @returns {} tabsName some info in header
  */
  export function profile() {
   const user = {};
