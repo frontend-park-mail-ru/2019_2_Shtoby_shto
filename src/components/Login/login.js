@@ -4,6 +4,7 @@ import {checkName} from '../../modules/validation.js';
 import {doPost} from '../../modules/ajax.js';
 import {createBoard} from '../Board/board.js';
 
+import './login.css';
 const template = require('./login.pug');
 
 /**
