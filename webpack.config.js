@@ -27,14 +27,23 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jp(e*)g|svg)$/,  
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000, // Convert images < 8kb to base64 strings
-            name: 'images/[name].[ext]',
-          },
-        }],
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8000, // Convert images < 8kb to base64 strings
+              name: 'images/[name].[ext]',
+            },
+          }],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          fix: true,
+        },
       },
     ],
   },
@@ -42,6 +51,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new webpack.EnvironmentPlugin('REMOTE_DEPLOY')
+    new webpack.EnvironmentPlugin('REMOTE_DEPLOY'),
   ],
 };

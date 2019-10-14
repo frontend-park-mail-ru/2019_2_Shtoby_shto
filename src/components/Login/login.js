@@ -15,15 +15,15 @@ export function reg() {
   application.innerHTML = template();
 
   const formIn = document.getElementsByTagName('form')[0];
-  const In = (e) => login(e, formIn, false)
+  const In = (e) => login(e, formIn, false);
   formIn.addEventListener('submit', In);
 
   const formUp = document.getElementsByTagName('form')[1];
-  const Up = (e) => login(e, formUp, true)
+  const Up = (e) => login(e, formUp, true);
   formUp.addEventListener('submit', Up);
 
   // украшение
-  document.querySelector('.img__btn').addEventListener('click', function () {
+  document.querySelector('.img__btn').addEventListener('click', function() {
     document.querySelector('.cont').classList.toggle('s--signup');
   });
 }
@@ -53,9 +53,9 @@ function login(e, form, isReg) {
             createBoard();
           }
         }).catch(() => {
-      area.innerText = "Не удалось связаться с сервером!";
-    });
+          area.innerText = 'Не удалось связаться с сервером!';
+        });
   } else {
-    area.innerText = [checkEmail(email).err, checkPassword(password, password).err, checkName(name).err].join(" ");
+    area.innerText = [checkEmail(email).err, checkPassword(password, password).err, checkName(name).err].join(' ');
   }
 }
