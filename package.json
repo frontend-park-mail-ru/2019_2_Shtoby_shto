@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node server.js",
-    "linter": "eslint --fix ./dev"
+    "linter": "eslint --fix ./src"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "eslint-loader": "^3.0.2",
     "webpack": "^4.41.0"
   }
 }
