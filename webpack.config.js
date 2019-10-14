@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
@@ -51,6 +52,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new webpack.EnvironmentPlugin('REMOTE_DEPLOY'),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+    }),
+    new webpack.EnvironmentPlugin({REMOTE_DEPLOY:'development'}),
   ],
 };

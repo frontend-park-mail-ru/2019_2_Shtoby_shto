@@ -34,6 +34,7 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "compression-webpack-plugin": "^3.0.0",
     "eslint-loader": "^3.0.2",
     "webpack": "^4.41.0"
   }
