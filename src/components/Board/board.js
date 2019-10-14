@@ -1,3 +1,5 @@
+// require("BaseView.js'");
+// import bus from '../../modules/bus.js';
 import {doPost} from '../../modules/ajax';
 const template = require('./board.pug');
 
