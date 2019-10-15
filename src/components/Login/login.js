@@ -5,6 +5,7 @@ import {doPost} from '../../modules/ajax.js';
 import {createBoard} from '../Board/board.js';
 
 import './login.css';
+
 const template = require('./login.pug');
 
 /**
@@ -43,19 +44,22 @@ function login(e, form, isReg) {
     path = '/registration';
     area = document.getElementsByClassName('errorArea').item(1);
   }
-  const check = checkEmail(email).status && checkPassword(password, password).status && checkName(name).status;
+  const check = checkEmail(email).status &&
+      checkPassword(password, password).status && checkName(name).status;
   if (check) {
-    doPost(path, body)
-        .then((response) => {
-          if (response.status !== 200) {
-            area.innerText = response.message;
-          } else {
-            createBoard();
-          }
-        }).catch(() => {
-          area.innerText = 'Не удалось связаться с сервером!';
-        });
+    doPost(path, body).then((response) => {
+      if (response.status !== 200) {
+        area.innerText = response.message;
+      } else {
+        createBoard();
+      }
+    }).catch(() => {
+      area.innerText = 'Не удалось связаться с сервером!';
+    });
   } else {
-    area.innerText = [checkEmail(email).err, checkPassword(password, password).err, checkName(name).err].join(' ');
+    area.innerText = [
+      checkEmail(email).err,
+      checkPassword(password, password).err,
+      checkName(name).err].join(' ');
   }
 }
