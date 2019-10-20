@@ -1,4 +1,4 @@
-.header {
+header {
     width: 100%;
     height: 50px;
     background: #4E729A;
@@ -6,7 +6,7 @@
     line-height: 70px;
 }
 
-.header ul li {
+header ul li {
     float: left;
     width: 130px;
     text-align: center;
@@ -14,20 +14,20 @@
     height: 50px
 }
 
-.header ul {
+header ul {
     list-style: none;
 }
 
-.header ul li:hover {
+header ul li:hover {
     background: lightblue;
     color: white;
 }
 
-.rightside{
+rightside{
     float: right;
 }
 
-a{
+header a{
     float:left;
     width:130px;
     text-align:center;
@@ -37,7 +37,7 @@ a{
     text-decoration: none;
 }
 
-a:hover{
+header a:hover{
     background:lightblue;
     color:white;
 }

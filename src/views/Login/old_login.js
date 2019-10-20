@@ -2,7 +2,7 @@ import {checkEmail} from '../../modules/validation.js';
 import {checkPassword} from '../../modules/validation.js';
 import {checkName} from '../../modules/validation.js';
 import {doPost} from '../../modules/ajax.js';
-import {createBoard} from '../Board/board.js';
+import {createBoard} from '../Board/board.js.js';
 
 import './login.css';
 
