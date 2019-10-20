@@ -2,7 +2,7 @@
 // import bus from '../../modules/bus.js';
 import {doPost} from '../../modules/ajax';
 const template = require('./board.pug');
-
+import {DragManager} from './DragManag.js';
 /**
  * Генерирует Канбан-доску
  */
@@ -17,4 +17,18 @@ export function createBoard() {
           location.href='#/';
         });
   });
+
+  DragManager.onDragCancel = function(dragObject) {
+    console.log('drag cancel');
+    dragObject.avatar.rollback();
+  };
+
+  DragManager.onDragEnd = function(dragObject, dropElem) {
+    console.log('drag end');
+    dragObject.elem.style.display = 'none';
+    dropElem.classList.add('computer-smile');
+    setTimeout(function() {
+      dropElem.classList.remove('computer-smile');
+    }, 200);
+  };
 }
