@@ -18,13 +18,6 @@ const server = http.createServer((req, res) => {
   let currentUrl = url.parse(req.url, true).pathname;
 
   if (/^[^.]+$/.test(currentUrl)) {
-    // if (currentUrl.endsWith('/')) {
-    //   res.setHeader('Location', req.url.slice(0, -1));
-    //   res.writeHead(302);
-    //   res.end();
-    //   return;
-    // }
-    // currentUrl = `${currentUrl}index.html`;
     currentUrl = `index.html`;
     res.setHeader('Content-Type', `${filetypes['html']}`);
   } else {

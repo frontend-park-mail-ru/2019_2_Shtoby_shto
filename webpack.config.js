@@ -59,6 +59,6 @@ module.exports = {
     new WorkboxWebpackPlugin.InjectManifest({
       swSrc: 'src/modules/sw.js',
     }),
-    new webpack.EnvironmentPlugin({REMOTE_DEPLOY: 'development'}),
+    new webpack.EnvironmentPlugin(['REMOTE_DEPLOY']),
   ],
 };
