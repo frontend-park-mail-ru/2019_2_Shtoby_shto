@@ -37,7 +37,7 @@ body {
     flex: 50%;
 }
 
-input, button {
+.cont input, button.temp {
     border: none;
     outline: none;
     background: none;
@@ -78,7 +78,7 @@ input, button {
     transform: translate3d(-640px, 0, 0);
 }
 
-button {
+button.temp {
     display: block;
     width: 260px;
     height: 36px;
@@ -217,26 +217,26 @@ button {
     transform: translateY(72px);
 }
 
-h2 {
+.cont h2 {
     width: 100%;
     font-size: 26px;
     text-align: center;
 }
 
-label {
+.cont label {
     display: block;
     width: 260px;
     margin: 25px auto 0;
     text-align: center;
 }
 
-label span {
+.cont label span {
     font-size: 12px;
     color: #cfcfcf;
     text-transform: uppercase;
 }
 
-input {
+.cont input {
     display: block;
     width: 100%;
     margin-top: 5px;
@@ -253,7 +253,7 @@ input {
     color: #afafaf;
 }
 
-button[type='submit'] {
+button[type='submit'].temp {
     background: #d43d3a;
     color: #fff;
     text-transform: uppercase;
@@ -290,7 +290,8 @@ button[type='submit'] {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
-.tab {
+.tabs {
+    /*display: inline;*/
     list-style: none;
     padding: 0;
     width: 100%;
@@ -298,30 +299,10 @@ button[type='submit'] {
     text-align: center;
     margin: 0 0 0;
     /*border-radius:15px 15px 0 0;*/
-    /*overflow: hidden;*/
     /*border: 1px solid #1b7dbf;*/
-    background-color: #f4f5f7;
     border-collapse: collapse;
+    background-color: darkgray;
 }
-
-.tabs button {
-    height: 100%;
-    font-size: 15px;
-
-    color: black;
-    cursor: pointer;
-
-    background-color: lightgray;
-    border: 1px solid lightgray;
-    border-bottom: 0;
-    border-radius: 3px 3px 0 0;
-    display: inline-block;
-    font-weight: 700;
-    margin: 2px 2px 0;
-    padding: 8px 20px;
-    text-decoration: none;
-}
-
 
 .tabs button:hover {
     background-color: gray;
@@ -340,7 +321,7 @@ button[type='submit'] {
     border: 1px solid white;
     border-top: none;
     background: white;
-    margin: -6px;
+    margin: 2px;
 }
 
 .tabcontent h3 {
@@ -348,7 +329,7 @@ button[type='submit'] {
 }
 
 .word {
-    margin: auto;
+    margin: 2px auto auto;
     max-width: 530px;
     text-align: left;
     background: white;
@@ -401,7 +382,15 @@ button[type='submit'] {
     clear: both;
 }
 
-input {
+input.radio{
+    display: none;
+}
+
+label.radio{
+
+}
+
+input.inputLine {
     display: block;
 }
 
@@ -443,14 +432,14 @@ input {
     text-align-last: center;
 }
 
-h1 {
+.tabcontent h1 {
     font-size: 24px;
     font-weight: 600;
     line-height: 28px;
     margin: 0 0 12px;
 }
 
-h2 {
+.tabcontent h2 {
     font-size: 20px;
     font-weight: 600;
     line-height: 28px;
@@ -458,7 +447,7 @@ h2 {
     color: #0c3953;
 }
 
-h3 {
+.tabcontent h3 {
     font-size: 15px;
     font-weight: 600;
     line-height: 28px;
@@ -466,7 +455,7 @@ h3 {
     color: #091e42;
 }
 
-textarea {
+.tabcontent textarea {
     resize: none;
     width: 90%;
     height: 50px;
@@ -532,39 +521,42 @@ textarea {
 
 .tabs {
     width: 100%;
-    padding: 0;
+    padding: 1px;
     margin: 0 auto;
 }
 
 /*.tabs input { display:none; }*/
-.tabs .tabcontent {
-    display: none;
-    padding: 12px;
-    border: 1px solid #C0C0C0;
-    background: #FFFFFF;
-}
-
-a.tabs {
+.tabs {
     display: block;
     color: black;
 }
 
 .tabs > label {
     display: inline-block;
-    padding: 7px;
-    margin: 0 -5px -1px 0;
+    margin: 2px 2px 0;
+    padding: 8px 20px;
     text-align: center;
     color: #666666;
     border: 1px solid #C0C0C0;
     background: #E0E0E0;
     cursor: pointer;
+    border-radius:5px 5px 0 0;
+    border-bottom: 2px white;
+}
+
+.tabs > label:hover{
+    background-color: gray;
 }
 
 .tabs > input:checked + label {
-    color: #000000;
-    border: 1px solid #C0C0C0;
-    border-bottom: 1px solid #FFFFFF;
-    background: #FFFFFF;
+    background-color: white;
+    color: black;
+    border: 1px solid #1b7dbf;
+    border-bottom: 0;
+    /*color: #000000;*/
+    /*border: 1px solid #C0C0C0;*/
+    /*border-bottom: 1px solid #FFFFFF;*/
+    /*background: #FFFFFF;*/
 }
 
 #tab_1:checked ~ #Profile {
@@ -583,6 +575,80 @@ a.tabs {
     display: block;
 }
 
+.tabs button {
+    /*height: 100%;*/
+    font-size: 15px;
+    font-style: revert;
+
+    color: black;
+    cursor: pointer;
+
+    border: 1px solid lightgray;
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+    display: inline-block;
+    font-weight: 700;
+
+    margin: 2px 2px 0;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+
+
+.tabs button:hover {
+    background-color: gray;
+}
+
+
+.tabs button.active {
+    background-color: white;
+    color: black;
+}
+
+.tabcontent h3{
+    text-align-last: left;
+}
+
+.tabbed-header {
+    background-color: #f4f5f7;
+}
+
+.tabbed-header-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 650px;
+    padding: 32px;
+    position: relative;
+}
+
+.tabcontent hr {
+    background-color: rgba(9,30,66,.13);
+    border: 0;
+    height: 1px;
+    margin: 16px 0;
+    padding: 0;
+    width: 100%;
+}
+
+.inputLine {
+    text-align-last: left;
+    width: 90%;
+    background-color: #f9f9f9;
+    border: none;
+    box-shadow: inset 0 0 0 1px lightgray;
+    display: block;
+    line-height: 20px;
+    margin-bottom: 12px;
+    padding: 8px 0 8px 15px;
+}
+
+.container:after, .row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
 #header {
     width: 100%;
     height: 50px;
@@ -613,7 +679,7 @@ a.tabs {
     float: right;
 }
 
-a{
+#header a{
     float:left;
     width:130px;
     text-align:center;
@@ -623,7 +689,7 @@ a{
     text-decoration: none;
 }
 
-a:hover{
+#header a:hover{
     background:lightblue;
     color:white;
 }

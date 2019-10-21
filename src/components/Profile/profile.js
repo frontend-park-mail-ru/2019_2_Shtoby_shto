@@ -3,7 +3,15 @@ import './profilewolf.svg';
 import './userAva.png';
 
 import {doPut, doGet} from '../../modules/ajax';
-import {checkName, checkPassword, checkEmail} from '../../modules/validation';
+import {checkPassword, checkEmail} from '../../modules/validation';
+
+const localApiAddr = 'http://localhost'
+const remoteApiAddr = 'https://iamneponyalapi.ru'
+
+const deployVar = process.env.REMOTE_DEPLOY
+
+const apiAddr = (deployVar && remoteApiAddr) ||
+    localApiAddr
 
 const template = require('./profile.pug');
 /**
@@ -16,13 +24,13 @@ const template = require('./profile.pug');
   const user = {};
 
   doGet('/user')
-      // .then((response) => {
-      //   if (!response) {
-      //     location.href = '#/';
-      //   } else {
-      //     user['login'] = response.login;
-      //     user['password'] = response.password;
-      //     user['id'] = response.id;
+       .then((response) => {
+         if (!response) {
+           location.href = '#/';
+         } else {
+           user['login'] = response.login;
+           user['password'] = response.password;
+           user['id'] = response.id;
 
           application.innerHTML = template();
 
@@ -67,13 +75,27 @@ const template = require('./profile.pug');
               }
             }
           });
-      //   }
-      // });
+        }
+      });
 
-    let imag = document.getElementById("avatar");
-    imag.onclick = function img() {
-        let name = 'profilewolf.svg';
-        imag.setAttribute('src', `build/images/${name}`);
-    }
+        console.log("this works!");
+        let form = document.forms.namedItem("fileinfo");
+        form.addEventListener('submit', function (ev) {
 
+            let oData = new FormData(form);
+            console.log(oData);
+
+            try{
+                const response = fetch(apiAddr + "/photo",{
+                    method: 'PUT',
+                    body: oData
+                }).then(response=>response.json())
+                    .then(result=>console.log('Успех:', JSON.stringify(result)))
+            } catch (error) {
+                console.error('Ошибка:', error);
+            }
+
+            ev.preventDefault();
+        }, false);
+     // };
 }

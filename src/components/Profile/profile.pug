@@ -10,7 +10,7 @@ section(style="text-align-last: center")
         label.radio(for="tab_4") Настройки
 
         .tabcontent.word(id="Profile")
-            img(style="margin-top: 50px; margin-left: -13px" src="build/images/profilewolf.svg" alt="")
+            img(style="margin-top: 50px; margin-left: -13px" src=require("./profilewolf.svg") alt="")
             h1 Управление персональными данными
             p
                 | Вы можете менять настройки доступа к информации и улучшениям. Чтобы
@@ -38,13 +38,17 @@ section(style="text-align-last: center")
                             button.saveButton Сохранить
                     .col-1-3
                         p
-                            img(src="build/build/images/userAva.png" alt="")
-                        button(id="avatar") Загрузить
+                            img(id="avatar" src=require('./userAva.png') alt="")
+                        form(enctype="multipart/form-data" method="post" name="fileinfo")
+                            label Обновить Аватар:
+                            input(type="file" name="file" required="" accept="image/*")
+                            input(type="submit" value="Загрузить")
+                            div
             h2(style="margin-top: 60px; text-align-last: left;") Контакт
             hr
             h3 Электронная почта
             textarea(readonly="" style="text-align-last: left;") user@mail.com
-            button(onclick="mailChange(event)") Сменить или добавить почту
+            button(onclick="mailChange()") Сменить или добавить почту
         .tabcontent.word(id="Action" style="text-align-last: left")
             h2(style="margin-top: 40px") Команды
             hr
