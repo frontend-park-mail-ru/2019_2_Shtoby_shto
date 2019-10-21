@@ -1,7 +1,8 @@
 /**
  * @class Bus
  */
-export default class Bus {
+
+class Bus {
   constructor() {
     this.listeners = {};
   }
@@ -22,4 +23,6 @@ export default class Bus {
       listener(data);
     });
   }
-}
+};
+
+export default new Bus();

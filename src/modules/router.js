@@ -8,9 +8,10 @@ export default class Router {
     this.root = app;
 
     const el = document.createElement('header');
-    const hview = new HeadView(el);
+    // const hview = new HeadView(el);
+    this.hview = new HeadView(el);
 
-    hview.show();
+    this.hview.show();
     this.root.appendChild(el);
   }
 
@@ -32,6 +33,8 @@ export default class Router {
 
   open(path) {
     const route = this.routes[path];
+
+    this.hview.show();
 
     if (!route) {
       this.open('/');
