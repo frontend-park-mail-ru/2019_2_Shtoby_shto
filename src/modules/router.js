@@ -17,7 +17,7 @@ export default class Router {
 
   register(path, view) {
     this.routes[path] = {
-      View: view,
+      ViewConstructor: view,
       view: null,
       el: null,
     };
@@ -49,7 +49,7 @@ export default class Router {
       );
     }
 
-    let {View, view, el} = route;
+    let {ViewConstructor, view, el} = route;
 
     if (!el) {
       el = document.createElement('section');
@@ -57,7 +57,7 @@ export default class Router {
     }
 
     if (!view) {
-      view = new View(el);
+      view = new ViewConstructor(el);
     }
 
     if (!view.active) {
@@ -70,7 +70,7 @@ export default class Router {
       view.show();
     }
 
-    this.routes[path] = {View, view, el};
+    this.routes[path] = {ViewConstructor, view, el};
   }
 
   start() {
