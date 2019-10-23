@@ -5,8 +5,8 @@ const template = require('./login.pug');
 import './login.css';
 
 export default class LoginView extends BaseView {
-  constructor(el) {
-    super(el);
+  constructor(el, router) {
+    super(el, router);
 
     this.el.innerHTML = template();
     this.errorArea = document.getElementsByClassName('errorArea').item(0);
@@ -20,6 +20,10 @@ export default class LoginView extends BaseView {
 
     this.formUp = document.getElementsByTagName('form')[1];
     this.formUp.addEventListener('submit', this.register.bind(this));
+
+    bus.on('logged_in', () => {
+      this.router.open('/profile');
+    });
   }
 
   render() {

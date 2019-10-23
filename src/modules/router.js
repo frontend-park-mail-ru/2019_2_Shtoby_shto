@@ -1,14 +1,10 @@
 export default class Router {
-  // constructor(app) {
-  // constructor(app, headView, footerView) {
   constructor(app, HeadView) {
-  // constructor(app) {
     this.routes = {};
 
     this.root = app;
 
     const el = document.createElement('header');
-    // const hview = new HeadView(el);
     this.hview = new HeadView(el);
 
     this.hview.show();
@@ -57,7 +53,7 @@ export default class Router {
     }
 
     if (!view) {
-      view = new ViewConstructor(el);
+      view = new ViewConstructor(el, this);
     }
 
     if (!view.active) {

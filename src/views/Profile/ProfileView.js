@@ -21,7 +21,7 @@ export default class ProfileView extends BaseView {
   }
 
   fillUser(user) {
-    console.log('filling user');
+    console.log('filling user', user);
     this.user = user;
 
     const username = document.getElementById('username');
