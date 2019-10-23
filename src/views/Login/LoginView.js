@@ -15,10 +15,10 @@ export default class LoginView extends BaseView {
       document.querySelector('.cont').classList.toggle('s--signup');
     });
 
-    this.formIn = document.getElementsByTagName('form')[0];
+    this.formIn = document.getElementById('in');
     this.formIn.addEventListener('submit', this.login.bind(this));
 
-    this.formUp = document.getElementsByTagName('form')[1];
+    this.formUp = document.getElementById('up');
     this.formUp.addEventListener('submit', this.register.bind(this));
 
     bus.on('logged_in', () => {
