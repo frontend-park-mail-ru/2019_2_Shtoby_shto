@@ -24,10 +24,6 @@ const router = new Router(app, HeaderView);
 
 router.registerBunch(routes);
 
-// bus.on('logged_in', () => {
-//   router.open('/profile');
-// });
-
 router.start();
 
 // document.addEventListener('DOMContentLoaded', function() {

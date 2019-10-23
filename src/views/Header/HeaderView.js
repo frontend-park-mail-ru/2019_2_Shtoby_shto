@@ -12,7 +12,7 @@ export default class HeaderView extends BaseView {
     this.el.innerHTML = template();
 
     this.loggedIn = false;
-    bus.emit('fetch_user', {});
+    bus.emit('fetch_user');
     bus.on('got_user', this.switchToLoggedIn.bind(this));
   }
 
