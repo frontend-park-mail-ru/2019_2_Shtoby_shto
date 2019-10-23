@@ -1,45 +1,42 @@
 import Ajax from './Ajax';
 
-class UserService {
+export default class UserService {
+  constructor(addr) {
+    this.ajax = new Ajax(addr);
+  }
+
   login(info) {
-    return new Promise(function(resolve, reject) {
-      return Ajax.doPost('/login', info)
-          .then((res) => {
-            if (res.status !== 200) {
-              reject(res.status);
-            } else {
-              resolve();
-            }
-          });
-    });
+    return this.ajax.request('POST', '/login', info);
   }
 
   register(info) {
-    return new Promise(function(resolve, reject) {
-      return Ajax.doPost('/register', info)
-          .then((res) => {
-            if (res.status !== 200) {
-              reject(res.status);
-            } else {
-              resolve();
-            }
-          });
-    });
+    return this.ajax.request('POST', '/register', info);
   }
 
   fetchUser() {
-    return new Promise(function(resolve, reject) {
-      return Ajax.doGet('/user')
-          .then((res) => {
-            if (res.status !== 200) {
-              reject(res.status);
-            }
-            return res;
-          })
-          .then((res) => res.json())
-          .then((res) => resolve(res));
+    return this.ajax.jsonRequest('GET', '/user');
+  }
+
+  registerEvents(bus) {
+    bus.on('try_login', (info) => {
+      this.login(info)
+          .then(() => {
+            bus.emit('logged_in');
+          });
+    });
+
+    bus.on('try_register', (info) => {
+      this.register(info)
+          .then(() => {
+            bus.emit('logged_in');
+          });
+    });
+
+    bus.on('fetch_user', () => {
+      this.fetchUser()
+          .then((user) => {
+            bus.emit('got_user', user);
+          });
     });
   }
 };
-
-export default new UserService();

@@ -19,9 +19,11 @@ class Bus {
   }
 
   emit(event, data) { // публикуем (диспатчим, эмитим) событие
-    this.listeners[event].forEach(function(listener) {
-      listener(data);
-    });
+    if (event in this.listeners) {
+      this.listeners[event].forEach(function(listener) {
+        listener(data);
+      });
+    }
   }
 };
 

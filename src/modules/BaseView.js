@@ -3,8 +3,9 @@
  * @module BaseView
  */
 export default class BaseView {
-  constructor(el) {
+  constructor(el, router) {
     this.el = el;
+    this.router = router;
 
     // this.el.dataset.view = this.constructor.name;
     this.el.hidden = true;

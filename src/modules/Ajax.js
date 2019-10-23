@@ -1,12 +1,3 @@
-const localApiAddr = 'http://localhost';
-const remoteApiAddr = 'https://iamneponyalapi.ru';
-
-const deployVar = process.env.REMOTE_DEPLOY;
-
-const apiAddr = (deployVar && remoteApiAddr) ||
-    localApiAddr;
-
-
 function attachHeaders(method, body) {
   return {
     method: method,
@@ -22,20 +13,28 @@ function attachHeaders(method, body) {
   };
 }
 
-function ajax(method, path, body) {
-  console.log('apiAddr', apiAddr);
-  console.log('posting ajax', body);
-  return fetch(apiAddr + path, attachHeaders(method, body));
-}
-
 class Ajax {
-  doPost(path, body) {
-    return ajax('POST', path, body);
+  constructor(url) {
+    this.apiAddr = url;
   }
 
-  doGet(path, body) {
-    return ajax('GET', path, body);
+  request(method, path, body) {
+    return fetch(this.apiAddr + path, attachHeaders(method, body));
+  }
+
+  jsonRequest(method, path, body) {
+    return new Promise(function(resolve, reject) {
+      this.request(method, path, body)
+          .then((res) => {
+            if (res.status !== 200) {
+              reject(res.status);
+            }
+            return res;
+          })
+          .then((res) => res.json())
+          .then((jsonBody) => resolve(jsonBody));
+    }.bind(this));
   }
 };
 
-export default new Ajax();
+export default Ajax;

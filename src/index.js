@@ -8,50 +8,25 @@ import UserService from './modules/UserService';
 import bus from './modules/bus';
 
 
-bus.on('try_login', (info) => {
-  UserService.login(info)
-      .then(() => {
-        bus.emit('logged_in', {});
-      }).catch((err) => {
-        bus.emit('login_failed', err);
-      });
-});
+const localApiAddr = 'http://localhost';
+const remoteApiAddr = 'https://iamneponyalapi.ru';
 
-bus.on('try_register', (info) => {
-  UserService.register(info)
-      .then(() => {
-        bus.emit('logged_in', {});
-      }).catch((err) => {
-        bus.emit('registration_failed', err);
-      });
-});
+const deployVar = process.env.REMOTE_DEPLOY;
 
-bus.on('logged_in', () => {
-  router.open('/profile');
-});
+const apiAddr = (deployVar && remoteApiAddr) ||
+    localApiAddr;
 
-bus.on('fetch_user', () => {
-  UserService.fetchUser()
-      .then((user) => {
-        bus.emit('got_user', user);
-      })
-      .catch((err) => {
-        console.log('fetch user failed', err);
-      });
-});
-
-bus.on('login_failed', (err) => {
-  console.log('login failed!', err);
-});
-
-bus.on('register_failed', (err) => {
-  console.log('register failed!');
-});
+const us = new UserService(apiAddr);
+us.registerEvents(bus);
 
 const app = document.getElementById('app');
 const router = new Router(app, HeaderView);
 
 router.registerBunch(routes);
+
+// bus.on('logged_in', () => {
+//   router.open('/profile');
+// });
 
 router.start();
 
