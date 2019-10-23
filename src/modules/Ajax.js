@@ -7,7 +7,7 @@ const apiAddr = (deployVar && remoteApiAddr) ||
     localApiAddr;
 
 
-function attachCors(method, body) {
+function attachHeaders(method, body) {
   return {
     method: method,
     mode: 'cors', // no-cors, cors, *same-origin
@@ -25,7 +25,7 @@ function attachCors(method, body) {
 function ajax(method, path, body) {
   console.log('apiAddr', apiAddr);
   console.log('posting ajax', body);
-  return fetch(apiAddr + path, attachCors(method, body));
+  return fetch(apiAddr + path, attachHeaders(method, body));
 }
 
 class Ajax {
