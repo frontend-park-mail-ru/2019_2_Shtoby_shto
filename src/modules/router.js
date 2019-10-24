@@ -1,26 +1,100 @@
-import {profile} from '../components/Profile/profile';
-import {reg} from '../components/Login/login';
-import {createBoard} from '../components/Board/board';
-import Utils from './services/Utils';
-import {viewMain} from '../components/Main/main';
+export default class Router {
+  constructor(app, HeadView) {
+    this.routes = {};
 
-const routes = {
-  '/': viewMain,
-  '/profile': profile,
-  '/login': reg,
-  '/board': createBoard,
-};
+    this.root = app;
 
-export const router = async () => {
-  const request = Utils.parseRequestUrl();
-  const parsedURL = (request.resource ? '/' + request.resource : '/');
+    const el = document.createElement('header');
+    this.hview = new HeadView(el);
 
-  const page = routes[parsedURL];
-  console.log(parsedURL);
-  page();
-};
+    this.hview.show();
+    this.root.appendChild(el);
+  }
 
-export const hashRouter = async () => {
-  console.log('hash changed');
-  await router();
+  register(path, view) {
+    this.routes[path] = {
+      ViewConstructor: view,
+      view: null,
+      el: null,
+    };
+
+    return this;
+  }
+
+  registerBunch(pathsViewsObject) {
+    Object.keys(pathsViewsObject).forEach((key, index) => {
+      this.register(key, pathsViewsObject[key]);
+    });
+  }
+
+  open(path) {
+    const route = this.routes[path];
+
+    this.hview.show();
+
+    if (!route) {
+      this.open('/');
+      return;
+    }
+
+    if (window.location.pathname !== path) {
+      window.history.pushState(
+          null,
+          '',
+          path
+      );
+    }
+
+    let {ViewConstructor, view, el} = route;
+
+    if (!el) {
+      el = document.createElement('section');
+      this.root.appendChild(el);
+    }
+
+    if (!view) {
+      view = new ViewConstructor(el, this);
+    }
+
+    if (!view.active) {
+      Object.values(this.routes).forEach(function({view}) {
+        if (view && view.active) {
+          view.hide();
+        }
+      });
+
+      view.show();
+    }
+
+    this.routes[path] = {ViewConstructor, view, el};
+  }
+
+  start() {
+    opener = function(event) {
+      if (!(event.target instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      event.preventDefault();
+      const link = event.target;
+
+      console.log(link.pathname);
+
+      this.open(link.pathname);
+    }.bind(this);
+
+    this.root.addEventListener('click', opener);
+    // this.header.addEventListener('click', opener);
+    // this.footer.addEventListener('click', opener);
+
+    window.addEventListener('popstate', function() {
+      const currentPath = window.location.pathname;
+
+      this.open(currentPath);
+    }.bind(this));
+
+    const currentPath = window.location.pathname;
+
+    this.open(currentPath);
+  }
 };

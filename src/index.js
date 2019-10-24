@@ -1,10 +1,44 @@
 import './style.css';
 
-import {hashRouter, router} from './modules/router.js';
-import {createHeader} from './components/Header/headMenu.js';
+import HeaderView from './views/Header/HeaderView';
+import Router from './modules/router';
+import routes from './routes';
 
-document.addEventListener('DOMContentLoaded', function() {
-  createHeader();
-  window.addEventListener('hashchange', hashRouter);
-  window.addEventListener('load', router);
-});
+import UserService from './modules/UserService';
+import bus from './modules/bus';
+
+
+const localApiAddr = 'http://localhost';
+const remoteApiAddr = 'https://iamneponyalapi.ru';
+
+const deployVar = process.env.REMOTE_DEPLOY;
+
+const apiAddr = (deployVar && remoteApiAddr) ||
+    localApiAddr;
+
+const us = new UserService(apiAddr);
+us.registerEvents(bus);
+
+const app = document.getElementById('app');
+const router = new Router(app, HeaderView);
+
+router.registerBunch(routes);
+
+router.start();
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   createHeader();
+//   window.addEventListener('hashchange', hashRouter);
+//   window.addEventListener('load', router);
+//   if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', () => {
+//       navigator.serviceWorker.register('build/service-worker.js').
+//           then((registration) => {
+//             console.log('SW registered: ', registration);
+//           }).
+//           catch((registrationError) => {
+//             console.log('SW registration failed: ', registrationError);
+//           });
+//     });
+//   }
+// });

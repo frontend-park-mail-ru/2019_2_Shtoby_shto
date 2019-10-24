@@ -1,7 +1,8 @@
 /**
  * @class Bus
  */
-export default class Bus {
+
+class Bus {
   constructor() {
     this.listeners = {};
   }
@@ -18,8 +19,12 @@ export default class Bus {
   }
 
   emit(event, data) { // публикуем (диспатчим, эмитим) событие
-    this.listeners[event].forEach(function(listener) {
-      listener(data);
-    });
+    if (event in this.listeners) {
+      this.listeners[event].forEach(function(listener) {
+        listener(data);
+      });
+    }
   }
-}
+};
+
+export default new Bus();

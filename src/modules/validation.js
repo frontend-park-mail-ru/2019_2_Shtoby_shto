@@ -23,7 +23,7 @@ export function checkName(nickname = '') {
  */
 export function checkEmail(email = '') {
   const regex = new RegExp(`([a-z0-9_\\\\-]+\\.)*[a-z0-9_\\\\-]` +
-    `+@([a-z0-9][a-z0-9\\\\-]*[a-z0-9]\\.)+[a-z]{2,4}`);
+      `+@([a-z0-9][a-z0-9\\\\-]*[a-z0-9]\\.)+[a-z]{2,4}`);
   if (email.match(regex)) return {status: true, err: ''};
   else return {status: false, err: 'Некорректная почта!'};
 }
@@ -35,8 +35,23 @@ export function checkEmail(email = '') {
  * @return {Object.<boolean, error>} validate
  */
 export function checkPassword(password1, password2) {
-  if (password1 !== password2) return {status: false, err: 'Пароли не совпадают!'};
-  if (password1.length < minPassLength) return {status: false, err: 'Слишком короткий пароль!'};
-  if (password1.length > maxPassLength) return {status: false, err: 'Слишком длинный пароль!'};
+  if (password1 !== password2) {
+    return {
+      status: false,
+      err: 'Пароли не совпадают!',
+    };
+  }
+  if (password1.length < minPassLength) {
+    return {
+      status: false,
+      err: 'Слишком короткий пароль!',
+    };
+  }
+  if (password1.length > maxPassLength) {
+    return {
+      status: false,
+      err: 'Слишком длинный пароль!',
+    };
+  }
   return {status: true, err: ''};
 }
