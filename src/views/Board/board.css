@@ -1,0 +1,19 @@
+.card {
+    height:100px;
+    width: 200px;
+    border: 3px solid gray;
+    background: white;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.dropArea {
+    height:100px;
+    width: 200px;
+    border: 3px solid gray;
+    background: #d43d3a;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+}

@@ -12,3 +12,8 @@
 * [Андреев Алексей](https://github.com/WeCodingNow)
 * [Смирнова Юлия](https://github.com/yuliya-sm7)
 * [Молчанов Алексей](https://github.com/Alexosis)
+
+Запуск на localhost:3000: 
+
+    npm run build
+    npm run start

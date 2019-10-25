@@ -1,12 +1,8 @@
-#app
-    h1 Канбан-доска здесь
-#view
-    button Создать новую карточку
-#logout
-        button Разлогиниться
+h1 Канбан-доска здесь
+div(class="draggable card newCard") Взять новую карточку
 
-div(class="draggable" style="height:50px") Карточка 1
-div(class="draggable" style="height:50px") Карточка 2
-div(class="draggable" style="height:50px") Карточка 3
+div(class="draggable card") Карточка 1
+div(class="draggable card") Карточка 2
+div(class="draggable card") Карточка 3
 
-div(class="droppable") перенеси сюда
+div(class="droppable dropArea") Удалить карточку

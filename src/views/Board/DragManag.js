@@ -13,7 +13,7 @@ export const DragManager = new function() {
   const self = this;
 
   function onMouseDown(e) {
-    if (e.which != 1) return;
+    if (e.which !== 1) return;
 
     const elem = e.target.closest('.draggable');
     if (!elem) return;

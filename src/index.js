@@ -16,6 +16,8 @@ const deployVar = process.env.REMOTE_DEPLOY;
 const apiAddr = (deployVar && remoteApiAddr) ||
     localApiAddr;
 
+console.log(apiAddr);
+
 const us = new UserService(apiAddr);
 us.registerEvents(bus);
 
