@@ -27,7 +27,8 @@ class Ajax {
             } else {
               resolve(res);
             }
-          });
+          })
+          .catch((err) => reject(err));
     });
   }
 
