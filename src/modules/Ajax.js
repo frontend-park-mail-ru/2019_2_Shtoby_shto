@@ -19,21 +19,21 @@ class Ajax {
   }
 
   request(method, path, body) {
-    return fetch(this.apiAddr + path, attachHeaders(method, body));
+    return new Promise((resolve, reject) => {
+      fetch(this.apiAddr + path, attachHeaders(method, body))
+          .then((res) => {
+            if (res.status !== 200) {
+              reject(Error('status is not 200'));
+            } else {
+              resolve(res);
+            }
+          });
+    });
   }
 
   jsonRequest(method, path, body) {
-    return new Promise(function(resolve, reject) {
-      this.request(method, path, body)
-          .then((res) => {
-            if (res.status !== 200) {
-              reject(res.status);
-            }
-            return res;
-          })
-          .then((res) => res.json())
-          .then((jsonBody) => resolve(jsonBody));
-    }.bind(this));
+    return this.request(method, path, body)
+        .then((res) => res.json());
   }
 };
 

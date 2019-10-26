@@ -23,7 +23,8 @@ export default class UserService {
           .then(() => {
             bus.emit('logged_in');
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
             bus.emit('login_failed');
           });
     });
@@ -31,9 +32,11 @@ export default class UserService {
     bus.on('try_register', (info) => {
       this.register(info)
           .then(() => {
+            console.log('then worked');
             bus.emit('logged_in');
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
             bus.emit('login_failed');
           });
     });
@@ -43,7 +46,7 @@ export default class UserService {
           .then((user) => {
             bus.emit('got_user', user);
           })
-          .catch(() => {});
+          .catch((err) => {});
     });
   }
 };
