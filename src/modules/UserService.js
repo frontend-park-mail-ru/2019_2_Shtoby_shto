@@ -10,7 +10,7 @@ export default class UserService {
   }
 
   register(info) {
-    return this.ajax.request('POST', '/register', info);
+    return this.ajax.request('POST', '/registration', info);
   }
 
   fetchUser() {
