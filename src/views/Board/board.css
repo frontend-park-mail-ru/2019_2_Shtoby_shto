@@ -1,4 +1,35 @@
-.card {
+.board__tabs {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.board__tabs button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.board__tabs button:hover {
+    background-color: #ddd;
+}
+
+.board__tabs button.active {
+    background-color: #ccc;
+}
+
+.board__board {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.board__card {
     height:100px;
     width: 200px;
     border: 3px solid gray;
@@ -8,12 +39,37 @@
     border-radius: 5px;
 }
 
-.dropArea {
-    height:100px;
-    width: 200px;
-    border: 3px solid gray;
-    background: #d43d3a;
-    padding: 10px 20px;
-    margin: 20px;
-    border-radius: 5px;
+.board__modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.board__card__modal {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.board__modal__close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.board__modal__close:hover,
+.board__modal__close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

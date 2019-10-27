@@ -5,10 +5,10 @@ export default class Store {
   }
 
   dispatch(action) {
-    state = reducer(state, action);
+    this.state = this.reducer(this.state, action);
   }
 
   getState() {
-    return state;
+    return this.state;
   }
 }

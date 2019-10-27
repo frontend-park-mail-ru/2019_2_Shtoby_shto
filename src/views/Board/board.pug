@@ -1,8 +1,46 @@
-h1 Канбан-доска здесь
-div(class="draggable card newCard") Взять новую карточку
+.board__tabs
+    button.board__button#button1 доска1
+    button.board__button#button2 доска2
+.board__container
+    .board__board#board1
+        .board__group#b1_g1
+            .board__group__name g1
+            .board__card#b1_g1_c1
+                .board__card__name card1
+            .board__card#b1_g1_c2
+                .board__card__name card2
+            .board__card#b1_g1_c3 
+                .board__card__name card3
+        .board__group#b1_g2
+            .board__group__name g2
+            .board__card#b1_g2_c1
+                .board__card__name card3
+            .board__card#b1_g2_c2
+                .board__card__name card3
+    .board__board#board2
+        .board__group#b2_g1
+            .board__group__name g1
+            .board__card#b2_g1_c1
+                .board__card__name card1
+            .board__card#b2_g1_c2
+                .board__card__name card2
+        .board__group#b2_g2
+            .board__group__name g2
+            .board__card#b2_g2_c1
+                .board__card__name card1
+            .board__card#b2_g2_c2
+                .board__card__name card2
+    .board__modal
+        .board__card__modal
+            span.board__modal__close &times;
+            .board__card__content
+                .board__card__content__name название карточки
+                li таск1
+                li таск2
+//- div(class="draggable card newCard") Взять новую карточку
 
-div(class="draggable card") Карточка 1
-div(class="draggable card") Карточка 2
-div(class="draggable card") Карточка 3
+//- div(class="draggable card") Карточка 1
+//- div(class="draggable card") Карточка 2
+//- div(class="draggable card") Карточка 3
 
-div(class="droppable dropArea") Удалить карточку
+//- div(class="droppable dropArea") Удалить карточку

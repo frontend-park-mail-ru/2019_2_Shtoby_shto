@@ -1,9 +1,12 @@
-import Store from '../modules/Store';
+import Store from '../../modules/Store';
 import boardReducer from './BoardReducer';
 
 class BoardStore extends Store {
   constructor() {
-    super([], boardReducer);
+    super(
+        boardReducer,
+        [], // доски
+    );
   }
 }
 
