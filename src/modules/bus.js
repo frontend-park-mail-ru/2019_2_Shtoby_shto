@@ -25,6 +25,6 @@ class Bus {
       });
     }
   }
-};
+}
 
 export default new Bus();

@@ -17,6 +17,18 @@ export default class UserService {
     return this.ajax.jsonRequest('GET', '/user');
   }
 
+  updatingData(info) {
+    return this.ajax.request('PUT', '/user', info);
+  }
+
+  updatingAvatar(photo) {
+    return this.ajax.jsonRequest('POST', '/photo', photo);
+  }
+
+  fetchAvatar() {
+    return this.ajax.request('GET', '/photo');
+  }
+
   registerEvents(bus) {
     bus.on('try_login', (info) => {
       this.login(info)
@@ -47,6 +59,39 @@ export default class UserService {
             bus.emit('got_user', user);
           })
           .catch((err) => {});
+    });
+
+    bus.on('fetch_avatar', ()=>{
+      this.fetchAvatar()
+          .then((photo) => {
+            bus.emit('got_avatar', photo);
+          })
+          .catch((err) => {});
+    });
+  }
+
+  profileEvents(bus) {
+    bus.on('update_profile', (newData)=>{
+      this.updatingData(newData)
+          .then(()=>{
+            console.log('updated');
+            bus.emit('logged_in');
+          })
+          .catch((err)=>{
+            console.log(err);
+            bus.emit('updating_failed');
+          });
+    });
+
+    bus.on('update_avatar', (newPhoto)=>{
+      this.updatingAvatar(newPhoto)
+          .then(()=>{
+            console.log('Avatar updating');
+            bus.emit('photo_uploaded');
+          })
+          .catch((err)=>{
+            console.log(err);
+          });
     });
   }
 };

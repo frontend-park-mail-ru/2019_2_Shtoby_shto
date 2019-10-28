@@ -18,6 +18,7 @@ const apiAddr = (deployVar && remoteApiAddr) ||
 
 const us = new UserService(apiAddr);
 us.registerEvents(bus);
+us.profileEvents(bus);
 
 const app = document.getElementById('app');
 const router = new Router(app, HeaderView);

@@ -36,6 +36,6 @@ class Ajax {
     return this.request(method, path, body)
         .then((res) => res.json());
   }
-};
+}
 
 export default Ajax;
