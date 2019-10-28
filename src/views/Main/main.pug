@@ -1,14 +1,11 @@
 div
     .row
         #col1.column
-            img(src='build/images/hero-a.svg')
+            img(src=require('./hero-a.svg'))
         #col2.column
             div
-                h1 Мы создали
-                h1 Чтобы что
-                h1 -то было
+                h1(class='title')  Мы создали
+                h1(class='title') Чтобы что
+                h1(class='title') -то было
 
-            //- button(onclick="location.href='#/login';") Начать пользоваться
-            a(href='/login') Начать пользоваться
-            //- p Без регистрации и СМС вам доступно только:
-            //- button(onclick="document.location.href = \"PUG/index.html\"") Посмотреть на мопса
+            a(href='/login' class='button') Начать пользоваться

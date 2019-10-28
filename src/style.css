@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
 @font-face {
     font-family: 'Proxima Nova Light';
+    src: url('/fonts/ProximaNova-Light.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+body {
+    font-family: 'Proxima Nova Light', sans-serif;
+    background: #d3dae9;
 }
 
 *, *:before, *:after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: 'Proxima Nova', sans-serif;
-    background: #ededed;
 }
 
 .footer {

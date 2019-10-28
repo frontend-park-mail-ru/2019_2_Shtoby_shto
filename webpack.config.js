@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
+//const CompressionPlugin = require('compression-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
@@ -35,7 +35,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8000, // Convert images < 8kb to base64 strings
-              name: 'images/[name].[ext]',
+              name: '../images/[name].[ext]',
             },
           }],
       },
@@ -50,12 +50,13 @@ module.exports = {
     ],
   },
   plugins: [
+    new FaviconsWebpackPlugin('src/favicon.ico'),
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-    }),
+    //new CompressionPlugin({
+    //  algorithm: 'gzip',
+    //}),
     new WorkboxWebpackPlugin.InjectManifest({
       swSrc: 'src/modules/sw.js',
     }),
