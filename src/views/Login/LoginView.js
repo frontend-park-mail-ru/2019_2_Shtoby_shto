@@ -11,6 +11,7 @@ export default class LoginView extends BaseView {
     this.el.innerHTML = template();
     this.errorArea = document.getElementsByClassName('errorArea').item(0);
 
+    // украшение
     document.querySelector('.img__btn').addEventListener('click', function() {
       document.querySelector('.cont').classList.toggle('s--signup');
     });
