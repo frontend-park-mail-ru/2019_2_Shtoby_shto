@@ -107,6 +107,7 @@ export const DragManager = new function() {
   }
 
   function startDrag(e) {
+    console.log('started dragging dropping');
     const avatar = dragObject.avatar;
 
     // инициировать начало переноса

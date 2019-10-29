@@ -5,6 +5,7 @@ import Router from './modules/router';
 import routes from './routes';
 
 import UserService from './modules/UserService';
+import BoardService from './modules/BoardService';
 import bus from './modules/bus';
 
 
@@ -20,6 +21,9 @@ console.log(apiAddr);
 
 const us = new UserService(apiAddr);
 us.registerEvents(bus);
+
+const bs = new BoardService(apiAddr);
+bs.registerEvents(bus);
 
 const app = document.getElementById('app');
 const router = new Router(app, HeaderView);
