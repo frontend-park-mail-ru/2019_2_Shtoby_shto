@@ -14,6 +14,8 @@ export default class BoardView extends BaseView {
 
     this.el.innerHTML = template();
 
+    this.rendered = false;
+
     const modal = {
       modal: document.getElementsByClassName('board__modal')[0],
       name: document.getElementsByClassName('modal__card__name')[0],
@@ -40,15 +42,21 @@ export default class BoardView extends BaseView {
       }
     });
 
-    const filler = (user) => {
-      console.log('filling');
-      bus.emit('fetch_boards', user.id);
-    };
+    this.rendered = false;
 
-    bus.on('got_user', filler);
-    bus.on('got_board_ids', function() {
-      bus.off('got_user', filler);
-    });
+    this.fillBoards();
+  }
+
+  fillBoards() {
+    if (!this.rendered) {
+      const filler = (user) => {
+        bus.off('got_user', filler);
+        bus.emit('fetch_boards', user.id);
+      };
+
+      bus.on('got_user', filler);
+      bus.emit('fetch_user');
+    }
   }
 
   render() {

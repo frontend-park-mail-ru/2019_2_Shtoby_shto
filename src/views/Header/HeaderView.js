@@ -10,28 +10,43 @@ export default class HeaderView extends BaseView {
 
     this.el.class = 'header';
     this.el.innerHTML = template();
-
     this.loggedIn = false;
-    bus.emit('fetch_user');
-    bus.on('got_user', this.switchToLoggedIn.bind(this));
+
+    bus.on('got_user', () => {
+      this.loggedIn = true;
+      this.render();
+    });
+
+    bus.on('logged_out', () => {
+      this.loggedIn = false;
+      this.render();
+    });
   }
 
   render() {
+    if (!this.loggedIn) {
+      bus.emit('fetch_user');
+    }
+
     this.showPanels();
   }
 
   showPanels() {
     const profileButton = document.querySelector('li.profile');
     const loginButton = document.querySelector('li.login');
+    const logoutButton = document.querySelector('li.logout');
+    const boardButton = document.querySelector('li.board');
 
     if (profileButton) {
       profileButton.hidden = !this.loggedIn;
+      logoutButton.hidden = !this.loggedIn;
+      boardButton.hidden = !this.loggedIn;
       loginButton.hidden = this.loggedIn;
     }
   }
 
-  switchToLoggedIn() {
-    this.loggedIn = true;
-    this.render();
-  }
+  // switchToLoggedIn() {
+  //   this.loggedIn = true;
+  //   this.render();
+  // }
 }

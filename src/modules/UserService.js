@@ -9,6 +9,10 @@ export default class UserService {
     return this.ajax.request('POST', '/login', info);
   }
 
+  logout() {
+    return this.ajax.request('GET', '/logout');
+  }
+
   register(info) {
     return this.ajax.request('POST', '/registration', info);
   }
@@ -18,7 +22,7 @@ export default class UserService {
   }
 
   updatingData(info) {
-    return this.ajax.request('PUT', '/user', info);
+    return this.ajax.request('PUT', '/users', info);
   }
 
   updatingAvatar(photo) {
@@ -50,6 +54,13 @@ export default class UserService {
           .catch((err) => {
             console.log(err);
             bus.emit('login_failed');
+          });
+    });
+
+    bus.on('logout', () => {
+      this.logout()
+          .then(() => {
+            bus.emit('logged_out');
           });
     });
 
