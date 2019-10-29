@@ -14,7 +14,7 @@ export default class UserService {
   }
 
   fetchUser() {
-    return this.ajax.jsonRequest('GET', '/user');
+    return this.ajax.jsonRequest('GET', '/users');
   }
 
   updatingData(info) {

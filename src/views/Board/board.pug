@@ -1,13 +1,18 @@
-#app
-    h1 Канбан-доска здесь
-#view
-    button Создать новую карточку
-#logout
-        button Разлогиниться
-ul
-    li
-        span Нужно сделать
-    li
-        span В работе
-    li
-        span Сделано
+.board__tabs
+.board__container
+    .board__modal
+        .board__card__modal
+            span.board__modal__close &times;
+            .board__card__content
+                .modal__card__name название карточки
+                .modal__card__content
+                    .modal__content__tasks
+                    input.modal__input
+                span.modal__adder +
+//- div(class="draggable card newCard") Взять новую карточку
+
+//- div(class="draggable card") Карточка 1
+//- div(class="draggable card") Карточка 2
+//- div(class="draggable card") Карточка 3
+
+//- div(class="droppable dropArea") Удалить карточку

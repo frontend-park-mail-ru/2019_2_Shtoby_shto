@@ -1,16 +1,24 @@
 function attachHeaders(method, body) {
-  return {
-    method: method,
-    mode: 'cors', // no-cors, cors, *same-origin
-    cache: 'no-cache', // *default, reload, force-cache, only-if-cached
-    credentials: 'include', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client
-    body: JSON.stringify(body),
-  };
+  switch (method) {
+    case 'POST':
+      return {
+        method: method,
+        mode: 'cors', // no-cors, cors, *same-origin
+        cache: 'no-cache', // *default, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrer: 'no-referrer', // no-referrer, *client
+        body: JSON.stringify(body),
+      };
+    default:
+      return {
+        method: method,
+        credentials: 'include',
+      };
+  }
 }
 
 class Ajax {

@@ -1,0 +1,167 @@
+.board__tabs {
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.board__tabs input {
+    width: 10%;
+}
+
+.board__tabs .content {
+    display: flex;
+    float: left;
+    border: none;
+    outline: none;
+    padding: 3px 2px;
+    align-items: center;
+}
+
+.board__tabs button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.board__tabs :hover {
+    background-color: #ddd;
+}
+
+.board__tabs .active {
+    background-color: #ccc;
+}
+
+.tab__closer {
+    color: #aaa;
+    /* float: left; */
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.tab__closer:hover,
+.tab__closer:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.card__deleter {
+    color: #aaa;
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.modal__input {
+    display: none;
+}
+
+.modal__adder {
+    color: #aaa;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.modal__adder:hover,
+.modal__adder:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.card__deleter:hover,
+.card__deleter:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.group__deleter {
+    color: #aaa;
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.group__deleter:hover,
+.group__deleter:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.board__group {
+    display: flex;
+    flex-direction: column;
+    border-right: double black;
+    margin: 5px;
+    padding: 5px;
+}
+
+.board__group__name {
+    margin-left: 7.5%;
+}
+
+.board__board {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.board__card {
+    height:100px;
+    width: 200px;
+    border: 3px solid gray;
+    background: white;
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.board__card__adder {
+    background: gray;   
+    height: 45px;
+    border: 2px dotted gray;
+}
+
+.board__modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.board__card__modal {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.board__modal__close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.board__modal__close:hover,
+.board__modal__close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
