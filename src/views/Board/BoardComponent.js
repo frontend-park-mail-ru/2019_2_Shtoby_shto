@@ -119,6 +119,7 @@ export default class BoardComponent {
     const deleter = (id) => {
       if (this.board.id === id) {
         this.parent.el.removeChild(this.el);
+        this.boardsEl.removeChild(this.boardEl);
         bus.off('deleted_board', deleter);
       }
     };

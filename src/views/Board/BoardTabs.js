@@ -2,7 +2,8 @@ import bus from '../../modules/bus';
 import BoardComponent from './BoardComponent';
 
 export default class BoardTabs {
-  constructor(el, boardsEl, modal) {
+  constructor(parent, el, boardsEl, modal) {
+    this.parent = parent;
     this.el = el;
     this.boardsEl = boardsEl;
 
@@ -18,6 +19,7 @@ export default class BoardTabs {
     this.boards = [];
 
     bus.on('got_board_ids', (boards) => {
+      this.parent.rendered = true;
       boards.forEach((board) => {
         const newTab = document.createElement('div');
 

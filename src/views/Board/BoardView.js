@@ -25,11 +25,14 @@ export default class BoardView extends BaseView {
       tasks: document.getElementsByClassName('modal__content__tasks')[0],
     };
 
-    this.tabs = new BoardTabs(
-        document.getElementsByClassName('board__tabs')[0],
-        document.getElementsByClassName('board__container')[0],
-        modal
-    );
+    this.modal = modal;
+
+    // this.tabs = new BoardTabs(
+    //     this,
+    //     document.getElementsByClassName('board__tabs')[0],
+    //     document.getElementsByClassName('board__container')[0],
+    //     modal
+    // );
 
     document.getElementsByClassName('board__modal__close')[0]
         .addEventListener('click', () => {
@@ -42,13 +45,25 @@ export default class BoardView extends BaseView {
       }
     });
 
-    this.rendered = false;
+    bus.on('logged_out', () => {
+      this.el.innerHTML = template();
+      this.rendered = false;
+    });
 
-    this.fillBoards();
+    this.rendered = false;
+    // this.fillBoards();
   }
 
   fillBoards() {
     if (!this.rendered) {
+      this.tabs = new BoardTabs(
+          this,
+          document.getElementsByClassName('board__tabs')[0],
+          document.getElementsByClassName('board__container')[0],
+          this.modal
+      );
+      console.log('trying to fill');
+
       const filler = (user) => {
         bus.off('got_user', filler);
         bus.emit('fetch_boards', user.id);
@@ -60,6 +75,7 @@ export default class BoardView extends BaseView {
   }
 
   render() {
+    this.fillBoards();
   }
 }
 
