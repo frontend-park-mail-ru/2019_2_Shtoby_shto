@@ -4,6 +4,8 @@ import bus from '../../modules/bus';
 const template = require('./login.pug');
 import './login.css';
 
+import './vidymgtu002.jpg';
+
 export default class LoginView extends BaseView {
   constructor(el, router) {
     super(el, router);

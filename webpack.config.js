@@ -35,7 +35,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8000, // Convert images < 8kb to base64 strings
-              name: '/build/images/[name].[ext]',
+              name: 'images/[name].[ext]',
             },
           }],
       },
@@ -53,9 +53,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.css',
     }),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-    }),
+    // new CompressionPlugin({
+    //   algorithm: 'gzip',
+    // }),
     new WorkboxWebpackPlugin.InjectManifest({
       swSrc: 'src/modules/sw.js',
     }),

@@ -18,9 +18,12 @@ const server = http.createServer((req, res) => {
   let currentUrl = url.parse(req.url, true).pathname;
 
   if (/^[^.]+$/.test(currentUrl)) {
+    console.log('view', currentUrl);
     currentUrl = `index.html`;
     res.setHeader('Content-Type', `${filetypes['html']}`);
   } else {
+    // currentUrl = `{currentUrl}`
+    console.log('file', currentUrl);
     const ft = `${currentUrl.split('.')[1]}`;
     res.setHeader('Content-Type', `${filetypes[ft]}`);
   }
