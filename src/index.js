@@ -7,7 +7,6 @@ import routes from './routes';
 import UserService from './modules/UserService';
 import bus from './modules/bus';
 
-
 const localApiAddr = 'http://localhost';
 const remoteApiAddr = 'https://iamneponyalapi.ru';
 
@@ -25,6 +24,19 @@ const router = new Router(app, HeaderView);
 router.registerBunch(routes);
 
 router.start();
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('build/sw.js').then((registration) => {
+        console.log('SW registered: ', registration);
+      }).catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError);
+      });
+    });
+  }
+});
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   createHeader();

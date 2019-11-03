@@ -3,7 +3,9 @@ const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //const CompressionPlugin = require('compression-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const workboxPlugin = require('workbox-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
@@ -50,6 +52,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new FaviconsWebpackPlugin('src/favicon.ico'),
     new MiniCssExtractPlugin({
       filename: 'style.css',
@@ -57,8 +60,10 @@ module.exports = {
     //new CompressionPlugin({
     //  algorithm: 'gzip',
     //}),
-    new WorkboxWebpackPlugin.InjectManifest({
+
+    new workboxPlugin.InjectManifest({
       swSrc: 'src/modules/sw.js',
+      swDest: 'sw.js',
     }),
     new webpack.EnvironmentPlugin(['REMOTE_DEPLOY']),
   ],

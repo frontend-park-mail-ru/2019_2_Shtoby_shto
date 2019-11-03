@@ -49,7 +49,7 @@
     top: 0;
     width: 900px;
     height: 100%;
-    background-image: url('./vidymgtu002.jpg');
+    background-image: url('../images/vidymgtu002.jpg');
     background-size: cover;
     transition: transform 1.2s ease-in-out;
 }

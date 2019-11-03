@@ -1,12 +1,5 @@
-@font-face {
-    font-family: 'Proxima Nova Light';
-    src: url('/fonts/ProximaNova-Light.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
-    font-family: 'Proxima Nova Light', sans-serif;
+    font-family: sans-serif;
     background: #d3dae9;
 }
 

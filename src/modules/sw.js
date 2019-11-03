@@ -1,42 +1,17 @@
-// наименование для нашего хранилища кэша
-const CACHE_NAME = 'lesson-6';
-// ссылки на кэшируемые файлы
-const cacheUrls = [
-  '/',
-  'index.html',
-  'main.css',
-  'main.js',
-  'components/Profile/Profile.js',
-  'components/Profile/Profile.css',
-  'modules/ajax.js',
-];
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
 
-this.addEventListener('install', function(event) {
-  // задержим обработку события
-  // если произойдёт ошибка, serviceWorker не установится
-  event.waitUntil(
-      // находим в глобальном хранилище Cache-объект с нашим именем
-      // если такого не существует, то он будет создан
-      caches.open(CACHE_NAME).then(function(cache) {
-        // загружаем в наш cache необходимые файлы
-        return cache.addAll(cacheUrls);
-      }),
-  );
+workbox.routing.registerRoute(
+    new RegExp('https://hacker-news.firebaseio.com'),
+    new workbox.strategies.StaleWhileRevalidate()
+);
+
+self.addEventListener('push', (event) => {
+  const title = 'Get Started With Workbox';
+  const options = {
+    body: event.data.text()
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
 });
 
-this.addEventListener('fetch', function(event) {
-
-  event.respondWith(
-      // ищем запрашиваемый ресурс в хранилище кэша
-      caches.match(event.request).then(function(cachedResponse) {
-
-        // выдаём кэш, если он есть
-        if (cachedResponse && !navigator.onLine) {
-          return cachedResponse;
-        }
-
-        // иначе запрашиваем из сети как обычно
-        return fetch(event.request);
-      }),
-  );
-});
+workbox.precaching.precacheAndRoute(self.__precacheManifest);
