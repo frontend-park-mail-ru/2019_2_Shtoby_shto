@@ -1,12 +1,9 @@
 import './style.css';
 
-import HeaderView from './views/Header/HeaderView';
-import Router from './modules/router';
-import routes from './routes';
-
 import UserService from './modules/UserService';
 import bus from './modules/bus';
 
+import TrelloApp from './TrelloApp';
 
 const localApiAddr = 'http://localhost';
 const remoteApiAddr = 'https://iamneponyalapi.ru';
@@ -19,12 +16,9 @@ const apiAddr = (deployVar && remoteApiAddr) ||
 const us = new UserService(apiAddr);
 us.registerEvents(bus);
 
-const app = document.getElementById('app');
-const router = new Router(app, HeaderView);
-
-router.registerBunch(routes);
-
-router.start();
+const root = document.getElementById('app');
+const app = new TrelloApp(root);
+app.start();
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   createHeader();
