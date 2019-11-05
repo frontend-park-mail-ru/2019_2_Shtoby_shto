@@ -23,7 +23,9 @@ export default class UserService {
   }
 
   updatingData(info) {
-    return this.ajax.request('PUT', '/users', info);
+    const newInfo = {login: info.login};
+    console.log(newInfo);
+    return this.ajax.request('PUT', '/users', newInfo);
   }
 
   updatingAvatar(photo) {

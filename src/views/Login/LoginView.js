@@ -48,11 +48,11 @@ export default class LoginView extends BaseView {
 
     console.log('trying to register');
 
-    const name = this.formUp.elements['name'].value;
+    // const name = this.formUp.elements['name'].value;
     const email = this.formUp.elements['email'].value;
     const password = this.formUp.elements['password'].value;
 
-    const body = {'name': name, 'login': email, 'password': password};
+    const body = {'login': email, 'password': password};
     bus.emit('try_register', body);
   }
 

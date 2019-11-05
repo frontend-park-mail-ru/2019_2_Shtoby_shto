@@ -32,7 +32,7 @@ class BoardService {
   }
 
   changeGroup(group) {
-    console.log(group);
+    // console.log(group);
     return this.ajax.jsonRequest('PUT', `/card-group/${group.id}`, group);
   }
 
@@ -139,7 +139,13 @@ class BoardService {
 
     bus.on('rename_group', (groupReq) => {
       // groupReq.group.name = groupReq.newName;
-      this.changeGroup({name: groupReq.newName});
+      console.log(groupReq);
+      this.changeGroup({
+        id: groupReq.group.id, name: groupReq.newName,
+      })
+          .then((group) => {
+            bus.emit('group_changed', group);
+          });
       // this.changeGroup(groupReq.group)
       //     .then((group) => {
       //       bus.emit('group_changed', group);

@@ -124,8 +124,9 @@ class CardGroup {
     console.log('try_rename');
 
     const renamer = (group) => {
+      console.log(group);
       if (group.id === this.group.id) {
-        this.fill(group);
+        // this.fill(group);
         this.nameEl.innerText = group.name;
 
         bus.off('group_changed', renamer);

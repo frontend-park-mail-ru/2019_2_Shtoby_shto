@@ -17,6 +17,7 @@ function attachHeaders(method, body) {
       return {
         method: method,
         credentials: 'include',
+        body: JSON.stringify(body),
       };
   }
 }
