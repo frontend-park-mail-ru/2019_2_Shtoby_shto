@@ -1,8 +1,14 @@
+import StoreWrapper from './StoreWrapper';
+
 export default class Store {
   constructor(initialState) {
     this.state = initialState;
 
     this.listeners = [];
+  }
+
+  applyMiddleware(middleware) {
+    return new StoreWrapper(this, middleware);
   }
 
   dispatch(action) {
