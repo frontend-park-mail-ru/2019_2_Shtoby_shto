@@ -14,7 +14,8 @@ export default class UserService {
   }
 
   register(info) {
-    return this.ajax.request('POST', '/registration', info);
+    console.log('sending this to back:', info);
+    return this.ajax.request('POST', '/users/registration', info);
   }
 
   fetchUser() {
