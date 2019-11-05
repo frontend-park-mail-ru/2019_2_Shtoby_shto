@@ -25,8 +25,9 @@ export default class Store {
 
       this.listeners.push((mutation) => {
         const filtered = filter(mutation);
-        if (filtered) {
-          fun(filtered);
+
+        if (filtered.mutated) {
+          fun(filtered.mutation);
         }
       });
     } else {
@@ -36,6 +37,10 @@ export default class Store {
 
   makeFilter(selector) {
     return (mutation) => {
+      const filteredMut = {
+        mutated: false,
+      };
+
       let selectedOldProps = undefined;
       let selectedNewProps = undefined;
 
@@ -44,34 +49,81 @@ export default class Store {
 
       try {
         selectedOldProps = selector(this.state);
-        gotOld = true;
+
+        if (selectedOldProps) {
+          gotOld = true;
+        }
       } catch (e) {}
 
       try {
         selectedNewProps = selector(mutation);
-        gotNew = true;
+
+        if (selectedNewProps) {
+          gotNew = true;
+        }
       } catch (e) {}
 
       switch (gotOld) {
         case false:
           switch (gotNew) {
             case false:
-              return;
+              break;
             case true:
-              return selectedNewProps;
+              filteredMut.mutation = selectedNewProps;
+              filteredMut.mutated = true;
+              break;
           }
+          break;
         case true:
           switch (gotNew) {
             case false:
-              return selectedNewProps;
+              filteredMut.mutation = selectedNewProps;
+              filteredMut.mutated = true;
+              break;
             case true:
-              if (selectedOldProps != selectedNewProps) {
-                return selectedNewProps;
+
+              const didMutate = this.checkForMutation(
+                  selectedOldProps, selectedNewProps
+              );
+
+              if (didMutate) {
+                filteredMut.mutated = true;
+                filteredMut.mutation = selectedNewProps;
               }
-              return;
+              break;
           }
+          break;
       }
+      return filteredMut;
     };
+  }
+
+  checkForMutation(oldState, newState) {
+    if (oldState instanceof Object) {
+      let mutated = false;
+
+      if (oldState instanceof Array) {
+        if (oldState.length != newState.length) {
+          mutated = true;
+        } else {
+          oldState.forEach((val, index) => {
+            if (oldState[index] != newState[index]) {
+              mutated = true;
+            }
+          });
+        }
+      } else {
+        Object.entries(oldState).forEach(([key, value]) => {
+          if (oldState[key] !== newState[key]) {
+            mutated = true;
+          }
+        });
+      }
+
+      return mutated;
+    } else {
+      return oldState !== newState;
+    }
   }
 
   getState() {

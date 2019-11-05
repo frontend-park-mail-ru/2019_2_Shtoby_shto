@@ -79,7 +79,7 @@ export default class BoardTabContainer extends Component {
   }
 
   init() {
-    this.subscribe((state) => state.board);
+    this.subscribe((state) => state.boards);
   }
 
   stateUpdate(boards) {

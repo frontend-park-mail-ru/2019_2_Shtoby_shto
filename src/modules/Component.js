@@ -29,9 +29,6 @@ export default class Component {
     this.children = [];
 
     this.store = undefined;
-    // this.storeSub = undefined;
-    // this.dispatch = undefined;
-    // this.subscribe = undefined;
 
     this.render();
   }
@@ -203,12 +200,15 @@ export default class Component {
     return this;
   }
 
-  stateUpdate(newState) {}
 
   // вызывается один раз перед стартом всего приложения
   // тут самое место подписке на обновления в сторе
   init() {}
 
+  // вызывается при обновлении state в подписанном store
+  stateUpdate(newState) {}
+
+  // вызывается при добавлении компонента в другой компонент
   onAdd() {}
 
   // нужно перегружать

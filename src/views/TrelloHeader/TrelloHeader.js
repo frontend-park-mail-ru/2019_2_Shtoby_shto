@@ -66,16 +66,24 @@ export default class TrelloHeader extends Component {
     };
   }
 
-  // относится к компоненту
   init() {
-    this.subscribe((state) => state.user.loggedIn);
+    this.subscribe((state) => {
+      return {
+        loggedIn: state.user.loggedIn,
+        boards: state.boards,
+      };
+    });
   }
 
-  stateUpdate(loggedIn) {
-    if (loggedIn) {
+  stateUpdate(info) {
+    if (info.loggedIn) {
       this.loginStateComponent.setState('auth');
     } else {
       this.loginStateComponent.setState('no_auth');
     }
+
+    info.boards.forEach((b) => {
+      console.log(b);
+    });
   }
 }

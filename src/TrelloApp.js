@@ -19,7 +19,7 @@ export default class TrelloApp extends App {
 
     const globalStorage = new StoreCombiner({
       user: new UserStore(),
-      board: new BoardStore(),
+      boards: new BoardStore(),
     });
 
     this.connect(globalStorage);

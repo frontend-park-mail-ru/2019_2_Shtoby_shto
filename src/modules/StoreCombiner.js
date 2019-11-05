@@ -19,7 +19,9 @@ export default class StoreCombiner extends Store {
     Object.entries(this.stores).forEach(([name, store]) => {
       nextState[name] = store.reducer(state[name], action);
 
-      mutated = this.state != nextState[name];
+      if (!mutated) {
+        mutated = this.state[name] != nextState[name];
+      }
     });
 
     return mutated ? nextState : this.state;
