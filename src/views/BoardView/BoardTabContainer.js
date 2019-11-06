@@ -1,5 +1,7 @@
 import Component from '../../modules/Component';
 
+import * as board from '../../actions/Board';
+
 // class BoardTab extends Component {
 //   constructor(ownProps) {
 //     super({classes: ['board__tab']});
@@ -20,7 +22,7 @@ class BoardPlus extends Component {
   }
 
   setup(p) {
-    // console.log(p);
+    // это очень тупо, я переделаю
     switch (p.state) {
       case 'plus':
         this.element.getElementsByTagName('button')[0].onclick = () => {
@@ -38,7 +40,8 @@ class BoardPlus extends Component {
         input.focus();
         input.onblur = revert;
         input.onchange = (e) => {
-          this.dispatch({type: 'NEW_BOARD', id: 1, name: e.target.value});
+          // тут нужно какие-нибудь данные с формы проставлять
+          this.dispatch(board.create(e.target.value));
           revert();
         };
         break;
@@ -56,7 +59,7 @@ class BoardPlus extends Component {
 }
 
 class BoardTabs extends Component {
-  constructor(ownProps) {
+  constructor() {
     super({boards: [], classes: ['board__tabs']});
   }
 

@@ -1,15 +1,17 @@
 import Component from '../../modules/Component';
+
 import StateComponent from '../../components/StateComponent';
+import Button from '../../components/Button';
 import Link from '../../components/Link';
 
 const template = require('./trelloHeader.pug');
 import './trelloHeader.css';
-import Button from '../../components/Button';
+
+import * as user from '../../actions/User';
 
 export default class TrelloHeader extends Component {
   constructor() {
     super({tag: 'header', classes: ['header']});
-    // this.render();
 
     this.addChild(new Component({classes: ['header__left']}), 'left');
     this.addChild(new Component({classes: ['header__right']}), 'right');
@@ -31,7 +33,7 @@ export default class TrelloHeader extends Component {
                 .addChild(new Link({text: 'доски', path: '/board'}))
                 .addChild(new Button({
                   content: 'выйти', onclick: () => {
-                    this.dispatch({type: 'LOGGED_OUT'});
+                    this.dispatch(user.logout());
                   },
                 }))
         );
@@ -67,23 +69,16 @@ export default class TrelloHeader extends Component {
   }
 
   init() {
-    this.subscribe((state) => {
-      return {
-        loggedIn: state.user.loggedIn,
-        boards: state.boards,
-      };
-    });
+    this.subscribe((state) => state.user.loggedIn);
   }
 
-  stateUpdate(info) {
-    if (info.loggedIn) {
+  stateUpdate(loggedIn) {
+    if (loggedIn) {
       this.loginStateComponent.setState('auth');
+      // это очень тупо, но работает
+      this.parent.open('/profile');
     } else {
       this.loginStateComponent.setState('no_auth');
     }
-
-    info.boards.forEach((b) => {
-      console.log(b);
-    });
   }
 }

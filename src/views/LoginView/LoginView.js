@@ -3,6 +3,8 @@ import Button from '../../components/Button';
 
 const template = require('./loginView.pug');
 
+import * as user from '../../actions/User';
+
 export default class LoginView extends Component {
   constructor() {
     super();
@@ -11,7 +13,9 @@ export default class LoginView extends Component {
         new Button({
           content: 'push me',
           onclick: () => {
-            this.dispatch({type: 'LOGGED_IN', id: 1, login: 3});
+            // тут надо бы прокидывать какие-нибуд данные с формы,
+            // но формы пока нет...
+            this.dispatch(user.login());
           }}),
         'loginPanel'
     );

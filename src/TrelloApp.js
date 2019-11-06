@@ -12,6 +12,9 @@ import StoreCombiner from './modules/StoreCombiner';
 import UserStore from './storage/UserStore';
 import BoardStore from './storage/BoardStore';
 
+import applyMiddleware from './modules/applyMiddleware';
+import logger from './modules/middlewares/logger';
+import thunkDispatcher from './modules/middlewares/thunkDispatcher';
 
 export default class TrelloApp extends App {
   setup() {
@@ -22,10 +25,7 @@ export default class TrelloApp extends App {
       boards: new BoardStore(),
     });
 
-    globalStorage = globalStorage.applyMiddleware((dispatch, action) => {
-      console.log(action);
-      dispatch(action);
-    });
+    globalStorage = applyMiddleware(globalStorage, logger, thunkDispatcher);
 
     this.connect(globalStorage);
 

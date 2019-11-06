@@ -16,8 +16,6 @@ export default class BoardView extends Component {
   }
 
   getMounts() {
-    console.log(this.element);
-
     return {
       boardTabs: this.element.getElementsByClassName('board__tabs')[0],
       board: this.element.getElementsByClassName('selected__board')[0],
