@@ -10,28 +10,15 @@ function attachHeaders(method, body) {
     headers.set('X-Csrf-Token', tokenStorage.token);
   }
 
-  switch (method) {
-    case 'POST':
-      headers.set('Content-Type', 'application/json');
+  const request = {
+    method: method,
+    credentials: 'include',
+  };
 
-      return {
-        method: method,
-        mode: 'cors', // no-cors, cors, *same-origin
-        cache: 'no-cache', // *default, reload, force-cache, only-if-cached
-        credentials: 'include', // include, *same-origin, omit
-        headers: headers,
-        redirect: 'follow', // manual, *follow, error
-        referrer: 'no-referrer', // no-referrer, *client
-        body: JSON.stringify(body),
-      };
-    default:
-      return {
-        method: method,
-        credentials: 'include',
-        body: JSON.stringify(body),
-        headers: headers,
-      };
-  }
+  request.headers = headers;
+  if (body) request.body = JSON.stringify(body);
+
+  return request;
 }
 
 class Ajax {

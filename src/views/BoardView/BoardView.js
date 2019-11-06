@@ -4,11 +4,16 @@ import BoardTabContainer from './BoardTabContainer';
 const template = require('./boardView.pug');
 import './boardView.css';
 
+import dnd from '../../modules/dnd';
+
 export default class BoardView extends Component {
   constructor() {
     super();
 
-    this.addChild(new BoardTabContainer(), 'boardTabs');
+    this.addChild(
+        dnd(new BoardTabContainer()).makeDraggable(),
+        'boardTabs'
+    );
   }
 
   generateContent() {

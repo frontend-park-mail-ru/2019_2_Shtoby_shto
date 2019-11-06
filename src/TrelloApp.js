@@ -13,12 +13,19 @@ import UserStore from './storage/UserStore';
 import BoardStore from './storage/BoardStore';
 
 import applyMiddleware from './modules/applyMiddleware';
-import logger from './modules/middlewares/logger';
-import thunkDispatcher from './modules/middlewares/thunkDispatcher';
+import logger from './middlewares/logger';
+import thunkDispatcher from './middlewares/thunkDispatcher';
+
+import Button from './components/Button';
+
+import './style.css';
+
+import {setFake} from './actions/fakes/fake';
 
 export default class TrelloApp extends App {
   setup() {
     this.enableDebug();
+    setFake(true);
 
     let globalStorage = new StoreCombiner({
       user: new UserStore(),
@@ -26,6 +33,8 @@ export default class TrelloApp extends App {
     });
 
     globalStorage = applyMiddleware(globalStorage, logger, thunkDispatcher);
+
+    console.log(globalStorage);
 
     this.connect(globalStorage);
 
@@ -40,5 +49,12 @@ export default class TrelloApp extends App {
     router.setDefaultRoute('/').useHistory().startRouting();
 
     this.addComponent(router);
+
+    this.addComponent(new Button({
+      content: 'залогать состояние приложения',
+      onclick: () => {
+        console.log(globalStorage.getState());
+      },
+    }));
   }
 };

@@ -7,11 +7,16 @@ export default class UserStore extends Store {
 
   reducer(state, action) {
     switch (action.type) {
-      case 'LOGGED_IN':
+      case 'SET_USER':
         return {
           loggedIn: true,
-          id: action.id,
           login: action.login,
+          id: action.id,
+        };
+      case 'LOGIN_FAILED':
+        return {
+          loggedIn: false,
+          loginFailed: true,
         };
       case 'REDACT_USER':
         const oldStateCopy = {...state};
