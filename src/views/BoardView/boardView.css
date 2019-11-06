@@ -1,0 +1,7 @@
+.board__tabs {
+    display: flex;
+}
+
+.board__tab {
+    display: flex;
+}

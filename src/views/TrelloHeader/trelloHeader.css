@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+}
+
+.header__left {
+    display: flex;
+}
+
+.header__center {
+    margin-left: auto;
+}
+
+.header__right {
+    margin-left: auto;
+    display: flex;
+}
