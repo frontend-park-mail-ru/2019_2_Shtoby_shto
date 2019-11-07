@@ -15,12 +15,12 @@ class ComponentDragManager {
 
   grab(wrapper, x, y) {
     this.wrapper = wrapper;
-    this.down = { x: x, y: y };
+    this.down = {x: x, y: y};
   }
 
   release() {
     this.wrapper.kickAvatar();
-    
+
     this.dragging = false;
     this.wrapper = null;
     this.down = {};
@@ -43,7 +43,7 @@ class ComponentDragManager {
       this.shift = {
         x: this.down.x - coords.left,
         y: this.down.y - coords.top,
-      }
+      };
 
       this.startDrag();
     }
@@ -51,8 +51,8 @@ class ComponentDragManager {
     // e.stopPropagation();
 
     this.wrapper.move(
-      e.pageX - this.shift.x,
-      e.pageY - this.shift.y
+        e.pageX - this.shift.x,
+        e.pageY - this.shift.y
     );
   }
 
@@ -73,16 +73,16 @@ class ComponentDragManager {
         this.wrapper.executeOnDrop(foundDroppable);
         foundDroppable.dndwrapper.executeOnPlace(this.wrapper.get());
       }
-      
+
       this.wrapper.get().element.hidden = false;
 
       this.release();
     }
   }
-  
+
   findDroppable(x, y) {
-    var foundComponent = null;
-    const foundEl = document.elementFromPoint(x, y)
+    let foundComponent = null;
+    const foundEl = document.elementFromPoint(x, y);
 
     if (foundEl) {
       const closestEl = foundEl.closest('.dropzone');

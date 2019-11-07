@@ -6,7 +6,8 @@ export default class StoreWrapper {
 
   dispatch(action) {
     this.middleware(
-        this.store.dispatch.bind(this.store), action
+        this.store.dispatch.bind(this.store), action,
+        this.store.getState.bind(this.store),
     );
   }
 

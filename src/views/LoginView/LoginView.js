@@ -13,9 +13,9 @@ export default class LoginView extends Component {
         new Button({
           content: 'push me',
           onclick: () => {
-            // тут надо бы прокидывать какие-нибуд данные с формы,
+            // тут надо бы прокидывать какие-нибудь данные с формы,
             // но формы пока нет...
-            this.dispatch(user.login());
+            this.dispatch(user.login('aaa@mail.ru', '123456'));
           }}),
         'loginPanel'
     );

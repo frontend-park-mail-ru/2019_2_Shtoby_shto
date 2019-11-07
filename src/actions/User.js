@@ -1,28 +1,52 @@
-export function logout() {
+import UserApi from '../apis/UserApi';
+import * as board from './Board';
+
+import {fakeUser} from './fakes/fakeUser';
+import {fake} from './fakes/fake';
+
+const userApi = new UserApi();
+
+function setUser(userModel) {
   return {
-    type: 'LOGGED_OUT',
+    type: 'SET_USER',
+    loggedIn: true,
+    ...userModel,
   };
 }
 
-// тут должен быть action-функция, которая попытается залогиниться,
-// но пока так
-export function login(login='user', pswd='123456') {
+export function getUser() {
   return function(dispatch) {
-    console.log(
-        'thunk который печатает и затем диспатчит дальше' +
-        ' через секунду'
-    );
-
-    // тут должен быть какой-нибудь fetch или обращение
-    // к сервису через шинуо
-
-    setTimeout(() => {
-      dispatch({
-        type: 'LOGGED_IN',
-        id: 1,
-        login: login,
-        password: pswd,
+    if (!fake) {
+      userApi.getUser().then((user) => {
+        dispatch(setUser(user));
+        dispatch(board.fetchBoards());
       });
-    }, 1000);
+    } else {
+      dispatch(setUser(fakeUser));
+      dispatch(board.fetchBoards());
+    }
+  };
+}
+
+export function login(login, password) {
+  return function(dispatch) {
+    if (!fake) {
+      userApi.login(login, password).then(() => {
+        dispatch(getUser());
+      });
+    } else {
+      setTimeout(() => {
+        dispatch(getUser());
+      }, 1000);
+    }
+  };
+}
+
+export function logout() {
+  return function(dispatch) {
+    dispatch(board.clearStore());
+    dispatch({
+      type: 'LOGGED_OUT',
+    });
   };
 }

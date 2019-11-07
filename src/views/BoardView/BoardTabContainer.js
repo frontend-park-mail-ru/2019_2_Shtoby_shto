@@ -2,18 +2,6 @@ import Component from '../../modules/Component';
 
 import * as board from '../../actions/Board';
 
-// class BoardTab extends Component {
-//   constructor(ownProps) {
-//     super({classes: ['board__tab']});
-
-//     this.props.name = ownProps.name || '';
-//   }
-
-//   generateContent(p) {
-//     return `<button>x</button><div>${p.name}</div>`;
-//   }
-// }
-
 class BoardPlus extends Component {
   constructor() {
     super({classes: ['board__tab', 'tab__plus']});

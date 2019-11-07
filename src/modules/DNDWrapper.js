@@ -6,9 +6,9 @@ import ComponentDragManager from './ComponentDragManager';
 export default class DNDWrapper extends Wrapper {
   constructor(component) {
     super(
-      component,
-      'makeDraggable', 'makeDroppable',
-      'onDrag', 'onDrop', 'onPlace',
+        component,
+        'makeDraggable', 'makeDroppable',
+        'onDrag', 'onDrop', 'onPlace',
     );
     this.wrapped.dndwrapper = this;
 
@@ -25,7 +25,7 @@ export default class DNDWrapper extends Wrapper {
       e.stopPropagation();
 
       ComponentDragManager.grab(this, e.pageX, e.pageY);
-    }
+    };
 
     return this;
   }
@@ -65,7 +65,7 @@ export default class DNDWrapper extends Wrapper {
       left: el.left || '',
       top: el.top || '',
       zIndex: el.zIndex || '',
-    }
+    };
 
     document.body.appendChild(el);
     el.style.zIndex = 9999;

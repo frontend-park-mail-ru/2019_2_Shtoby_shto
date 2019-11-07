@@ -8,25 +8,22 @@ import LoginView from './views/LoginView/LoginView';
 import BoardView from './views/BoardView/BoardView';
 import ProfileView from './views/ProfileView/ProfileView';
 
-import StoreCombiner from './modules/StoreCombiner';
-import UserStore from './storage/UserStore';
-import BoardStore from './storage/BoardStore';
+import Button from './components/Button';
 
-import applyMiddleware from './modules/applyMiddleware';
-import logger from './modules/middlewares/logger';
-import thunkDispatcher from './modules/middlewares/thunkDispatcher';
+import makeGlobalStorage from './storage/makeGlobalStore';
+import logger from './middlewares/logger';
+import thunkDispatcher from './middlewares/thunkDispatcher';
+
+import {setFake} from './actions/fakes/fake';
+
+import './style.css';
 
 export default class TrelloApp extends App {
   setup() {
     this.enableDebug();
+    setFake(false);
 
-    let globalStorage = new StoreCombiner({
-      user: new UserStore(),
-      boards: new BoardStore(),
-    });
-
-    globalStorage = applyMiddleware(globalStorage, logger, thunkDispatcher);
-
+    const globalStorage = makeGlobalStorage(logger, thunkDispatcher);
     this.connect(globalStorage);
 
     const router = new AuthRouter()
@@ -40,5 +37,12 @@ export default class TrelloApp extends App {
     router.setDefaultRoute('/').useHistory().startRouting();
 
     this.addComponent(router);
+
+    this.addComponent(new Button({
+      content: 'залогать состояние приложения',
+      onclick: () => {
+        console.log(globalStorage.getState());
+      },
+    }));
   }
 };

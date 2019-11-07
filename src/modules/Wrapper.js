@@ -5,10 +5,14 @@ export default class Wrapper {
 
     methods.forEach((method) => {
       this.wrapped[method] = (...args) => {
-        this[method](...args);
+        const retVal = this[method](...args);
 
-        return this.wrapped;
+        if (retVal === this) {
+          return this.wrapped;
+        }
+
+        // return this.wrapped;
       };
-    })
+    });
   }
 }

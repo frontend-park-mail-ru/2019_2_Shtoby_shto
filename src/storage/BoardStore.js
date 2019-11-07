@@ -7,15 +7,17 @@ export default class BoardStore extends Store {
 
   reducer(state, action) {
     switch (action.type) {
-      case 'NEW_BOARD':
+      case 'ADD_BOARD':
         return [
           ...state,
           {
             id: action.id,
             name: action.name,
-            cards: action.cards || [],
+            cardGroups: action.cardGroups || [],
           },
         ];
+      case 'CLEAR_BOARDS':
+        return [];
       default:
         return state;
     }

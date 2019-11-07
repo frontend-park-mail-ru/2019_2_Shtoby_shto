@@ -1,16 +1,24 @@
+const tokenStorage = {
+  token: undefined,
+};
+
 function attachHeaders(method, body) {
-  return {
+  const headers = new Headers();
+
+  if (tokenStorage.token) {
+    console.log('appending token');
+    headers.set('X-Csrf-Token', tokenStorage.token);
+  }
+
+  const request = {
     method: method,
-    mode: 'cors', // no-cors, cors, *same-origin
-    cache: 'no-cache', // *default, reload, force-cache, only-if-cached
-    credentials: 'include', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client
-    body: JSON.stringify(body),
+    credentials: 'include',
   };
+
+  request.headers = headers;
+  if (body) request.body = JSON.stringify(body);
+
+  return request;
 }
 
 class Ajax {
@@ -25,6 +33,10 @@ class Ajax {
             if (res.status !== 200) {
               reject(Error('status is not 200'));
             } else {
+              if (res.headers.has('X-Csrf-Token')) {
+                tokenStorage.token = res.headers.get('X-Csrf-Token');
+              }
+
               resolve(res);
             }
           })
@@ -36,6 +48,6 @@ class Ajax {
     return this.request(method, path, body)
         .then((res) => res.json());
   }
-};
+}
 
 export default Ajax;
