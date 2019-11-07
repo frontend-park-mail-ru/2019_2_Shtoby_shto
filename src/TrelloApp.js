@@ -18,13 +18,16 @@ import * as user from './actions/User';
 
 import './style.css';
 
+import {setFake} from './actions/fakes/fake';
+
 export default class TrelloApp extends App {
   setup() {
     // this.enableDebug();
-    // setFake(false);
+    setFake(true);
 
     const globalStorage = makeGlobalStorage(logger, thunkDispatcher);
     this.connect(globalStorage);
+    this.synchronize('shtoby');
 
     const router = new AuthRouter()
         .addChild(new TrelloHeader(), 'prepend');

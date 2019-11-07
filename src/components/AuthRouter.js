@@ -4,7 +4,7 @@ export default class AuthRouter extends Router {
   constructor(defaultRoute) {
     super(defaultRoute);
 
-    this.auth = false;
+    this.auth = true;
     this.authNeeded = [];
 
     this.afterLogin = undefined;

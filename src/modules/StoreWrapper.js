@@ -15,6 +15,18 @@ export default class StoreWrapper {
     return this.store.getState();
   }
 
+  setState(state) {
+    return this.store.setState(state);
+  }
+
+  mutated(...args) {
+    return this.store.mutated(...args);
+  }
+
+  pumpMutation(mutation) {
+    return this.store.pumpMutation(mutation);
+  }
+
   subscribe(...args) {
     this.store.subscribe(...args);
   }
