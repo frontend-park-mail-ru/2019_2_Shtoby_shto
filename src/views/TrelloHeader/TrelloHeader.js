@@ -12,7 +12,12 @@ class RightHeaderHalf extends StateComponent {
 
     this.addStates({
       'no_auth': new Component(ownProps)
-          .addChild(new Link({text: 'вход', path: '/login'})),
+          .addChild(
+              new Link({
+                text: 'вход',
+                path: '/login',
+                classes: ['header__elem'],
+              })),
       'auth': new Component(ownProps)
           .addChildren(
               new Link({
@@ -44,13 +49,9 @@ export default class TrelloHeader extends Component {
     this.addChildren({
       left: new Component({classes: ['header__left']}),
       right: new RightHeaderHalf({classes: ['header__right']}),
-      // right: new Component({classes: ['header__right']}),
     });
 
-    // this.rightHalf = new RightHeaderHalf();
-
     this.addLeft(new Link({text: 'домой', path: '/'}));
-    // this.addRight(this.rightHalf);
   }
 
   addLeft(component, mount) {
@@ -88,11 +89,8 @@ export default class TrelloHeader extends Component {
   stateUpdate(loggedIn) {
     if (loggedIn) {
       this.getChild('right').setState('auth');
-      // this.rightHalf.setState('auth');
-      this.parent.open('/profile');
     } else {
       this.getChild('right').setState('no_auth');
-      // this.rightHalf.setState('no_auth');
     }
   }
 }

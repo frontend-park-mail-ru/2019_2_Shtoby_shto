@@ -7,8 +7,21 @@
     line-height: 70px;
 }
 
-.header__element {
+.header__elem {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
 
+a.header__elem {
+    color: white;
+    text-decoration: none;
+}
+
+.header__elem:hover {
+    background: lightblue;
+    color: white;
 }
 
 .header__left {
