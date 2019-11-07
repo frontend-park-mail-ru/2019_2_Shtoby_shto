@@ -23,7 +23,7 @@ import {setFake} from './actions/fakes/fake';
 export default class TrelloApp extends App {
   setup() {
     // this.enableDebug();
-    setFake(true);
+    setFake(false);
 
     const globalStorage = makeGlobalStorage(logger, thunkDispatcher);
     this.connect(globalStorage);
