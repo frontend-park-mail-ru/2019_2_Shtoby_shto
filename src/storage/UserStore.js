@@ -13,11 +13,6 @@ export default class UserStore extends Store {
           login: action.login,
           id: action.id,
         };
-      case 'LOGIN_FAILED':
-        return {
-          loggedIn: false,
-          loginFailed: true,
-        };
       case 'REDACT_USER':
         const oldStateCopy = {...state};
         let changed = false;
@@ -38,8 +33,14 @@ export default class UserStore extends Store {
 
         return changed ? oldStateCopy : state;
       case 'LOGGED_OUT':
+        return {};
+      case 'LOGIN_FAILED':
         return {
-          loggedIn: false,
+          loginFailed: true,
+        };
+      case 'REGISTRATION_FAILED':
+        return {
+          signupFailed: true,
         };
       default:
         return state;

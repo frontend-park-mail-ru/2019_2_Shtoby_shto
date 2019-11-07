@@ -1,33 +1,37 @@
 import Component from '../../modules/Component';
-import Button from '../../components/Button';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
+
 
 const template = require('./loginView.pug');
-
-import * as user from '../../actions/User';
+import './login.css';
+import './vidymgtu002.jpg';
 
 export default class LoginView extends Component {
   constructor() {
     super();
 
-    this.addChild(
-        new Button({
-          content: 'push me',
-          onclick: () => {
-            // тут надо бы прокидывать какие-нибудь данные с формы,
-            // но формы пока нет...
-            this.dispatch(user.login('aaa@mail.ru', '123456'));
-          }}),
-        'loginPanel'
-    );
+    this.addChildren({
+      login: new LoginForm(),
+      signup: new SignupForm(),
+    });
   }
 
   generateContent() {
     return template();
   }
 
+  setup() {
+    this.element.querySelector('.img__btn')
+        .addEventListener('click', () => {
+          this.element.querySelector('.cont').classList.toggle('s--signup');
+        });
+  }
+
   getMounts() {
     return {
-      loginPanel: this.element.getElementsByClassName('loginPanel')[0],
+      login: this.element.querySelector('loginform'),
+      signup: this.element.querySelector('signupform'),
     };
   }
 }

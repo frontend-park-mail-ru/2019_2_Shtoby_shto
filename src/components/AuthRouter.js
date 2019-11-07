@@ -63,18 +63,20 @@ export default class AuthRouter extends Router {
   }
 
   stateUpdate(loggedIn) {
-    const wasLogged = this.auth;
+    const wasLogged = this.auth || false;
     this.auth = loggedIn;
+
+    console.log('was logge', wasLogged, 'this auth', this.auth);
 
     switch (wasLogged) {
       case true:
-        switch (loggedIn) {
+        switch (this.auth) {
           case true: break;
           case false: this.openAfterLogout(); break;
         }
         break;
       case false:
-        switch (loggedIn) {
+        switch (this.auth) {
           case true: this.openAfterLogin(); break;
           case false:
             if (!this.checkAccesibility(this.currentRoute)) {
