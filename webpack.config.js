@@ -56,9 +56,9 @@ module.exports = {
     new CompressionPlugin({
       algorithm: 'gzip',
     }),
-    new WorkboxWebpackPlugin.InjectManifest({
-      swSrc: 'src/modules/sw.js',
-    }),
+    // new WorkboxWebpackPlugin.InjectManifest({
+    //   swSrc: 'src/modules/sw.js',
+    // }),
     new webpack.EnvironmentPlugin(['REMOTE_DEPLOY']),
   ],
 };
