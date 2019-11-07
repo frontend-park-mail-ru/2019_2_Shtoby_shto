@@ -1,29 +1,27 @@
 import Component from '../../modules/Component';
-import BoardTabContainer from './BoardTabContainer';
+import BoardTabsController from './BoardTabsController';
+import SingleBoard from './SingleBoard';
 
-const template = require('./boardView.pug');
 import './boardView.css';
-
-import dnd from '../../modules/dnd';
 
 export default class BoardView extends Component {
   constructor() {
-    super();
+    super({classes: ['board__view']});
 
-    this.addChild(
-        dnd(new BoardTabContainer()).makeDraggable(),
-        'boardTabs'
-    );
+    this.addChildren({
+      boardTabs: new BoardTabsController(),
+      board: new SingleBoard(),
+    });
   }
 
   generateContent() {
-    return template();
+    return '<boardtabs></boardtabs><singleboard></singleboard>';
   }
 
   getMounts() {
     return {
-      boardTabs: this.element.getElementsByClassName('board__tabs')[0],
-      board: this.element.getElementsByClassName('selected__board')[0],
+      boardTabs: this.element.getElementsByTagName('boardtabs')[0],
+      board: this.element.getElementsByTagName('singleboard')[0],
     };
   }
 }
