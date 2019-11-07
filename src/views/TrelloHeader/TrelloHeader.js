@@ -1,28 +1,40 @@
 import Component from '../../modules/Component';
 
 import StateComponent from '../../components/StateComponent';
-import Button from '../../components/Button';
 import Link from '../../components/Link';
 
 const template = require('./trelloHeader.pug');
 import './trelloHeader.css';
 
-import * as user from '../../actions/User';
-
 class RightHeaderHalf extends StateComponent {
-  constructor() {
-    super();
+  constructor(ownProps) {
+    super(ownProps);
 
     this.addStates({
-      'no_auth': new Component({style: {display: 'flex'}})
-          .addChild(new Link({text: 'вход', path: '/login'})),
-      'auth': new Component({style: {display: 'flex'}})
+      'no_auth': new Component(ownProps)
+          .addChild(
+              new Link({
+                text: 'вход',
+                path: '/login',
+                classes: ['header__elem'],
+              })),
+      'auth': new Component(ownProps)
           .addChildren(
-              new Link({text: 'профиль', path: '/profile'}),
-              new Link({text: 'доски', path: '/board'}),
-              new Button({content: 'выйти', onclick: () => {
-                this.dispatch(user.logout());
-              }})
+              new Link({
+                text: 'профиль',
+                path: '/profile',
+                classes: ['header__elem'],
+              }),
+              new Link({
+                text: 'доски',
+                path: '/board',
+                classes: ['header__elem'],
+              }),
+              new Link({
+                text: 'выйти',
+                path: '/logout',
+                classes: ['header__elem'],
+              })
           ),
     });
 
@@ -36,23 +48,25 @@ export default class TrelloHeader extends Component {
 
     this.addChildren({
       left: new Component({classes: ['header__left']}),
-      right: new Component({classes: ['header__right']}),
+      right: new RightHeaderHalf({classes: ['header__right']}),
     });
 
-    this.rightHalf = new RightHeaderHalf();
-
     this.addLeft(new Link({text: 'домой', path: '/'}));
-    this.addRight(this.rightHalf);
   }
 
   addLeft(component, mount) {
-    this.getChild('left').addChild(component, mount);
+    this.getChild('left')
+        .addChild(component.addStyle('header__elem'), mount);
 
     return this;
   }
 
   addRight(component, mount) {
-    this.getChild('right').addChild(component, mount);
+    this.getChild('right').addChild(
+        component,
+        // component.addStyle('header__elem'),
+        mount
+    );
 
     return this;
   }
@@ -74,10 +88,9 @@ export default class TrelloHeader extends Component {
 
   stateUpdate(loggedIn) {
     if (loggedIn) {
-      this.rightHalf.setState('auth');
-      this.parent.open('/profile');
+      this.getChild('right').setState('auth');
     } else {
-      this.rightHalf.setState('no_auth');
+      this.getChild('right').setState('no_auth');
     }
   }
 }

@@ -82,14 +82,21 @@ export default class Router extends Component {
 
   registerView(route, view) {
     this.views[route] = view;
-    this.viewer.addState(route, view);
+
+    if (!(view instanceof Function)) {
+      this.viewer.addState(route, view);
+    }
 
     return this;
   }
 
   open(route) {
-    this.viewer.setState(route);
-    this.currentRoute = route;
+    if (this.views[route] instanceof Function) {
+      this.views[route]();
+    } else {
+      this.viewer.setState(route);
+      this.currentRoute = route;
+    }
 
     this.render();
 

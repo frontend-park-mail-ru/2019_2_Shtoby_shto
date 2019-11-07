@@ -113,12 +113,6 @@ export default class Component {
           child.mounted = true;
           child.mount = mount;
       }
-      // if (mount === 'prepend') {
-      //   child.prepended = true;
-      // } else {
-      //   child.mounted = true;
-      //   child.mount = mount;
-      // }
     }
 
     this.children.push(child);
@@ -145,16 +139,6 @@ export default class Component {
     this.render();
 
     return this;
-    // if (children instanceof ) {
-
-    // }
-    // Object.entries(children).forEach
-    // children.forEach((child) => {
-    //   // если ребёнок - объект {mount: component}
-    //   if (child instanceof Object) {
-    //     this.addChild(child)
-    //   }
-    // });
   }
 
   getChild(mount) {

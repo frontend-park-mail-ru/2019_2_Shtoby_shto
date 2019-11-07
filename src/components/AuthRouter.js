@@ -4,7 +4,11 @@ export default class AuthRouter extends Router {
   constructor(defaultRoute) {
     super(defaultRoute);
 
+    this.auth = false;
     this.authNeeded = [];
+
+    this.afterLogin = undefined;
+    this.afterLogout = undefined;
   }
 
   registerView(route, needAuth, view) {
@@ -27,12 +31,65 @@ export default class AuthRouter extends Router {
     return needAuth;
   }
 
-  stateUpdate(loggedIn) {
-    this.auth = loggedIn;
+  setAfterLogin(route) {
+    this.afterLogin = route;
 
-    if (!this.auth && this.checkAccesibility(this.currentRoute)) {
+    return this;
+  }
+
+  openAfterLogin() {
+    console.log('opening after login');
+
+    if (this.afterLogin) {
+      console.log(this.afterLogin);
+      this.open(this.afterLogin);
+    } else {
       this.openDefault(true);
     }
+  }
+
+  setAfterLogout(route) {
+    this.afterLogout = route;
+
+    return this;
+  }
+
+  openAfterLogout() {
+    if (this.afterLogout) {
+      this.open(this.afterLogout);
+    } else {
+      this.openDefault(true);
+    }
+  }
+
+  stateUpdate(loggedIn) {
+    const wasLogged = this.auth;
+    this.auth = loggedIn;
+
+    switch (wasLogged) {
+      case true:
+        switch (loggedIn) {
+          case true: break;
+          case false: this.openAfterLogout(); break;
+        }
+        break;
+      case false:
+        switch (loggedIn) {
+          case true: this.openAfterLogin(); break;
+          case false:
+            if (!this.checkAccesibility(this.currentRoute)) {
+              this.openDefault(true);
+            }
+            break;
+        }
+        break;
+    }
+
+    // if (this.auth )
+
+    // if (!this.auth && this.checkAccesibility(this.currentRoute)) {
+    //   this.openDefault(true);
+    // }
   }
 
   open(route) {
