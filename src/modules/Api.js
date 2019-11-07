@@ -16,4 +16,8 @@ export default class Api {
   put(path, body) {
     return this.ajax.jsonRequest('PUT', path, body);
   }
+
+  clearToken() {
+    this.ajax.clearToken();
+  }
 }

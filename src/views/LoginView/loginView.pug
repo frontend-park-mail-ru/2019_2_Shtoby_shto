@@ -1,3 +1,45 @@
-h3 тут логин
-.loginPanel тут должна быть панелька для логина
-h3 тут после панельки
+.cont
+    .form.sign-in
+        h2 С возвращением
+        loginform
+        button.vk-btn
+            | Войти через
+            |
+            span ВКонтакте
+    .sub-cont
+        .bmstu
+            .img__text.m--up
+                h2 Первый раз?
+                p
+                    | Зарегистрируйтесь и откройте для себя
+                    | множество новых возможностей!
+            .img__text.m--in
+                h2 Один из нас?
+                p
+                    | Если у вас уже есть аккаунт,
+                    | просто войдите в систему.
+                    | Мы скучали по вам!
+            .img__btn
+                span.m--up Регистрация
+                span.m--in Вход
+        .form.sign-up
+            h2 Время почувствовать себя как дома,
+            signupform
+        //- .form.sign-up
+        //-     h2 Время почувствовать себя как дома,
+        //-     form#up
+        //-         label
+        //-             span Ваше имя
+        //-             input(name='name' type='text')
+        //-         label
+        //-             span Email
+        //-             input(name='email' type='email')
+        //-         label
+        //-             span Password
+        //-             input(name='password' type='password')
+        //-         .register__error
+        //-         button(type='submit' form='up') Зарегистрироваться
+        button.vk-btn
+            | связать с аккаунтом
+            |
+            span ВКонтакте

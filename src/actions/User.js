@@ -28,12 +28,22 @@ export function getUser() {
   };
 }
 
+function loginFailed() {
+  return {
+    type: 'LOGIN_FAILED',
+  };
+}
+
 export function login(login, password) {
   return function(dispatch) {
     if (!fake) {
-      userApi.login(login, password).then(() => {
-        dispatch(getUser());
-      });
+      userApi.login(login, password)
+          .then(() => {
+            dispatch(getUser());
+          })
+          .catch(() => {
+            dispatch(loginFailed());
+          });
     } else {
       setTimeout(() => {
         dispatch(getUser());
@@ -42,11 +52,39 @@ export function login(login, password) {
   };
 }
 
+function registerFailed() {
+  return {
+    type: 'REGISTRATION_FAILED',
+  };
+}
+
+export function register(loginVal, password) {
+  return function(dispatch) {
+    if (!fake) {
+      userApi.register(loginVal, password)
+          .then(() => {
+            // console.log('registered succesfully, logging in now');
+            // userApi.clearToken();
+            dispatch(login(loginVal, password));
+          })
+          .catch(() => {
+            dispatch(registerFailed());
+          });
+    } else {
+
+    }
+  };
+}
+
 export function logout() {
   return function(dispatch) {
-    dispatch(board.clearStore());
-    dispatch({
-      type: 'LOGGED_OUT',
-    });
+    userApi.logout()
+        .then(() => {
+          dispatch(board.clearStore());
+          dispatch({
+            type: 'LOGGED_OUT',
+          });
+        });
+    // userApi.clearToken();
   };
 }

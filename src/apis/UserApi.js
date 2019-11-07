@@ -20,7 +20,21 @@ export default class UserApi extends Api {
     });
   }
 
+  register(login, password) {
+    return this.post('/users/registration', {
+      login: login,
+      password: password,
+    });
+  }
+
   getUser() {
     return this.get('/users');
+  }
+
+  logout() {
+    return this.get('/logout')
+        .then(() => {
+          this.clearToken();
+        });
   }
 }
