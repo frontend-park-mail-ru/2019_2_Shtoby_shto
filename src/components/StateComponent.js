@@ -17,6 +17,15 @@ export default class StateComponent extends Component {
     return this;
   }
 
+  addStates(states) {
+    Object.entries(states).forEach(([state, component]) => {
+      this.addChild(component, null);
+      this.states[state] = component;
+    });
+
+    return this;
+  }
+
   removeState(name) {
     this.deleteChild(this.states[name]);
     this.states[name] = undefined;

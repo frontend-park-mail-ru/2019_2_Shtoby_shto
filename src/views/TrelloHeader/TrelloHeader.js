@@ -9,40 +9,40 @@ import './trelloHeader.css';
 
 import * as user from '../../actions/User';
 
+class RightHeaderHalf extends StateComponent {
+  constructor() {
+    super();
+
+    this.addStates({
+      'no_auth': new Component({style: {display: 'flex'}})
+          .addChild(new Link({text: 'вход', path: '/login'})),
+      'auth': new Component({style: {display: 'flex'}})
+          .addChildren(
+              new Link({text: 'профиль', path: '/profile'}),
+              new Link({text: 'доски', path: '/board'}),
+              new Button({content: 'выйти', onclick: () => {
+                this.dispatch(user.logout());
+              }})
+          ),
+    });
+
+    this.setState('no_auth');
+  }
+}
+
 export default class TrelloHeader extends Component {
   constructor() {
     super({tag: 'header', classes: ['header']});
 
-    this.addChild(new Component({classes: ['header__left']}), 'left');
-    this.addChild(new Component({classes: ['header__right']}), 'right');
+    this.addChildren({
+      left: new Component({classes: ['header__left']}),
+      right: new Component({classes: ['header__right']}),
+    });
+
+    this.rightHalf = new RightHeaderHalf();
 
     this.addLeft(new Link({text: 'домой', path: '/'}));
-
-    const loginStateComponent = new StateComponent();
-
-    loginStateComponent
-        .addState(
-            'no_auth',
-            new Component({style: {display: 'flex'}})
-                .addChild(new Link({text: 'вход', path: '/login'}))
-        )
-        .addState(
-            'auth',
-            new Component({style: {display: 'flex'}})
-                .addChild(new Link({text: 'профиль', path: '/profile'}))
-                .addChild(new Link({text: 'доски', path: '/board'}))
-                .addChild(new Button({
-                  content: 'выйти', onclick: () => {
-                    this.dispatch(user.logout());
-                  },
-                }))
-        );
-
-    this.loginStateComponent = loginStateComponent;
-
-    this.addRight(loginStateComponent.setState('no_auth'));
-
-    this.addRight(new Component({content: 'ass'}));
+    this.addRight(this.rightHalf);
   }
 
   addLeft(component, mount) {
@@ -74,11 +74,10 @@ export default class TrelloHeader extends Component {
 
   stateUpdate(loggedIn) {
     if (loggedIn) {
-      this.loginStateComponent.setState('auth');
-      // это очень тупо, но работает
+      this.rightHalf.setState('auth');
       this.parent.open('/profile');
     } else {
-      this.loginStateComponent.setState('no_auth');
+      this.rightHalf.setState('no_auth');
     }
   }
 }

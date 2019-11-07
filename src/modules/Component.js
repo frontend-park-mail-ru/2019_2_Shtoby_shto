@@ -93,7 +93,7 @@ export default class Component {
     this.forEachChildSmart((child) => child.component.render());
   }
 
-  addChild(component, mount) {
+  addChild(component, mount, deferRender) {
     component.parent = this;
 
     const child = {
@@ -103,20 +103,58 @@ export default class Component {
     };
 
     if (mount) {
-      if (mount === 'prepend') {
-        child.prepended = true;
-      } else {
-        child.mounted = true;
-        child.mount = mount;
+      switch (mount) {
+        case 'prepend':
+          child.prepended = true;
+          break;
+        case 'append':
+          break;
+        default:
+          child.mounted = true;
+          child.mount = mount;
       }
+      // if (mount === 'prepend') {
+      //   child.prepended = true;
+      // } else {
+      //   child.mounted = true;
+      //   child.mount = mount;
+      // }
     }
 
     this.children.push(child);
     child.component.onAdd();
 
+    if (!deferRender) {
+      this.render();
+    }
+
+    return this;
+  }
+
+  addChildren(...children) {
+    children.forEach((child) => {
+      if (child instanceof Component) {
+        this.addChild(child, 'append', true);
+      } else {
+        Object.entries(child).forEach(([mount, component]) => {
+          this.addChild(component, mount, true);
+        });
+      }
+    });
+
     this.render();
 
     return this;
+    // if (children instanceof ) {
+
+    // }
+    // Object.entries(children).forEach
+    // children.forEach((child) => {
+    //   // если ребёнок - объект {mount: component}
+    //   if (child instanceof Object) {
+    //     this.addChild(child)
+    //   }
+    // });
   }
 
   getChild(mount) {
