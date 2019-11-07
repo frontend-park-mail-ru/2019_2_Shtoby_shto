@@ -31,6 +31,12 @@ function clearToken() {
 class Ajax {
   constructor(url) {
     this.apiAddr = url;
+
+    const apiToken = localStorage.getItem('apitoken');
+    if (!(tokenStorage.token) && apiToken) {
+      tokenStorage.token = apiToken;
+    }
+    // if (localStorage.getItem('apitoken'))
   }
 
   clearToken() {
@@ -46,10 +52,8 @@ class Ajax {
               reject(Error('status is not 200'));
             } else {
               if (res.headers.has('X-Csrf-Token')) {
-                console.log('got token:', res.headers.get('X-Csrf-Token'));
-                if (!tokenStorage.token) {
-                  tokenStorage.token = res.headers.get('X-Csrf-Token');
-                }
+                tokenStorage.token = res.headers.get('X-Csrf-Token');
+                localStorage.setItem('apitoken', tokenStorage.token);
               }
 
               resolve(res);
