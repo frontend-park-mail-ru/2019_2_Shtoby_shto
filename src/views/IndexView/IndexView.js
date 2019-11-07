@@ -1,8 +1,11 @@
 import Component from '../../modules/Component';
-// import StateComponent from '../../components/StateComponent';
+
+const template = require('./index.pug');
+
+import './index.css';
 
 export default class MainView extends Component {
   generateContent() {
-    return 'тут главная страница';
+    return template();
   }
 }
