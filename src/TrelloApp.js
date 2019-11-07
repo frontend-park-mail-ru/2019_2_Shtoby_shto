@@ -14,14 +14,14 @@ import makeGlobalStorage from './storage/makeGlobalStore';
 import logger from './middlewares/logger';
 import thunkDispatcher from './middlewares/thunkDispatcher';
 
-import {setFake} from './actions/fakes/fake';
+import * as user from './actions/User';
 
 import './style.css';
 
 export default class TrelloApp extends App {
   setup() {
-    this.enableDebug();
-    setFake(false);
+    // this.enableDebug();
+    // setFake(false);
 
     const globalStorage = makeGlobalStorage(logger, thunkDispatcher);
     this.connect(globalStorage);
@@ -33,6 +33,9 @@ export default class TrelloApp extends App {
     router.registerView('/login', false, new LoginView());
     router.registerView('/board', true, new BoardView());
     router.registerView('/profile', true, new ProfileView());
+    router.registerView('/logout', true, () => {
+      globalStorage.dispatch(user.logout());
+    });
 
     router.setDefaultRoute('/').useHistory().startRouting();
 
