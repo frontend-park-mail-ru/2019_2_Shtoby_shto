@@ -8,19 +8,17 @@ html, body {
 }
 
 .board__tab__controller {
-    min-height: 100%;
-    height: 100%;
     width: 20%;
     border: 1px solid #ccc;
 }
 
 .board__tabs {
-    /* width: 100%; */
+    /* height: 50px; */
     background-color:#f1f1f1;
-    border: 1px solid #ccc;
 }
 
 .board__tab {
+    height: 50px;
     /* width: 100%; */
     border: 1px solid #ccc;
 }
