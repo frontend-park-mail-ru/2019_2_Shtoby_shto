@@ -24,6 +24,12 @@ function attachHeaders(method, body) {
 class Ajax {
   constructor(url) {
     this.apiAddr = url;
+
+    const apiToken = localStorage.getItem('apitoken');
+    if (!(tokenStorage.token) && apiToken) {
+      tokenStorage.token = apiToken;
+    }
+    // if (localStorage.getItem('apitoken'))
   }
 
   request(method, path, body) {
@@ -35,6 +41,7 @@ class Ajax {
             } else {
               if (res.headers.has('X-Csrf-Token')) {
                 tokenStorage.token = res.headers.get('X-Csrf-Token');
+                localStorage.setItem('apitoken', tokenStorage.token);
               }
 
               resolve(res);
