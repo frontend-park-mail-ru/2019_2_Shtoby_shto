@@ -130,5 +130,9 @@ export default class Store {
     return this.state;
   }
 
+  setState(state) {
+    this.state = state;
+  }
+
   reducer(state, action) {}
 }

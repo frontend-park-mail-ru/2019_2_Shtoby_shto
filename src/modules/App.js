@@ -1,3 +1,4 @@
+import StoreSaver from './StoreSaver';
 import Component from './Component';
 
 const defaultAppElement = 'app';
@@ -28,7 +29,12 @@ export default class App {
       c.store = this.root.store;
       c.init();
     });
+
     this.root.render();
+
+    if (this.synchronizer) {
+      this.synchronizer.startSynchronizing();
+    };
   }
 
   enableDebug() {
@@ -36,7 +42,12 @@ export default class App {
   }
 
   connect(store) {
+    this.store = store;
     this.root.connect(store);
+  }
+
+  synchronize(key = 'state') {
+    this.synchronizer= new StoreSaver(this.store, key);
   }
 
   setup() {}
