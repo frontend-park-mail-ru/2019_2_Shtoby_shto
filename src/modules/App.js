@@ -30,11 +30,16 @@ export default class App {
       c.init();
     });
 
-    this.root.render();
 
     if (this.synchronizer) {
       this.synchronizer.startSynchronizing();
     };
+
+    if (this.globRouter) {
+      this.globRouter.startRouting();
+    }
+
+    this.root.render();
   }
 
   enableDebug() {

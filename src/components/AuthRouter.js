@@ -94,6 +94,12 @@ export default class AuthRouter extends Router {
     // }
   }
 
+  setup() {
+    if (this.store) {
+      this.auth = this.store.getState().user.loggedIn;
+    }
+  }
+
   open(route) {
     const needAuth = this.checkAccesibility(route);
 

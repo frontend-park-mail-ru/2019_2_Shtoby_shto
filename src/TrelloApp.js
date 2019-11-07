@@ -42,7 +42,10 @@ export default class TrelloApp extends App {
     });
     router.setAfterLogin('/profile');
 
-    router.setDefaultRoute('/').useHistory().startRouting();
+    // router.setDefaultRoute('/').useHistory().startRouting();
+    router.setDefaultRoute('/').useHistory();
+
+    this.globRouter = router;
 
     this.addComponent(router);
 
