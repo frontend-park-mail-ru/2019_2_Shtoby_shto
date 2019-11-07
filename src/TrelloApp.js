@@ -38,6 +38,7 @@ export default class TrelloApp extends App {
     router.registerView('/profile', true, new ProfileView());
     router.registerView('/logout', true, () => {
       globalStorage.dispatch(user.logout());
+      router.open('/');
     });
     router.setAfterLogin('/profile');
 
