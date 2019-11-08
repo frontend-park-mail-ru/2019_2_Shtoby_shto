@@ -113,14 +113,33 @@ export default class Component {
           child.mounted = true;
           child.mount = mount;
       }
+
+      let foundChild = false;
+
+      this.forEachChildSmart((ownChild) => {
+        if (child.mount && child.mount === ownChild.mount) {
+          ownChild.component = child.component;
+          foundChild = true;
+        }
+      });
+
+      if (!foundChild) {
+        this.children.push(child);
+      }
+    } else {
+      this.children.push(child);
     }
 
-    this.children.push(child);
     child.component.onAdd();
+
+    // if (this.store) {
+    //   child.component.connect(this.store);
+    // }
 
     if (!deferRender) {
       this.render();
     }
+
 
     return this;
   }

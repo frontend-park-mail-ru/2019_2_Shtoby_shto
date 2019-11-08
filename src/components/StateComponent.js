@@ -45,8 +45,10 @@ export default class StateComponent extends Component {
   }
 
   applyState() {
-    this.currentState.replaceElem(this.element);
-    this.element = this.currentState.element;
+    if (this.currentState.element !== this.element) {
+      this.currentState.replaceElem(this.element);
+      this.element = this.currentState.element;
+    }
   }
 
   setup() {

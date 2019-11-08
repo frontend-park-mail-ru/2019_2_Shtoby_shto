@@ -17,9 +17,10 @@ export default class DNDWrapper extends Wrapper {
     this.swapped = false;
   }
 
-  makeDraggable(funDrag, funDrop) {
+  makeDraggable(funDrag, funDrop, funCancel) {
     this.onDrag = funDrag || this.onDrag;
     this.onDrop = funDrop || this.onDrop;
+    this.onCancel = funCancel || this.onCancel;
 
     this.wrapped.element.onmousedown = (e) => {
       e.stopPropagation();
@@ -91,12 +92,19 @@ export default class DNDWrapper extends Wrapper {
     this.onPlace(this.wrapped, placed);
   }
 
+  executeOnCancel() {
+    this.onCancel(this.wrapped);
+  }
+
   get() {
     return this.wrapped;
   }
 
   // вызывается когда элемент начинает перемещение
   onDrag(dragged) {}
+
+  // вызывается если элемент не был помещён на дроп-зону
+  onCancel(dragged) {}
 
   // вызывается когда перемещающийся компонент был помещён на компонент
   onDrop(dropped, dropzone) {}

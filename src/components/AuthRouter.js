@@ -4,7 +4,7 @@ export default class AuthRouter extends Router {
   constructor(defaultRoute) {
     super(defaultRoute);
 
-    this.auth = true;
+    this.auth = false;
     this.authNeeded = [];
 
     this.afterLogin = undefined;
@@ -63,6 +63,9 @@ export default class AuthRouter extends Router {
   }
 
   stateUpdate(loggedIn) {
+    console.log('logged in?', loggedIn);
+    console.log(this.store.getState());
+
     const wasLogged = this.auth || false;
     this.auth = loggedIn;
 
@@ -94,11 +97,11 @@ export default class AuthRouter extends Router {
     // }
   }
 
-  setup() {
-    if (this.store) {
-      this.auth = this.store.getState().user.loggedIn;
-    }
-  }
+  // setup() {
+  //   if (this.store) {
+  //     this.auth = this.store.getState().user.loggedIn;
+  //   }
+  // }
 
   open(route) {
     const needAuth = this.checkAccesibility(route);

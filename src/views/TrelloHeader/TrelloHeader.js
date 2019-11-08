@@ -38,6 +38,7 @@ class RightHeaderHalf extends StateComponent {
           ),
     });
 
+    console.log(this);
     this.setState('no_auth');
   }
 }
