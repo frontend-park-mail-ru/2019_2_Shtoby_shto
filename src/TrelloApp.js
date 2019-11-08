@@ -40,7 +40,7 @@ export default class TrelloApp extends App {
       globalStorage.dispatch(user.logout());
       router.open('/');
     });
-    router.setAfterLogin('/profile');
+    router.setAfterLogin('/board');
 
     // router.setDefaultRoute('/').useHistory().startRouting();
     router.setDefaultRoute('/').useHistory();
