@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+@font-face {
+    font-family: 'Proxima Nova Light';
+    font-weight: normal;
+    font-style: normal;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Proxima Nova', sans-serif;
+    background: #ededed;
+}
+
+.footer {
+    background: #d43d3a;
+    color: #ededed;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    align-content: center;
+    padding: 50px;
+    text-align: center;
+    flex: 50%;
+}
+
+input, button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+
+button {
+    display: block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 40px auto 20px;
+    background: white;
+}
+
+
+button[type='submit'] {
+    background: #d43d3a;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+h2 {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    width: 260px;
+    margin: 25px auto 0;
+    text-align: center;
+}
+
+label span {
+    font-size: 12px;
+    color: #9b9b9b;
+    text-transform: uppercase;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+}

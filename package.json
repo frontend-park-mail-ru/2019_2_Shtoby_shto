@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "node public/server.js",
-    "linter": "eslint --fix ./dev"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -23,15 +22,22 @@
     "eslint": "^6.4.0",
     "eslint-config-google": "^0.14.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^4.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "sass-loader": "^8.0.0",
+    "serviceworker-webpack-plugin": "^1.0.1",
+    "src": "^1.1.2",
     "style-loader": "^1.0.0",
-    "webpack-cli": "^3.3.9"
+    "url-loader": "^2.1.0",
+    "webpack-cli": "^3.3.9",
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
+    "compression-webpack-plugin": "^3.0.0",
+    "eslint-loader": "^3.0.2",
     "webpack": "^4.41.0"
   }
 }
