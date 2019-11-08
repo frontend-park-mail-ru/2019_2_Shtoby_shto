@@ -1,5 +1,6 @@
 import UserApi from '../apis/UserApi';
 import * as board from './Board';
+import * as ui from './UI';
 
 import {fakeUser} from './fakes/fakeUser';
 import {fake} from './fakes/fake';
@@ -80,6 +81,7 @@ export function logout() {
   return function(dispatch) {
     userApi.logout()
         .then(() => {
+          dispatch(ui.reset());
           dispatch(board.clearStore());
           dispatch({
             type: 'LOGGED_OUT',

@@ -1,5 +1,6 @@
 import UserStore from './UserStore';
 import BoardStore from './BoardStore';
+import UIStore from './UIStore';
 
 import StoreCombiner from '../modules/StoreCombiner';
 
@@ -9,6 +10,7 @@ export default function makeGlobalStorage(...middlewares) {
   return applyMiddleware(new StoreCombiner({
     user: new UserStore(),
     boards: new BoardStore(),
+    ui: new UIStore(),
   }), ...middlewares);
 }
 

@@ -17,7 +17,27 @@ export default class BoardApi extends Api {
     return this.get(`/board/user/${userId}`);
   }
 
+  fetchBoard(id) {
+    return this.get(`/board/${id}`);
+  }
+
   createBoard(name) {
     return this.post(`/board`, {name: name});
+  }
+
+  updateBoard(id, name) {
+    return this.put(`/board/${id}`, {name: name});
+  }
+
+  deleteBoard(id) {
+    return this.del(`/board/${id}`);
+  }
+
+  createGroup(name, boardId) {
+    return this.post('/card-group', {name: name, board_id: boardId});
+  }
+
+  renameGroup(name, boardId, id) {
+    return this.put(`/card-group/${id}`, {name: name, board_id: boardId});
   }
 }

@@ -64,17 +64,20 @@ class ComponentDragManager {
 
   onMouseUp(e) {
     if (this.wrapper) {
-      // e.stopPropagation();
+      if (this.dragging) {
+        this.wrapper.move(9999, 9999);
 
-      this.wrapper.get().element.hidden = true;
+        const foundDroppable = this.findDroppable(e.clientX, e.clientY);
 
-      const foundDroppable = this.findDroppable(e.clientX, e.clientY);
-      if (foundDroppable) {
-        this.wrapper.executeOnDrop(foundDroppable);
-        foundDroppable.dndwrapper.executeOnPlace(this.wrapper.get());
+        if (foundDroppable) {
+          this.wrapper.executeOnDrop(foundDroppable);
+          foundDroppable.dndwrapper.executeOnPlace(
+              this.wrapper.get(), foundDroppable,
+          );
+        } else {
+          this.wrapper.executeOnCancel(this.wrapper.get());
+        }
       }
-
-      this.wrapper.get().element.hidden = false;
 
       this.release();
     }

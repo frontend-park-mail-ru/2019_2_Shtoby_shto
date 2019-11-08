@@ -1,35 +1,31 @@
-// import Component from '../../modules/Component';
-import StateComponent from '../../components/StateComponent';
+import Component from '../../modules/Component';
+// import StateComponent from '../../components/StateComponent';
+import TransformingInput from '../../components/TransformingInput';
 
-class Input extends Component {
-  constructor(ownProps) {
-    super({tag: 'input'}, ...ownProps);
 
-    this.element
-  }
-
-  setOnBlur(fun) {
-    this.onblur = fun;
-  }
-
-  executeOnBlur(text) {
-    this.onblur(text);
-  }
-}
-
-class TransformingInput extends StateComponent {
-  constructor(otherState) {
-    super();
-
-    // this.addStates({
-      // input: new Component
-    // })
-  }
-}
-
-export default class BoardPlus extends StateComponent {
+export default class BoardPlus extends TransformingInput {
   constructor() {
-    super();
+    super(
+        new Component({
+          content: '+', classes: ['board__tab', 'board__plus'],
+        }),
+        {classes: ['board__tab', 'plus__input']},
+        'clear',
+    );
 
+    this.states['other'].element.onclick = this.toInput.bind(this);
   }
+  // onBlur(text) {
+  //   if (text) {
+  //     board.create(text);
+  //   }
+  // }
 }
+
+
+// export default class BoardPlus extends StateComponent {
+//   constructor() {
+//     super();
+
+//   }
+// }
