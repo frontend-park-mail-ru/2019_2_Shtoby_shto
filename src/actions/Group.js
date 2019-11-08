@@ -24,6 +24,19 @@ export function createGroup(name) {
   };
 }
 
+export function deleteGroup(id) {
+  return function(dispatch) {
+    boardApi.deleteGroup(id)
+        .then(() => {
+          dispatch({
+            type: 'DELETE_GROUP',
+            id: id,
+          });
+        });
+  };
+}
+
+
 function editGroup(boardId, groupId, name) {
   return {
     type: 'EDIT_GROUP',

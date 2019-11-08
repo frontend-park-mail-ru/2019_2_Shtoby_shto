@@ -58,6 +58,68 @@ export default class BoardStore extends Store {
             {...b};
           }),
         ];
+
+      case 'DELETE_GROUP':
+        return [
+          ...state.map((b) => {
+            return {...b, cardGroups: b.cardGroups.filter((gr) => {
+              return gr.id !== action.id;
+            })};
+          }),
+        ];
+
+      case 'DELETE_CARD':
+        return [
+          ...state.map((b) => {
+            return {...b, cardGroups: b.cardGroups.map((gr) => {
+              return {...gr, cards: gr.cards.filter((c) => {
+                c.id !== action.id;
+              })};
+            })};
+          }),
+        ];
+
+      case 'ADD_CARD':
+        return [
+          ...state.map((b) => {
+            return {
+              ...b, cardGroups: [
+                ...b.cardGroups.map((gr) => {
+                  return gr.id === action.cardGroupId ?
+                  {...gr, cards: [...gr.cards, {
+                    id: action.id,
+                    caption: action.caption,
+                    priority: action.priority,
+                    cardGroupId: action.cardGroupId,
+                    tasks: action.tasks,
+                  }]} :
+                  {...gr};
+                }),
+              ],
+            };
+          }),
+        ];
+
+      case 'UPDATE_CARD':
+        return [
+          ...state.map((b) => {
+            return {
+              ...b, cardGroups: [
+                ...b.cardGroups.map((gr) => {
+                  return {
+                    ...gr, cards: [
+                      ...gr.cards.map((c) => {
+                        return c.id === action.id ?
+                        {...c, caption: action.caption} :
+                        {...c};
+                      }),
+                    ],
+                  };
+                }),
+              ],
+            };
+          }),
+        ];
       case 'FILL_BOARD':
         return [
           ...state.map((b) => {

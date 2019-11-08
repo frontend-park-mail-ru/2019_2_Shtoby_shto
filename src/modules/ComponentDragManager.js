@@ -65,6 +65,7 @@ class ComponentDragManager {
   onMouseUp(e) {
     if (this.wrapper) {
       if (this.dragging) {
+        e.stopPropagation();
         this.wrapper.move(9999, 9999);
 
         const foundDroppable = this.findDroppable(e.clientX, e.clientY);

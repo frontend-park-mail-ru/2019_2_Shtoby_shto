@@ -2,12 +2,15 @@ import Component from '../../modules/Component';
 
 import GroupsDisplayer from './GroupsDisplayer';
 
+import Trashbin from './Trashbin';
+
 import * as board from '../../actions/Board';
 
 export default class SingleBoard extends Component {
   constructor() {
     super({classes: ['single__board']});
-    // this.addChild(new GroupsDisplayer(), 'groups');
+
+    this.addChild(new Trashbin());
   }
 
   generateContent() {

@@ -13,8 +13,9 @@ export default class GroupDisplayer extends Component {
       this.addChild(new GroupController(dispatch, group));
     });
 
-    this.addChild(new GroupPlus().setOnBlur((text) => {
-      if (text) dispatch(group.createGroup(text));
-    }));
+    this.addChild(new Component({classes: ['card__group']})
+        .addChild(new GroupPlus().setOnBlur((text) => {
+          if (text) dispatch(group.createGroup(text));
+        })));
   }
 }

@@ -5,10 +5,10 @@ export default class GroupPlus extends TransformingInput {
   constructor() {
     super(
         new Component({
-          content: 'Новая группа', classes: ['card__group', 'group__plus'],
+          content: 'Новая группа', classes: ['group__header', 'group__plus'],
         }),
         {
-          classes: ['card__group', 'group__input'],
+          classes: ['group__header', 'group__input'],
         }
     );
 
