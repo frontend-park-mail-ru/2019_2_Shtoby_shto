@@ -4,8 +4,10 @@ const {join} = require('path');
 
 const url = require('url');
 
-const distDir = 'dist';
-const resolve = (path) => `${distDir}/${path}`;
+const deployVar = process.env.NOWSECRET;
+console.log(deployVar);
+
+const distDir = deployVar ? '' : 'dist';
 
 const filetypes = {
   'html': 'text/html',
@@ -14,22 +16,24 @@ const filetypes = {
   'svg': 'image/svg+xml',
 };
 
-const server = http.createServer((req, res) => {
+const requestsObject = (req, res) => {
   let currentUrl = url.parse(req.url, true).pathname;
 
   if (/^[^.]+$/.test(currentUrl)) {
-    currentUrl = `index.html`;
     res.setHeader('Content-Type', `${filetypes['html']}`);
+    currentUrl = `/index.html`;
   } else {
     const ft = `${currentUrl.split('.')[1]}`;
     res.setHeader('Content-Type', `${filetypes[ft]}`);
+    currentUrl = `${distDir}/${currentUrl}`;
   }
 
-  const newPath = join(__dirname, resolve(`${currentUrl}`));
+  const newPath = join(__dirname, currentUrl);
 
   try {
     body = fs.readFileSync(newPath);
   } catch (e) {
+    console.log(e);
     res.statusCode = 404;
     res.end();
 
@@ -38,6 +42,8 @@ const server = http.createServer((req, res) => {
   res.writeHead(200);
 
   res.end(body);
-}).listen(3000);
+};
 
-module.exports = server;
+module.exports = deployVar
+  ? requestsObject
+  : http.createServer(requestsObject).listen(3000); 

@@ -6,7 +6,7 @@ export default class Trashbin extends DNDComponent {
   constructor() {
     super({
       tag: 'img',
-      attrs: {src: `build/${img}`},
+      attrs: {src: `${img}`},
       classes: ['trash'],
     });
 

@@ -2,31 +2,56 @@
     "version": 2,
     "build": {
         "env": {
-            "REMOTE_DEPLOY": "remote_deploy"
+            "REMOTE_DEPLOY": "remote_deploy",
+            "NOWSECRET": "@nowsecret"
         }
     },
     "builds": [
         {
-            "src": "server.js",
-            "use": "@now/node-server"
+            "src": "index.html",
+            "use": "@now/static"
         },
         {
-            "src": "/dist/**",
+            "src": "favicon.ico",
             "use": "@now/static"
         },
         {
             "src": "package.json",
             "use": "@now/static-build"
+        },
+        {
+            "src": "dist/**",
+            "use": "@now/static"
+        },
+        {
+            "src": "server.js",
+            "use": "@now/node"
         }
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/public/server.js"
+            "src": "(.*).ico",
+            "dest": "/$1.ico"
         },
         {
-            "src": "(.*).ico",
-            "dest": "/public/$1.ico"
+            "src": "/build/(.*)",
+            "dest": "/dist/$1"
+        },
+        {
+            "src": "/style.css",
+            "dest": "/style.css"
+        },
+        {
+            "src": "/bundle.js",
+            "dest": "/bundle.js"
+        },
+        {
+            "src": "/images/(.*)",
+            "dest": "/dist/images/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "server.js"
         }
     ]
 }

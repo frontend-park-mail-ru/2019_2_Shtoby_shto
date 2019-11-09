@@ -5,7 +5,7 @@ import SignupForm from './SignupForm';
 
 const template = require('./loginView.pug');
 import './login.css';
-import './vidymgtu002.jpg';
+// import './vidymgtu002.jpg';
 
 export default class LoginView extends Component {
   constructor() {
