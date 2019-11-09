@@ -3,6 +3,8 @@ import BoardApi from '../apis/BoardApi';
 import {fakeBoards, makeFakeBoard} from './fakes/fakeBoards';
 import {fake} from './fakes/fake';
 
+import * as uiActions from './UI';
+
 const boardApi = new BoardApi();
 
 function addBoard(boardModel) {
@@ -41,9 +43,12 @@ export function fetchBoards() {
 }
 
 function trueDeleteBoard(id) {
-  return {
-    type: 'DELETE_BOARD',
-    id: id,
+  return function(dispatch) {
+    dispatch(uiActions.tryDeselect(id));
+    dispatch({
+      type: 'DELETE_BOARD',
+      id: id,
+    });
   };
 }
 

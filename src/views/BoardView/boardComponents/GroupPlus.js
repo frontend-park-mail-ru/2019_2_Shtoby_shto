@@ -1,5 +1,5 @@
-import Component from '../../modules/Component';
-import TransformingInput from '../../components/TransformingInput';
+import Component from '../../../modules/Component';
+import TransformingInput from '../../../components/TransformingInput';
 
 export default class GroupPlus extends TransformingInput {
   constructor() {

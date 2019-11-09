@@ -1,9 +1,9 @@
-import Component from '../../modules/Component';
+import Component from '../../../modules/Component';
 // import DNDComponent from '../../modules/DNDComponent';
-import TransformingInput from '../../components/TransformingInput';
-import dnd from '../../modules/dnd';
+import TransformingInput from '../../../components/TransformingInput';
+import dnd from '../../../modules/dnd';
 
-import * as cards from '../../actions/Card';
+import * as cards from '../../../actions/Card';
 
 export default class Card extends TransformingInput {
   constructor(card, dispatch) {

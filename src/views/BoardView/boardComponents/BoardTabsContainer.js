@@ -1,4 +1,4 @@
-import Component from '../../modules/Component';
+import Component from '../../../modules/Component';
 
 import BoardTab from './BoardTab';
 

@@ -15,7 +15,7 @@ function trueCreateGroup(groupModel) {
 export function createGroup(name) {
   return function(dispatch, getState) {
     const selectedBoard = getState()['ui']['selectedIndex'];
-    const boardId = getState()['boards'][selectedBoard - 1].id;
+    const boardId = getState()['boards'][selectedBoard].id;
 
     boardApi.createGroup(name, boardId)
         .then((group) => {

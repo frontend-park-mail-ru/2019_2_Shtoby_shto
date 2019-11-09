@@ -1,6 +1,6 @@
 import Component from '../../modules/Component';
-import BoardTabsController from './BoardTabsController';
-import SingleBoard from './SingleBoard';
+import BoardTabsController from './boardComponents/BoardTabsController';
+import SingleBoard from './boardComponents/SingleBoard';
 
 import './boardView.css';
 

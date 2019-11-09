@@ -1,4 +1,4 @@
-import DNDComponent from '../../modules/DNDComponent';
+import DNDComponent from '../../../modules/DNDComponent';
 
 const img = require('./trash.png');
 

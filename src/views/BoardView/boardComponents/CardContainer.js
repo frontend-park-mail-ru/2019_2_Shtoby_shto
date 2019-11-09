@@ -1,7 +1,7 @@
-import Component from '../../modules/Component';
+import Component from '../../../modules/Component';
 import Card from './Card';
 
-import * as cardActions from '../../actions/Card';
+import * as cardActions from '../../../actions/Card';
 
 export default class CardContainer extends Component {
   constructor(boardId, dispatch, ...cards) {

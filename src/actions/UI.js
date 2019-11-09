@@ -1,16 +1,34 @@
 export function selectBoard(index) {
   return {
     type: 'SELECT_BOARD',
-    index: index + 1,
+    index: index,
   };
 }
 
-export function deselectBoard(index) {
+export function deselectBoard() {
+  return {
+    type: 'DESELECT_BOARD',
+  };
+}
+
+export function tryDeselect(id) {
   return function(dispatch, getState) {
-    if (getState()['ui'].selectedIndex === index + 1) {
-      dispatch({
-        type: 'DESELECT_BOARD',
+    const selectedIndex = getState().ui.selectedIndex;
+
+    if (typeof selectedIndex !== 'undefined') {
+      let deletedIndex = undefined;
+
+      getState().boards.forEach((b, index) => {
+        if (b.id == id) {
+          deletedIndex = index;
+        }
       });
+
+      if (deletedIndex === selectedIndex) {
+        dispatch(deselectBoard());
+      } else if (deletedIndex < selectedIndex) {
+        dispatch(selectBoard(selectedIndex - 1));
+      }
     }
   };
 }

@@ -1,8 +1,8 @@
-import Component from '../../modules/Component';
+import Component from '../../../modules/Component';
 import BoardTabsContainer from './BoardTabsContainer';
 import BoardPlus from './BoardPlus';
 
-import * as board from '../../actions/Board';
+import * as board from '../../../actions/Board';
 
 export default class BoardTabsController extends Component {
   constructor() {

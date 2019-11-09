@@ -1,12 +1,12 @@
-import Component from '../../modules/Component';
-import DNDComponent from '../../modules/DNDComponent';
+import Component from '../../../modules/Component';
+import DNDComponent from '../../../modules/DNDComponent';
 import CardContainer from './CardContainer';
 import CardPlus from './CardPlus';
 
-import TransformingInput from '../../components/TransformingInput';
+import TransformingInput from '../../../components/TransformingInput';
 
-import * as groupActions from '../../actions/Group';
-import * as cardActions from '../../actions/Card';
+import * as groupActions from '../../../actions/Group';
+import * as cardActions from '../../../actions/Card';
 
 export default class GroupController extends DNDComponent {
   constructor(dispatch, group) {
@@ -20,9 +20,11 @@ export default class GroupController extends DNDComponent {
         {
           content: `${group.name}`,
           classes: ['group__header', 'group__name'],
-        })
+        }, 'reset')
         .setOnBlur((text) => {
-          dispatch(groupActions.rename(text, group['board_id'], group.id));
+          if (text && group.name !== text) {
+            dispatch(groupActions.rename(text, group.boardId, group.id));
+          }
         })
         .useDblclick()
     );
