@@ -62,6 +62,14 @@ export default class BoardTab extends DNDComponent {
     };
   }
 
+  select() {
+    this.addStyle('selected');
+  }
+
+  deselect() {
+    this.removeStyle('selected');
+  }
+
   del() {
     this.props.dispatch(boardActions.deleteBoard(this.props.id));
   }

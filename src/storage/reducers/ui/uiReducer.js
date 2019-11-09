@@ -10,6 +10,18 @@ export default function uiReducer(state, action) {
         ...state,
         selectedIndex: undefined,
       };
+    case 'SELECT_UPPER':
+      return {
+        ...state,
+        selectedIndex: state.selectedIndex ?
+        state.selectedIndex + 1 : undefined,
+      };
+    case 'SELECT_LOWER':
+      return {
+        ...state,
+        selectedIndex: state.selectedIndex ?
+        state.selectedIndex - 1 : undefined,
+      };
     case 'RESET':
       return {};
     default:

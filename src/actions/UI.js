@@ -11,6 +11,18 @@ export function deselectBoard() {
   };
 }
 
+export function selectUpper() {
+  return {
+    type: 'SELECT_UPPER',
+  };
+}
+
+export function selectLower() {
+  return {
+    type: 'SELECT_LOWER',
+  };
+}
+
 export function tryDeselect(id) {
   return function(dispatch, getState) {
     const selectedIndex = getState().ui.selectedIndex;
@@ -27,7 +39,8 @@ export function tryDeselect(id) {
       if (deletedIndex === selectedIndex) {
         dispatch(deselectBoard());
       } else if (deletedIndex < selectedIndex) {
-        dispatch(selectBoard(selectedIndex - 1));
+        dispatch(selectLower());
+        // dispatch(selectBoard(selectedIndex - 1));
       }
     }
   };

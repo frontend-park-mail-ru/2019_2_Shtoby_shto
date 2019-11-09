@@ -226,6 +226,18 @@ export default class Component {
     return this;
   }
 
+  removeStyle(style) {
+    this.element.classList.remove(style);
+
+    return this;
+  }
+
+  toggleStyle(style) {
+    this.element.classList.toggle(style);
+
+    return this;
+  }
+
   apply(fun) {
     fun(this);
 

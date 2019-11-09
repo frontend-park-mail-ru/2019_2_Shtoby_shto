@@ -30,6 +30,10 @@ html, body {
     /* background-color: azure; */
 }
 
+.board__tab.selected {
+    background-color: bisque;
+};
+
 .tab__name__container {
     position: absolute;
     width: 50%;

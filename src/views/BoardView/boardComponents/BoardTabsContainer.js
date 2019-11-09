@@ -22,10 +22,17 @@ export default class BoardTabsContainer extends Component {
           (comp) => {
             this.disableHighliting(comp.props.index);
           }));
-      // this.enableHighliting.bind(this),
-      // null,
-      // this.disableHighliting.bind(this)));
     });
+  }
+
+  selectTab(index) {
+    this.forEachChild((ch) => {
+      ch.deselect();
+    });
+
+    if (typeof index !== 'undefined') {
+      this.getChild(index).select();
+    }
   }
 
   enableHighliting(index) {

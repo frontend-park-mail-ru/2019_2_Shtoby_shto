@@ -13,6 +13,8 @@ export default class BoardTabsController extends Component {
     this.getChild('plus').setOnBlur((text) => {
       if (text) this.dispatch(board.create(text));
     });
+
+    this.selectedIndex = undefined;
   }
 
   generateContent() {
@@ -27,19 +29,39 @@ export default class BoardTabsController extends Component {
   }
 
   fillBoardTabs(boards) {
+    const boardTabs = new BoardTabsContainer(
+        this.dispatch.bind(this),
+        ...boards
+    );
+
+    if (typeof this.selectedIndex !== 'undefined') {
+      boardTabs.selectTab(this.selectedIndex);
+    }
+
     this.addChild(
-        new BoardTabsContainer(this.dispatch.bind(this),
-            ...boards),
+        boardTabs,
         'tabscontainer'
     );
   }
 
   init(state) {
+    this.selectedIndex = state.ui.selectedIndex;
     this.fillBoardTabs(state.boards);
-    this.subscribe((state) => state.boards);
+
+    this.subscribe((state) => {
+      return {boards: state.boards};
+    });
+    this.subscribe((state) => {
+      return {index: state.ui.selectedIndex};
+    });
   }
 
-  stateUpdate(boards) {
-    this.fillBoardTabs(boards);
+  stateUpdate(stateUpdate) {
+    if ('boards' in stateUpdate) {
+      this.fillBoardTabs(stateUpdate.boards);
+    } else if ('index' in stateUpdate) {
+      this.selectedIndex = stateUpdate.index;
+      this.getChild('tabscontainer').selectTab(this.selectedIndex);
+    }
   }
 }
