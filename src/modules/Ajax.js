@@ -32,16 +32,18 @@ class Ajax {
   constructor(url) {
     this.apiAddr = url;
 
-    const apiToken = localStorage.getItem('apitoken');
-    if (!(tokenStorage.token) && apiToken) {
-      tokenStorage.token = apiToken;
+    try {
+      const apiToken = localStorage.getItem('apitoken');
+      if (!(tokenStorage.token) && apiToken) {
+        tokenStorage.token = apiToken;
+      }
+    } catch (e) {
+      console.log(e);
     }
-    // if (localStorage.getItem('apitoken'))
   }
 
   clearToken() {
     clearToken();
-    // tokenStorage.token = undefined;
   }
 
   request(method, path, body) {
