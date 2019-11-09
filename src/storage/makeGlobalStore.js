@@ -13,8 +13,3 @@ export default function makeGlobalStorage(...middlewares) {
     ui: new UIStore(),
   }), ...middlewares);
 }
-
-// export default new StoreCombiner({
-//   user: new UserStore(),
-//   boards: new BoardStore(),
-// });

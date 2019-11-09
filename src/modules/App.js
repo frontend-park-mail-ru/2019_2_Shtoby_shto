@@ -18,18 +18,10 @@ export default class App {
   start() {
     this.setup();
 
-    const childVisiter = (comp, fun) => {
-      fun(comp);
-      comp.forEachChild((c) => {
-        childVisiter(c, fun);
-      });
-    };
-
-    childVisiter(this.root, (c) => {
-      c.store = this.root.store;
-      c.init();
+    this.root.forAllComponents((comp) => {
+      comp.store = this.root.store;
+      comp.init();
     });
-
 
     if (this.synchronizer) {
       this.synchronizer.startSynchronizing();
@@ -52,7 +44,7 @@ export default class App {
   }
 
   synchronize(key = 'state') {
-    this.synchronizer= new StoreSaver(this.store, key);
+    this.synchronizer = new StoreSaver(this.store, key);
   }
 
   setup() {}
