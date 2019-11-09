@@ -15,22 +15,19 @@ export default class StoreSaver {
   }
 
   startSynchronizing() {
-    let prevState = undefined;
+    let prevState = this.store.getState();
 
     try {
       prevState = localStorage.getItem(this.key);
+
+      if (!prevState) {
+        this.save(this.store.getState());
+      } else {
+        const jsonedState = JSON.parse(prevState);
+        this.store.setState(jsonedState);
+      }
     } catch (e) {
       console.log(e);
-    }
-
-    if (!prevState) {
-      this.save(this.store.getState());
-    } else {
-      const jsonedState = JSON.parse(prevState);
-
-      this.store.setState({});
-      this.store.mutated(jsonedState);
-      this.store.setState(jsonedState);
     }
 
     this.store.subscribe(this.save.bind(this));

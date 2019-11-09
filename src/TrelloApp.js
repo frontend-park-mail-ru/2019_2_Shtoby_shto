@@ -32,17 +32,15 @@ export default class TrelloApp extends App {
     const router = new AuthRouter()
         .addChild(new TrelloHeader(), 'prepend');
 
-    router.registerView('/', false, new MainView());
-    router.registerView('/login', false, new LoginView());
-    router.registerView('/board', true, new BoardView());
-    router.registerView('/profile', true, new ProfileView());
-    router.registerView('/logout', true, () => {
+    router.registerView('/', new MainView());
+    router.registerViewNoAuth('/login', new LoginView(), '/board');
+    router.registerViewAuth('/board', new BoardView());
+    router.registerViewAuth('/profile', new ProfileView());
+    router.registerViewAuth('/logout', () => {
       globalStorage.dispatch(user.logout());
-      router.open('/');
     });
-    router.setAfterLogin('/board');
 
-    // router.setDefaultRoute('/').useHistory().startRouting();
+    router.setAfterLogin('/board');
     router.setDefaultRoute('/').useHistory();
 
     this.globRouter = router;

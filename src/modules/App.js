@@ -18,14 +18,14 @@ export default class App {
   start() {
     this.setup();
 
-    this.root.forAllComponents((comp) => {
-      comp.store = this.root.store;
-      comp.init();
-    });
-
     if (this.synchronizer) {
       this.synchronizer.startSynchronizing();
     };
+
+    this.root.forAllComponents((comp) => {
+      comp.store = this.root.store;
+      comp.init(this.root.store.getState());
+    });
 
     if (this.globRouter) {
       this.globRouter.startRouting();

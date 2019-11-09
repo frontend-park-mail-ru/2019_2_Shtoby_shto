@@ -26,15 +26,20 @@ export default class BoardTabsController extends Component {
     };
   }
 
-  init() {
-    this.subscribe((state) => state.boards);
-  }
-
-  stateUpdate(boards) {
+  fillBoardTabs(boards) {
     this.addChild(
         new BoardTabsContainer(this.dispatch.bind(this),
             ...boards),
         'tabscontainer'
     );
+  }
+
+  init(state) {
+    this.fillBoardTabs(state.boards);
+    this.subscribe((state) => state.boards);
+  }
+
+  stateUpdate(boards) {
+    this.fillBoardTabs(boards);
   }
 }

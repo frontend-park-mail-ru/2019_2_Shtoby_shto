@@ -38,7 +38,6 @@ class RightHeaderHalf extends StateComponent {
           ),
     });
 
-    console.log(this);
     this.setState('no_auth');
   }
 }
@@ -65,7 +64,6 @@ export default class TrelloHeader extends Component {
   addRight(component, mount) {
     this.getChild('right').addChild(
         component,
-        // component.addStyle('header__elem'),
         mount
     );
 
@@ -83,15 +81,20 @@ export default class TrelloHeader extends Component {
     };
   }
 
-  init() {
-    this.subscribe((state) => state.user.loggedIn);
-  }
-
-  stateUpdate(loggedIn) {
+  switchAuth(loggedIn) {
     if (loggedIn) {
       this.getChild('right').setState('auth');
     } else {
       this.getChild('right').setState('no_auth');
     }
+  }
+
+  init(state) {
+    this.switchAuth(state.user.loggedIn);
+    this.subscribe((state) => state.user.loggedIn);
+  }
+
+  stateUpdate(loggedIn) {
+    this.switchAuth(loggedIn);
   }
 }
