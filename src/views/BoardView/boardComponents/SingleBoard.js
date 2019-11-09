@@ -5,7 +5,6 @@ import GroupsDisplayer from './GroupsDisplayer';
 import Trashbin from './Trashbin';
 
 import * as boardActions from '../../../actions/Board';
-// import * as uiActions from '../../../actions/UI';
 
 export default class SingleBoard extends Component {
   constructor() {
@@ -42,11 +41,7 @@ export default class SingleBoard extends Component {
 
     if (typeof selectedIndex !== 'undefined') {
       const selectedBoard = state.boards[selectedIndex];
-      // if (typeof selectedBoard !== 'undefined') {
       this.tryShowBoard(selectedBoard);
-      // } else {
-      // this.dispatch(uiActions.deselectBoard());
-      // }
     }
 
     this.subscribe((state) => state.boards[state.ui.selectedIndex]);
