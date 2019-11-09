@@ -7,21 +7,27 @@ export default class StoreSaver {
   save(state) {
     const stateStringified = JSON.stringify(state);
 
-    localStorage.setItem(this.key, stateStringified);
+    try {
+      localStorage.setItem(this.key, stateStringified);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   startSynchronizing() {
-    const prevState = localStorage.getItem(this.key);
+    let prevState = this.store.getState();
 
-    if (!prevState) {
-      this.save(this.store.getState());
-    } else {
-      console.log('prev state:', prevState);
-      const jsonedState = JSON.parse(prevState);
+    try {
+      prevState = localStorage.getItem(this.key);
 
-      this.store.setState({});
-      this.store.mutated(jsonedState);
-      this.store.setState(jsonedState);
+      if (!prevState) {
+        this.save(this.store.getState());
+      } else {
+        const jsonedState = JSON.parse(prevState);
+        this.store.setState(jsonedState);
+      }
+    } catch (e) {
+      console.log(e);
     }
 
     this.store.subscribe(this.save.bind(this));

@@ -1,27 +1,22 @@
 import Component from '../Component';
 
-import makeTraverser from './traverser';
-
 import './debug.css';
 const debugComponentClass = 'debug__component';
 
-const componentTreeTraverser = makeTraverser('forEachChild');
-
 function setDebugAdder(component, cls = debugComponentClass) {
-  const debugAdder = (comp, mount) => {
-    componentTreeTraverser(comp, (c) => {
-      c.addStyle(cls);
-      setDebugAdder(c);
-    });
-
-    Component.prototype.addChild.bind(component)(comp, mount);
-  };
-
-  component.addChild = debugAdder;
+  component.forAllComponents((comp) => {
+    comp.addStyle(cls);
+    comp.addChild = (c, mount) => {
+      setDebugAdder(c, cls);
+      Component.prototype.addChild.bind(comp)(c, mount);
+    };
+  });
 }
 
 function logger(component) {
-  componentTreeTraverser(component, (comp) => console.log(comp));
+  component.forAllComponent((comp) => {
+    console.log(comp);
+  });
 }
 
 

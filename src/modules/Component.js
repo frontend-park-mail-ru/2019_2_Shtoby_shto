@@ -66,6 +66,16 @@ export default class Component {
     return this;
   }
 
+  // обходит вообще все компоненты
+  forAllComponents(fun) {
+    fun(this);
+    this.forEachChild((child) => {
+      child.forAllComponents(fun);
+    });
+
+    return this;
+  }
+
   // эта функция нужна для полной перерисовки внутренностей компонента
   render() {
     this.element.innerHTML = this.generateContent(this.props);

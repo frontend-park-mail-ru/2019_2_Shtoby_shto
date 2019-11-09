@@ -60,21 +60,21 @@ export default class Router extends Component {
   useHistory() {
     this.history = true;
 
-    const historyOpener = () => {
+    window.addEventListener('popstate', () => {
       const currentPath = window.location.pathname;
       this.open(currentPath);
-    };
+    });
 
-    window.addEventListener('popstate', historyOpener);
-
-    const oldOpen = this.open;
+    const oldOpener = this.open.bind(this);
 
     this.open = (route) => {
       if (window.location.pathname !== route) {
-        window.history.pushState(null, '', route);
+        if (!(this.views[route] instanceof Function)) {
+          window.history.pushState(null, '', route);
+        }
       }
 
-      oldOpen.bind(this)(route);
+      oldOpener(route);
     };
 
     return this;
