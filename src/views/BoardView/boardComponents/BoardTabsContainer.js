@@ -32,14 +32,15 @@ export default class BoardTabsContainer extends Component {
       } else {
         ch.deselect();
       }
-
-      // if ('deselect' in ch) {
-      // ch.deselect();
-      // }
     });
 
     if (typeof index !== 'undefined') {
-      this.getChild(index).select();
+      const selectedChild = this.getChild(index);
+      if ('select' in selectedChild) {
+        selectedChild.select();
+      } else {
+        selectedChild.trueone.select();
+      }
     }
   }
 

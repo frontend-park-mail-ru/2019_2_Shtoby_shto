@@ -47,8 +47,7 @@ export function tryDeselect(id) {
       if (deletedIndex === selectedIndex) {
         dispatch(deselectBoard());
       } else if (deletedIndex < selectedIndex) {
-        dispatch(selectLower());
-        // dispatch(selectBoard(selectedIndex - 1));
+        dispatch(selectUpper());
       }
     }
   };

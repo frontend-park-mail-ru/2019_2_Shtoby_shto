@@ -45,6 +45,7 @@ export function fetchBoards() {
 function trueDeleteBoard(id) {
   return function(dispatch) {
     dispatch(uiActions.tryDeselect(id));
+
     dispatch({
       type: 'DELETE_BOARD',
       id: id,
