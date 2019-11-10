@@ -32,7 +32,7 @@ html, body {
 
 .board__tab.selected {
     background-color: bisque;
-};
+}
 
 .tab__name__container {
     position: absolute;

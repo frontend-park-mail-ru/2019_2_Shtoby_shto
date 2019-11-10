@@ -12,14 +12,22 @@ export function deselectBoard() {
 }
 
 export function selectUpper() {
-  return {
-    type: 'SELECT_UPPER',
+  return function(dispatch, getState) {
+    if (getState().ui.selectedIndex > 0) {
+      dispatch({
+        type: 'SELECT_UPPER',
+      });
+    }
   };
 }
 
 export function selectLower() {
-  return {
-    type: 'SELECT_LOWER',
+  return function(dispatch, getState) {
+    if (getState().ui.selectedIndex < getState().boards.length - 1) {
+      dispatch({
+        type: 'SELECT_LOWER',
+      });
+    }
   };
 }
 

@@ -14,6 +14,8 @@ export default class DNDWrapper extends Wrapper {
 
     this.old = null;
     this.placeholder = new Component();
+    this.placeholder.trueone = this.wrapped;
+
     this.swapped = false;
   }
 

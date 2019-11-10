@@ -126,10 +126,6 @@ export default function boardReducer(state, action) {
       ];
 
     case 'INSERT_AFTER':
-      if (action.after - action.which === 1) {
-        return state;
-      }
-
       const newState = [];
       const whatToInsert = state[action.which];
 
@@ -145,10 +141,6 @@ export default function boardReducer(state, action) {
       return newState;
 
     case 'INSERT_BEFORE':
-      if (action.which - action.before === 1) {
-        return state;
-      }
-
       const newerState = [];
       const which = state[action.which];
 

@@ -83,18 +83,55 @@ export function updateBoard(id, name) {
 }
 
 export function insertAfter(index, indexAfter) {
-  return {
-    type: 'INSERT_AFTER',
-    which: index,
-    after: indexAfter,
+  return function(dispatch, getState) {
+    if (indexAfter - index !== 1) {
+      dispatch({
+        type: 'INSERT_AFTER',
+        which: index,
+        after: indexAfter,
+      });
+
+      const selectedIndex = getState().ui.selectedIndex;
+
+      console.log('selected:', selectedIndex,
+          'index:', index, 'after:', indexAfter);
+
+      if (typeof selectedIndex !== 'undefined') {
+        if (selectedIndex === index) {
+          dispatch(uiActions.selectBoard(indexAfter));
+        } else if (selectedIndex >= indexAfter) {
+          dispatch(uiActions.selectLower());
+        }
+      }
+    }
   };
 }
 
 export function insertBefore(index, indexBefore) {
-  return {
-    type: 'INSERT_BEFORE',
-    which: index,
-    before: indexBefore,
+  console.log(index, indexBefore);
+
+  return function(dispatch, getState) {
+    if (index - indexBefore !== 1) {
+      dispatch({
+        type: 'INSERT_BEFORE',
+        which: index,
+        before: indexBefore,
+      });
+
+      const selectedIndex = getState().ui.selectedIndex;
+
+      if (typeof selectedIndex !== 'undefined') {
+        if (selectedIndex === index) {
+          dispatch(uiActions.selectBoard(indexBefore));
+        } else if (index < selectedIndex) {
+          dispatch(uiActions.selectUpper());
+        } else if (selectedIndex === indexBefore) {
+          dispatch(uiActions.selectUpper());
+        } else if (selectedIndex > indexBefore) {
+          dispatch(uiActions.selectLower());
+        }
+      }
+    };
   };
 }
 

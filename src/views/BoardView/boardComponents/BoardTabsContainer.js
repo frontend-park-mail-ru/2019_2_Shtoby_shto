@@ -27,7 +27,15 @@ export default class BoardTabsContainer extends Component {
 
   selectTab(index) {
     this.forEachChild((ch) => {
-      ch.deselect();
+      if (ch.trueone) {
+        ch.trueone.deselect();
+      } else {
+        ch.deselect();
+      }
+
+      // if ('deselect' in ch) {
+      // ch.deselect();
+      // }
     });
 
     if (typeof index !== 'undefined') {
