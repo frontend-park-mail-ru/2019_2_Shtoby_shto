@@ -9,7 +9,7 @@ export default class ProfileView extends Component {
   constructor() {
     super();
 
-    this.username = '';
+    this.userName = '';
   }
 
   generateContent() {
@@ -30,22 +30,31 @@ export default class ProfileView extends Component {
   }
 
   updateUser(login) {
-    this.dispatch(userActions.updateLogin(this.user.id, login));
+    this.dispatch(userActions.updateLogin(this.userId, login));
   }
 
   init(state) {
-    this.user = state.user;
+    this.userName = state.user.login;
+    this.userId = state.user.id;
 
-    if (this.user) {
-      this.updateLoginField(this.user.login);
-      this.subscribe((state) => state.user);
-    }
+    this.updateLoginField(this.userName);
+
+    this.subscribe((state) => {
+      return {login: state.user.login};
+    });
+
+    this.subscribe((state) => {
+      return {id: state.user.id};
+    });
   }
 
-  stateUpdate(user) {
-    if (user) {
-      this.user = user;
-      this.updateLoginField(this.user.login);
+  stateUpdate(stateUpdate) {
+    if ('login' in stateUpdate) {
+      this.updateLoginField(stateUpdate.login);
+    }
+
+    if ('id' in stateUpdate) {
+      this.userId = stateUpdate.id;
     }
   }
 }
