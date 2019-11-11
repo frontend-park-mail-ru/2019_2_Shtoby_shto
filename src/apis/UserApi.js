@@ -31,6 +31,11 @@ export default class UserApi extends Api {
     return this.get('/users');
   }
 
+  update(fields) {
+    console.log(fields);
+    return this.put(`/users`, fields);
+  }
+
   logout() {
     return this.get('/logout')
         .then(() => {
