@@ -1,0 +1,86 @@
+section(style="text-align-last: center")
+    .tabs
+        input.radio#tab_1(type="radio" name="inset" value="" checked="")
+        label.radio(for="tab_1") Профиль и доступ
+        input.radio#tab_2(type="radio" name="inset" value="")
+        label.radio(for="tab_2") Действия
+        input.radio#tab_3(type="radio" name="inset" value="")
+        label.radio(for="tab_3") Карточки
+        input.radio#tab_4(type="radio" name="inset" value="")
+        label.radio(for="tab_4") Настройки
+
+        .tabcontent.word(id="Profile")
+            img(style="margin-top: 50px; margin-left: -13px" src=require("./profilewolf.svg") alt="")
+            h1 Управление персональными данными
+            p
+                | Вы можете менять настройки доступа к информации и улучшениям. Чтобы
+                wbr
+                |             узнать больше, читайте следующие документы:
+                a(href="/")
+                    | Условия использования
+                |  и
+                a(href="/") Политика конфиденциальности
+                | .
+            h2(style="margin-top: 60px; text-align-last: left") О нас
+            hr
+            .container
+                .row
+                    .col-2-3
+                        h3 Полное имя
+                        input.inputLine(type="text" value="Username")#username
+                        h3 О себе
+                        textarea.aboutYou(placeholder="Something")
+                        form()
+                            button.saveButton(id='saveDataButton') Сохранить
+                    .col-1-3
+                        p
+                            img(id="avatar" src=require('./userAva.png') alt="")
+                        form(enctype="multipart/form-data" method="post" name="fileinfo")
+                            label Обновить Аватар:
+                            input(type="file" name="file" required="" accept="image/*")
+                            input(type="submit" value="Загрузить" id='saveAvatarButton')
+                            div
+            h2(style="margin-top: 60px; text-align-last: left;") Контакт
+            hr
+            h3 Электронная почта
+            textarea(readonly="" style="text-align-last: left;") user@mail.com
+            button(onclick="mailChange()") Сменить или добавить почту
+        .tabcontent.word(id="Action" style="text-align-last: left")
+            h2(style="margin-top: 40px") Команды
+            hr
+            h2 Действия
+            hr
+            button Загрузить больше действий
+        .tabcontent.sorts(id="Cards")
+            ul(style="line-height: 50px")
+                li Сортировка по доске
+                li Показ карточек со всех досок
+                li Показ активных за последний месяц
+        .tabcontent.setting(id="Settings")
+            h3 Подробности аккаунта
+            hr
+            a(href="/") Сменить язык...
+            h3 Уведомления
+            hr
+            a(href="/") Изменить частоту оповещений по электронной почте
+            h3 Макетинговые сообщения
+            hr
+            a(href="/") Отказаться получать макетинговые сообщения
+            h3 Доступность
+            hr
+            a(href="/") Включить режим для дальтоников
+            h3 Доступность
+            hr
+            a(href="/") Включить режим для дальтоников
+            h3 Приложения
+            hr
+            h3 Сеансы
+            hr
+            a(href="/") Настроить двухэтапную аутентификацию
+            h3 Экспорт персональных данных
+            hr
+            p(style="color: gray")
+                | Нажав кнопку, вы создадите JSON-файл с вашей персональной информацией, которая хранится в
+                | Trello: учетные данные, сведения о платежах, данные и настройки профиля, а также настройки досок и
+                | команд.
+            a(style="background-color: lightgray; max-width: 300px" href="/") Скачать персональные данные

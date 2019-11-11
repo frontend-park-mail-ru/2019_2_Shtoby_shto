@@ -18,11 +18,10 @@ export default class Router extends Component {
 
   startRouting() {
     this.element.addEventListener('click', (e) => {
-      e.preventDefault();
-
       if (!(e.target instanceof HTMLAnchorElement)) {
         return;
       }
+      e.preventDefault();
 
       const route = e.target.pathname;
       if (this.views[route]) {

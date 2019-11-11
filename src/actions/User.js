@@ -87,6 +87,18 @@ export function logout() {
             type: 'LOGGED_OUT',
           });
         });
-    // userApi.clearToken();
+  };
+}
+
+export function updateLogin(id, newLogin) {
+  return function(dispatch, getState) {
+    userApi.update({id: id, login: newLogin})
+        .then(() => {
+          const oldUser = getState().user;
+          dispatch(setUser({...oldUser, login: newLogin}));
+        })
+        .catch(() => {
+          console.log('не мог обновить юзера');
+        });
   };
 }
