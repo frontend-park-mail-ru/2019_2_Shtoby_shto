@@ -30,8 +30,17 @@ html, body {
     /* background-color: azure; */
 }
 
+.board__tab:hover {
+    cursor: pointer;
+}
+
 .board__tab.selected {
     background-color: bisque;
+}
+
+.group__name:hover {
+    color: blue;
+    cursor: pointer;
 }
 
 .tab__name__container {
@@ -49,7 +58,7 @@ html, body {
 
 .tab__name__container:hover,
 .tab__name__container:focus {
-    cursor: pointer;
+    color: blue;
 }
 
 .tab__name {
@@ -117,6 +126,13 @@ html, body {
 }
 
 .group__plus {
+    text-decoration: underline;
+}
+
+.group__plus:hover {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .group__input {
@@ -124,7 +140,10 @@ html, body {
 
 
 .card__plus {
+}
 
+.card__plus:hover {
+    cursor: pointer;
 }
 
 .card__container {
@@ -132,6 +151,9 @@ html, body {
 }
 
 .board__card__container {
+    display: flex;
+    align-items: center;
+    text-align: center;
     width: 150px;
 }
 
@@ -149,16 +171,20 @@ html, body {
 
 .board__card {
     height: 75px;
-    width: 175px;
+    width: 150px;
 
     border: 3px solid gray;
     background: white;
     padding: 5px 10px;
 
     margin-top: 10px;
-    margin-left: 5px;
+    /* margin-left: 5px; */
 
     border-radius: 5px;
+}
+
+.board__card__container:hover {
+    cursor: pointer;
 }
 
 .card__plus {
