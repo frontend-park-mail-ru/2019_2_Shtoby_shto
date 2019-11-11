@@ -53,23 +53,9 @@ export default class BoardApi extends Api {
     return this.del(`/cards/${id}`);
   }
 
-  updateCard(cardId, newCaption, priority, boardId, cardUserId, cardGroupId) {
-    console.log({
-      caption: newCaption,
-      priority: priority,
-      board_id: boardId,
-      card_user_id: cardUserId,
-      card_group_id: cardGroupId,
-      tasks: [],
-    });
-
+  updateCard(cardId, newCaption) {
     return this.put(`/cards/${cardId}`, {
       caption: newCaption,
-      priority: priority,
-      board_id: boardId,
-      card_user_id: cardUserId,
-      card_group_id: cardGroupId,
-      tasks: [],
     });
   }
 }

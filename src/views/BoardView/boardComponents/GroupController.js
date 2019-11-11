@@ -29,7 +29,7 @@ export default class GroupController extends DNDComponent {
         .useDblclick()
     );
 
-    this.addChild(new CardContainer(group.board_id, dispatch, ...group.cards));
+    this.addChild(new CardContainer(dispatch, ...group.cards));
     this.addChild(new Component({
       classes: ['board__card__container'],
     }).addChild(new CardPlus().setOnBlur((text) => {
