@@ -5,9 +5,11 @@ const defaultAppElement = 'app';
 
 import {setDebugAdder} from './Utils/debug';
 
+import './app.css';
+
 export default class App {
   constructor(el, elName = defaultAppElement) {
-    this.root = new Component({tag: elName});
+    this.root = new Component({tag: elName, classes: ['root_component']});
     this.root.replaceElem(el);
   }
 

@@ -3,7 +3,7 @@ import StateComponent from './StateComponent';
 
 export default class Router extends Component {
   constructor(defaultRoute) {
-    super();
+    super({classes: ['root__router']});
 
     this.history = false;
 
