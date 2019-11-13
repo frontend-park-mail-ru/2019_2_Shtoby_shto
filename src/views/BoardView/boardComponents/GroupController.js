@@ -33,7 +33,7 @@ export default class GroupController extends DNDComponent {
 
     this.addChild(new CardContainer(dispatch, ...group.cards));
     this.addChild(new Component({
-      classes: ['board__card__container'],
+      classes: ['card__container'],
     }).addChild(new CardPlus().setOnBlur((text) => {
       if (text) {
         dispatch(cardActions.createCard(text, group.id));

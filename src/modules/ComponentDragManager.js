@@ -11,6 +11,12 @@ class ComponentDragManager {
 
     document.onmousemove = this.onMouseMove.bind(this);
     document.onmouseup = this.onMouseUp.bind(this);
+    // document.onclick = (e) => {
+    //   if (this.dragging) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //   }
+    // };
   }
 
   grab(wrapper, x, y) {
@@ -28,6 +34,7 @@ class ComponentDragManager {
   }
 
   onMouseMove(e) {
+    e.stopPropagation();
     if (!this.wrapper) return;
 
     if (!this.dragging) {
@@ -48,7 +55,6 @@ class ComponentDragManager {
       this.startDrag();
     }
 
-    // e.stopPropagation();
 
     this.wrapper.move(
         e.pageX - this.shift.x,
@@ -74,8 +80,9 @@ class ComponentDragManager {
 
   onMouseUp(e) {
     if (this.wrapper) {
+      e.stopPropagation();
+      e.preventDefault();
       if (this.dragging) {
-        e.stopPropagation();
         this.wrapper.move(9999, 9999);
 
         const foundDroppable = this.findDroppable(e.clientX, e.clientY);

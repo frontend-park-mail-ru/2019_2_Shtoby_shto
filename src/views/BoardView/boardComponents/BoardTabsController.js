@@ -3,6 +3,8 @@ import BoardTabsContainer from './BoardTabsContainer';
 import BoardPlus from './BoardPlus';
 
 import * as board from '../../../actions/Board';
+// import * as uiActions from '../../../actions/UI';
+
 
 export default class BoardTabsController extends Component {
   constructor() {
@@ -15,6 +17,10 @@ export default class BoardTabsController extends Component {
     });
 
     this.selectedIndex = undefined;
+
+    // this.element.onclick = () => {
+    //   this.dispatch(uiActions.deselectBoard());
+    // };
   }
 
   generateContent() {

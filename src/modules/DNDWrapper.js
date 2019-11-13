@@ -26,6 +26,7 @@ export default class DNDWrapper extends Wrapper {
 
     this.wrapped.element.onmousedown = (e) => {
       e.stopPropagation();
+      e.preventDefault();
 
       ComponentDragManager.grab(this, e.pageX, e.pageY);
     };

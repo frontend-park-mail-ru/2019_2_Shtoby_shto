@@ -94,9 +94,6 @@ export function insertAfter(index, indexAfter) {
 
       const selectedIndex = getState().ui.selectedIndex;
 
-      console.log('selected:', selectedIndex,
-          'index:', index, 'after:', indexAfter);
-
       if (typeof selectedIndex !== 'undefined') {
         if (selectedIndex === index) {
           dispatch(uiActions.selectBoard(indexAfter));

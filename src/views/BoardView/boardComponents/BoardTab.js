@@ -2,6 +2,8 @@ import Component from '../../../modules/Component';
 import DNDComponent from '../../../modules/DNDComponent';
 import TransformingInput from '../../../components/TransformingInput';
 
+import UserDisplayer from './UserDisplayer';
+
 import * as boardActions from '../../../actions/Board';
 import * as uiActions from '../../../actions/UI';
 
@@ -14,9 +16,11 @@ export default class BoardTab extends DNDComponent {
       content: '&nbsp;',
       index: ownProps.index,
     }).makeDroppable((place, placed) => {
-      ownProps.dispatch(boardActions.insertBefore(
-          placed.props.index, place.props.index
-      ));
+      if (placed instanceof BoardTab) {
+        ownProps.dispatch(boardActions.insertBefore(
+            placed.props.index, place.props.index
+        ));
+      }
     }));
 
     this.addChild(new DNDComponent({
@@ -24,9 +28,11 @@ export default class BoardTab extends DNDComponent {
       content: '&nbsp;',
       index: ownProps.index,
     }).makeDroppable((place, placed) => {
-      ownProps.dispatch(boardActions.insertAfter(
-          placed.props.index, place.props.index
-      ));
+      if (placed instanceof BoardTab) {
+        ownProps.dispatch(boardActions.insertAfter(
+            placed.props.index, place.props.index
+        ));
+      }
     }));
 
     this.boardName = new TransformingInput(
@@ -57,17 +63,25 @@ export default class BoardTab extends DNDComponent {
 
     this.addChild(this.boardName);
 
-    this.element.onclick = () => {
+    this.avatars = new Component({classes: ['board__tab__avatars']})
+        .addChild(new UserDisplayer({}, {}, {}));
+
+    this.addChild(this.avatars);
+
+    this.element.onclick = (e) => {
+      e.stopPropagation();
       ownProps.dispatch(uiActions.selectBoard(ownProps.index));
     };
   }
 
   select() {
     this.addStyle('selected');
+    this.avatars.element.hidden = true;
   }
 
   deselect() {
     this.removeStyle('selected');
+    this.avatars.element.hidden = false;
   }
 
   del() {

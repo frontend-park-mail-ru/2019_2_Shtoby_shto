@@ -1,24 +1,35 @@
 import Component from '../../../modules/Component';
 
 import GroupsDisplayer from './GroupsDisplayer';
+import UserDisplayer from './UserDisplayer';
 
 import Trashbin from './Trashbin';
 
 import * as boardActions from '../../../actions/Board';
 
+class UserPanel extends Component {
+  constructor() {
+    super({classes: ['user__panel']});
+
+    this.addChild(new UserDisplayer({}, {}, {}));
+  }
+}
+
 export default class SingleBoard extends Component {
   constructor() {
     super({classes: ['single__board']});
 
+    this.addChild(new UserPanel(), 'users');
     this.addChild(new Trashbin());
   }
 
   generateContent() {
-    return '<groups></groups>';
+    return '<users></users><groups></groups>';
   }
 
   getMounts() {
     return {
+      users: this.element.getElementsByTagName('users')[0],
       groups: this.element.getElementsByTagName('groups')[0],
     };
   }
