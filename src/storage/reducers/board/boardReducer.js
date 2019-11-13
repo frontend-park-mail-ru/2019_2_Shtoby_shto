@@ -52,6 +52,51 @@ export default function boardReducer(state, action) {
         }),
       ];
 
+    case 'SWAP_GROUP':
+      return [
+        ...state.map((b) => {
+          const newBoard = {...b};
+
+          let foundWhich = -1;
+          let foundWhere = -1;
+
+          b.cardGroups.forEach((gr, i) => {
+            if (gr.id === action.which) {
+              foundWhich = i;
+            } else if (gr.id === action.where) {
+              foundWhere = i;
+            }
+          });
+
+          if (foundWhich > -1) {
+            const newGroups = [];
+            if (foundWhich < foundWhere) {
+              b.cardGroups.forEach((gr, i) => {
+                if (i !== foundWhich) {
+                  newGroups.push(gr);
+                  if (i === foundWhere) {
+                    newGroups.push(b.cardGroups[foundWhich]);
+                  }
+                }
+              });
+            } else {
+              b.cardGroups.forEach((gr, i) => {
+                if (i !== foundWhich) {
+                  if (i === foundWhere) {
+                    newGroups.push(b.cardGroups[foundWhich]);
+                  }
+                  newGroups.push(gr);
+                }
+              });
+            }
+
+            newBoard.cardGroups = newGroups;
+          }
+
+          return newBoard;
+        }),
+      ];
+
     case 'DELETE_GROUP':
       return [
         ...state.map((b) => {

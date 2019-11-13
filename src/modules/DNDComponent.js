@@ -39,6 +39,12 @@ export default class DNDComponent extends Component {
     return this;
   }
 
+  setOnCancel(fun) {
+    this.makeDraggable(null, null, fun);
+
+    return this;
+  }
+
   setOnPlace(fun) {
     this.makeDroppable(fun);
 

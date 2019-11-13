@@ -8,7 +8,7 @@ export default class DNDWrapper extends Wrapper {
     super(
         component,
         'makeDraggable', 'makeDroppable',
-        'onDrag', 'onDrop', 'onPlace',
+        'onDrag', 'onDrop', 'onPlace', 'onCancel',
     );
     this.wrapped.dndwrapper = this;
 
@@ -68,11 +68,18 @@ export default class DNDWrapper extends Wrapper {
       left: el.left || '',
       top: el.top || '',
       zIndex: el.zIndex || '',
+      width: el.width || '',
+      height: el.height || '',
     };
 
     // document.body.appendChild(el);
+    el.style.width = `${el.offsetWidth}px`;
+    el.style.height = `${el.offsetHeight}px`;
+
     el.style.zIndex = 9999;
     el.style.position = 'absolute';
+
+    // el.style.width = '100%';
   }
 
   kickAvatar() {
@@ -105,11 +112,11 @@ export default class DNDWrapper extends Wrapper {
   // вызывается когда элемент начинает перемещение
   onDrag(dragged) {}
 
-  // вызывается если элемент не был помещён на дроп-зону
-  onCancel(dragged) {}
-
   // вызывается когда перемещающийся компонент был помещён на компонент
   onDrop(dropped, dropzone) {}
+
+  // вызывается если элемент не был помещён на дроп-зону
+  onCancel(dragged) {}
 
   // вызывается когда на компонент перемещён компонент
   onPlace(dropzone, dropped) {}

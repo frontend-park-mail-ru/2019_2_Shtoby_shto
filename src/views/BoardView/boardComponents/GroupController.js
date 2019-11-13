@@ -47,4 +47,13 @@ export default class GroupController extends DNDComponent {
   del() {
     this.dispatch(groupActions.deleteGroup(this.group.id));
   }
+
+  placeHere(whatToPlace) {
+    if (this.group !== whatToPlace.group) {
+      this.dispatch(groupActions.swapGroup(
+          whatToPlace.group.id, this.group.id
+      ));
+      // console.log('swapping', this.group.id, 'and', whatToPlace.group.id);
+    }
+  }
 }

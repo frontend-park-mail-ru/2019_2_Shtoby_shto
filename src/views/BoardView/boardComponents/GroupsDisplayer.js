@@ -1,4 +1,6 @@
 import Component from '../../../modules/Component';
+import DNDComponent from '../../../modules/DNDComponent';
+
 import GroupController from './GroupController';
 
 import GroupPlus from './GroupPlus';
@@ -11,7 +13,12 @@ export default class GroupDisplayer extends Component {
 
     groups.forEach((group) => {
       this.addChild(
-          new Component({classes: ['group__container']})
+          new DNDComponent({classes: ['group__container']})
+              .makeDroppable((arg, placed) => {
+                if (placed instanceof GroupController) {
+                  arg.getChild(0).placeHere(placed);
+                }
+              })
               .addChild(new GroupController(dispatch, group)));
     });
 

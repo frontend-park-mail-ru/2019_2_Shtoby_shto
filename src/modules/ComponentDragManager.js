@@ -15,7 +15,7 @@ class ComponentDragManager {
 
   grab(wrapper, x, y) {
     this.wrapper = wrapper;
-    this.down = {x: x, y: y};
+    this.down = {x, y};
   }
 
   release() {
@@ -53,7 +53,10 @@ class ComponentDragManager {
     this.wrapper.move(
         e.pageX - this.shift.x,
         // e.pageY - this.shift.y,
-        e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight / 2
+        // e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight,
+        e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight / 2,
+        // e.pageY - this.shift.y - this.wrapper.get().element.clientHeight / 2,
+        // e.pageY - this.shift.y - this.wrapper.get().element.clientHeight / 2,
 
     );
   }

@@ -46,6 +46,14 @@ function editGroup(boardId, groupId, name) {
   };
 }
 
+export function swapGroup(groupId1, groupId2) {
+  return {
+    type: 'SWAP_GROUP',
+    which: groupId1,
+    where: groupId2,
+  };
+}
+
 export function rename(name, boardId, id) {
   return function(dispatch) {
     boardApi.renameGroup(name, boardId, id)
