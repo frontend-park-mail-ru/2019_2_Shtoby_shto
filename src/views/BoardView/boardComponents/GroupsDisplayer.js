@@ -10,10 +10,12 @@ export default class GroupDisplayer extends Component {
     super({classes: ['group__displayer']});
 
     groups.forEach((group) => {
-      this.addChild(new GroupController(dispatch, group));
+      this.addChild(
+          new Component({classes: ['group__container']})
+              .addChild(new GroupController(dispatch, group)));
     });
 
-    this.addChild(new Component({classes: ['card__group']})
+    this.addChild(new Component({classes: ['group__container']})
         .addChild(new GroupPlus().setOnBlur((text) => {
           if (text) dispatch(group.createGroup(text));
         })));

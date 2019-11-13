@@ -38,11 +38,11 @@ class ComponentDragManager {
         return;
       };
 
-      const coords = getCoords(this.wrapper.get().element);
+      const {top, left} = getCoords(this.wrapper.get().element);
 
       this.shift = {
-        x: this.down.x - coords.left,
-        y: this.down.y - coords.top,
+        x: this.down.x - left,
+        y: this.down.y - top,
       };
 
       this.startDrag();
@@ -52,13 +52,20 @@ class ComponentDragManager {
 
     this.wrapper.move(
         e.pageX - this.shift.x,
-        e.pageY - this.shift.y
+        // e.pageY - this.shift.y,
+        e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight / 2
+
     );
   }
 
   startDrag() {
     this.dragging = true;
     this.wrapper.executeOnDrag();
+
+    // this.wrapper.move(0,
+    // this.wrapper.get().element.offsetTop -
+    // - this.wrapper.get().element.offsetTop);
+
     this.wrapper.conjureAvatar();
   }
 

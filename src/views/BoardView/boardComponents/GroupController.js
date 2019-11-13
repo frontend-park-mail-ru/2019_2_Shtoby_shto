@@ -1,5 +1,6 @@
 import Component from '../../../modules/Component';
 import DNDComponent from '../../../modules/DNDComponent';
+
 import CardContainer from './CardContainer';
 import CardPlus from './CardPlus';
 
@@ -11,23 +12,24 @@ import * as cardActions from '../../../actions/Card';
 export default class GroupController extends DNDComponent {
   constructor(dispatch, group) {
     super({classes: ['card__group']});
+    this.makeDraggable();
 
-    this.addChild(new TransformingInput(
-        new Component({
-          content: `${group.name}`,
-          classes: ['group__header', 'group__name'],
-        }),
-        {
-          content: `${group.name}`,
-          classes: ['group__header', 'group__name'],
-        }, 'reset')
-        .setOnBlur((text) => {
-          if (text && group.name !== text) {
-            dispatch(groupActions.rename(text, group.boardId, group.id));
-          }
-        })
-        .useDblclick()
-    );
+    this.addChild(new Component({classes: ['group__header']})
+        .addChild(new TransformingInput(
+            new Component({
+              content: `${group.name}`,
+              classes: ['group__name'],
+            }),
+            {
+              content: `${group.name}`,
+              classes: ['group__name'],
+            }, 'reset')
+            .setOnBlur((text) => {
+              if (text && group.name !== text) {
+                dispatch(groupActions.rename(text, group.boardId, group.id));
+              }
+            }).useDblclick()
+        ));
 
     this.addChild(new CardContainer(dispatch, ...group.cards));
     this.addChild(new Component({
@@ -40,8 +42,6 @@ export default class GroupController extends DNDComponent {
 
     this.group = group;
     this.dispatch = dispatch;
-
-    this.makeDraggable();
   }
 
   del() {
