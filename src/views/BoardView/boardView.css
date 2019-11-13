@@ -1,5 +1,7 @@
 .board__view {
     display: flex;
+    background-color: #00bb77;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23000' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E");
 }
 
 html, body {
@@ -94,6 +96,9 @@ html, body {
 
 .board__plus {
     text-align: center;
+    background: transparent;
+    border: 2px dotted gray;
+    height: 40px;
 }
 
 .board__plus:hover,
@@ -126,7 +131,11 @@ html, body {
 }
 
 .group__plus {
-    text-decoration: underline;
+    padding: 5px 10px;
+    background: transparent;
+    border: 2px dotted gray;
+    height: 40px;
+    border-radius: 5px;
 }
 
 .group__plus:hover {
@@ -138,9 +147,6 @@ html, body {
 .group__input {
 }
 
-
-.card__plus {
-}
 
 .card__plus:hover {
     cursor: pointer;
@@ -188,8 +194,9 @@ html, body {
 }
 
 .card__plus {
-    background: gray;   
+    background: transparent;
     border: 2px dotted gray;
+    height: 40px;
 }
 
 /* .board__tabs {
@@ -320,7 +327,7 @@ html, body {
 }
 
 .board__card__adder {
-    background: gray;   
+    background: gray;
     height: 45px;
     border: 2px dotted gray;
 }
