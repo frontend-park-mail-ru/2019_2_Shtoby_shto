@@ -4,9 +4,10 @@ export default function boardReducer(state, action) {
       return [
         ...state,
         {
-          id: action.id,
-          name: action.name,
-          cardGroups: action.cardGroups || [],
+          id: action.model.id,
+          name: action.model.name,
+          cardGroups: action.model['card_groups'] || [],
+          users: action.model.users,
         },
       ];
 
@@ -159,12 +160,14 @@ export default function boardReducer(state, action) {
     case 'FILL_BOARD':
       return [
         ...(state.map((b) => {
-          return b.id === action.id ?
+          return b.id === action.model.id ?
             {...b,
-              name: action.name,
-              cardGroups: action['card_groups'].map((gr) => {
-                return {...gr, boardId: gr['board_id']};
-              }),
+              // ...action.model,
+              cardGroups: action.model['card_groups'],
+              // name: action.name,
+              // cardGroups: action['card_groups'].map((gr) => {
+              //   return {...gr, boardId: gr['board_id']};
+              // }),
               got: true,
             } : {...b, got: b.got || false};
         })),

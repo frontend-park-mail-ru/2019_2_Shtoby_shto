@@ -10,14 +10,14 @@ const boardApi = new BoardApi();
 function addBoard(boardModel) {
   return {
     type: 'ADD_BOARD',
-    ...boardModel,
+    model: boardModel,
   };
 }
 
 function fillBoard(boardModel) {
   return {
     type: 'FILL_BOARD',
-    ...boardModel,
+    model: boardModel,
     // id: board.id,
     // name: board.name,
     // cardGroups: board['card_groups'],
@@ -50,7 +50,8 @@ export function fetchBoards() {
     if (!fake) {
       boardApi.fetchBoards(getState().user.id).then((boards) => {
         boards.forEach((board) => {
-          dispatch(addBoard({...board, cardGroups: board['card_groups']}));
+          // dispatch(addBoard({...board, cardGroups: board['card_groups']}));
+          dispatch(addBoard(board));
         });
       });
     } else {

@@ -2,7 +2,7 @@ import UserApi from '../apis/UserApi';
 import * as board from './Board';
 import * as ui from './UI';
 
-import {fakeUser} from './fakes/fakeUser';
+// import {fakeUser} from './fakes/fakeUser';
 import {fake} from './fakes/fake';
 
 const userApi = new UserApi();
@@ -10,24 +10,31 @@ const userApi = new UserApi();
 function setUser(userModel) {
   return {
     type: 'SET_USER',
-    loggedIn: true,
+    photo_id: null,
     ...userModel,
   };
 }
 
-export function getUser() {
+function initUser(userModel) {
   return function(dispatch) {
-    if (!fake) {
-      userApi.getUser().then((user) => {
-        dispatch(setUser(user));
-        dispatch(board.fetchBoards());
-      });
-    } else {
-      dispatch(setUser(fakeUser));
-      dispatch(board.fetchBoards());
-    }
+    dispatch(setUser(userModel));
+    dispatch(board.fetchBoards());
   };
 }
+
+// export function getUser() {
+//   return function(dispatch) {
+//     if (!fake) {
+//       userApi.getUser().then((user) => {
+//         dispatch(setUser(user));
+//         dispatch(board.fetchBoards());
+//       });
+//     } else {
+//       dispatch(setUser(fakeUser));
+//       dispatch(board.fetchBoards());
+//     }
+//   };
+// }
 
 function loginFailed() {
   return {
@@ -39,8 +46,9 @@ export function login(login, password) {
   return function(dispatch) {
     if (!fake) {
       userApi.login(login, password)
-          .then(() => {
-            dispatch(getUser());
+          .then((userModel) => {
+            // dispatch(getUser());
+            dispatch(initUser(userModel));
           })
           .catch(() => {
             dispatch(loginFailed());

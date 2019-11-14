@@ -3,8 +3,9 @@ export default function userReducer(state, action) {
     case 'SET_USER':
       return {
         loggedIn: true,
-        login: action.login,
         id: action.id,
+        login: action.login,
+        photoId: action.photo_id,
       };
     case 'REDACT_USER':
       const oldStateCopy = {...state};

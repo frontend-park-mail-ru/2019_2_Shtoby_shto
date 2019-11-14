@@ -21,7 +21,9 @@ export default class Card extends DNDComponent {
           content: card.caption,
         },
         'reset').useDblclick().setOnBlur((text) => {
-      dispatch(cards.setCaption(card.id, text));
+      if (text.length && text !== card.caption) {
+        dispatch(cards.setCaption(card.id, text));
+      }
     })
     );
 

@@ -8,8 +8,10 @@ import * as boardActions from '../../../actions/Board';
 import * as uiActions from '../../../actions/UI';
 
 export default class BoardTab extends DNDComponent {
-  constructor(ownProps) {
+  constructor(ownProps, index, board) {
     super({classes: ['board__tab'], ...ownProps});
+
+    this.board = board;
 
     this.boardName = new TransformingInput(
         new Component({
@@ -19,16 +21,16 @@ export default class BoardTab extends DNDComponent {
             .addChild(new Component({
               tag: 'span',
               classes: ['tab__name'],
-              content: `${ownProps.name}`,
+              content: `${board.name}`,
             })),
         {
           classes: ['board__tab'],
-          content: `${ownProps.name}`,
+          content: `${board.name}`,
         },
         'reset'
     ).setOnBlur((text) => {
       if (text) {
-        ownProps.dispatch(boardActions.updateBoard(ownProps.id, text));
+        ownProps.dispatch(boardActions.updateBoard(board.id, text));
       }
     });
 
@@ -51,14 +53,16 @@ export default class BoardTab extends DNDComponent {
 
     // this.addChild(this.avatars);
 
+    this.index = index;
+
     this.addChild(new DNDComponent({
       classes: ['tab__dropzone', 'upper'],
       content: '&nbsp;',
-      index: ownProps.index,
+      index: index,
     }).makeDroppable((place, placed) => {
       if (placed instanceof BoardTab) {
         ownProps.dispatch(boardActions.insertAfter(
-            placed.props.index, place.props.index
+            placed.index, place.props.index
         ));
       }
     }).addChild(this.boardName)
@@ -67,11 +71,11 @@ export default class BoardTab extends DNDComponent {
     this.addChild(new DNDComponent({
       classes: ['tab__dropzone', 'lower'],
       content: '&nbsp;',
-      index: ownProps.index,
+      index: index,
     }).makeDroppable((place, placed) => {
       if (placed instanceof BoardTab) {
         ownProps.dispatch(boardActions.insertBefore(
-            placed.props.index, place.props.index
+            placed.index, place.props.index
         ));
       }
     }).addChild(this.avatars)
@@ -80,7 +84,7 @@ export default class BoardTab extends DNDComponent {
 
     this.element.onclick = (e) => {
       e.stopPropagation();
-      ownProps.dispatch(uiActions.selectBoard(ownProps.index));
+      ownProps.dispatch(uiActions.selectBoard(index));
     };
   }
 
@@ -95,7 +99,7 @@ export default class BoardTab extends DNDComponent {
   }
 
   del() {
-    this.props.dispatch(boardActions.deleteBoard(this.props.id));
+    this.props.dispatch(boardActions.deleteBoard(this.board.id));
   }
 
   enableStuff() {

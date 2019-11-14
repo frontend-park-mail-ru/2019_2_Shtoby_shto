@@ -1,8 +1,13 @@
 .board__view {
     display: flex;
     background-color: #00bb77;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23000' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23000' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E") no-repeat center center fixed;
     height:97%;
+    /* background: url(images/bg.jpg) no-repeat center center fixed;  */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 html, body {
@@ -246,8 +251,9 @@ html, body {
 }
 
 .board__card {
-    /* height: 75px; */
+    height: 75px;
     /* width: 150px; */
+    position: relative;
 
     background: white;
     padding: 5px 10px;
@@ -266,7 +272,12 @@ html, body {
 }
 
 .card__user__displayer {
-
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    height: 60%;
+    width: 50%;
+    padding: 5px;
 }
 
 .card__avatar {
