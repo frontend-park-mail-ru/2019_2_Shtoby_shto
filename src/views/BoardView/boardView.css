@@ -257,8 +257,8 @@ html, body {
 
     border-radius: 5px;
 
-    transition: 0.4s box-shadow ease ;
-    transition: 0.3s border-radius ease ;
+    /* transition: 0.4s box-shadow ease ; */
+    transition: 0.3s border-radius ease, 0.4s box-shadow ease ;
 }
 
 .board__card:hover {
