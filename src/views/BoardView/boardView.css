@@ -1,5 +1,8 @@
 .board__view {
     display: flex;
+    background-color: #00bb77;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23000' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E");
+    height:97%;
 }
 
 html, body {
@@ -95,6 +98,9 @@ html, body {
 
 .board__plus {
     text-align: center;
+    background: hsla(0,0%,100%,.40);
+    border: 2px dotted gray;
+    height: 40px;
 }
 
 .board__plus:hover,
@@ -135,6 +141,8 @@ html, body {
     /* height: 100%; */
     /* border-left: dashed; */
 
+    width: 200px;
+    background: linear-gradient(90deg, #44ff8e, transparent);
 }
 
 .group__header {
@@ -144,7 +152,11 @@ html, body {
 }
 
 .group__plus {
-    text-decoration: underline;
+    padding: 5px 10px;
+    background: hsla(0,0%,100%,.40);
+    border: 2px dotted gray;
+    height: 40px;
+    border-radius: 5px;
 }
 
 .group__plus:hover {
@@ -227,7 +239,6 @@ html, body {
     /* height: 75px; */
     /* width: 150px; */
 
-    border: 3px solid gray;
     background: white;
     padding: 5px 10px;
 
@@ -261,7 +272,9 @@ html, body {
     align-items: center;
     justify-content: center;
     /* background: gray;    */
+    background: hsla(0,0%,100%,.40);
     border: 2px dotted gray;
+    height: 40px;
 }
 
 /* .board__tabs {
@@ -392,7 +405,7 @@ html, body {
 }
 
 .board__card__adder {
-    background: gray;   
+    background: gray;
     height: 45px;
     border: 2px dotted gray;
 }
