@@ -47,6 +47,14 @@ html, body {
     cursor: pointer;
 }
 
+.tab__avatar {
+
+}
+
+.tab__user__displayer {
+
+}
+
 .tab__name__container {
     position: absolute;
     width: 50%;
@@ -136,12 +144,14 @@ html, body {
     border: solid gray 2px;
     margin: 3px;
     padding: 5px;
+
+    border-radius: 3px;
     
     background-color: #ededed;
     /* height: 100%; */
     /* border-left: dashed; */
 
-    width: 200px;
+    /* width: 200px; */
     background: linear-gradient(90deg, #44ff8e, transparent);
 }
 
@@ -246,6 +256,14 @@ html, body {
     /* margin-left: 5px; */
 
     border-radius: 5px;
+
+    transition: 0.4s box-shadow ease ;
+    transition: 0.3s border-radius ease ;
+}
+
+.board__card:hover {
+    box-shadow: 4px 4px 4px 1px;
+    border-radius: 9px;
 }
 
 .card__header {

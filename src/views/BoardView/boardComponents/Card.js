@@ -18,7 +18,9 @@ export default class Card extends DNDComponent {
           classes: ['card__header'],
           content: card.caption,
         },
-        'reset').useDblclick()
+        'reset').useDblclick().setOnBlur((text) => {
+      dispatch(cards.setCaption(card.id, text));
+    })
     );
 
     this.addChild(new TransformingInput(

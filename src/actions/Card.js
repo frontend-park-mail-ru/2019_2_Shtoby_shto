@@ -23,7 +23,6 @@ export function createCard(caption, cardGroupId) {
 }
 
 function updateCard(cardModel) {
-  console.log(cardModel);
   return {
     type: 'UPDATE_CARD',
     id: cardModel.id,

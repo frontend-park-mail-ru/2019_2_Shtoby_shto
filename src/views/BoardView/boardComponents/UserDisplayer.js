@@ -4,8 +4,8 @@ import DNDComponent from '../../../modules/DNDComponent';
 const defaultAva = require('./userAva.png');
 
 class UserAva extends DNDComponent {
-  constructor(imgpath) {
-    super({classes: ['user__avatar__container']});
+  constructor(classes, imgpath) {
+    super({classes: [...classes, 'user__avatar__container']});
 
     this.imgpath = imgpath || defaultAva;
   }
@@ -16,11 +16,12 @@ class UserAva extends DNDComponent {
 }
 
 export default class UserDisplayer extends Component {
-  constructor(...users) {
-    super({classes: ['user__display']});
+  constructor(ownProps, ...users) {
+    super({classes: [...(ownProps.classes || []), 'user__display']});
 
     users.forEach((user) => {
-      this.addChild(new UserAva(user.avatar).makeDraggable());
+      this.addChild(new UserAva(ownProps.avatarClasses || [], user.avatar)
+          .makeDraggable());
     });
   }
 }

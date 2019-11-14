@@ -64,7 +64,14 @@ export default class BoardTab extends DNDComponent {
     this.addChild(this.boardName);
 
     this.avatars = new Component({classes: ['board__tab__avatars']})
-        .addChild(new UserDisplayer({}, {}, {}));
+        .addChild(new UserDisplayer(
+            {
+              classes: ['tab__user__displayer'],
+              avatarClasses: ['tab__avatar'],
+            },
+            {}, {}, {},
+        )
+        );
 
     this.addChild(this.avatars);
 
