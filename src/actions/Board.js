@@ -14,6 +14,25 @@ function addBoard(boardModel) {
   };
 }
 
+function fillBoard(boardModel) {
+  return {
+    type: 'FILL_BOARD',
+    ...boardModel,
+    // id: board.id,
+    // name: board.name,
+    // cardGroups: board['card_groups'],
+  };
+}
+
+export function getBoard(id) {
+  return function(dispatch) {
+    boardApi.fetchBoard(id)
+        .then((board) => {
+          dispatch(fillBoard(board));
+        });
+  };
+}
+
 export function create(name) {
   return function(dispatch) {
     if (!fake) {
@@ -151,24 +170,6 @@ export function shiftIncluding(index) {
 export function clearStore() {
   return {
     type: 'CLEAR_BOARDS',
-  };
-}
-
-function fillBoard(board) {
-  return {
-    type: 'FILL_BOARD',
-    id: board.id,
-    name: board.name,
-    cardGroups: board['card_groups'],
-  };
-}
-
-export function getBoard(id) {
-  return function(dispatch) {
-    boardApi.fetchBoard(id)
-        .then((board) => {
-          dispatch(fillBoard(board));
-        });
   };
 }
 

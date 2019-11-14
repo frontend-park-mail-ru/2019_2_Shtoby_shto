@@ -158,16 +158,16 @@ export default function boardReducer(state, action) {
       ];
     case 'FILL_BOARD':
       return [
-        ...state.map((b) => {
+        ...(state.map((b) => {
           return b.id === action.id ?
             {...b,
               name: action.name,
-              cardGroups: action.cardGroups.map((gr) => {
+              cardGroups: action['card_groups'].map((gr) => {
                 return {...gr, boardId: gr['board_id']};
               }),
               got: true,
             } : {...b, got: b.got || false};
-        }),
+        })),
       ];
 
     case 'INSERT_AFTER':

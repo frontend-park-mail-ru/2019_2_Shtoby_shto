@@ -97,11 +97,11 @@ html, body {
 }
 
 .tab__dropzone.lower {
-    top: 0;
+    top: 50%;
 }
 
 .tab__dropzone.upper {
-    top: 50%;
+    top: 0%;
 }
 
 .board__plus {
@@ -260,6 +260,19 @@ html, body {
     /* transition: 0.4s box-shadow ease ; */
     transition: 0.3s border-radius ease, 0.4s box-shadow ease ;
 }
+
+.card__avatars {
+
+}
+
+.card__user__displayer {
+
+}
+
+.card__avatar {
+
+}
+
 
 .board__card:hover {
     box-shadow: 4px 4px 4px 1px;

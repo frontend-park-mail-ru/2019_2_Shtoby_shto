@@ -11,30 +11,6 @@ export default class BoardTab extends DNDComponent {
   constructor(ownProps) {
     super({classes: ['board__tab'], ...ownProps});
 
-    this.addChild(new DNDComponent({
-      classes: ['tab__dropzone', 'upper'],
-      content: '&nbsp;',
-      index: ownProps.index,
-    }).makeDroppable((place, placed) => {
-      if (placed instanceof BoardTab) {
-        ownProps.dispatch(boardActions.insertBefore(
-            placed.props.index, place.props.index
-        ));
-      }
-    }));
-
-    this.addChild(new DNDComponent({
-      classes: ['tab__dropzone', 'lower'],
-      content: '&nbsp;',
-      index: ownProps.index,
-    }).makeDroppable((place, placed) => {
-      if (placed instanceof BoardTab) {
-        ownProps.dispatch(boardActions.insertAfter(
-            placed.props.index, place.props.index
-        ));
-      }
-    }));
-
     this.boardName = new TransformingInput(
         new Component({
           tag: 'div',
@@ -61,7 +37,7 @@ export default class BoardTab extends DNDComponent {
           this.boardName.toInput();
         };
 
-    this.addChild(this.boardName);
+    // this.addChild(this.boardName);
 
     this.avatars = new Component({classes: ['board__tab__avatars']})
         .addChild(new UserDisplayer(
@@ -73,7 +49,34 @@ export default class BoardTab extends DNDComponent {
         )
         );
 
-    this.addChild(this.avatars);
+    // this.addChild(this.avatars);
+
+    this.addChild(new DNDComponent({
+      classes: ['tab__dropzone', 'upper'],
+      content: '&nbsp;',
+      index: ownProps.index,
+    }).makeDroppable((place, placed) => {
+      if (placed instanceof BoardTab) {
+        ownProps.dispatch(boardActions.insertAfter(
+            placed.props.index, place.props.index
+        ));
+      }
+    }).addChild(this.boardName)
+    );
+
+    this.addChild(new DNDComponent({
+      classes: ['tab__dropzone', 'lower'],
+      content: '&nbsp;',
+      index: ownProps.index,
+    }).makeDroppable((place, placed) => {
+      if (placed instanceof BoardTab) {
+        ownProps.dispatch(boardActions.insertBefore(
+            placed.props.index, place.props.index
+        ));
+      }
+    }).addChild(this.avatars)
+    );
+
 
     this.element.onclick = (e) => {
       e.stopPropagation();

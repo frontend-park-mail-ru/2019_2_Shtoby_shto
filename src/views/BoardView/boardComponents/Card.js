@@ -5,6 +5,8 @@ import TransformingInput from '../../../components/TransformingInput';
 
 import * as cards from '../../../actions/Card';
 
+import UserDisplayer from './UserDisplayer';
+
 export default class Card extends DNDComponent {
   constructor(card, dispatch) {
     super({classes: ['board__card']});
@@ -23,31 +25,29 @@ export default class Card extends DNDComponent {
     })
     );
 
-    this.addChild(new TransformingInput(
-        new Component({
-          classes: ['card__content'],
-          content: 'текст карточки',
-        }),
-        {
-          classes: ['card__content'],
-          content: 'текст карточки',
-        },
-        'reset').useDblclick()
+    this.addChild(
+        // new Component({classes: ['card__avatars']})
+        // .addChild(
+        new UserDisplayer({
+          classes: ['card__user__displayer'],
+          avatarClasses: ['card__avatar'],
+        }, {}, {}, {})
+        // )
     );
 
-    // super(new Component({
-    //   classes: ['board__card'],
-    //   content: card.caption,
-    // }),
-    // {
-    //   classes: ['board__card'],
-    //   content: card.caption,
-    // });
+    // this.addChild(new TransformingInput(
+    //     new Component({
+    //       classes: ['card__content'],
+    //       content: 'текст карточки',
+    //     }),
+    //     {
+    //       classes: ['card__content'],
+    //       content: 'текст карточки',
+    //     },
+    //     'reset').useDblclick()
+    // );
 
     this.id = card.id;
-
-    // this.useDblclick();
-    // dnd(this);
 
     this.makeDraggable();
     this.dispatch = dispatch;

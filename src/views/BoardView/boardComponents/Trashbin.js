@@ -10,8 +10,8 @@ export default class Trashbin extends DNDComponent {
       classes: ['trash'],
     });
 
-    this.makeDroppable((place, placed) => {
-      placed.del();
+    this.makeDroppable((_, placed) => {
+      if ('del' in placed) placed.del();
     });
   }
 }

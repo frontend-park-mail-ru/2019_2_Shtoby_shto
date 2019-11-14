@@ -21,7 +21,8 @@ export default class UserDisplayer extends Component {
 
     users.forEach((user) => {
       this.addChild(new UserAva(ownProps.avatarClasses || [], user.avatar)
-          .makeDraggable());
+          // .makeDraggable()
+      );
     });
   }
 }
