@@ -313,6 +313,10 @@ html, body {
 
 }
 
+.card__edit {
+    height: 50%;
+}
+
 .expanded__card__header {
 
 }

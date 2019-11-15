@@ -6,6 +6,8 @@ import TransformingInput from '../../../components/TransformingInput';
 import * as cards from '../../../actions/Card';
 import * as uiActions from '../../../actions/UI';
 
+const pen = require('./pen.png');
+
 import UserDisplayer from './UserDisplayer';
 
 export default class Card extends DNDComponent {
@@ -29,6 +31,22 @@ export default class Card extends DNDComponent {
     );
 
     this.addChild(
+        new Component({
+          tag: 'img',
+          classes: ['card__edit'],
+          attrs: {src: pen},
+        }).apply((comp) => {
+          comp.element.onclick = (e) => {
+            dispatch(uiActions.showCard(card));
+          };
+
+          comp.element.onmousedown = (e) => {
+            e.stopPropagation();
+          };
+        })
+    );
+
+    this.addChild(
         new UserDisplayer({
           classes: ['card__user__displayer'],
           avatarClasses: ['card__avatar'],
@@ -41,9 +59,9 @@ export default class Card extends DNDComponent {
     this.makeDraggable();
     this.dispatch = dispatch;
 
-    this.element.onclick = (e) => {
-      this.dispatch(uiActions.showCard(card));
-    };
+    // this.element.ondblclick = (e) => {
+    //   this.dispatch(uiActions.showCard(card));
+    // };
   }
 
   del() {
