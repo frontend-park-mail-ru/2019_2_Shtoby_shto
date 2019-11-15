@@ -5,14 +5,19 @@ const defaultAva = require('./userAva.png');
 
 class UserAva extends DNDComponent {
   constructor(classes, imgpath) {
-    super({classes: [...classes, 'user__avatar__container']});
+    super({
+      tag: 'img',
+      classes: [...classes, 'user__avatar'],
+      attrs: {src: imgpath || defaultAva},
+    });
+    // super({classes: [...classes, 'user__avatar__container']});
 
     this.imgpath = imgpath || defaultAva;
   }
 
-  generateContent() {
-    return `<img class='user__avatar' src=${this.imgpath}></img>`;
-  }
+  // generateContent() {
+  // return `<img class='user__avatar' src=${this.imgpath}></img>`;
+  // }
 }
 
 export default class UserDisplayer extends Component {

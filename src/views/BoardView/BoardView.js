@@ -2,6 +2,8 @@ import Component from '../../modules/Component';
 import BoardTabsController from './boardComponents/BoardTabsController';
 import SingleBoard from './boardComponents/SingleBoard';
 
+import CardModal from './boardComponents/CardModal';
+
 import './boardView.css';
 
 export default class BoardView extends Component {
@@ -12,6 +14,8 @@ export default class BoardView extends Component {
       boardTabs: new BoardTabsController(),
       board: new SingleBoard(),
     });
+
+    this.addChild(new CardModal({}));
   }
 
   generateContent() {

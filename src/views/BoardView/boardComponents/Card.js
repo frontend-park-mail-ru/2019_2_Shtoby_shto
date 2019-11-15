@@ -28,31 +28,21 @@ export default class Card extends DNDComponent {
     );
 
     this.addChild(
-        // new Component({classes: ['card__avatars']})
-        // .addChild(
         new UserDisplayer({
           classes: ['card__user__displayer'],
           avatarClasses: ['card__avatar'],
-        }, {}, {}, {})
+        }, ...card.users)
         // )
     );
-
-    // this.addChild(new TransformingInput(
-    //     new Component({
-    //       classes: ['card__content'],
-    //       content: 'текст карточки',
-    //     }),
-    //     {
-    //       classes: ['card__content'],
-    //       content: 'текст карточки',
-    //     },
-    //     'reset').useDblclick()
-    // );
 
     this.id = card.id;
 
     this.makeDraggable();
     this.dispatch = dispatch;
+
+    this.element.onclick = (e) => {
+      console.log('clicked on', card);
+    };
   }
 
   del() {

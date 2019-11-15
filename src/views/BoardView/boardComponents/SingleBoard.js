@@ -7,19 +7,18 @@ import Trashbin from './Trashbin';
 
 import * as boardActions from '../../../actions/Board';
 
-class UserPanel extends Component {
-  constructor() {
-    super({classes: ['user__panel']});
+// class UserPanel extends Component {
+//   constructor(...boards) {
+//     super({classes: ['user__panel']});
 
-    this.addChild(new UserDisplayer({}, {}, {}));
-  }
-}
+//     this.addChild(new UserDisplayer({}, ...boards));
+//   }
+// }
 
 export default class SingleBoard extends Component {
   constructor() {
     super({classes: ['single__board']});
 
-    this.addChild(new UserPanel(), 'users');
     this.addChild(new Trashbin());
   }
 
@@ -45,6 +44,13 @@ export default class SingleBoard extends Component {
   showBoard(board) {
     this.addChild(new GroupsDisplayer(this.dispatch.bind(this),
         ...board.cardGroups), 'groups');
+    this.addChild(new UserDisplayer(
+        {
+          classes: ['user__panel'],
+          avatarClasses: ['card__avatar'],
+        },
+        ...board.users), 'users'
+    );
   }
 
   init(state) {

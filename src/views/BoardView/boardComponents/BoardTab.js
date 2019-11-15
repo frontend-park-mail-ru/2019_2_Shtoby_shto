@@ -41,15 +41,15 @@ export default class BoardTab extends DNDComponent {
 
     // this.addChild(this.boardName);
 
-    this.avatars = new Component({classes: ['board__tab__avatars']})
-        .addChild(new UserDisplayer(
-            {
-              classes: ['tab__user__displayer'],
-              avatarClasses: ['tab__avatar'],
-            },
-            {}, {}, {},
-        )
-        );
+    // this.avatars = new Component({classes: ['board__tab__avatars']})
+    // .addChild(new UserDisplayer(
+    this.avatars = new UserDisplayer(
+        {
+          classes: ['tab__user__displayer'],
+          avatarClasses: ['tab__avatar'],
+        },
+        ...board.users,
+    );
 
     // this.addChild(this.avatars);
 
@@ -90,12 +90,13 @@ export default class BoardTab extends DNDComponent {
 
   select() {
     this.addStyle('selected');
-    this.avatars.element.hidden = true;
+    this.avatars.element.style.display = 'none';
   }
 
   deselect() {
     this.removeStyle('selected');
-    this.avatars.element.hidden = false;
+    // this.avatars.element.hidden = false;
+    this.avatars.element.style.display = null;
   }
 
   del() {
