@@ -22,6 +22,17 @@ export default function uiReducer(state, action) {
         selectedIndex: typeof state.selectedIndex !== 'undefined' ?
         state.selectedIndex - 1 : undefined,
       };
+    case 'OPEN_MODAL':
+      return {
+        ...state,
+        modalCard: action.card,
+      };
+
+    case 'CLOSE_MODAL':
+      return {
+        ...state,
+        modalCard: undefined,
+      };
     case 'RESET':
       return {};
     default:

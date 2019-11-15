@@ -129,6 +129,7 @@ export default function boardReducer(state, action) {
                   priority: action.priority,
                   cardGroupId: action.cardGroupId,
                   tasks: action.tasks,
+                  users: action.users,
                 }]} :
                 {...gr};
               }),

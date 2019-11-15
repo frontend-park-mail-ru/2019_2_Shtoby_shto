@@ -4,6 +4,7 @@ import TransformingInput from '../../../components/TransformingInput';
 // import dnd from '../../../modules/dnd';
 
 import * as cards from '../../../actions/Card';
+import * as uiActions from '../../../actions/UI';
 
 import UserDisplayer from './UserDisplayer';
 
@@ -41,7 +42,7 @@ export default class Card extends DNDComponent {
     this.dispatch = dispatch;
 
     this.element.onclick = (e) => {
-      console.log('clicked on', card);
+      this.dispatch(uiActions.showCard(card));
     };
   }
 

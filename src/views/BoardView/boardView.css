@@ -309,6 +309,20 @@ html, body {
     transition: 0.3s border-radius ease, 0.4s box-shadow ease ;
 }
 
+.expanded__card {
+
+}
+
+.expanded__card__header {
+
+}
+
+.expaned__card__user__displayer {
+
+}
+
+
+
 .card__avatars {
 
 }

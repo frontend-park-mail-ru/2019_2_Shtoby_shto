@@ -13,19 +13,31 @@ export default class BoardView extends Component {
     this.addChildren({
       boardTabs: new BoardTabsController(),
       board: new SingleBoard(),
+      modal: new CardModal({}),
     });
 
-    this.addChild(new CardModal({}));
+    // this.addChild(new CardModal({}));
   }
 
   generateContent() {
-    return '<boardtabs></boardtabs><singleboard></singleboard>';
+    return '<boardtabs></boardtabs><singleboard></singleboard><modal></modal>';
   }
 
   getMounts() {
     return {
       boardTabs: this.element.getElementsByTagName('boardtabs')[0],
       board: this.element.getElementsByTagName('singleboard')[0],
+      modal: this.element.getElementsByTagName('modal')[0],
     };
   }
+
+  // init(state) {
+  //   this.subscribe(state => state.boards[state.ui.selectedIndex]);
+  // }
+
+  // stateUpdate(selectedBoard) {
+  //   if (selectedBoard) {
+  //     // this.getChild('modal').renew(selectedBoard);
+  //   }
+  // }
 }

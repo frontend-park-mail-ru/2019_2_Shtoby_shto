@@ -3,13 +3,16 @@ import BoardApi from '../apis/BoardApi';
 const boardApi = new BoardApi();
 
 function addCard(cardModel) {
-  return {
-    type: 'ADD_CARD',
-    id: cardModel.id,
-    caption: cardModel.caption,
-    priority: cardModel.priority,
-    cardGroupId: cardModel['card_group_id'],
-    tasks: cardModel.tasks,
+  return function(dispatch, getState) {
+    dispatch({
+      type: 'ADD_CARD',
+      id: cardModel.id,
+      caption: cardModel.caption,
+      priority: cardModel.priority,
+      cardGroupId: cardModel['card_group_id'],
+      tasks: cardModel.tasks,
+      users: [getState().user.id],
+    });
   };
 }
 
