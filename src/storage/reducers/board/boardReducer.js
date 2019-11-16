@@ -194,6 +194,36 @@ export default function boardReducer(state, action) {
         })),
       }));
 
+    case 'CARD_DETACH':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => (
+            c.id === action.cardId ?
+            {...c, users: c.users.filter((userId) => (
+              userId !== action.userId
+            ))} :
+            c
+          )),
+        })),
+      }));
+
+    case 'CARD_ATTACH':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => (
+            c.id === action.cardId ?
+              c.users.filter(
+                  (userId) => (userId === action.userId)).length === 0 ?
+              {...c, users: [...c.users, action.userId]} : c :
+              c
+            // : {...c, users: c.users.filter((user) => (
+            // user.id !== action.userId
+            // ))}
+          )),
+        })),
+      }));
+
+
     case 'INSERT_AFTER':
       const newState = [];
       const whatToInsert = state[action.which];

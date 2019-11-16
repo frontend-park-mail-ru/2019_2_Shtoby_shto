@@ -67,17 +67,9 @@ export function addComment(cardId, comment) {
   return function(dispatch, getState) {
     const state = getState();
     const userId = state.user.id;
-    // const boardId = getBoardId(state, cardId);
 
     boardApi.addComment(cardId, userId, comment)
         .then((comment) => {
-          // const newComment = {};
-
-          // newComment.id = comment.id;
-          // newComment.text = comment.text;
-          // newComment.userId = comment['user_id'];
-          // newComment.cardId = comment['card_id'];
-
           dispatch({
             type: 'ADD_COMMENT',
             comment: comment,
@@ -94,6 +86,25 @@ export function deleteComment(id) {
         });
   };
 }
+
+export function attachUser(userId, cardId) {
+  return function(dispatch) {
+    boardApi.attachUserToCard(userId, cardId)
+        .then(() => {
+          dispatch({type: 'CARD_ATTACH', userId, cardId});
+        });
+  };
+}
+
+export function detachUser(userId, cardId) {
+  return function(dispatch) {
+    boardApi.detachUserFromCard(userId, cardId)
+        .then(() => {
+          dispatch({type: 'CARD_DETACH', userId, cardId});
+        });
+  };
+}
+
 
 export function setCaption(
     cardId, newCaption) {

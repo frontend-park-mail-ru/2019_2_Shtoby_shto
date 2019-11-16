@@ -1,10 +1,12 @@
 import Component from '../../../modules/Component';
 import DNDComponent from '../../../modules/DNDComponent';
 import TransformingInput from '../../../components/TransformingInput';
-// import dnd from '../../../modules/dnd';
+import dnd from '../../../modules/dnd';
 
 import * as cards from '../../../actions/Card';
 import * as uiActions from '../../../actions/UI';
+
+import UserAva from './UserAva';
 
 const pen = require('./pen.png');
 
@@ -46,13 +48,23 @@ export default class Card extends DNDComponent {
         })
     );
 
-    this.addChild(
-        new UserDisplayer({
-          classes: ['card__user__displayer'],
-          avatarClasses: ['card__avatar'],
-        }, ...card.users)
-        // )
-    );
+    // this.addChild(
+    const userDisplayer = dnd(new UserDisplayer({
+      classes: ['card__user__displayer'],
+      avatarClasses: ['card__avatar'],
+    }, ...card.users)).makeDroppable((place, placed) => {
+      if (placed instanceof UserAva) {
+        dispatch(cards.attachUser(placed.userId, card.id));
+      }
+    });
+
+    userDisplayer.forEachChild((ch) => {
+      ch.cardId = card.id;
+      ch.dispatch = dispatch;
+      ch.makeDraggable();
+    });
+
+    this.addChild(userDisplayer);
 
     this.id = card.id;
 

@@ -65,6 +65,21 @@ export default class BoardApi extends Api {
     });
   }
 
+  attachUserToCard(userId, cardId) {
+    return this.post('/cards/user/attach', {
+      user_id: userId,
+      card_id: cardId,
+    });
+  }
+
+
+  detachUserFromCard(userId, cardId) {
+    return this.post('/cards/user/detach', {
+      user_id: userId,
+      card_id: cardId,
+    });
+  }
+
   deleteComment(commentId) {
     return this.del(`/comments/${commentId}`);
   }
