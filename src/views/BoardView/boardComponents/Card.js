@@ -62,10 +62,6 @@ export default class Card extends DNDComponent {
     });
 
     this.dispatch = dispatch;
-
-    // this.element.ondblclick = (e) => {
-    //   this.dispatch(uiActions.showCard(card));
-    // };
   }
 
   del() {

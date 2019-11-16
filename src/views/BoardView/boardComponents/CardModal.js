@@ -10,38 +10,10 @@ export default class CardModal extends Component {
     window.onclick = (e) => {
       if (e.target == this.element) {
         this.dispatch(uiActions.closeModal());
-        // this.close();
-        // this.element.style.display = 'none';
       }
     };
   }
 
-  // cardDiv(card) {
-  //   if (!card) {
-  //     return '';
-  //   }
-
-  //   return `
-  //     <div class='modal__caption'>
-  //       ${card.caption}
-  //     </div>
-  //     <div class='modal__text'>
-  //       ${card.text}
-  //     </div>
-  //     `;
-  // }
-
-  // generateContent(props) {
-  // const {card} = props;
-  // const {card} = props;
-
-  // return '' +
-  //   '<div class=\'modal__content\'>' +
-  //     '<span class=\'modal__close\'>&times;</span>' +
-  //     this.cardDiv(card) +
-  // // '<p>модалка</p>' +
-  //   '</div>';
-  // }
   generateContent() {
     return `
       <div class='modal__content'><expandedcard></expandedcard></div>
@@ -56,8 +28,8 @@ export default class CardModal extends Component {
 
   init(state) {
     this.props.card = state.ui.modalCard;
+    this.props.userId = state.user.id;
 
-    // this.subscribe((state) => ({modal: state.ui.modalCard}));
     this.subscribe((state) => {
       let retCard = undefined;
       const cardId = state.ui.modalCard.id;
@@ -75,8 +47,9 @@ export default class CardModal extends Component {
       }
 
       return retCard;
-      // return {card: retCard};
     });
+
+    this.dispatch(uiActions.closeModal());
   }
 
   stateUpdate(card) {
@@ -85,28 +58,17 @@ export default class CardModal extends Component {
     } else {
       this.close();
     }
-    // if (newState) {
-    //   if ('modal' in newState) {
-    //     this.props.card = newState.modal;
-
-    //     if (this.props.card) {
-    //       this.show(this.props.card);
-    //     } else {
-    //       this.close();
-    //     }
-    //   }
-
-    //   if ('card' in newState) {
-    //     console.log(newState.card);
-    //   }
-    // }
   }
 
   show(modalCard) {
     this.element.style.display = 'block';
 
     this.addChild(
-        new ExpandedCard(modalCard, this.dispatch.bind(this)),
+        new ExpandedCard(
+            modalCard,
+            this.dispatch.bind(this),
+            this.props.userId
+        ),
         'expanded'
     );
 

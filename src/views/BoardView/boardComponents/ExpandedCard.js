@@ -1,15 +1,86 @@
 import Component from '../../../modules/Component';
 import TransformingInput from '../../../components/TransformingInput';
-// import dnd from '../../../modules/dnd';
+
+import Button from '../../../components/Button';
 
 import * as cards from '../../../actions/Card';
-// import * as uiActions from '../../../actions/UI';
 
 import UserDisplayer from './UserDisplayer';
 
+class Comment extends Component {
+  constructor(comment, addDeleter, dispatch) {
+    super({classes: ['comment']});
+
+    this.content = comment.text;
+
+    if (addDeleter) {
+      this.addChild(new Button({
+        classes: ['comment__deleter'],
+        content: 'X',
+        onclick: () => {
+          dispatch(cards.deleteComment(comment.id));
+        },
+      }), 'deleter');
+    }
+  }
+
+  generateContent() {
+    return `
+      <img class='comment__avatar' src=/build/userAva.png></img>
+      <span class='comment__content'>${this.content}</span>
+      <deleter></deleter>
+    `;
+  }
+
+  getMounts() {
+    return {
+      deleter: this.element.getElementsByTagName('deleter')[0],
+    };
+  }
+}
+
+class CommentSection extends Component {
+  constructor(comments, dispatch, cardId, userId) {
+    super({classes: ['comment_section']});
+
+    const textarea = new Component({
+      classes: ['comment__content'],
+      tag: 'textarea',
+    });
+
+    this.addChild(
+        new Component({classes: ['comment__container']})
+            .addChild(new Component({
+              classes: ['comment__avatar'],
+              tag: 'img',
+              attrs: {src: '/build/userAva.png'},
+            }))
+            .addChild(textarea)
+            .addChild(new Button({
+              classes: ['comment__button'],
+              content: 'Сказать',
+              onclick: () => {
+                dispatch(cards.addComment(cardId, textarea.element.value));
+              },
+            }))
+    );
+
+    this.addChildren(
+        ...comments.map((comment) => (
+          new Comment(
+              comment, comment['user_id'] === userId, dispatch
+          )))
+            .reverse()
+    );
+  }
+}
+
+
 export default class ExpandedCard extends Component {
-  constructor(card, dispatch) {
+  constructor(card, dispatch, userId) {
     super({classes: ['expanded__card']});
+
+    this.userId = userId;
 
     this.initChildren(card);
 
@@ -57,15 +128,16 @@ export default class ExpandedCard extends Component {
           classes: ['expanded__card__user__displayer'],
           avatarClasses: ['card__avatar'],
         }, ...card.users), 'users'
-        // )
     );
 
     this.addChild(new TransformingInput(
         new Component({
           classes: ['expanded__card__text'],
-          content: card.text,
+          content: card.text ? [...card.text].map((ch) => (
+            ch === '\n' ? '<br>' : ch)).join('') : 'Напишите что-нибудь...',
         }),
         {
+          tag: 'textarea',
           classes: ['expanded__card__text'],
           content: card.text,
         },
@@ -75,9 +147,14 @@ export default class ExpandedCard extends Component {
       }
     }), 'text'
     );
-  }
 
-  renew(card) {
-    this.initChildren(card);
+    this.addChild(new CommentSection(
+        card.comments,
+        (action) => {
+          this.dispatch(action);
+        },
+        card.id,
+        this.userId,
+    ));
   }
 }

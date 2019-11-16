@@ -18,9 +18,18 @@ function fillBoard(boardModel) {
   return {
     type: 'FILL_BOARD',
     model: boardModel,
-    // id: board.id,
-    // name: board.name,
-    // cardGroups: board['card_groups'],
+  };
+}
+
+export function synchronizeWithBack(boardId) {
+  return function(dispatch) {
+    boardApi.fetchBoard(boardId)
+        .then((model) => {
+          dispatch({
+            type: 'FILL_BOARD',
+            model,
+          });
+        });
   };
 }
 

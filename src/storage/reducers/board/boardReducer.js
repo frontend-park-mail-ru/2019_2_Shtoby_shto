@@ -163,6 +163,7 @@ export default function boardReducer(state, action) {
             {...b,
               // ...action.model,
               cardGroups: action.model['card_groups'],
+              users: action.model.users,
               // name: action.name,
               // cardGroups: action['card_groups'].map((gr) => {
               //   return {...gr, boardId: gr['board_id']};
@@ -171,6 +172,27 @@ export default function boardReducer(state, action) {
             } : {...b, got: b.got || false};
         })),
       ];
+
+    case 'ADD_COMMENT':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => ({
+            ...c, comments: c.id === action.comment['card_id'] ?
+              [...c.comments, action.comment] : c.comments,
+          })),
+        })),
+      }));
+
+    case 'DELETE_COMMENT':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => ({
+            ...c, comments: c.comments.filter((com) => (com.id !== action.id)),
+            // ...c, comments: c.id === action.comment.cardId ?
+            // c.comments.filter((com) => (com.id !== action.id)) : c.comments,
+          })),
+        })),
+      }));
 
     case 'INSERT_AFTER':
       const newState = [];

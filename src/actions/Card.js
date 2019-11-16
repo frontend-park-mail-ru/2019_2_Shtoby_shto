@@ -1,5 +1,7 @@
 import BoardApi from '../apis/BoardApi';
 
+// import * as boardActions from './Board';
+
 const boardApi = new BoardApi();
 
 function addCard(cardModel) {
@@ -40,9 +42,56 @@ function updateCard(id, update) {
     type: 'UPDATE_CARD',
     id,
     update,
-    // id: cardModel.id,
-    // caption: cardModel.caption,
-    // text: cardModel.text,
+  };
+}
+
+// function getBoardId(state, cardId) {
+//   let foundId = undefined;
+
+//   const {boards} = state;
+
+//   boards.forEach((b) => {
+//     b.cardGroups.forEach((gr) => {
+//       gr.cards.forEach((c) => {
+//         if (c.id === cardId) {
+//           foundId = b.id;
+//         }
+//       });
+//     });
+//   });
+
+//   return foundId;
+// }
+
+export function addComment(cardId, comment) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.user.id;
+    // const boardId = getBoardId(state, cardId);
+
+    boardApi.addComment(cardId, userId, comment)
+        .then((comment) => {
+          // const newComment = {};
+
+          // newComment.id = comment.id;
+          // newComment.text = comment.text;
+          // newComment.userId = comment['user_id'];
+          // newComment.cardId = comment['card_id'];
+
+          dispatch({
+            type: 'ADD_COMMENT',
+            comment: comment,
+          });
+        });
+  };
+}
+
+export function deleteComment(id) {
+  return function(dispatch) {
+    boardApi.deleteComment(id)
+        .then(() => {
+          dispatch({type: 'DELETE_COMMENT', id});
+        });
   };
 }
 

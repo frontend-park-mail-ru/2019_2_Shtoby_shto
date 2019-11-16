@@ -15,8 +15,6 @@ export default class BoardView extends Component {
       board: new SingleBoard(),
       modal: new CardModal({}),
     });
-
-    // this.addChild(new CardModal({}));
   }
 
   generateContent() {
@@ -30,14 +28,4 @@ export default class BoardView extends Component {
       modal: this.element.getElementsByTagName('modal')[0],
     };
   }
-
-  // init(state) {
-  //   this.subscribe(state => state.boards[state.ui.selectedIndex]);
-  // }
-
-  // stateUpdate(selectedBoard) {
-  //   if (selectedBoard) {
-  //     // this.getChild('modal').renew(selectedBoard);
-  //   }
-  // }
 }

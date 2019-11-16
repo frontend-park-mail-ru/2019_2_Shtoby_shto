@@ -56,4 +56,16 @@ export default class BoardApi extends Api {
   updateCard(cardId, update) {
     return this.put(`/cards/${cardId}`, update);
   }
+
+  addComment(cardId, userId, comment) {
+    return this.post(`/comments`, {
+      user_id: userId,
+      card_id: cardId,
+      text: comment,
+    });
+  }
+
+  deleteComment(commentId) {
+    return this.del(`/comments/${commentId}`);
+  }
 }
