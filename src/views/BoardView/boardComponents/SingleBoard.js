@@ -5,15 +5,9 @@ import UserDisplayer from './UserDisplayer';
 
 import Trashbin from './Trashbin';
 
+import dnd from '../../../modules/dnd';
+
 import * as boardActions from '../../../actions/Board';
-
-// class UserPanel extends Component {
-//   constructor(...boards) {
-//     super({classes: ['user__panel']});
-
-//     this.addChild(new UserDisplayer({}, ...boards));
-//   }
-// }
 
 export default class SingleBoard extends Component {
   constructor() {
@@ -49,7 +43,9 @@ export default class SingleBoard extends Component {
           classes: ['user__panel'],
           avatarClasses: ['card__avatar'],
         },
-        ...board.users), 'users'
+        ...board.users).forEachChild((child) => {
+      dnd(child).makeDraggable();
+    }), 'users'
     );
   }
 

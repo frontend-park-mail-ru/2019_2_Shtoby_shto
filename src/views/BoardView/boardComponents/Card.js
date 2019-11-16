@@ -57,6 +57,10 @@ export default class Card extends DNDComponent {
     this.id = card.id;
 
     this.makeDraggable();
+    this.makeDroppable((place, placed) => {
+      if (placed instanceof Card) console.log(place.id, placed.id);
+    });
+
     this.dispatch = dispatch;
 
     // this.element.ondblclick = (e) => {

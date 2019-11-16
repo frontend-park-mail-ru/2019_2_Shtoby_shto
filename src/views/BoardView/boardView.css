@@ -325,6 +325,12 @@ html, body {
 
 }
 
+.expanded__card__text {
+    width: 60%;
+    border: inset 2px;
+    margin: 7px;
+    padding: 5px;
+}
 
 
 .card__avatars {

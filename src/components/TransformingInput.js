@@ -10,19 +10,10 @@ export default class TransformingInput extends StateComponent {
       other: otherState,
     });
 
-    // this.doClear = doClear || false;
     this.prevContent = this.states['input'].element.value;
     this.afterAction = afterAction || 'keep';
 
     this.isinput = false;
-
-    // this.states['input'].setOnChange((text) => {
-    //   this.executeOnChange(text);
-    //   if (this.isinput) {
-    //     this.toOther();
-    //     this.isnput = false;
-    //   }
-    // });
 
     this.states['input'].setOnBlur((text) => {
       this.executeOnBlur(text);
@@ -35,11 +26,14 @@ export default class TransformingInput extends StateComponent {
     this.setState('other');
   }
 
-  // executeOnChange(text) {
-  //   this.onChange(text);
-  // }
   useDblclick() {
     this.states['other'].element.ondblclick = this.toInput.bind(this);
+
+    return this;
+  }
+
+  useClick() {
+    this.states['other'].element.onclick = this.toInput.bind(this);
 
     return this;
   }

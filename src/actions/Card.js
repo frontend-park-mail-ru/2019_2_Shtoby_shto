@@ -4,14 +4,24 @@ const boardApi = new BoardApi();
 
 function addCard(cardModel) {
   return function(dispatch, getState) {
+    const newModel = {};
+
+    Object.entries(cardModel).forEach(([name, value]) => {
+      if (name !== 'card_group_id') {
+        if (name !== 'type') {
+          newModel[name] = value ? value : (name === 'text' ? '' : []);
+        }
+      } else {
+        newModel['cardGroupId'] = value;
+      }
+    });
+
     dispatch({
       type: 'ADD_CARD',
-      id: cardModel.id,
-      caption: cardModel.caption,
-      priority: cardModel.priority,
-      cardGroupId: cardModel['card_group_id'],
-      tasks: cardModel.tasks,
-      users: [getState().user.id],
+      ...{
+        ...newModel,
+        users: [getState().user.id],
+      },
     });
   };
 }
@@ -25,20 +35,33 @@ export function createCard(caption, cardGroupId) {
   };
 }
 
-function updateCard(cardModel) {
+function updateCard(id, update) {
   return {
     type: 'UPDATE_CARD',
-    id: cardModel.id,
-    caption: cardModel.caption,
+    id,
+    update,
+    // id: cardModel.id,
+    // caption: cardModel.caption,
+    // text: cardModel.text,
   };
 }
 
 export function setCaption(
     cardId, newCaption) {
   return function(dispatch) {
-    boardApi.updateCard(cardId, newCaption)
-        .then((cardModel) => {
-          dispatch(updateCard(cardModel));
+    boardApi.updateCard(cardId, {caption: newCaption})
+        .then(() => {
+          dispatch(updateCard(cardId, {caption: newCaption}));
+        });
+  };
+}
+
+export function setText(
+    cardId, newText) {
+  return function(dispatch) {
+    boardApi.updateCard(cardId, {text: newText})
+        .then(() => {
+          dispatch(updateCard(cardId, {text: newText}));
         });
   };
 }

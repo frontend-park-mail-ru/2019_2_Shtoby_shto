@@ -31,6 +31,7 @@ export default class GroupController extends DNDComponent {
             }).useDblclick()
         ));
 
+    console.log(group);
     this.addChild(new CardContainer(dispatch, ...group.cards));
     this.addChild(new Component({
       classes: ['card__container'],

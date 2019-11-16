@@ -17,12 +17,18 @@ export default class ExpandedCard extends Component {
   }
 
   generateContent() {
-    return `<cheader></cheader><textarea></textarea><comments></comments>`;
+    return `
+      <cheader></cheader>
+      <textarea></textarea>
+      <users></users>
+      <comments></comments>
+    `;
   }
 
   getMounts() {
     return {
       header: this.element.getElementsByTagName('cheader')[0],
+      users: this.element.getElementsByTagName('users')[0],
       text: this.element.getElementsByTagName('textarea')[0],
       comments: this.element.getElementsByTagName('comments')[0],
     };
@@ -31,6 +37,7 @@ export default class ExpandedCard extends Component {
   initChildren(card) {
     this.addChild(new TransformingInput(
         new Component({
+          tag: 'h3',
           classes: ['expanded__card__header'],
           content: card.caption,
         }),
@@ -49,8 +56,24 @@ export default class ExpandedCard extends Component {
         new UserDisplayer({
           classes: ['expanded__card__user__displayer'],
           avatarClasses: ['card__avatar'],
-        }, ...card.users), 'text'
+        }, ...card.users), 'users'
         // )
+    );
+
+    this.addChild(new TransformingInput(
+        new Component({
+          classes: ['expanded__card__text'],
+          content: card.text,
+        }),
+        {
+          classes: ['expanded__card__text'],
+          content: card.text,
+        },
+        'keep').useClick().setOnBlur((text) => {
+      if (text.length && text !== card.caption) {
+        this.dispatch(cards.setText(card.id, text));
+      }
+    }), 'text'
     );
   }
 

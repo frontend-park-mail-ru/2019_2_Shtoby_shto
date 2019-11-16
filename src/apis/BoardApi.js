@@ -53,9 +53,7 @@ export default class BoardApi extends Api {
     return this.del(`/cards/${id}`);
   }
 
-  updateCard(cardId, newCaption) {
-    return this.put(`/cards/${cardId}`, {
-      caption: newCaption,
-    });
+  updateCard(cardId, update) {
+    return this.put(`/cards/${cardId}`, update);
   }
 }

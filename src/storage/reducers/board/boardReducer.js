@@ -117,26 +117,24 @@ export default function boardReducer(state, action) {
       ];
 
     case 'ADD_CARD':
-      return [
-        ...state.map((b) => {
-          return {
-            ...b, cardGroups: [
-              ...b.cardGroups.map((gr) => {
-                return gr.id === action.cardGroupId ?
-                {...gr, cards: [...gr.cards, {
-                  id: action.id,
-                  caption: action.caption,
-                  priority: action.priority,
-                  cardGroupId: action.cardGroupId,
-                  tasks: action.tasks,
-                  users: action.users,
-                }]} :
-                {...gr};
-              }),
-            ],
-          };
-        }),
-      ];
+      return (() => {
+        const cardModel = {};
+        Object.entries(action).forEach(([name, value]) => {
+          if (name !== 'type') cardModel[name] = value;
+        });
+        // const [type, ...cardModel] = action;
+        // const cardGroupId = action['card_group_id'];
+
+        return [
+          ...state.map((b) => ({
+            ...b, cardGroups: b.cardGroups.map((gr) => (
+                gr.id === action.cardGroupId ?
+                {...gr, cards: [...gr.cards, cardModel]} :
+                gr
+            )),
+          })),
+        ];
+      })();
 
     case 'UPDATE_CARD':
       return [
@@ -148,7 +146,7 @@ export default function boardReducer(state, action) {
                   ...gr, cards: [
                     ...gr.cards.map((c) => {
                       return c.id === action.id ?
-                      {...c, caption: action.caption} :
+                      {...c, ...action.update} :
                       {...c};
                     }),
                   ],
