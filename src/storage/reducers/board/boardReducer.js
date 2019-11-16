@@ -122,8 +122,6 @@ export default function boardReducer(state, action) {
         Object.entries(action).forEach(([name, value]) => {
           if (name !== 'type') cardModel[name] = value;
         });
-        // const [type, ...cardModel] = action;
-        // const cardGroupId = action['card_group_id'];
 
         return [
           ...state.map((b) => ({
@@ -216,9 +214,6 @@ export default function boardReducer(state, action) {
                   (userId) => (userId === action.userId)).length === 0 ?
               {...c, users: [...c.users, action.userId]} : c :
               c
-            // : {...c, users: c.users.filter((user) => (
-            // user.id !== action.userId
-            // ))}
           )),
         })),
       }));

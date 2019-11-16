@@ -38,6 +38,8 @@ class ComponentDragManager {
     if (!this.wrapper) return;
 
     if (!this.dragging) {
+      // const moveX = e.pageX - this.wrapper.get().element.downX;
+      // const moveY = e.pageY - this.wrapper.get().element.downY;
       const moveX = e.pageX - this.wrapper.get().element.downX;
       const moveY = e.pageY - this.wrapper.get().element.downY;
 
@@ -58,9 +60,9 @@ class ComponentDragManager {
 
     this.wrapper.move(
         e.pageX - this.shift.x,
-        // e.pageY - this.shift.y,
+        e.pageY - this.shift.y,
         // e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight,
-        e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight / 2,
+        // e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight / 2,
         // e.pageY - this.shift.y - this.wrapper.get().element.clientHeight / 2,
         // e.pageY - this.shift.y - this.wrapper.get().element.clientHeight / 2,
 

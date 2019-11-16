@@ -53,10 +53,10 @@ export default class BoardTabsContainer extends Component {
   }
 
   disableHighliting(index) {
-    this.forEachChildSmart((child) => {
-      if (!(child.index === index)) {
-        child.component.disableStuff();
-      }
-    });
+    // this.forEachChildSmart((child) => {
+    // if (!(child.index === index)) {
+    // child.component.disableStuff();
+    // }
+    // });
   }
 }

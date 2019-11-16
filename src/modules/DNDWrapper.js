@@ -42,17 +42,17 @@ export default class DNDWrapper extends Wrapper {
   }
 
   swapToPlaceholder() {
-    // if (!this.swapped) {
-    //   this.wrapped.parent.swapChild(this.wrapped, this.placeholder);
-    //   this.swapped = true;
-    // }
+    if (!this.swapped) {
+      this.wrapped.parent.swapChild(this.wrapped, this.placeholder);
+      this.swapped = true;
+    }
   }
 
   putOriginalBack() {
-    // if (this.swapped) {
-    //   this.placeholder.parent.swapChild(this.placeholder, this.wrapped);
-    //   this.swapped = false;
-    // }
+    if (this.swapped) {
+      this.placeholder.parent.swapChild(this.placeholder, this.wrapped);
+      this.swapped = false;
+    }
   }
 
   move(x, y) {
@@ -73,7 +73,7 @@ export default class DNDWrapper extends Wrapper {
       height: el.height || '',
     };
 
-    // document.body.appendChild(el);
+    document.body.appendChild(el);
     el.style.width = `${el.offsetWidth}px`;
     el.style.height = `${el.offsetHeight}px`;
 

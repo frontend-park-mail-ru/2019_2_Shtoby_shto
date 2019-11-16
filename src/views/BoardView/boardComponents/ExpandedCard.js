@@ -7,6 +7,8 @@ import * as cards from '../../../actions/Card';
 
 import UserDisplayer from './UserDisplayer';
 
+const defaultAva = require('./userAva.png');
+
 class Comment extends Component {
   constructor(comment, addDeleter, dispatch) {
     super({classes: ['comment']});
@@ -26,7 +28,7 @@ class Comment extends Component {
 
   generateContent() {
     return `
-      <img class='comment__avatar' src=/build/userAva.png></img>
+      <img class='comment__avatar' src=${defaultAva}></img>
       <span class='comment__content'>${this.content}</span>
       <deleter></deleter>
     `;
@@ -53,14 +55,16 @@ class CommentSection extends Component {
             .addChild(new Component({
               classes: ['comment__avatar'],
               tag: 'img',
-              attrs: {src: '/build/userAva.png'},
+              attrs: {src: defaultAva},
             }))
             .addChild(textarea)
             .addChild(new Button({
               classes: ['comment__button'],
               content: 'Сказать',
               onclick: () => {
-                dispatch(cards.addComment(cardId, textarea.element.value));
+                if (textarea.element.value) {
+                  dispatch(cards.addComment(cardId, textarea.element.value));
+                }
               },
             }))
     );

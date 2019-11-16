@@ -27,6 +27,25 @@ export default class SingleBoard extends Component {
     };
   }
 
+  init(state) {
+    const selectedIndex = state.ui.selectedIndex;
+
+    if (typeof selectedIndex !== 'undefined') {
+      const selectedBoard = state.boards[selectedIndex];
+      this.tryShowBoard(selectedBoard);
+    }
+
+    this.subscribe((state) => state.boards[state.ui.selectedIndex]);
+  }
+
+  stateUpdate(board) {
+    if (board) {
+      this.tryShowBoard(board);
+    } else {
+      this.deleteChild(this.getChild('groups'));
+    }
+  }
+
   tryShowBoard(board) {
     if (board.got) {
       this.showBoard(board);
@@ -47,24 +66,5 @@ export default class SingleBoard extends Component {
       dnd(child).makeDraggable();
     }), 'users'
     );
-  }
-
-  init(state) {
-    const selectedIndex = state.ui.selectedIndex;
-
-    if (typeof selectedIndex !== 'undefined') {
-      const selectedBoard = state.boards[selectedIndex];
-      this.tryShowBoard(selectedBoard);
-    }
-
-    this.subscribe((state) => state.boards[state.ui.selectedIndex]);
-  }
-
-  stateUpdate(board) {
-    if (board) {
-      this.tryShowBoard(board);
-    } else {
-      this.deleteChild(this.getChild('groups'));
-    }
   }
 }

@@ -14,6 +14,9 @@ export default class GroupController extends DNDComponent {
     super({classes: ['card__group']});
     this.makeDraggable();
 
+    this.group = group;
+    this.dispatch = dispatch;
+
     this.addChild(new Component({classes: ['group__header']})
         .addChild(new TransformingInput(
             new Component({
@@ -31,7 +34,6 @@ export default class GroupController extends DNDComponent {
             }).useDblclick()
         ));
 
-    console.log(group);
     this.addChild(new CardContainer(dispatch, ...group.cards));
     this.addChild(new Component({
       classes: ['card__container'],
@@ -40,9 +42,6 @@ export default class GroupController extends DNDComponent {
         dispatch(cardActions.createCard(text, group.id));
       }
     })));
-
-    this.group = group;
-    this.dispatch = dispatch;
   }
 
   del() {
@@ -54,7 +53,6 @@ export default class GroupController extends DNDComponent {
       this.dispatch(groupActions.swapGroup(
           whatToPlace.group.id, this.group.id
       ));
-      // console.log('swapping', this.group.id, 'and', whatToPlace.group.id);
     }
   }
 }

@@ -36,7 +36,6 @@ export function deleteGroup(id) {
   };
 }
 
-
 function editGroup(boardId, groupId, name) {
   return {
     type: 'EDIT_GROUP',

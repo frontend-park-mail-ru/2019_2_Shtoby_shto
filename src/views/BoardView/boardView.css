@@ -196,6 +196,7 @@ html, body {
 }
 
 .card__group {
+    width: 275px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -210,8 +211,8 @@ html, body {
     /* height: 100%; */
     /* border-left: dashed; */
 
-    /* width: 200px;
-    background: linear-gradient(90deg, #44ff8e, transparent); */
+    /* /* width: 200px; */
+    background: linear-gradient(90deg, #44ff8e, transparent);
 }
 
 .group__header {
@@ -295,7 +296,7 @@ html, body {
 
 .board__card {
     height: 75px;
-    /* width: 150px; */
+    width: 260px;
     position: relative;
 
     background: white;
@@ -345,11 +346,12 @@ html, body {
 }
 
 .comment__avatar {
-    width: 10%;
+    width: 50px;
 }
 
 .comment__content {
     width: 45%;
+    margin: 5px;
 }
 
 .comment__deleter {
