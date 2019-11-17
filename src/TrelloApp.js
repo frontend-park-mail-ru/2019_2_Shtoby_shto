@@ -8,7 +8,7 @@ import LoginView from './views/LoginView/LoginView';
 import BoardView from './views/BoardView/BoardView';
 import ProfileView from './views/ProfileView/ProfileView';
 
-import Button from './components/Button';
+// import Button from './components/Button';
 
 import makeGlobalStorage from './storage/makeGlobalStore';
 import logger from './middlewares/logger';
@@ -47,11 +47,11 @@ export default class TrelloApp extends App {
 
     this.addComponent(router);
 
-    this.addComponent(new Button({
-      content: 'залогать состояние приложения',
-      onclick: () => {
-        console.log(globalStorage.getState());
-      },
-    }));
+    // this.addComponent(new Button({
+    //   content: 'залогать состояние приложения',
+    //   onclick: () => {
+    //     console.log(globalStorage.getState());
+    //   },
+    // }));
   }
 };

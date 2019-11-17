@@ -4,4 +4,5 @@ import TrelloApp from './TrelloApp';
 const root = document.getElementById('app');
 const app = new TrelloApp(root);
 // const app = new DemoApp(root);
+
 app.start();

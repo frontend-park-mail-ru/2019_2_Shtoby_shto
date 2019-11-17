@@ -9,8 +9,11 @@ import UserDisplayer from './UserDisplayer';
 
 const defaultAva = require('./userAva.png');
 
+import UserApi from '../../../apis/UserApi';
+const userApi = new UserApi();
+
 class Comment extends Component {
-  constructor(comment, addDeleter, dispatch) {
+  constructor(comment, addDeleter, dispatch, username) {
     super({classes: ['comment']});
 
     this.content = comment.text;
@@ -24,11 +27,20 @@ class Comment extends Component {
         },
       }), 'deleter');
     }
+
+    this.username = '';
+
+    userApi.getSpecificUser(comment['user_id'])
+        .then((user) => {
+          this.username = user.login;
+          this.render();
+        });
   }
 
   generateContent() {
     return `
       <img class='comment__avatar' src=${defaultAva}></img>
+      <span class='comment__username'>${this.username}</span>
       <span class='comment__content'>${this.content}</span>
       <deleter></deleter>
     `;
@@ -42,8 +54,10 @@ class Comment extends Component {
 }
 
 class CommentSection extends Component {
-  constructor(comments, dispatch, cardId, userId) {
+  constructor(comments, dispatch, cardId, userId, userName, getState) {
     super({classes: ['comment_section']});
+
+    console.log(getState());
 
     const textarea = new Component({
       classes: ['comment__content'],
@@ -69,6 +83,8 @@ class CommentSection extends Component {
             }))
     );
 
+    // const state = getState();
+
     this.addChildren(
         ...comments.map((comment) => (
           new Comment(
@@ -81,14 +97,16 @@ class CommentSection extends Component {
 
 
 export default class ExpandedCard extends Component {
-  constructor(card, dispatch, userId) {
+  constructor(card, dispatch, userId, userName, getState) {
     super({classes: ['expanded__card']});
 
     this.userId = userId;
-
-    this.initChildren(card);
+    this.userName = userName;
 
     this.dispatch = dispatch;
+    this.getState = getState;
+
+    this.initChildren(card);
   }
 
   generateContent() {
@@ -159,6 +177,10 @@ export default class ExpandedCard extends Component {
         },
         card.id,
         this.userId,
+        this.userName,
+        () => {
+          return this.getState();
+        }
     ));
   }
 }

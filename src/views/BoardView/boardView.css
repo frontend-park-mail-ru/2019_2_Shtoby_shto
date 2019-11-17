@@ -349,6 +349,15 @@ html, body {
     width: 50px;
 }
 
+.comment__boardview {
+    margin: 2px;
+}
+
+.comment__username {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .comment__content {
     width: 45%;
     margin: 5px;
@@ -366,6 +375,7 @@ html, body {
 
 .comment {
     display: flex;
+    margin-top: 7px;
 }
 
 
@@ -588,3 +598,33 @@ html, body {
     text-decoration: none;
     cursor: pointer;
 } */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

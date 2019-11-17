@@ -46,15 +46,25 @@ export default class CardModal extends Component {
         });
       }
 
-      return retCard;
+      return {card: retCard};
     });
+
+    this.subscribe((state) => ({user: state.user}));
 
     this.dispatch(uiActions.closeModal());
   }
 
-  stateUpdate(card) {
-    if (card) {
-      this.show(card);
+  stateUpdate(update) {
+    if (update) {
+      if ('card' in update) {
+        if (update.card) {
+          this.show(update.card);
+        } else {
+          this.close();
+        }
+      } else if ('user' in update) {
+        this.props.userName = update.user.name;
+      }
     } else {
       this.close();
     }
@@ -67,7 +77,9 @@ export default class CardModal extends Component {
         new ExpandedCard(
             modalCard,
             this.dispatch.bind(this),
-            this.props.userId
+            this.props.userId,
+            this.props.userName,
+            this.store.getState.bind(this.store),
         ),
         'expanded'
     );
