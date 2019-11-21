@@ -31,6 +31,10 @@ export default class UserApi extends Api {
     return this.get('/users');
   }
 
+  getSpecificUser(id) {
+    return this.get(`/users/${id}`);
+  }
+
   update(fields) {
     console.log(fields);
     return this.put(`/users`, fields);

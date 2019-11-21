@@ -1,7 +1,7 @@
 import App from './modules/App';
 import Component from './modules/Component';
 import DNDComponent from './modules/DNDComponent';
-import Button from './components/Button';
+// import Button from './components/Button';
 import dnd from './modules/dnd';
 
 import Router from './components/Router';
@@ -64,15 +64,5 @@ export default class DemoApp extends App {
         '/3': new Component({content: '<h3>3 sub-view</h3>'}),
       }, '/1').startRouting(),
     }, '/').useHistory().startRouting()).makeDraggable());
-
-    this.addComponent(new Button({
-      content: 'press me',
-      onclick: () => {
-        setTimeout(() => {
-          this.root.children[0].component.detach();
-        },
-        2000);
-      },
-    }));
   }
 }

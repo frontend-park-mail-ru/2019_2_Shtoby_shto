@@ -36,13 +36,20 @@ export function deleteGroup(id) {
   };
 }
 
-
 function editGroup(boardId, groupId, name) {
   return {
     type: 'EDIT_GROUP',
     id: groupId,
     name: name,
     boardId: boardId,
+  };
+}
+
+export function swapGroup(groupId1, groupId2) {
+  return {
+    type: 'SWAP_GROUP',
+    which: groupId1,
+    where: groupId2,
   };
 }
 

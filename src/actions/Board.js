@@ -10,7 +10,35 @@ const boardApi = new BoardApi();
 function addBoard(boardModel) {
   return {
     type: 'ADD_BOARD',
-    ...boardModel,
+    model: boardModel,
+  };
+}
+
+function fillBoard(boardModel) {
+  return {
+    type: 'FILL_BOARD',
+    model: boardModel,
+  };
+}
+
+export function synchronizeWithBack(boardId) {
+  return function(dispatch) {
+    boardApi.fetchBoard(boardId)
+        .then((model) => {
+          dispatch({
+            type: 'FILL_BOARD',
+            model,
+          });
+        });
+  };
+}
+
+export function getBoard(id) {
+  return function(dispatch) {
+    boardApi.fetchBoard(id)
+        .then((board) => {
+          dispatch(fillBoard(board));
+        });
   };
 }
 
@@ -31,7 +59,8 @@ export function fetchBoards() {
     if (!fake) {
       boardApi.fetchBoards(getState().user.id).then((boards) => {
         boards.forEach((board) => {
-          dispatch(addBoard({...board, cardGroups: board['card_groups']}));
+          // dispatch(addBoard({...board, cardGroups: board['card_groups']}));
+          dispatch(addBoard(board));
         });
       });
     } else {
@@ -94,9 +123,6 @@ export function insertAfter(index, indexAfter) {
 
       const selectedIndex = getState().ui.selectedIndex;
 
-      console.log('selected:', selectedIndex,
-          'index:', index, 'after:', indexAfter);
-
       if (typeof selectedIndex !== 'undefined') {
         if (selectedIndex === index) {
           dispatch(uiActions.selectBoard(indexAfter));
@@ -154,24 +180,6 @@ export function shiftIncluding(index) {
 export function clearStore() {
   return {
     type: 'CLEAR_BOARDS',
-  };
-}
-
-function fillBoard(board) {
-  return {
-    type: 'FILL_BOARD',
-    id: board.id,
-    name: board.name,
-    cardGroups: board['card_groups'],
-  };
-}
-
-export function getBoard(id) {
-  return function(dispatch) {
-    boardApi.fetchBoard(id)
-        .then((board) => {
-          dispatch(fillBoard(board));
-        });
   };
 }
 

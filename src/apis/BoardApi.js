@@ -53,9 +53,34 @@ export default class BoardApi extends Api {
     return this.del(`/cards/${id}`);
   }
 
-  updateCard(cardId, newCaption) {
-    return this.put(`/cards/${cardId}`, {
-      caption: newCaption,
+  updateCard(cardId, update) {
+    return this.put(`/cards/${cardId}`, update);
+  }
+
+  addComment(cardId, userId, comment) {
+    return this.post(`/comments`, {
+      user_id: userId,
+      card_id: cardId,
+      text: comment,
     });
+  }
+
+  attachUserToCard(userId, cardId) {
+    return this.post('/cards/user/attach', {
+      user_id: userId,
+      card_id: cardId,
+    });
+  }
+
+
+  detachUserFromCard(userId, cardId) {
+    return this.post('/cards/user/detach', {
+      user_id: userId,
+      card_id: cardId,
+    });
+  }
+
+  deleteComment(commentId) {
+    return this.del(`/comments/${commentId}`);
   }
 }

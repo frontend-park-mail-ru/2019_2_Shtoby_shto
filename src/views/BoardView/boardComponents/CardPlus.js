@@ -5,7 +5,7 @@ export default class CardPlus extends TransformingInput {
   constructor() {
     super(
         new Component({
-          content: 'Новая карточка', classes: ['board__card', 'card__plus'],
+          content: '+', classes: ['board__card', 'card__plus'],
         }),
         {
           classes: ['board__card', 'card__plus'],

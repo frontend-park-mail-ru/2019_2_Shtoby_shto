@@ -1,8 +1,15 @@
 .board__view {
+    position: relative;
+    /* background-image: url(./background.png); */
     display: flex;
-    background-color: #00bb77;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23000' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E");
+    background-color: #00b7ff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='540' height='450' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='.1'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/svg%3E");
     height:97%;
+    /* background: url(images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
 }
 
 html, body {
@@ -13,6 +20,7 @@ html, body {
 .board__tab__controller {
     /* width: 20%; */
     border: 1px solid #ccc;
+    background-color: #ededed;
 }
 
 .board__tabs {
@@ -23,7 +31,7 @@ html, body {
 .board__tab {
     display: flex;
     position: relative;
-    height: 75px;
+    height: 110px;
     width: 150px;
     /* width: 100%; */
     border: 1px solid #ccc;
@@ -46,12 +54,72 @@ html, body {
     cursor: pointer;
 }
 
+.tab__avatar {
+
+}
+
+.card__avatar {
+    width: 35px;
+}
+
+.user__display {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+.card__modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal__content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.modal__close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user__panel.user__display {
+    justify-content: flex-start;
+}
+
+.user__display.tab__user__displayer {
+    height: 50%;
+}
+
 .tab__name__container {
     position: absolute;
     width: 50%;
     height: 25%;
     left: 25%;
-    /* top: 50%; */
+    top: 10%;
     /* top: -25%; */
     display: flex;
     justify-content: center;
@@ -88,11 +156,11 @@ html, body {
 }
 
 .tab__dropzone.lower {
-    top: 0;
+    top: 50%;
 }
 
 .tab__dropzone.upper {
-    top: 50%;
+    top: 0%;
 }
 
 .board__plus {
@@ -121,16 +189,37 @@ html, body {
     height: 100%;
 }
 
+.group__container {
+    /* width: 250px; */
+    border-right: dashed;
+    background-color: #ededed22;
+}
+
 .card__group {
+    width: 275px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
+
+    border: solid gray 2px;
+    margin: 3px;
+    padding: 5px;
+
+    border-radius: 3px;
+
+    /* background-color: #ededed;
+    /* height: 100%; */
+    /* border-left: dashed; */
+
+    /* /* width: 200px; */
     background: linear-gradient(90deg, #44ff8e, transparent);
 }
 
 .group__header {
-    margin-top: 10px;
+    border: inset;
+    text-align: center;
+    /* width: 90%; */
+    width: 250px;
 }
 
 .group__plus {
@@ -150,13 +239,34 @@ html, body {
 .group__input {
 }
 
+.user__avatar__container {
+
+}
+
+.board__tab__avatars {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 60%;
+    height: 40%;
+}
+
+.user__avatar {
+    max-width: 100%;
+    max-height: 100%;
+
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+}
 
 .card__plus:hover {
     cursor: pointer;
 }
 
 .card__container {
-
+    width: 100%;
 }
 
 .board__card__container {
@@ -164,10 +274,6 @@ html, body {
     align-items: center;
     text-align: center;
     width: 150px;
-}
-
-.board__view {
-    position: relative;
 }
 
 .trash {
@@ -178,9 +284,20 @@ html, body {
     height: 100px;
 }
 
+.single__board {
+    width: 100%;
+}
+
+.user__panel {
+    height: 5%;
+    background: #ededed;
+    border-bottom: dashed;
+}
+
 .board__card {
     height: 75px;
-    width: 150px;
+    width: 260px;
+    position: relative;
 
     background: white;
     padding: 5px 10px;
@@ -189,6 +306,115 @@ html, body {
     /* margin-left: 5px; */
 
     border-radius: 5px;
+
+    /* transition: 0.4s box-shadow ease ; */
+    transition: 0.3s border-radius ease, 0.4s box-shadow ease ;
+}
+
+.expanded__card {
+
+}
+
+.card__edit {
+    height: 50%;
+}
+
+.expanded__card__header {
+
+}
+
+.expaned__card__user__displayer {
+
+}
+
+.expanded__card__text {
+    width: 60%;
+    border: inset 2px;
+    margin: 7px;
+    padding: 5px;
+}
+
+.comment__section {
+
+}
+
+.comment__container {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.comment__avatar {
+    width: 50px;
+}
+
+.comment__boardview {
+    margin: 2px;
+}
+
+.comment__username {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.comment__content {
+    width: 45%;
+    margin: 5px;
+}
+
+.comment__deleter {
+    width: 10%;
+    margin: 0;
+}
+
+.comment__button {
+    margin: auto;
+    margin-left: 5px;
+}
+
+.comment {
+    display: flex;
+    margin-top: 7px;
+}
+
+
+.card__avatars {
+
+}
+
+.card__user__displayer {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    height: 60%;
+    width: 50%;
+    padding: 5px;
+}
+
+.card__avatar {
+
+}
+
+
+.board__card:hover {
+    box-shadow: 4px 4px 4px 1px;
+    border-radius: 9px;
+}
+
+.card__header {
+    text-align: center;
+}
+
+.card__content {
+    margin-top: 2px;
+    margin-left: 1px;
+    margin-right: 1px;
+
+    padding: 3px;
+    font-size: 80%;
+
+    border: 1px dotted;
 }
 
 .board__card__container:hover {
@@ -196,6 +422,10 @@ html, body {
 }
 
 .card__plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: gray;    */
     background: hsla(0,0%,100%,.40);
     border: 2px dotted gray;
     height: 40px;
@@ -368,3 +598,33 @@ html, body {
     text-decoration: none;
     cursor: pointer;
 } */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

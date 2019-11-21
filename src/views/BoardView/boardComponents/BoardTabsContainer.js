@@ -8,11 +8,11 @@ export default class BoardTabsContainer extends Component {
 
     boards.forEach((b, i) => {
       this.addChild(new BoardTab({
-        name: b.name,
-        id: b.id,
-        index: i,
+        // name: b.name,
+        // id: b.id,
+        // index: i,
         dispatch: dispatch,
-      }).makeDraggable(
+      }, i, b).makeDraggable(
           (comp) => {
             this.enableHighliting(comp.props.index);
           },
@@ -53,10 +53,10 @@ export default class BoardTabsContainer extends Component {
   }
 
   disableHighliting(index) {
-    this.forEachChildSmart((child) => {
-      if (!(child.index === index)) {
-        child.component.disableStuff();
-      }
-    });
+    // this.forEachChildSmart((child) => {
+    // if (!(child.index === index)) {
+    // child.component.disableStuff();
+    // }
+    // });
   }
 }

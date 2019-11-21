@@ -4,9 +4,10 @@ export default function boardReducer(state, action) {
       return [
         ...state,
         {
-          id: action.id,
-          name: action.name,
-          cardGroups: action.cardGroups || [],
+          id: action.model.id,
+          name: action.model.name,
+          cardGroups: action.model['card_groups'] || [],
+          users: action.model.users,
         },
       ];
 
@@ -52,6 +53,51 @@ export default function boardReducer(state, action) {
         }),
       ];
 
+    case 'SWAP_GROUP':
+      return [
+        ...state.map((b) => {
+          const newBoard = {...b};
+
+          let foundWhich = -1;
+          let foundWhere = -1;
+
+          b.cardGroups.forEach((gr, i) => {
+            if (gr.id === action.which) {
+              foundWhich = i;
+            } else if (gr.id === action.where) {
+              foundWhere = i;
+            }
+          });
+
+          if (foundWhich > -1) {
+            const newGroups = [];
+            if (foundWhich < foundWhere) {
+              b.cardGroups.forEach((gr, i) => {
+                if (i !== foundWhich) {
+                  newGroups.push(gr);
+                  if (i === foundWhere) {
+                    newGroups.push(b.cardGroups[foundWhich]);
+                  }
+                }
+              });
+            } else {
+              b.cardGroups.forEach((gr, i) => {
+                if (i !== foundWhich) {
+                  if (i === foundWhere) {
+                    newGroups.push(b.cardGroups[foundWhich]);
+                  }
+                  newGroups.push(gr);
+                }
+              });
+            }
+
+            newBoard.cardGroups = newGroups;
+          }
+
+          return newBoard;
+        }),
+      ];
+
     case 'DELETE_GROUP':
       return [
         ...state.map((b) => {
@@ -71,25 +117,22 @@ export default function boardReducer(state, action) {
       ];
 
     case 'ADD_CARD':
-      return [
-        ...state.map((b) => {
-          return {
-            ...b, cardGroups: [
-              ...b.cardGroups.map((gr) => {
-                return gr.id === action.cardGroupId ?
-                {...gr, cards: [...gr.cards, {
-                  id: action.id,
-                  caption: action.caption,
-                  priority: action.priority,
-                  cardGroupId: action.cardGroupId,
-                  tasks: action.tasks,
-                }]} :
-                {...gr};
-              }),
-            ],
-          };
-        }),
-      ];
+      return (() => {
+        const cardModel = {};
+        Object.entries(action).forEach(([name, value]) => {
+          if (name !== 'type') cardModel[name] = value;
+        });
+
+        return [
+          ...state.map((b) => ({
+            ...b, cardGroups: b.cardGroups.map((gr) => (
+                gr.id === action.cardGroupId ?
+                {...gr, cards: [...gr.cards, cardModel]} :
+                gr
+            )),
+          })),
+        ];
+      })();
 
     case 'UPDATE_CARD':
       return [
@@ -101,7 +144,7 @@ export default function boardReducer(state, action) {
                   ...gr, cards: [
                     ...gr.cards.map((c) => {
                       return c.id === action.id ?
-                      {...c, caption: action.caption} :
+                      {...c, ...action.update} :
                       {...c};
                     }),
                   ],
@@ -113,17 +156,68 @@ export default function boardReducer(state, action) {
       ];
     case 'FILL_BOARD':
       return [
-        ...state.map((b) => {
-          return b.id === action.id ?
+        ...(state.map((b) => {
+          return b.id === action.model.id ?
             {...b,
-              name: action.name,
-              cardGroups: action.cardGroups.map((gr) => {
-                return {...gr, boardId: gr['board_id']};
-              }),
+              // ...action.model,
+              cardGroups: action.model['card_groups'],
+              users: action.model.users,
+              // name: action.name,
+              // cardGroups: action['card_groups'].map((gr) => {
+              //   return {...gr, boardId: gr['board_id']};
+              // }),
               got: true,
             } : {...b, got: b.got || false};
-        }),
+        })),
       ];
+
+    case 'ADD_COMMENT':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => ({
+            ...c, comments: c.id === action.comment['card_id'] ?
+              [...c.comments, action.comment] : c.comments,
+          })),
+        })),
+      }));
+
+    case 'DELETE_COMMENT':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => ({
+            ...c, comments: c.comments.filter((com) => (com.id !== action.id)),
+            // ...c, comments: c.id === action.comment.cardId ?
+            // c.comments.filter((com) => (com.id !== action.id)) : c.comments,
+          })),
+        })),
+      }));
+
+    case 'CARD_DETACH':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => (
+            c.id === action.cardId ?
+            {...c, users: c.users.filter((userId) => (
+              userId !== action.userId
+            ))} :
+            c
+          )),
+        })),
+      }));
+
+    case 'CARD_ATTACH':
+      return state.map((b) => ({
+        ...b, cardGroups: b.cardGroups.map((gr) => ({
+          ...gr, cards: gr.cards.map((c) => (
+            c.id === action.cardId ?
+              c.users.filter(
+                  (userId) => (userId === action.userId)).length === 0 ?
+              {...c, users: [...c.users, action.userId]} : c :
+              c
+          )),
+        })),
+      }));
+
 
     case 'INSERT_AFTER':
       const newState = [];

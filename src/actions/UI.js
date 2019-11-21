@@ -1,3 +1,16 @@
+export function showCard(card) {
+  return {
+    type: 'OPEN_MODAL',
+    card: card,
+  };
+}
+
+export function closeModal() {
+  return {
+    type: 'CLOSE_MODAL',
+  };
+}
+
 export function selectBoard(index) {
   return {
     type: 'SELECT_BOARD',
