@@ -1,7 +1,7 @@
 import Component from '../../../modules/Component';
-import TransformingInput from '../../../components/TransformingInput';
+import TransformingInput from '../../../old_components/TransformingInput';
 
-import Button from '../../../components/Button';
+import Button from '../../../old_components/Button';
 
 import * as cards from '../../../actions/Card';
 

@@ -1,7 +1,7 @@
 import Component from '../../modules/Component';
 
-import StateComponent from '../../components/StateComponent';
-import Link from '../../components/Link';
+import StateComponent from '../../old_components/StateComponent';
+import Link from '../../old_components/Link';
 
 const template = require('./trelloHeader.pug');
 import './trelloHeader.css';

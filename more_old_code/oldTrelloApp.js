@@ -1,12 +1,12 @@
-import App from './modules/App';
+import App from './modules/oldApp';
 
-import AuthRouter from './components/AuthRouter';
-import TrelloHeader from './views/TrelloHeader/TrelloHeader';
+import AuthRouter from './old_components/AuthRouter';
+import TrelloHeader from './old_views/TrelloHeader/TrelloHeader';
 
-import MainView from './views/IndexView/IndexView';
-import LoginView from './views/LoginView/LoginView';
-import BoardView from './views/BoardView/BoardView';
-import ProfileView from './views/ProfileView/ProfileView';
+import MainView from './old_views/IndexView/IndexView';
+import LoginView from './old_views/LoginView/LoginView';
+import BoardView from './old_views/BoardView/BoardView';
+import ProfileView from './old_views/ProfileView/ProfileView';
 
 // import Button from './components/Button';
 

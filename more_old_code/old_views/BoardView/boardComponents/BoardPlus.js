@@ -1,5 +1,5 @@
 import Component from '../../../modules/Component';
-import TransformingInput from '../../../components/TransformingInput';
+import TransformingInput from '../../../old_components/TransformingInput';
 
 
 export default class BoardPlus extends TransformingInput {

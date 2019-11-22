@@ -1,6 +1,6 @@
 import Component from '../../../modules/Component';
 import DNDComponent from '../../../modules/DNDComponent';
-import TransformingInput from '../../../components/TransformingInput';
+import TransformingInput from '../../../old_components/TransformingInput';
 
 import UserDisplayer from './UserDisplayer';
 

@@ -4,7 +4,7 @@ import DNDComponent from '../../../modules/DNDComponent';
 import CardContainer from './CardContainer';
 import CardPlus from './CardPlus';
 
-import TransformingInput from '../../../components/TransformingInput';
+import TransformingInput from '../../../old_components/TransformingInput';
 
 import * as groupActions from '../../../actions/Group';
 import * as cardActions from '../../../actions/Card';

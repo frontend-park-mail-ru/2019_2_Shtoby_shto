@@ -1,4 +1,4 @@
-import Form from '../../components/Form';
+import Form from '../../old_components/Form';
 
 import * as user from '../../actions/User';
 

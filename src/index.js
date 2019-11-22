@@ -1,8 +1,7 @@
-import TrelloApp from './TrelloApp';
-// import DemoApp from './DemoApp';
+import VDOM from './modules/VDOM';
+import App from './App';
 
-const root = document.getElementById('app');
-const app = new TrelloApp(root);
-// const app = new DemoApp(root);
+const AppVDOM = new VDOM(document.getElementById('root'));
 
-app.start();
+AppVDOM.render({tag: App, attrs: {count: 0}}, root)
+console.log(AppVDOM);

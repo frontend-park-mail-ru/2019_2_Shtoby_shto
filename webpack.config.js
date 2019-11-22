@@ -7,8 +7,8 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
   devServer: {
     port: 3000,
@@ -45,14 +45,14 @@ module.exports = {
             },
           }],
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true,
-        },
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      //   options: {
+      //     fix: true,
+      //   },
+      // },
     ],
   },
   plugins: [
@@ -65,6 +65,6 @@ module.exports = {
     // new WorkboxWebpackPlugin.InjectManifest({
     //   swSrc: 'src/modules/sw.js',
     // }),
-    new webpack.EnvironmentPlugin(['REMOTE_DEPLOY']),
+    new webpack.EnvironmentPlugin({ 'REMOTE_DEPLOY' : ''}),
   ],
 };
