@@ -13,11 +13,10 @@ export default class VDOM {
 			vnode._instance.children = node._vnode.children;
 		}
 
-		vnode._instance.el = node;
-
 		node._originalVnode = node._vnode;
 		node._vnode = vnode;
-
+		
+		vnode._instance.el = node;
 		vnode._instance.didMount();
 
 		return node;
@@ -96,7 +95,6 @@ export default class VDOM {
 	}
 
 	attrEqual(lhs, rhs) {
-
 		if ((lhs instanceof Array) && (rhs instanceof Array)) {
 			if (lhs.length === rhs.length) {
 				lhs.sort();
@@ -118,7 +116,6 @@ export default class VDOM {
 	}
 
 	makeDiff(prevAttrs, newAttrs) {
-
 		const diff = {};
 
 		prevAttrs = prevAttrs || {};
@@ -126,7 +123,6 @@ export default class VDOM {
 
 		Object.entries(newAttrs).forEach(([name, val]) => {
 			if (name in prevAttrs) {
-				// if (val !== prevAttrs[name]) {
 				if (!(this.attrEqual(val, prevAttrs[name]))) {
 					diff[name] = typeof val === 'undefined'
 						? {type: '-'}
@@ -154,7 +150,6 @@ export default class VDOM {
 		Object.entries(diff).forEach(([name, difference]) => {
 			switch (difference.type) {
 				case '>': {
-					// node.setAttribute(name, difference.val);
 					this.attrResolver(node, {name, val: difference.val})
 				}
 				break;

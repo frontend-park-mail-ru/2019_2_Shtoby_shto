@@ -83,11 +83,10 @@ export default class App extends Component {
               children: [
                 'just text in two divs'
               ],
-              // key: 'ass',
             },
           ]
         },
-        ...[this.attrs.count % 3 ? 'ass' : 'haha'],
+        ...[this.attrs.count % 3 ? '% 3' : 'haha'],
       ]
     }
   }
