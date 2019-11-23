@@ -1,22 +1,31 @@
 let socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello");
 
 socket.onopen = function(e) {
-  alert("[open] Соединение установлено");
-  alert("Отправляем данные на сервер");
-  socket.send("Меня зовут Джон");
+  console.log("[open] Соединение установлено");
+};
+
+socket.wsSend = function(data) {
+  if(!socket.readyState){
+    setTimeout(function (){
+      socket.wsSend(data);
+    },100);
+  }else{
+    socket.send(data);
+  }
 };
 
 socket.onmessage = function(event) {
-  alert(`[message] Данные получены с сервера: ${event.data}`);
+  console.log(`[message] Данные получены с сервера: ${event.data}`);
+
 };
 
 socket.onclose = function(event) {
   if (event.wasClean) {
-    alert(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+    console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
   } else {
     // например, сервер убил процесс или сеть недоступна
     // обычно в этом случае event.code 1006
-    alert('[close] Соединение прервано');
+    console.log('[close] Соединение прервано');
   }
 };
 
