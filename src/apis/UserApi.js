@@ -1,6 +1,6 @@
 import Api from '../modules/Api';
 
-const localApiAddr = 'http://localhost';
+const localApiAddr = 'http://localhost:8080';
 const remoteApiAddr = 'https://iamneponyalapi.ru';
 
 const deployVar = process.env.REMOTE_DEPLOY;
