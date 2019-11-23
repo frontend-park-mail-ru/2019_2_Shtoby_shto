@@ -23,6 +23,9 @@ document.getElementById('send-message').onclick = function() {
     minute: 'numeric',
   };
   const message = document.getElementsByClassName('chat-frame__input')[0];
+
+  // msgcheck(message.value);
+
   socket.send(message.value);
   const msg = document.createElement('div');
   msg.innerHTML = `<div class="container answer">
