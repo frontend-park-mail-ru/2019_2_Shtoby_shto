@@ -4,8 +4,8 @@ socket.wsSend('getChats');
 
 const login = document.getElementById('login');
 login.onclick = function() {
-  console.log('login');
-  location.href = 'localhost:3000/login';
+  console.log("login");
+  location.href = 'http://localhost:3000/login';
 };
 
 socket.onmessage = function(event) {
