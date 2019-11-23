@@ -1,15 +1,15 @@
-let socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello");
+const socket = new WebSocket('wss://javascript.info/article/websocket/demo/hello');
 
-socket.onopen = function(e) {
-  console.log("[open] Соединение установлено");
+socket.onopen = function() {
+  console.log('[open] Соединение установлено');
 };
 
 socket.wsSend = function(data) {
-  if(!socket.readyState){
-    setTimeout(function (){
+  if (!socket.readyState) {
+    setTimeout(function() {
       socket.wsSend(data);
-    },100);
-  }else{
+    }, 100);
+  } else {
     socket.send(data);
   }
 };
@@ -20,6 +20,7 @@ socket.onmessage = function(event) {
 
 socket.onclose = function(event) {
   if (event.wasClean) {
+    // eslint-disable-next-line max-len
     console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
   } else {
     // например, сервер убил процесс или сеть недоступна
