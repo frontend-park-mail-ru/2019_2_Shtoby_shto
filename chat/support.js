@@ -2,6 +2,12 @@ import socket from './WS.js';
 
 socket.wsSend('getChats');
 
+const login = document.getElementById('login');
+login.onclick = function() {
+  console.log("login");
+  location.href = 'localhost:3000/login';
+};
+
 socket.onmessage = function(event) {
   const activ = true;
   const name = 'Саня';
