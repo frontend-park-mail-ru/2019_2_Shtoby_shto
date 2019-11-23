@@ -1,4 +1,4 @@
-const socket = new WebSocket('http://localhost:8080');
+const socket = new WebSocket('wss://javascript.info/article/websocket/chat/ws');
 
 socket.onopen = function() {
   console.log('[open] Соединение установлено');
