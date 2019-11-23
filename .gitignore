@@ -11,3 +11,12 @@ public/login/.idea/
 ./package-lock.json
 dist/build/*
 dist
+
+DevProfile
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
