@@ -1,76 +1,54 @@
 import Component from "../modules/Component";
 
 export default class Router extends Component {
-  didCreate() {
-    this.history = this.attrs.history || false;
-    this.routes = this.attrs.routes || {};
-    this.default = this.attrs.default || false;
-
-    // this.route = undefined;
-    // this.attrs.route 
-
-    console.log(this);
-  }
-
   didMount() {
-    this.el.addEventListener('click', (e) => {
-      if (!(e.target instanceof HTMLAnchorElement)) {
-        return;
-      }
-      e.preventDefault();
-
-      this.open(e.target.pathname);
-    });
+    this.el.addEventListener('click', this.linkOpener.bind(this));
 
     this.openDefault();
   }
 
-  openDefault() {
-    console.log('tryna open default');
+  linkOpener(e) {
+    if (!(e.target instanceof HTMLAnchorElement)) {
+      return;
+    }
+    e.preventDefault();
 
+    this.open(e.target.pathname);
+  }
+
+  openDefault() {
     if (this.attrs.default) {
       this.open(this.attrs.default);
     }
   }
 
   open(path) {
-    console.log('tryna open', path);
+    const route = this.attrs.routes[path];
 
-    if (!(this.routes[path])) {
-      return;
+    if (typeof route === 'function') {
+      route();
+      return false;
     }
 
-    console.log('ok opening now');
+    if (!route) {
+      this.openDefault();
+      return false;
+    }
 
     this.updateAttrs({route: path});
+    return true;
   }
 
   render() {
     const route = this.attrs.routes[this.attrs.route];
 
-    console.log(route);
-
-    // return route ? {tag: route} : 'no route';
-
-    // return route ? { tag: 'router', children: [{tag: route} ] } : { tag: 'router', children: ['ass']};
-
     return {
-      tag: 'router',
-      children: [
-        route ? route
-          // ? typeof route === 'function'
-            // ? { tag: route }
-            // : route
-          : 'no route'
-        ]
+      tag: 'div',
+      attrs: {
+        class: 'router',
+      },
+      children: [...(route ? [{...route, key: this.attrs.route}] : ['no route'])]
     }
-
-    // return {
-    //   tag: 'router',
-    //   children: route ? [route] : [
-    //     'ass',
-    //   ]
-    // }
 
   }
 }

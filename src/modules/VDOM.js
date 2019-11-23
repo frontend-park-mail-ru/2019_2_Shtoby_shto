@@ -160,7 +160,7 @@ export default class VDOM {
 	updateAttrs(node, prevAttrs, attrs) {
 		const diff = this.makeDiff(prevAttrs, attrs);
 
-		if (Object.entries(diff).length > 0) console.log('diff:', diff);
+		// if (Object.entries(diff).length > 0) console.log('diff:', diff);
 
 		Object.entries(diff).forEach(([name, difference]) => {
 			switch (difference.type) {
@@ -230,11 +230,7 @@ export default class VDOM {
 		if (isComponent) {
 			prevVnode._instance.willUpdate(vnode.attrs, vnode.children);
 
-			console.log(prevVnode)
-
 			vnode = prevVnode._instance.render();
-
-			console.log(vnode);
 
 			resultVnode._instance = prevVnode._instance;
 			prevVnode = node._originalVnode;

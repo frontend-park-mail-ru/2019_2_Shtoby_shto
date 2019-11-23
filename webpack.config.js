@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    // devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]'
   },
   devServer: {
     port: 3000,
@@ -16,6 +17,7 @@ module.exports = {
       index: 'index.html'
     }
   },
+  devtool: 'source-map',
   mode: 'development',
   module: {
     rules: [

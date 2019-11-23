@@ -10,13 +10,20 @@ export default class Component {
     this.vdom.update(
       this.el,
       {
-        ...this.el._vnode,
-        attrs:
-        {
-          ...this.el._vnode.attrs, ...attrs
-        }
+        tag: this.el._vnode.tag,
+        attrs: {...this.el._vnode.attrs, ...attrs}
       }
     )
+    // this.vdom.update(
+    //   this.el,
+    //   {
+    //     ...this.el._vnode,
+    //     attrs:
+    //     {
+    //       ...this.el._vnode.attrs, ...attrs
+    //     }
+    //   }
+    // )
   }
 
   otherAttrs() {
