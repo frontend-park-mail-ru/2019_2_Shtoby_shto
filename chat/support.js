@@ -3,19 +3,22 @@ import socket from './WS.js';
 socket.wsSend('getChats');
 
 socket.onmessage = function(event) {
-  // eslint-disable-next-line camelcase
-  const Chats_count = 5;
+  const activ = true;
   const name = 'Саня';
+
   const table = document.getElementsByTagName('tbody')[0];
-  // eslint-disable-next-line camelcase
-  for (let i = 0; i < Chats_count; i++) {
-    const row = document.createElement('tr');
-    row.innerHTML = `<th scope="row">` + (i+1) + `</th>
+  const row = document.createElement('tr');
+  row.innerHTML = `<th scope="row">` + document.cookie + `</th>
                     <td>` + name + `</td>
-                    <td>` + event.data +`</td>`;
-    row.onclick = function() {
-      window.location.href = 'index.html';
-    };
-    table.appendChild(row);
+                    <td>` + event.data + `</td>`;
+  row.onclick = function() {
+    const chat = document.getElementById('chat_frame');
+    chat.innerHTML = `<iframe src="http://localhost:4000" width="400" height="600">`;
+    socket.wsSend('message');
+  };
+  if (activ) {
+    row.classList.add('bg-primary');
+    row.classList.add('text-white');
   }
+  table.appendChild(row);
 };
