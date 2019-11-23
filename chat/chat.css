@@ -4,14 +4,16 @@
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px 0;
+    align: left;
+    margin: 0;
 }
 
 /* Darker chat container */
 .answer {
     border-color: #ccc;
     background-color: #ddd;
-    text-align: right;
+    align: right;
+    margin: 0;
 }
 
 /* Clear floats */

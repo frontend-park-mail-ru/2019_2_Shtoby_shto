@@ -1,6 +1,6 @@
 import socket from './WS.js';
 
-let last_msg = "";
+let last_msg = '';
 socket.onmessage = function(event) {
   console.log(event.data);
   console.log(last_msg);
