@@ -45,6 +45,8 @@ const requestsObject = (req, res) => {
 };
 
 const requestsObjectChat = (req, res) => {
+  const distDir = 'chat';
+
   let currentUrl = url.parse(req.url, true).pathname;
 
   if (/^[^.]+$/.test(currentUrl)) {
