@@ -1,6 +1,6 @@
 import socket from './WS.js';
 
-socket.wsSend('getChats');
+socket.wsSend('Оператор присоединился');
 
 const login = document.getElementById('login');
 login.onclick = function() {
