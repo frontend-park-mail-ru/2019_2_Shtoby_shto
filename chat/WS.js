@@ -16,7 +16,6 @@ socket.wsSend = function(data) {
 
 socket.onmessage = function(event) {
   console.log(`[message] Данные получены с сервера: ${event.data}`);
-
 };
 
 socket.onclose = function(event) {
