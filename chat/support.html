@@ -7,41 +7,46 @@
 </head>
 <body>
 
-<div id="root"><div class=".container-fluid p-3">
-    <div class="py-2">
-        <button data-name="addNew" type="button" class="btn btn-primary">Войти</button>
-    </div>
-    <h1>Вопросы пользователей</h1>
-    <div class="row">
-        <div class="col-6" data-child="contacts"><div>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Имя пользователя</th>
-                    <th scope="col">Сообщение</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div></div>
-        <div class="col-6" data-child="edit"><div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Инструкция</h4>
-                <p class="card-text">
-                    Кликните по контакту в таблице слева чтобы ответить ему.
-                </p>
-                <p class="card-text">
-                    Чтобы добавить новый контакт воспользуйтесь кнопкой или ссылкой ниже.
-                </p>
-                <a href="#" class="card-link" data-name="addNew">Добавить новый контакт</a>
+<div id="root">
+    <div class=".container-fluid p-3">
+        <div class="py-2">
+            <button data-name="addNew" type="button" class="btn btn-primary">Войти</button>
+        </div>
+        <h1>Вопросы пользователей</h1>
+        <div class="row">
+            <div class="col-6" data-child="contacts">
+                <div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Имя пользователя</th>
+                            <th scope="col">Сообщение</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Инструкция</h4>
+                        <p class="card-text">
+                            Кликните по контакту в таблице, чтобы ответить ему.
+                        </p>
+                        <p class="card-text">
+                            Нельзя писать пользователю что он тупой!
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div></div>
+            <div class="col-6" id="chat_frame">
+            </div>
+        </div>
     </div>
-</div></div>
+</div>
 
-<script type = "module" src="support.js"></script>
+<script type="module" src="support.js"></script>
 
 </body>
 </html>

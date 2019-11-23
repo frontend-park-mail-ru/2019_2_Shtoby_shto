@@ -1,6 +1,6 @@
 import socket from './WS.js';
 
-socket.wsSend('getChats');
+//socket.wsSend("data");
 socket.onmessage = function(event) {
   const inputField = document.getElementsByClassName('chat-frame__input')[0];
   const msg = document.createElement('div');

@@ -1,4 +1,4 @@
-const socket = new WebSocket('wss://javascript.info/article/websocket/demo/hello');
+const socket = new WebSocket('wss://javascript.info/article/websocket/chat/ws');
 
 socket.onopen = function() {
   console.log('[open] Соединение установлено');
@@ -11,6 +11,7 @@ socket.wsSend = function(data) {
     }, 100);
   } else {
     socket.send(data);
+    console.log("send " + data);
   }
 };
 
