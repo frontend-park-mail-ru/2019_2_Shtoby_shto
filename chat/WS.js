@@ -23,3 +23,5 @@ socket.onclose = function(event) {
 socket.onerror = function(error) {
   alert(`[error] ${error.message}`);
 };
+
+export default socket;
