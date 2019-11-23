@@ -1,8 +1,15 @@
 import socket from './WS.js';
 
-// socket.wsSend("data");
+let last_msg = "";
 socket.onmessage = function(event) {
-  const options ={
+  console.log(event.data);
+  console.log(last_msg);
+
+  if (last_msg === event.data) {
+    return;
+  }
+
+  const options = {
     hour: 'numeric',
     minute: 'numeric',
   };
@@ -18,19 +25,18 @@ socket.onmessage = function(event) {
 };
 
 document.getElementById('send-message').onclick = function() {
-  const options ={
+  const options = {
     hour: 'numeric',
     minute: 'numeric',
   };
   const message = document.getElementsByClassName('chat-frame__input')[0];
 
-  // msgcheck(message.value);
-
   socket.send(message.value);
+  last_msg = message.value;
   const msg = document.createElement('div');
   msg.innerHTML = `<div class="container answer">
     <img src="" alt="Avatar" class="chat-frame__answer-avatar">
-    <p>${message.value}</p>
+    <p class="msg">${message.value}</p>
     <span class="chat-frame__answer-time">
     ${new Date().toLocaleString(options)}
     </span>
