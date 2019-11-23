@@ -4,14 +4,14 @@ socket.wsSend('getChats');
 
 const login = document.getElementById('login');
 login.onclick = function() {
-  console.log("login");
+  console.log('login');
   location.href = 'https://front.aleshka2012.now.sh/login';
 };
 const chat = document.getElementById('chat_frame');
-chat.innerHTML = `<iframe src="https://chat.yuliyasm7.now.sh/" width="400" height="600">`;
+//chat.innerHTML = `<iframe src="https://chat.yuliyasm7.now.sh/" width="400" height="600">`;
+chat.innerHTML = `<iframe src="http://localhost:4000" width="400" height="600">`;
 
 socket.onmessage = function(event) {
-  const activ = true;
   const name = 'Саня';
 
   const table = document.getElementsByTagName('tbody')[0];
@@ -20,11 +20,8 @@ socket.onmessage = function(event) {
                     <td>` + name + `</td>
                     <td>` + event.data + `</td>`;
   row.onclick = function() {
-    socket.wsSend('message');
-    row.className = "";
+    row.className = '';
   };
-  if (activ) {
-    row.classList.add('bg-primary', 'text-white');
-  }
+  row.classList.add('bg-primary', 'text-white');
   table.appendChild(row);
 };
