@@ -19,6 +19,10 @@ export default class Component {
     )
   }
 
+  otherAttrs() {
+    
+  }
+
   didCreate() {}
 
   didMount() {}

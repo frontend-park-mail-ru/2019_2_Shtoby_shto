@@ -70,6 +70,19 @@ export default class VDOM {
 		return node;
 	}
 
+	attachListeners(node, vnode) {
+		if (vnode.events) {
+			Object.entries(vnode.events).forEach((listener) => {
+				const [name, payload] = listener;
+				if (payload instanceof Array) {
+					node.addEventListener( name, ...payload);
+				} else {
+					node.addEventListener( name, payload);
+				}
+			})
+		}
+	}
+
 	create(vnode) {
 		let node = undefined;
 
@@ -82,6 +95,8 @@ export default class VDOM {
 		}
 
 		node._vnode = vnode;
+
+		this.attachListeners(node, vnode);
 
 		return node;
 	}
@@ -197,9 +212,10 @@ export default class VDOM {
 			) {
 				this.update(node.childNodes[i], vchild);
 			} else {
-				// node.insertBefore(this.create(vchild), node.childNodes[i]);
-				// node.removeChild(node.childNodes[i+1]);
-				node.childNodes[i].replaceWith(this.create(vchild));
+
+				node.insertBefore(this.create(vchild), node.childNodes[i]);
+				node.removeChild(node.childNodes[i+1]);
+				// node.childNodes[i].replaceWith(this.create(vchild));
 				j--;
 			}
 		}
@@ -213,7 +229,12 @@ export default class VDOM {
 
 		if (isComponent) {
 			prevVnode._instance.willUpdate(vnode.attrs, vnode.children);
+
+			console.log(prevVnode)
+
 			vnode = prevVnode._instance.render();
+
+			console.log(vnode);
 
 			resultVnode._instance = prevVnode._instance;
 			prevVnode = node._originalVnode;
