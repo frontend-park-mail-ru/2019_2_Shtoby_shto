@@ -8,32 +8,32 @@
 <body>
 
 <div id="root"><div class=".container-fluid p-3">
-    <h1>Вопросы</h1>
+    <div class="py-2">
+        <button data-name="addNew" type="button" class="btn btn-primary">Войти</button>
+    </div>
+    <h1>Вопросы пользователей</h1>
     <div class="row">
         <div class="col-6" data-child="contacts"><div>
-            <div class="py-2">
-                <button data-name="addNew" type="button" class="btn btn-primary">Войти</button>
-            </div>
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Имя</th>
-                    <th scope="col">Номер телефона</th>
+                    <th scope="col">Имя пользователя</th>
+                    <th scope="col">Сообщение</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <tr data-item-id="0">
+                <tr data-item-id="0" onclick="window.location.href='index.html'">
                     <th scope="row">1</th>
-                    <td>qwearst</td>
-                    <td>eawrsgf</td>
+                    <td>Алексей</td>
+                    <td>Как сдать лабы?</td>
                 </tr>
 
-                <tr data-item-id="1">
-                    <th scope="row">2</th>
-                    <td>estgd</td>
-                    <td>sdf</td>
+                <tr data-item-id="0" onclick="window.location.href='index.html'">
+                    <th scope="row">1</th>
+                    <td>Александр</td>
+                    <td>Давайте созвонимся в дискорд?</td>
                 </tr>
 
                 </tbody>
