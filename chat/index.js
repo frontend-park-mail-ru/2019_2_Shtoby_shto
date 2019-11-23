@@ -2,9 +2,6 @@ import socket from './WS.js';
 
 let last_msg = "";
 socket.onmessage = function(event) {
-  console.log(event.data);
-  console.log(last_msg);
-
   if (last_msg === event.data) {
     return;
   }
@@ -31,8 +28,9 @@ document.getElementById('send-message').onclick = function() {
   };
   const message = document.getElementsByClassName('chat-frame__input')[0];
 
-  socket.send(message.value);
+  socket.wsSend(message.value);
   last_msg = message.value;
+
   const msg = document.createElement('div');
   msg.innerHTML = `<div class="container answer">
     <img src="" alt="Avatar" class="chat-frame__answer-avatar">
