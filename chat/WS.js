@@ -11,7 +11,7 @@ socket.wsSend = function(data) {
     }, 100);
   } else {
     socket.send(data);
-    console.log("send " + data);
+    console.log('send ' + data);
   }
 };
 

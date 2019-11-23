@@ -1,6 +1,6 @@
 import socket from './WS.js';
 
-//socket.wsSend("data");
+// socket.wsSend("data");
 socket.onmessage = function(event) {
   const options ={
     hour: 'numeric',
@@ -17,14 +17,20 @@ socket.onmessage = function(event) {
   inputField.before(msg);
 };
 
-export function sendMessage() {
+document.getElementById('send-message').onclick = function() {
+  const options ={
+    hour: 'numeric',
+    minute: 'numeric',
+  };
   const message = document.getElementsByClassName('chat-frame__input')[0];
   socket.send(message.value);
   const msg = document.createElement('div');
   msg.innerHTML = `<div class="container answer">
     <img src="" alt="Avatar" class="chat-frame__answer-avatar">
     <p>${message.value}</p>
-    <span class="chat-frame__answer-time">11:05</span>
-</div>`;
+    <span class="chat-frame__answer-time">
+    ${new Date().toLocaleString(options)}
+    </span>
+    </div>`;
   message.before(msg);
-}
+};
