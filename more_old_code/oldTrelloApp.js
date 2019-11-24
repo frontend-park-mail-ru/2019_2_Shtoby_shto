@@ -14,6 +14,8 @@ import makeGlobalStorage from './storage/makeGlobalStore';
 import logger from './middlewares/logger';
 import thunkDispatcher from './middlewares/thunkDispatcher';
 
+import StoreSaver from './StoreSaver';
+
 import * as user from './actions/User';
 
 import './style.css';

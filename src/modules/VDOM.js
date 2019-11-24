@@ -5,7 +5,7 @@ export default class VDOM {
 
 	createComponentNode(vnode) {
 		vnode._instance = new vnode.tag(vnode.attrs, vnode.children, this);
-		vnode._instance.didCreate();
+		// vnode._instance.didCreate();
 		
 		const node = this.create(vnode._instance.render());
 
@@ -213,9 +213,13 @@ export default class VDOM {
 				this.update(node.childNodes[i], vchild);
 			} else {
 
-				node.insertBefore(this.create(vchild), node.childNodes[i]);
-				node.removeChild(node.childNodes[i+1]);
-				// node.childNodes[i].replaceWith(this.create(vchild));
+				// node.insertBefore(this.create(vchild), node.childNodes[i]);
+				// node.removeChild(node.childNodes[i+1]);
+				if (typeof node.childNodes[i]._vnode.tag === 'function') {
+					node.childNodes[i]._vnode._instance.willUnmount();
+				}
+
+				node.childNodes[i].replaceWith(this.create(vchild));
 				j--;
 			}
 		}

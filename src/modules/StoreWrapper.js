@@ -11,9 +11,12 @@ export default class StoreWrapper {
     );
   }
 
-  getState() {
-    return this.store.getState();
+  get state() { 
+    return this.store.state;
   }
+  // getState() {
+  //   return this.store.getState();
+  // }
 
   setState(state) {
     return this.store.setState(state);

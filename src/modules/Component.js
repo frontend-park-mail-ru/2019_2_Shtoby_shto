@@ -30,7 +30,7 @@ export default class Component {
     
   }
 
-  didCreate() {}
+  // didCreate() {}
 
   didMount() {}
 

@@ -15,13 +15,13 @@ export default class StoreSaver {
   }
 
   startSynchronizing() {
-    let prevState = this.store.getState();
+    let prevState = this.store.state;
 
     try {
       prevState = localStorage.getItem(this.key);
 
       if (!prevState) {
-        this.save(this.store.getState());
+        this.save(this.store.state);
       } else {
         const jsonedState = JSON.parse(prevState);
         this.store.setState(jsonedState);
