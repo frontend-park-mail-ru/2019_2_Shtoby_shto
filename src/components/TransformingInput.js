@@ -80,6 +80,6 @@ export default class TransformingInput extends StateComponent {
     return this;
   }
 
-  // onChange(text) {}
+  onChange(text) {}
   onBlur(text) {}
 }
