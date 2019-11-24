@@ -1,12 +1,21 @@
 .login {
-
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #efefef;
 }
 
 .login__header {
     font-size: 1.5em;
+    margin-bottom: 15px;
 }
 
 .login__form {
     display: flex;
     flex-direction: column;
+}
+
+.form__element {
+    margin-top: 5px;
+    text-align: center;
 }
