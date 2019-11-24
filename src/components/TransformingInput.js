@@ -23,6 +23,15 @@ export default class TransformingInput extends StateComponent {
       }
     });
 
+    this.states['input'].setOnChange((text) => {
+      this.executeOnChange(text);
+      if (this.isinput) {
+        this.toOther();
+        this.isinput = false;
+      }
+    });
+
+
     this.setState('other');
   }
 
@@ -40,6 +49,10 @@ export default class TransformingInput extends StateComponent {
 
   executeOnBlur(text) {
     this.onBlur(text);
+  }
+
+  executeOnChange(text) {
+    this.onChange(text);
   }
 
   toInput() {

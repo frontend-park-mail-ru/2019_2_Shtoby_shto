@@ -7,7 +7,13 @@ export default class Input extends Component {
     this.element.value = ownProps.content || '';
     this.element.onblur = (e) => {
       this.executeOnBlur(e.target.value);
+      this.element.onchange = null;
     };
+
+    this.element.onchange = (e) => {
+      this.executeOnChange(e.target.value);
+    };
+
     // this.element.addEventListener('onblur', (e) => {
     //   this.executeOnFocusOut(e.target.value);
     // });
@@ -28,19 +34,19 @@ export default class Input extends Component {
     return this;
   }
 
-  // setOnChange(fun) {
-  //   this.onChange = fun;
+  setOnChange(fun) {
+    this.onChange = fun;
 
-  //   return this;
-  // }
+    return this;
+  }
 
   executeOnBlur(text) {
     this.onBlur(text);
   }
 
-  // executeOnChange(text) {
-  //   this.onChange(text);
-  // }
+  executeOnChange(text) {
+    this.onChange(text);
+  }
 
   clear() {
     this.element.value = '';
