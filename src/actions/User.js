@@ -22,29 +22,6 @@ function initUser(userModel) {
   };
 }
 
-export function generateAvatar(name) {
-  let hash = 0;
-  let color = '#';
-  let i;
-  let value;
-
-  if (!name) {
-    return color + '333333';
-  }
-
-  const strLength = name.length;
-
-  for (i = 0; i < strLength; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  for (i = 0; i < 3; i++) {
-    value = (hash >> (i * 8)) & 0xFF;
-    color += ('00' + value.toString(16)).substr(-2);
-  }
-
-  return color;
-}
 
 // export function getUser() {
 //   return function(dispatch) {
@@ -111,14 +88,14 @@ export function register(loginVal, password) {
 
 export function logout() {
   return function(dispatch) {
-    userApi.logout()
-        .then(() => {
+    // userApi.logout()
+        // .then(() => {
           dispatch(ui.reset());
           dispatch(board.clearStore());
           dispatch({
             type: 'LOGGED_OUT',
           });
-        });
+        // });
   };
 }
 

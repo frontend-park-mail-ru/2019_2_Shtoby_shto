@@ -25,8 +25,9 @@ export default class GroupDisplayer extends Component {
     this.addChild(new Component({classes: ['group__container']})
         .addChild(new GroupPlus().setOnBlur((text) => {
           if (text) dispatch(group.createGroup(text));
-        })).setOnBlur((text) => {
-          if (text) dispatch(group.createGroup(text));
-        }));
+        })))
+        // .setOnBlur((text) => {
+          // if (text) dispatch(group.createGroup(text));
+        // }));
   }
 }
