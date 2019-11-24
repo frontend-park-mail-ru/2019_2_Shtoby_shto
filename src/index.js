@@ -14,4 +14,11 @@ const store = makeGlobalStorage(logger, thunkDispatcher);
 const synchronizer = new StoreSaver(store, 'shtoby');
 synchronizer.startSynchronizing()
 
-AppVDOM.render({tag: App, attrs: {store, count: 0}}, root)
+const appVdom = {tag: App, attrs: {store}};
+const appNode = AppVDOM.render(appVdom, root)
+
+store.subscribe(() => {
+  AppVDOM.update(appNode, appVdom);
+});
+
+console.log(store.state);

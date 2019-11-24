@@ -1,0 +1,12 @@
+.login {
+
+}
+
+.login__header {
+    font-size: 1.5em;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+}

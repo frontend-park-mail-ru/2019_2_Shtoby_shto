@@ -107,6 +107,8 @@ export default class VDOM {
 		const node = this.create(vnode);
 		this.entry.replaceWith(node);
 		this.entry = node;
+
+		return node;
 	}
 
 	attrEqual(lhs, rhs) {

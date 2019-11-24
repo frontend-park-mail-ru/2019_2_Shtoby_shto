@@ -6,6 +6,8 @@ import LoginPanel from './LoginPanel';
 
 export default class BoardWithLanding extends Component {
   render() {
+    const store = this.attrs.store;
+
     return {
       tag: 'div',
       attrs: {
@@ -15,9 +17,10 @@ export default class BoardWithLanding extends Component {
         {
           tag: Modal,
           attrs: {
-            shown: this.attrs.store.state.user.loggedIn,
+            shown: store.state.user.loggedIn ? false : true,
             content: {
-              tag: LoginPanel
+              tag: LoginPanel,
+              attrs: { store },
             }
           }
         },
