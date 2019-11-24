@@ -29,6 +29,15 @@ export default class ProfileView extends Component {
     username.value = name;
   }
 
+  setGeneratedAvatar(name) {
+    const letter = name.substr(0, 2);
+    const backgroundColor = userActions.generateAvatar(name);
+    const elementAvatar = document.getElementById('avatar');
+
+    elementAvatar.innerHTML = letter;
+    elementAvatar.style.backgroundColor = backgroundColor;
+  }
+
   updateUser(login) {
     this.dispatch(userActions.updateLogin(this.userId, login));
   }
@@ -38,6 +47,7 @@ export default class ProfileView extends Component {
     this.userId = state.user.id;
 
     this.updateLoginField(this.userName);
+    this.setGeneratedAvatar(this.userName);
 
     this.subscribe((state) => {
       return {login: state.user.login};
