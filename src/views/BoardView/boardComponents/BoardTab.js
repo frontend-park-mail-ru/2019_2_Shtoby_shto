@@ -32,6 +32,10 @@ export default class BoardTab extends DNDComponent {
       if (text) {
         ownProps.dispatch(boardActions.updateBoard(board.id, text));
       }
+    }).setOnChange((text) => {
+      if (text) {
+        ownProps.dispatch(boardActions.updateBoard(board.id, text));
+      }
     });
 
     this.boardName.states['other']

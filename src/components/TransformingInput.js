@@ -70,9 +70,9 @@ export default class TransformingInput extends StateComponent {
     }
   }
 
-  // setOnChange(fun) {
-  //   this.onChange = fun;
-  // }
+  setOnChange(fun) {
+    this.onChange = fun;
+  }
 
   setOnBlur(fun) {
     this.onBlur = fun;
