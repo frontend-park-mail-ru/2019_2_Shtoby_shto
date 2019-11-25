@@ -108,8 +108,13 @@ export function downloadAttachment(cardId) {
 }
 
 export function uploadAttachment(cardId, file) {
-  return function() {
-    boardApi.uploadFile(cardId, file);
+  return function(dispatch) {
+    boardApi.uploadFile(cardId, file)
+      .then(() => {
+        boardApi.getCard(cardId).then((res) => {
+          dispatch(updateCard(cardId, res))
+        })
+      })
   }
 }
 

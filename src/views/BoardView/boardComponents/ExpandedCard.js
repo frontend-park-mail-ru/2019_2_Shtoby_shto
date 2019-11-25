@@ -218,7 +218,7 @@ class AttachmentArea extends Component {
         .addChild(new Component({
         tag: 'img',
         attrs: {'src': require('./file.png')},
-        style: {'width': '100%'},
+        style: {'height': '100%'},
       }))
 
       this.addChild(downloadButton);

@@ -378,6 +378,10 @@ html, body {
 .download__button {
     margin: 0px;
     width: 50%;
+    /* height: 15px; */
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
 }
 
 .expanded__card__tags {
