@@ -334,6 +334,13 @@ html, body {
     height: 50%;
 }
 
+.card__download__button {
+    height: 50%;
+    left: 17%;
+    bottom: 5%;
+    position: absolute;
+}
+
 .color__picker {
     border-bottom: none;
     height: 35px;
