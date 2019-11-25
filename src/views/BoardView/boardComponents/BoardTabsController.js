@@ -14,6 +14,8 @@ export default class BoardTabsController extends Component {
 
     this.getChild('plus').setOnBlur((text) => {
       if (text) this.dispatch(board.create(text));
+    }).setOnChange((text) => {
+      if (text) this.dispatch(board.create(text));
     });
 
     this.selectedIndex = undefined;

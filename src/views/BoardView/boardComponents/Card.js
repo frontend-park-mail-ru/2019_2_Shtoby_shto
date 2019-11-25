@@ -12,15 +12,55 @@ const pen = require('./pen.png');
 
 import UserDisplayer from './UserDisplayer';
 
+class Tag extends Component {
+  constructor(tag) {
+    super({classes: ['tag', 'tooltip'], style: {'background-color': tag.color}});
+
+    this.addChild(new Component({
+      tag: 'span', classes: ['tooltiptext'],
+      content: () => tag.text,
+    }));
+
+
+    this.tag = tag;
+  }
+
+  generateContent() {
+    return ' ';
+  }
+}
+
+class TagContainer extends Component {
+  constructor(tags) {
+    super({classes: ['tags__container']});
+
+    tags.forEach((tag) => {
+      this.addChild(new Tag(tag));
+    })
+  }
+}
+
+
 export default class Card extends DNDComponent {
   constructor(card, dispatch) {
+    // console.log(card);
+
     super({classes: ['board__card']});
 
     this.addChild(new TransformingInput(
         new Component({
           classes: ['card__header'],
+          // content: card.caption,
+        })
+          .addChild(new TagContainer(card.tags))
+        //   .addChild(new Component({
+        //   classes: ['card__tags'],
+        //   content: 'ass fuck',
+        // }))
+          .addChild(new Component({
+          classes: ['card__caption'],
           content: card.caption,
-        }),
+        })),
         {
           classes: ['card__header'],
           content: card.caption,
@@ -47,6 +87,28 @@ export default class Card extends DNDComponent {
           };
         })
     );
+
+    if (card.file) {
+
+      const downloadButton = new Component({
+        tag: 'button'
+      });
+
+      downloadButton.element.onclick = () => {
+        dispatch(cards.downloadAttachment(card.id));
+      }
+
+      downloadButton.addChild(new Component({
+        tag: 'img',
+        classes: ['card__download__button'],
+        attrs: {
+          src: require('./file.png'),
+        }
+      }));
+
+      this.addChild(downloadButton);
+    }
+    
 
     // this.addChild(
     const userDisplayer = dnd(new UserDisplayer({

@@ -3,4 +3,5 @@
     padding: 50px;
     text-align: center;
     flex: 50%;
+    width: min-content;
 }

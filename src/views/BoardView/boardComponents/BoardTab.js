@@ -32,6 +32,10 @@ export default class BoardTab extends DNDComponent {
       if (text) {
         ownProps.dispatch(boardActions.updateBoard(board.id, text));
       }
+    }).setOnChange((text) => {
+      if (text) {
+        ownProps.dispatch(boardActions.updateBoard(board.id, text));
+      }
     });
 
     this.boardName.states['other']
@@ -48,7 +52,7 @@ export default class BoardTab extends DNDComponent {
           classes: ['tab__user__displayer'],
           avatarClasses: ['tab__avatar'],
         },
-        ...board.users,
+        ...(board.users ? board.users : []),
     );
 
     // this.addChild(this.avatars);

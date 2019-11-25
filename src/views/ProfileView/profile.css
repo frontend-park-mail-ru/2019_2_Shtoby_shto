@@ -357,3 +357,15 @@ input.inputLine {
     display: table;
     clear: both;
 }
+
+.user-avatar {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    line-height: 90px;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 10px;
+    color: white;
+    font-size: 60px;
+}

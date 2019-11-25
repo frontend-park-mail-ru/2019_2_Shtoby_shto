@@ -22,6 +22,7 @@ function initUser(userModel) {
   };
 }
 
+
 // export function getUser() {
 //   return function(dispatch) {
 //     if (!fake) {
@@ -50,12 +51,13 @@ export function login(login, password) {
             // dispatch(getUser());
             dispatch(initUser(userModel));
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
             dispatch(loginFailed());
           });
     } else {
       setTimeout(() => {
-        dispatch(getUser());
+        // dispatch(initUser(fakeUser));
       }, 1000);
     }
   };
@@ -87,14 +89,14 @@ export function register(loginVal, password) {
 
 export function logout() {
   return function(dispatch) {
-    userApi.logout()
-        .then(() => {
-          dispatch(ui.reset());
-          dispatch(board.clearStore());
-          dispatch({
-            type: 'LOGGED_OUT',
-          });
-        });
+    // userApi.logout()
+    // .then(() => {
+    dispatch(ui.reset());
+    dispatch(board.clearStore());
+    dispatch({
+      type: 'LOGGED_OUT',
+    });
+    // });
   };
 }
 

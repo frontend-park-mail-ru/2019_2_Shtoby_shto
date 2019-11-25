@@ -16,6 +16,7 @@ module.exports = {
       index: 'index.html',
     },
   },
+  devtool: 'source-map',
   mode: 'development',
   module: {
     rules: [
@@ -45,14 +46,14 @@ module.exports = {
             },
           }],
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true,
-        },
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      //   options: {
+      //     fix: true,
+      //   },
+      // },
     ],
   },
   plugins: [
