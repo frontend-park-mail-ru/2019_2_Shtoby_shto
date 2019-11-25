@@ -186,6 +186,7 @@ html, body {
 .group__displayer {
     display: flex;
     flex-direction: row;
+    overflow: scroll;
     height: 100%;
 }
 
@@ -193,6 +194,7 @@ html, body {
     /* width: 250px; */
     border-right: dashed;
     background-color: #ededed22;
+    /* overflow: scroll; */
 }
 
 .card__group {
@@ -205,6 +207,7 @@ html, body {
     margin: 3px;
     padding: 5px;
 
+    overflow: hidden;
     border-radius: 3px;
 
     /* background-color: #ededed;
@@ -285,6 +288,10 @@ html, body {
 }
 
 .single__board {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
     width: 100%;
 }
 
