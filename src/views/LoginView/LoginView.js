@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 
-const template = require('./loginView.pug');
+const template = require('./loginViewold.pug');
 import './login.css';
 // import './vidymgtu002.jpg';
 
@@ -22,10 +22,10 @@ export default class LoginView extends Component {
   }
 
   setup() {
-    this.element.querySelector('.img__btn')
-        .addEventListener('click', () => {
-          this.element.querySelector('.cont').classList.toggle('s--signup');
-        });
+    // this.element.querySelector('.img__btn')
+    //     .addEventListener('click', () => {
+    //       this.element.querySelector('.cont').classList.toggle('s--signup');
+    //     });
   }
 
   getMounts() {
