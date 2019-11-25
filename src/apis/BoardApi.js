@@ -87,6 +87,15 @@ export default class BoardApi extends Api {
     });
   }
 
+  downloadFile(cardId) {
+// https://hb.bizmrg.com/photo_storage/96613a65-2155-44cd-bbfe-32ea5d9d9f02
+    // console.log('downloading now');
+    // return this.download(`/cards/${cardId}/file`);
+  }
+
+  uploadFile(cardId, blob) {
+    return this.upload(`/cards/${cardId}/file/attach`, blob);
+  }
 
   detachUserFromCard(userId, cardId) {
     return this.post('/cards/user/detach', {

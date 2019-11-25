@@ -88,6 +88,28 @@ export default class Card extends DNDComponent {
         })
     );
 
+    if (card.file) {
+
+      const downloadButton = new Component({
+        tag: 'button'
+      });
+
+      downloadButton.element.onclick = () => {
+        dispatch(cards.downloadAttachment(card.id));
+      }
+
+      downloadButton.addChild(new Component({
+        tag: 'img',
+        classes: ['card__download__button'],
+        attrs: {
+          src: require('./file.png'),
+        }
+      }));
+
+      this.addChild(downloadButton);
+    }
+    
+
     // this.addChild(
     const userDisplayer = dnd(new UserDisplayer({
       classes: ['card__user__displayer'],

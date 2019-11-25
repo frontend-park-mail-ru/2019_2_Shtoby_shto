@@ -10,7 +10,6 @@ import UserDisplayer from './UserDisplayer';
 const defaultAva = require('./userAva.png');
 
 import UserApi from '../../../apis/UserApi';
-import Input from '../../../components/Input';
 import invertColor from '../../../modules/Utils/invertColor';
 const userApi = new UserApi();
 
@@ -58,8 +57,6 @@ class Comment extends Component {
 class CommentSection extends Component {
   constructor(comments, dispatch, cardId, userId, userName, getState) {
     super({classes: ['comment_section']});
-
-    console.log(getState());
 
     const textarea = new Component({
       classes: ['comment__content'],
@@ -202,6 +199,59 @@ class TagsSection extends Component {
   }
 }
 
+class AttachmentArea extends Component {
+  constructor(card, dispatch) {
+    super({classes: ['attachment__area']});
+
+    if (card.file) {
+      const downloadButton = new Component({
+        tag: 'button',
+        classes: ['download__button'],
+      });
+
+      downloadButton.element.onclick = () => {
+        dispatch(cards.downloadAttachment(card.id));
+      };
+
+      downloadButton
+      // this.addChild(new Button({classes: ['download_button']})
+        .addChild(new Component({
+        tag: 'img',
+        attrs: {'src': require('./file.png')},
+        style: {'height': '100%'},
+      }))
+
+      this.addChild(downloadButton);
+    }
+
+    const fileInput = new Component({
+      tag: 'input',
+      classes: ['attachment__file'],
+      attrs: {
+        type: 'file'
+      }
+    });
+
+    const uploadButton = new Component({
+      tag: 'button',
+      classes: ['upload__button'],
+      content: 'прикрепить файл'
+    })
+
+    uploadButton.element.onclick = (e) => {
+      const file = fileInput.element.files[0];
+      dispatch(cards.uploadAttachment(card.id, file));
+    }
+
+    const uploadContainer = new Component({
+      classes: ['upload__container'],
+    });
+
+    this.addChild(uploadContainer
+      .addChild(fileInput)
+      .addChild(uploadButton))
+  }
+}
 
 export default class ExpandedCard extends Component {
   constructor(card, dispatch, userId, userName, getState) {
@@ -222,7 +272,8 @@ export default class ExpandedCard extends Component {
       <div class='expanded__middle'>
         <textarea></textarea>
         <tags></tags>
-      </div>
+        </div>
+      <attachment></attachment>
       <users></users>
       <comments></comments>
     `;
@@ -235,6 +286,7 @@ export default class ExpandedCard extends Component {
       users: this.element.getElementsByTagName('users')[0],
       text: this.element.getElementsByTagName('textarea')[0],
       comments: this.element.getElementsByTagName('comments')[0],
+      attachment: this.element.getElementsByTagName('attachment')[0],
     };
   }
 
@@ -283,6 +335,8 @@ export default class ExpandedCard extends Component {
     }), 'text'
     );
 
+    this.addChild(new AttachmentArea(card, this.dispatch), 'attachment');
+
     this.addChild(new CommentSection(
         card.comments,
         (action) => {
@@ -294,6 +348,6 @@ export default class ExpandedCard extends Component {
         () => {
           return this.getState();
         }
-    ));
+    ), 'comments');
   }
 }
