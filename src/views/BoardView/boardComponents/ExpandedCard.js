@@ -10,6 +10,8 @@ import UserDisplayer from './UserDisplayer';
 const defaultAva = require('./userAva.png');
 
 import UserApi from '../../../apis/UserApi';
+import Input from '../../../components/Input';
+import invertColor from '../../../modules/Utils/invertColor';
 const userApi = new UserApi();
 
 class Comment extends Component {
@@ -95,6 +97,111 @@ class CommentSection extends Component {
   }
 }
 
+class ExpandedTag extends Component {
+  constructor(cardId, tag, dispatch) {
+    // super({classes: ['expanded__tag'], content: tag.text, style: {
+    //   'background-color': tag.color,
+    // }});
+    super({classes: ['expanded__tag']});
+
+    this.addChild(new Component({
+      classes: ['expanded__tag__content'],
+      content: tag.text,
+      style: {
+        'background-color': tag.color,
+        'color': invertColor(tag.color),
+      },
+    }));
+
+    const deleter = new Component({
+      classes: ['expanded__tag__deleter'],
+      content: 'X'
+    });
+
+    deleter.element.onclick = () => {
+      dispatch(cards.deleteTag(tag.id, cardId));
+    };
+
+    this.addChild(deleter);
+    
+    this.tag = tag;
+  }
+
+  // generateContent() {
+  //   return `${this.tag.text}`;
+  // }
+}
+
+class TagPlus extends Component {
+  constructor(cardId, dispatch) {
+    // super({tag: 'input', attrs: {type: 'color'}, classes: ['tag__plus']});
+    super({classes: ['tag__plus']});
+
+    // this.addChild(new Component({
+    //   tag: 'input',
+    //   content: 'введите текст',
+    // }))
+    const colorPicker = new Component({
+        tag: 'input',
+        attrs: {type: 'color'},
+        classes: ['color__picker']
+        // style: {'border-bottom': 'none'},
+    });
+
+    const tagText = new Component({tag: 'input'});
+
+    // this.addChild(tagText);
+
+    const adderContainer = new Component({classes: ['adder__container']});
+
+    
+    // const addButton = new Button();
+    const addButton = new Component({
+      tag: 'button',
+      content: '+',
+      classes: ['plus__tag'],
+    });
+
+    addButton.element.onclick = () => {
+      const color = colorPicker.element.value;
+      const text = tagText.element.value;
+
+      if (text && color != '#000000') {
+        dispatch(cards.addTag(cardId, text, color));
+      }
+    }
+
+    adderContainer.addChild(tagText);
+    adderContainer.addChild(colorPicker);
+
+    this.addChild(adderContainer);
+
+    this.addChild(addButton);
+    // this.addChild(new Input());
+      // .setOnChange((text) => {
+      //   const color = colorPicker.element.value;
+      //   if (text) {
+      //     dispatch(cards.addTag(cardId, text, color));
+      //   }
+      // }));
+
+    // this.addChild(colorPicker);
+    }
+
+}
+
+class TagsSection extends Component {
+  constructor(tags, cardId, dispatch) {
+    super({classes: ['expanded__card__tags']});
+
+    tags.forEach((tag) => {
+      this.addChild(new ExpandedTag(cardId, tag, dispatch));
+    });
+
+    this.addChild(new TagPlus(cardId, dispatch));
+  }
+}
+
 
 export default class ExpandedCard extends Component {
   constructor(card, dispatch, userId, userName, getState) {
@@ -112,7 +219,10 @@ export default class ExpandedCard extends Component {
   generateContent() {
     return `
       <cheader></cheader>
-      <textarea></textarea>
+      <div class='expanded__middle'>
+        <textarea></textarea>
+        <tags></tags>
+      </div>
       <users></users>
       <comments></comments>
     `;
@@ -121,6 +231,7 @@ export default class ExpandedCard extends Component {
   getMounts() {
     return {
       header: this.element.getElementsByTagName('cheader')[0],
+      tags: this.element.getElementsByTagName('tags')[0],
       users: this.element.getElementsByTagName('users')[0],
       text: this.element.getElementsByTagName('textarea')[0],
       comments: this.element.getElementsByTagName('comments')[0],
@@ -144,6 +255,8 @@ export default class ExpandedCard extends Component {
       }
     }), 'header'
     );
+
+    this.addChild(new TagsSection(card.tags, card.id, this.dispatch), 'tags');
 
     this.addChild(
         new UserDisplayer({

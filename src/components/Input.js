@@ -4,6 +4,8 @@ export default class Input extends Component {
   constructor(ownProps) {
     super({tag: 'input', ...ownProps});
 
+    ownProps = ownProps || {};
+
     this.element.value = ownProps.content || '';
     this.element.onblur = (e) => {
       this.executeOnBlur(e.target.value);
@@ -61,5 +63,5 @@ export default class Input extends Component {
   }
 
   onBlur(text) {}
-  // onChange(text) {}
+  onChange(text) {}
 }

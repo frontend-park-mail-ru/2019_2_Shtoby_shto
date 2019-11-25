@@ -12,11 +12,6 @@ const userApi = new UserApi();
 export default class UserAva extends DNDComponent {
   constructor(classes, imgpath, userId, cardId) {
     super({classes: ['tooltip']});
-    // super({
-    //   tag: 'img',
-    //   classes: [...classes, 'user__avatar', 'tooltip'],
-    //   attrs: {src: imgpath || defaultAva},
-    // });
 
     this.username = 'loading...';
 

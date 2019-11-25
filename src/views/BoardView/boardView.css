@@ -215,7 +215,7 @@ html, body {
     /* border-left: dashed; */
 
     /* /* width: 200px; */
-    background: linear-gradient(90deg, #44ff8e, transparent);
+    background: linear-gradient(90deg, #00b7ff, transparent);
 }
 
 .group__header {
@@ -319,15 +319,69 @@ html, body {
 }
 
 .expanded__card {
+    position: relative;
+}
 
+.expanded__middle {
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .card__edit {
+    position: absolute;
+    left: 3px;
+    bottom: 5%;
     height: 50%;
+}
+
+.color__picker {
+    border-bottom: none;
+    height: 35px;
+    border-radius: 5px;
 }
 
 .expanded__card__header {
 
+}
+
+.expanded__tag {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.plus__tag {
+    margin: 0px;
+    margin-left: 25%;
+}
+
+.adder__container {
+    display: flex;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.expanded__card__tags {
+    /* position: absolute;
+    right: 5%;
+    top: 5%; */
+    /* width: 20%; */
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.expanded__tag__deleter {
+
+}
+
+.expanded__tag__deleter:hover{
+    cursor: pointer;   
+}
+
+.expanded__tag__content {
+    width: 100%;
+    border-radius: 15px;
+    height: 25px;
 }
 
 .expaned__card__user__displayer {
@@ -410,6 +464,13 @@ html, body {
 }
 
 .card__header {
+    position: absolute;
+    /* left: 50%; */
+    top: 0%;
+    width: 90%;
+}
+
+.card__caption {
     text-align: center;
 }
 
@@ -422,6 +483,17 @@ html, body {
     font-size: 80%;
 
     border: 1px dotted;
+}
+
+.tags__container {
+    height: 20px;
+    display: flex;
+    margin-left: 50%;
+}
+
+.tag {
+    height: 100%;
+    flex-grow: 1;
 }
 
 .board__card__container:hover {

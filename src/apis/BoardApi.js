@@ -65,6 +65,21 @@ export default class BoardApi extends Api {
     });
   }
 
+  addTag(cardId, text, color) {
+    return this.post(`/card/${cardId}/tags`, {
+      text: text,
+      color: color,
+    });
+  }
+
+  deleteTag(tagId) {
+    return this.del(`/tags/${tagId}`);
+  }
+
+  getCard(cardId) {
+    return this.get(`/cards/${cardId}`);
+  }
+
   attachUserToCard(userId, cardId) {
     return this.post('/cards/user/attach', {
       user_id: userId,

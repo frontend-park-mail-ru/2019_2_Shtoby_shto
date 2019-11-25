@@ -78,6 +78,25 @@ export function addComment(cardId, comment) {
   };
 }
 
+export function addTag(cardId, text, color) {
+  return function(dispatch) {
+    boardApi.addTag(cardId, text, color).then(() => {
+      boardApi.getCard(cardId)
+        .then((res) => {dispatch(updateCard(cardId, res))});
+    })
+  }
+}
+
+export function deleteTag(tagId, cardId) {
+  return function(dispatch) {
+    boardApi.deleteTag(tagId).then(() => {
+      boardApi.getCard(cardId)
+        .then((res) => {dispatch(updateCard(cardId, res))});
+    })
+  }
+}
+
+
 export function deleteComment(id) {
   return function(dispatch) {
     boardApi.deleteComment(id)
