@@ -1,5 +1,15 @@
 .board__view {
+    position: relative;
+    /* background-image: url(./background.png); */
     display: flex;
+    background-color: #00b7ff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='540' height='450' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='.1'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/svg%3E");
+    height:97%;
+    /* background: url(images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
 }
 
 html, body {
@@ -10,6 +20,7 @@ html, body {
 .board__tab__controller {
     /* width: 20%; */
     border: 1px solid #ccc;
+    background-color: #ededed;
 }
 
 .board__tabs {
@@ -20,7 +31,7 @@ html, body {
 .board__tab {
     display: flex;
     position: relative;
-    height: 75px;
+    height: 110px;
     width: 150px;
     /* width: 100%; */
     border: 1px solid #ccc;
@@ -30,12 +41,85 @@ html, body {
     /* background-color: azure; */
 }
 
+.board__tab:hover {
+    cursor: pointer;
+}
+
+.board__tab.selected {
+    background-color: bisque;
+}
+
+.group__name:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.tab__avatar {
+
+}
+
+.card__avatar {
+    width: 35px;
+}
+
+.user__display {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+.card__modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal__content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.modal__close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user__panel.user__display {
+    justify-content: flex-start;
+}
+
+.user__display.tab__user__displayer {
+    height: 50%;
+}
+
 .tab__name__container {
     position: absolute;
     width: 50%;
     height: 25%;
     left: 25%;
-    /* top: 50%; */
+    top: 10%;
     /* top: -25%; */
     display: flex;
     justify-content: center;
@@ -45,7 +129,7 @@ html, body {
 
 .tab__name__container:hover,
 .tab__name__container:focus {
-    cursor: pointer;
+    color: blue;
 }
 
 .tab__name {
@@ -72,15 +156,18 @@ html, body {
 }
 
 .tab__dropzone.lower {
-    top: 0;
+    top: 50%;
 }
 
 .tab__dropzone.upper {
-    top: 50%;
+    top: 0%;
 }
 
 .board__plus {
     text-align: center;
+    background: hsla(0,0%,100%,.40);
+    border: 2px dotted gray;
+    height: 40px;
 }
 
 .board__plus:hover,
@@ -99,40 +186,97 @@ html, body {
 .group__displayer {
     display: flex;
     flex-direction: row;
+    overflow: scroll;
+    height: 100%;
+}
+
+.group__container {
+    /* width: 250px; */
+    border-right: dashed;
+    background-color: #ededed22;
+    /* overflow: scroll; */
 }
 
 .card__group {
+    width: 275px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
+
+    border: solid gray 2px;
+    margin: 3px;
+    padding: 5px;
+
+    overflow: hidden;
+    border-radius: 3px;
+
+    /* background-color: #ededed;
+    /* height: 100%; */
+    /* border-left: dashed; */
+
+    /* /* width: 200px; */
+    background: linear-gradient(90deg, #00b7ff, transparent);
 }
 
 .group__header {
-    margin-top: 10px;
+    border: inset;
+    text-align: center;
+    /* width: 90%; */
+    width: 250px;
 }
 
 .group__plus {
+    padding: 5px 10px;
+    background: hsla(0,0%,100%,.40);
+    border: 2px dotted gray;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.group__plus:hover {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .group__input {
 }
 
+.user__avatar__container {
 
-.card__plus {
+}
 
+.board__tab__avatars {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    width: 60%;
+    height: 40%;
+}
+
+.user__avatar {
+    max-width: 100%;
+    max-height: 100%;
+
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+}
+
+.card__plus:hover {
+    cursor: pointer;
 }
 
 .card__container {
-
+    width: 100%;
 }
 
 .board__card__container {
+    display: flex;
+    align-items: center;
+    text-align: center;
     width: 150px;
-}
-
-.board__view {
-    position: relative;
 }
 
 .trash {
@@ -143,23 +287,251 @@ html, body {
     height: 100px;
 }
 
+.single__board {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.user__panel {
+    height: 5%;
+    background: #ededed;
+    border-bottom: dashed;
+}
+
 .board__card {
     height: 75px;
-    width: 175px;
+    width: 260px;
+    position: relative;
 
-    border: 3px solid gray;
     background: white;
     padding: 5px 10px;
 
     margin-top: 10px;
-    margin-left: 5px;
+    /* margin-left: 5px; */
 
+    border-radius: 5px;
+
+    /* transition: 0.4s box-shadow ease ; */
+    transition: 0.3s border-radius ease, 0.4s box-shadow ease ;
+}
+
+.expanded__card {
+    position: relative;
+}
+
+.expanded__middle {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.card__edit {
+    position: absolute;
+    left: 3px;
+    bottom: 5%;
+    height: 50%;
+}
+
+.card__download__button {
+    height: 50%;
+    left: 17%;
+    bottom: 5%;
+    position: absolute;
+}
+
+.color__picker {
+    border-bottom: none;
+    height: 35px;
     border-radius: 5px;
 }
 
+.expanded__card__header {
+
+}
+
+.expanded__tag {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.plus__tag {
+    margin: 0px;
+    margin-left: 25%;
+}
+
+.attachment__area {
+    display: flex;
+}
+
+.upload__button {
+    margin: 0px;
+}
+
+.adder__container {
+    display: flex;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.download__button {
+    margin: 0px;
+    width: 50%;
+    /* height: 15px; */
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
+}
+
+.expanded__card__tags {
+    /* position: absolute;
+    right: 5%;
+    top: 5%; */
+    /* width: 20%; */
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.expanded__tag__deleter {
+
+}
+
+.expanded__tag__deleter:hover{
+    cursor: pointer;   
+}
+
+.expanded__tag__content {
+    width: 100%;
+    border-radius: 15px;
+    height: 25px;
+}
+
+.expaned__card__user__displayer {
+
+}
+
+.expanded__card__text {
+    width: 60%;
+    border: inset 2px;
+    margin: 7px;
+    padding: 5px;
+}
+
+.comment__section {
+
+}
+
+.comment__container {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.comment__avatar {
+    width: 50px;
+}
+
+.comment__boardview {
+    margin: 2px;
+}
+
+.comment__username {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.comment__content {
+    width: 45%;
+    margin: 5px;
+}
+
+.comment__deleter {
+    width: 10%;
+    margin: 0;
+}
+
+.comment__button {
+    margin: auto;
+    margin-left: 5px;
+}
+
+.comment {
+    display: flex;
+    margin-top: 7px;
+}
+
+
+.card__avatars {
+
+}
+
+.card__user__displayer {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    height: 60%;
+    width: 50%;
+    padding: 5px;
+}
+
+.card__avatar {
+
+}
+
+
+.board__card:hover {
+    box-shadow: 4px 4px 4px 1px;
+    border-radius: 9px;
+}
+
+.card__header {
+    position: absolute;
+    /* left: 50%; */
+    top: 0%;
+    width: 90%;
+}
+
+.card__caption {
+    text-align: center;
+}
+
+.card__content {
+    margin-top: 2px;
+    margin-left: 1px;
+    margin-right: 1px;
+
+    padding: 3px;
+    font-size: 80%;
+
+    border: 1px dotted;
+}
+
+.tags__container {
+    height: 20px;
+    display: flex;
+    margin-left: 50%;
+}
+
+.tag {
+    height: 100%;
+    flex-grow: 1;
+}
+
+.board__card__container:hover {
+    cursor: pointer;
+}
+
 .card__plus {
-    background: gray;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: gray;    */
+    background: hsla(0,0%,100%,.40);
     border: 2px dotted gray;
+    height: 40px;
 }
 
 /* .board__tabs {
@@ -290,7 +662,7 @@ html, body {
 }
 
 .board__card__adder {
-    background: gray;   
+    background: gray;
     height: 45px;
     border: 2px dotted gray;
 }
@@ -329,3 +701,33 @@ html, body {
     text-decoration: none;
     cursor: pointer;
 } */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

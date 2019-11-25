@@ -15,8 +15,8 @@ export default class DNDComponent extends Component {
     dnd(this, dndProps.onDrag, dndProps.onDrop, dndProps.onPlace);
   }
 
-  makeDraggable(dragFun, dropFun) {
-    this.dndwrapper.makeDraggable(dragFun, dropFun);
+  makeDraggable(dragFun, dropFun, cancelFun) {
+    this.dndwrapper.makeDraggable(dragFun, dropFun, cancelFun);
 
     return this;
   }
@@ -35,6 +35,12 @@ export default class DNDComponent extends Component {
 
   setOnDrop(fun) {
     this.makeDraggable(null, fun);
+
+    return this;
+  }
+
+  setOnCancel(fun) {
+    this.makeDraggable(null, null, fun);
 
     return this;
   }

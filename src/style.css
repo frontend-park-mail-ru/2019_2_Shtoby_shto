@@ -28,6 +28,7 @@ body {
 
 .row {
     display: flex;
+    flex-wrap: wrap-reverse;
 }
 
 .column {
@@ -88,4 +89,14 @@ input {
     font-size: 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     text-align: center;
+}
+
+.support-chat{
+    position: absolute; /* Абсолютное позиционирование */
+    right: 10px; /* Положение левого края */
+    bottom: 10px; /* Положение верхнего края */
+    width: 300px; /* Ширина слоя */
+    height: 400px;
+    background: #e0e0e0; /* Цвет фона */
+    border: solid 1px #000; /* Параметры рамки */
 }

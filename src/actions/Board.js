@@ -3,12 +3,42 @@ import BoardApi from '../apis/BoardApi';
 import {fakeBoards, makeFakeBoard} from './fakes/fakeBoards';
 import {fake} from './fakes/fake';
 
+import * as uiActions from './UI';
+
 const boardApi = new BoardApi();
 
 function addBoard(boardModel) {
   return {
     type: 'ADD_BOARD',
-    ...boardModel,
+    model: boardModel,
+  };
+}
+
+function fillBoard(boardModel) {
+  return {
+    type: 'FILL_BOARD',
+    model: boardModel,
+  };
+}
+
+export function synchronizeWithBack(boardId) {
+  return function(dispatch) {
+    boardApi.fetchBoard(boardId)
+        .then((model) => {
+          dispatch({
+            type: 'FILL_BOARD',
+            model,
+          });
+        });
+  };
+}
+
+export function getBoard(id) {
+  return function(dispatch) {
+    boardApi.fetchBoard(id)
+        .then((board) => {
+          dispatch(fillBoard(board));
+        });
   };
 }
 
@@ -29,7 +59,8 @@ export function fetchBoards() {
     if (!fake) {
       boardApi.fetchBoards(getState().user.id).then((boards) => {
         boards.forEach((board) => {
-          dispatch(addBoard({...board, cardGroups: board['card_groups']}));
+          // dispatch(addBoard({...board, cardGroups: board['card_groups']}));
+          dispatch(addBoard(board));
         });
       });
     } else {
@@ -41,9 +72,13 @@ export function fetchBoards() {
 }
 
 function trueDeleteBoard(id) {
-  return {
-    type: 'DELETE_BOARD',
-    id: id,
+  return function(dispatch) {
+    dispatch(uiActions.tryDeselect(id));
+
+    dispatch({
+      type: 'DELETE_BOARD',
+      id: id,
+    });
   };
 }
 
@@ -78,18 +113,52 @@ export function updateBoard(id, name) {
 }
 
 export function insertAfter(index, indexAfter) {
-  return {
-    type: 'INSERT_AFTER',
-    which: index,
-    after: indexAfter,
+  return function(dispatch, getState) {
+    if (indexAfter - index !== 1) {
+      dispatch({
+        type: 'INSERT_AFTER',
+        which: index,
+        after: indexAfter,
+      });
+
+      const selectedIndex = getState().ui.selectedIndex;
+
+      if (typeof selectedIndex !== 'undefined') {
+        if (selectedIndex === index) {
+          dispatch(uiActions.selectBoard(indexAfter));
+        } else if (selectedIndex >= indexAfter) {
+          dispatch(uiActions.selectLower());
+        }
+      }
+    }
   };
 }
 
 export function insertBefore(index, indexBefore) {
-  return {
-    type: 'INSERT_BEFORE',
-    which: index,
-    before: indexBefore,
+  console.log(index, indexBefore);
+
+  return function(dispatch, getState) {
+    if (index - indexBefore !== 1) {
+      dispatch({
+        type: 'INSERT_BEFORE',
+        which: index,
+        before: indexBefore,
+      });
+
+      const selectedIndex = getState().ui.selectedIndex;
+
+      if (typeof selectedIndex !== 'undefined') {
+        if (selectedIndex === index) {
+          dispatch(uiActions.selectBoard(indexBefore));
+        } else if (index < selectedIndex) {
+          dispatch(uiActions.selectUpper());
+        } else if (selectedIndex === indexBefore) {
+          dispatch(uiActions.selectUpper());
+        } else if (selectedIndex > indexBefore) {
+          dispatch(uiActions.selectLower());
+        }
+      }
+    };
   };
 }
 
@@ -111,24 +180,6 @@ export function shiftIncluding(index) {
 export function clearStore() {
   return {
     type: 'CLEAR_BOARDS',
-  };
-}
-
-function fillBoard(board) {
-  return {
-    type: 'FILL_BOARD',
-    id: board.id,
-    name: board.name,
-    cardGroups: board['card_groups'],
-  };
-}
-
-export function getBoard(id) {
-  return function(dispatch) {
-    boardApi.fetchBoard(id)
-        .then((board) => {
-          dispatch(fillBoard(board));
-        });
   };
 }
 

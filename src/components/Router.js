@@ -3,7 +3,7 @@ import StateComponent from './StateComponent';
 
 export default class Router extends Component {
   constructor(defaultRoute) {
-    super();
+    super({classes: ['root__router']});
 
     this.history = false;
 
@@ -18,11 +18,10 @@ export default class Router extends Component {
 
   startRouting() {
     this.element.addEventListener('click', (e) => {
-      e.preventDefault();
-
       if (!(e.target instanceof HTMLAnchorElement)) {
         return;
       }
+      e.preventDefault();
 
       const route = e.target.pathname;
       if (this.views[route]) {
@@ -60,21 +59,21 @@ export default class Router extends Component {
   useHistory() {
     this.history = true;
 
-    const historyOpener = () => {
+    window.addEventListener('popstate', () => {
       const currentPath = window.location.pathname;
       this.open(currentPath);
-    };
+    });
 
-    window.addEventListener('popstate', historyOpener);
-
-    const oldOpen = this.open;
+    const oldOpener = this.open.bind(this);
 
     this.open = (route) => {
       if (window.location.pathname !== route) {
-        window.history.pushState(null, '', route);
+        if (!(this.views[route] instanceof Function)) {
+          window.history.pushState(null, '', route);
+        }
       }
 
-      oldOpen.bind(this)(route);
+      oldOpener(route);
     };
 
     return this;

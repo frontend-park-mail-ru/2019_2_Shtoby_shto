@@ -1,6 +1,6 @@
 import Api from '../modules/Api';
 
-const localApiAddr = 'http://localhost';
+const localApiAddr = 'http://localhost:8080';
 const remoteApiAddr = 'https://iamneponyalapi.ru';
 
 const deployVar = process.env.REMOTE_DEPLOY;
@@ -53,23 +53,58 @@ export default class BoardApi extends Api {
     return this.del(`/cards/${id}`);
   }
 
-  updateCard(cardId, newCaption, priority, boardId, cardUserId, cardGroupId) {
-    console.log({
-      caption: newCaption,
-      priority: priority,
-      board_id: boardId,
-      card_user_id: cardUserId,
-      card_group_id: cardGroupId,
-      tasks: [],
-    });
+  updateCard(cardId, update) {
+    return this.put(`/cards/${cardId}`, update);
+  }
 
-    return this.put(`/cards/${cardId}`, {
-      caption: newCaption,
-      priority: priority,
-      board_id: boardId,
-      card_user_id: cardUserId,
-      card_group_id: cardGroupId,
-      tasks: [],
+  addComment(cardId, userId, comment) {
+    return this.post(`/comments`, {
+      user_id: userId,
+      card_id: cardId,
+      text: comment,
     });
+  }
+
+  addTag(cardId, text, color) {
+    return this.post(`/card/${cardId}/tags`, {
+      text: text,
+      color: color,
+    });
+  }
+
+  deleteTag(tagId) {
+    return this.del(`/tags/${tagId}`);
+  }
+
+  getCard(cardId) {
+    return this.get(`/cards/${cardId}`);
+  }
+
+  attachUserToCard(userId, cardId) {
+    return this.post('/cards/user/attach', {
+      user_id: userId,
+      card_id: cardId,
+    });
+  }
+
+  downloadFile(cardId) {
+// https://hb.bizmrg.com/photo_storage/96613a65-2155-44cd-bbfe-32ea5d9d9f02
+    // console.log('downloading now');
+    // return this.download(`/cards/${cardId}/file`);
+  }
+
+  uploadFile(cardId, blob) {
+    return this.upload(`/cards/${cardId}/file/attach`, blob);
+  }
+
+  detachUserFromCard(userId, cardId) {
+    return this.post('/cards/user/detach', {
+      user_id: userId,
+      card_id: cardId,
+    });
+  }
+
+  deleteComment(commentId) {
+    return this.del(`/comments/${commentId}`);
   }
 }

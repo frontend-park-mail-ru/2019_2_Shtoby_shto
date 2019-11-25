@@ -8,8 +8,15 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist/build'),
+    path: path.resolve(__dirname, 'dist'),
   },
+  devServer: {
+    port: 3000,
+    historyApiFallback: {
+      index: 'index.html',
+    },
+  },
+  devtool: 'source-map',
   mode: 'development',
   module: {
     rules: [
@@ -24,7 +31,7 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: {url: false},
+            options: {url: true},
           },
         ],
       },
@@ -39,14 +46,14 @@ module.exports = {
             },
           }],
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true,
-        },
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      //   options: {
+      //     fix: true,
+      //   },
+      // },
     ],
   },
   plugins: [

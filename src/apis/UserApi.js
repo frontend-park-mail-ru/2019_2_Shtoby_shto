@@ -1,6 +1,6 @@
 import Api from '../modules/Api';
 
-const localApiAddr = 'http://localhost';
+const localApiAddr = 'http://localhost:8080';
 const remoteApiAddr = 'https://iamneponyalapi.ru';
 
 const deployVar = process.env.REMOTE_DEPLOY;
@@ -29,6 +29,15 @@ export default class UserApi extends Api {
 
   getUser() {
     return this.get('/users');
+  }
+
+  getSpecificUser(id) {
+    return this.get(`/users/${id}`);
+  }
+
+  update(fields) {
+    console.log(fields);
+    return this.put(`/users`, fields);
   }
 
   logout() {

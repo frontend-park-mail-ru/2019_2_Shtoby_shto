@@ -15,7 +15,7 @@ function trueCreateGroup(groupModel) {
 export function createGroup(name) {
   return function(dispatch, getState) {
     const selectedBoard = getState()['ui']['selectedIndex'];
-    const boardId = getState()['boards'][selectedBoard - 1].id;
+    const boardId = getState()['boards'][selectedBoard].id;
 
     boardApi.createGroup(name, boardId)
         .then((group) => {
@@ -36,13 +36,20 @@ export function deleteGroup(id) {
   };
 }
 
-
 function editGroup(boardId, groupId, name) {
   return {
     type: 'EDIT_GROUP',
     id: groupId,
     name: name,
     boardId: boardId,
+  };
+}
+
+export function swapGroup(groupId1, groupId2) {
+  return {
+    type: 'SWAP_GROUP',
+    which: groupId1,
+    where: groupId2,
   };
 }
 

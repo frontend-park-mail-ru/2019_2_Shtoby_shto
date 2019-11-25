@@ -1,0 +1,19 @@
+body {
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.root_component {
+    height: 100%;
+}
+
+.root__router {
+    height: 100%;
+}
+
+.board__view {
+    height: 100%;
+}

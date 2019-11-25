@@ -11,11 +11,17 @@ class ComponentDragManager {
 
     document.onmousemove = this.onMouseMove.bind(this);
     document.onmouseup = this.onMouseUp.bind(this);
+    // document.onclick = (e) => {
+    //   if (this.dragging) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //   }
+    // };
   }
 
   grab(wrapper, x, y) {
     this.wrapper = wrapper;
-    this.down = {x: x, y: y};
+    this.down = {x, y};
   }
 
   release() {
@@ -28,9 +34,12 @@ class ComponentDragManager {
   }
 
   onMouseMove(e) {
+    e.stopPropagation();
     if (!this.wrapper) return;
 
     if (!this.dragging) {
+      // const moveX = e.pageX - this.wrapper.get().element.downX;
+      // const moveY = e.pageY - this.wrapper.get().element.downY;
       const moveX = e.pageX - this.wrapper.get().element.downX;
       const moveY = e.pageY - this.wrapper.get().element.downY;
 
@@ -38,34 +47,44 @@ class ComponentDragManager {
         return;
       };
 
-      const coords = getCoords(this.wrapper.get().element);
+      const {top, left} = getCoords(this.wrapper.get().element);
 
       this.shift = {
-        x: this.down.x - coords.left,
-        y: this.down.y - coords.top,
+        x: this.down.x - left,
+        y: this.down.y - top,
       };
 
       this.startDrag();
     }
 
-    // e.stopPropagation();
 
     this.wrapper.move(
         e.pageX - this.shift.x,
-        e.pageY - this.shift.y
+        e.pageY - this.shift.y,
+        // e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight,
+        // e.pageY - this.shift.y - this.wrapper.get().element.offsetHeight / 2,
+        // e.pageY - this.shift.y - this.wrapper.get().element.clientHeight / 2,
+        // e.pageY - this.shift.y - this.wrapper.get().element.clientHeight / 2,
+
     );
   }
 
   startDrag() {
     this.dragging = true;
     this.wrapper.executeOnDrag();
+
+    // this.wrapper.move(0,
+    // this.wrapper.get().element.offsetTop -
+    // - this.wrapper.get().element.offsetTop);
+
     this.wrapper.conjureAvatar();
   }
 
   onMouseUp(e) {
     if (this.wrapper) {
+      e.stopPropagation();
+      e.preventDefault();
       if (this.dragging) {
-        e.stopPropagation();
         this.wrapper.move(9999, 9999);
 
         const foundDroppable = this.findDroppable(e.clientX, e.clientY);

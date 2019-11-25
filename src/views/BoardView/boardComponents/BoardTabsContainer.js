@@ -1,4 +1,4 @@
-import Component from '../../modules/Component';
+import Component from '../../../modules/Component';
 
 import BoardTab from './BoardTab';
 
@@ -8,11 +8,11 @@ export default class BoardTabsContainer extends Component {
 
     boards.forEach((b, i) => {
       this.addChild(new BoardTab({
-        name: b.name,
-        id: b.id,
-        index: i,
+        // name: b.name,
+        // id: b.id,
+        // index: i,
         dispatch: dispatch,
-      }).makeDraggable(
+      }, i, b).makeDraggable(
           (comp) => {
             this.enableHighliting(comp.props.index);
           },
@@ -22,10 +22,26 @@ export default class BoardTabsContainer extends Component {
           (comp) => {
             this.disableHighliting(comp.props.index);
           }));
-      // this.enableHighliting.bind(this),
-      // null,
-      // this.disableHighliting.bind(this)));
     });
+  }
+
+  selectTab(index) {
+    this.forEachChild((ch) => {
+      if (ch.trueone) {
+        ch.trueone.deselect();
+      } else {
+        ch.deselect();
+      }
+    });
+
+    if (typeof index !== 'undefined') {
+      const selectedChild = this.getChild(index);
+      if ('select' in selectedChild) {
+        selectedChild.select();
+      } else {
+        selectedChild.trueone.select();
+      }
+    }
   }
 
   enableHighliting(index) {
@@ -37,10 +53,10 @@ export default class BoardTabsContainer extends Component {
   }
 
   disableHighliting(index) {
-    this.forEachChildSmart((child) => {
-      if (!(child.index === index)) {
-        child.component.disableStuff();
-      }
-    });
+    // this.forEachChildSmart((child) => {
+    // if (!(child.index === index)) {
+    // child.component.disableStuff();
+    // }
+    // });
   }
 }

@@ -1,10 +1,11 @@
 div
     .row
         .index__column
-            img(src=`build/${require('./hero-a.svg')}`)
+            img(src=`${require('./hero-a.svg')}`)
         .index__column
             div
                 h1 Мы создали
                 h1 Чтобы что
                 h1 -то было
             a(href='/login') Начать пользоваться
+            button(onclick="window.location.href = 'https://chat.yuliyasm7.now.sh/support.html'") Войти как Техподдержка

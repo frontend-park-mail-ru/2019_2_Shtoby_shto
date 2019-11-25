@@ -9,6 +9,14 @@ export default class Api {
     return this.ajax.jsonRequest('GET', path);
   }
 
+  download(path) {
+    return this.ajax.request('GET', path);
+  }
+
+  upload(path, file) {
+    return this.ajax.request('POST', path, file, true);
+  }
+
   post(path, body) {
     return this.ajax.jsonRequest('POST', path, body);
   }

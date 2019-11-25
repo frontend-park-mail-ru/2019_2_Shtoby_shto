@@ -1,7 +1,8 @@
 export default class Store {
-  constructor(initialState) {
+  constructor(initialState, reducer) {
     this.state = initialState;
 
+    this.reducer = reducer || this.reducer;
     this.listeners = [];
   }
 

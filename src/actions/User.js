@@ -2,7 +2,7 @@ import UserApi from '../apis/UserApi';
 import * as board from './Board';
 import * as ui from './UI';
 
-import {fakeUser} from './fakes/fakeUser';
+// import {fakeUser} from './fakes/fakeUser';
 import {fake} from './fakes/fake';
 
 const userApi = new UserApi();
@@ -10,24 +10,32 @@ const userApi = new UserApi();
 function setUser(userModel) {
   return {
     type: 'SET_USER',
-    loggedIn: true,
+    photo_id: null,
     ...userModel,
   };
 }
 
-export function getUser() {
+function initUser(userModel) {
   return function(dispatch) {
-    if (!fake) {
-      userApi.getUser().then((user) => {
-        dispatch(setUser(user));
-        dispatch(board.fetchBoards());
-      });
-    } else {
-      dispatch(setUser(fakeUser));
-      dispatch(board.fetchBoards());
-    }
+    dispatch(setUser(userModel));
+    dispatch(board.fetchBoards());
   };
 }
+
+
+// export function getUser() {
+//   return function(dispatch) {
+//     if (!fake) {
+//       userApi.getUser().then((user) => {
+//         dispatch(setUser(user));
+//         dispatch(board.fetchBoards());
+//       });
+//     } else {
+//       dispatch(setUser(fakeUser));
+//       dispatch(board.fetchBoards());
+//     }
+//   };
+// }
 
 function loginFailed() {
   return {
@@ -39,15 +47,17 @@ export function login(login, password) {
   return function(dispatch) {
     if (!fake) {
       userApi.login(login, password)
-          .then(() => {
-            dispatch(getUser());
+          .then((userModel) => {
+            // dispatch(getUser());
+            dispatch(initUser(userModel));
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
             dispatch(loginFailed());
           });
     } else {
       setTimeout(() => {
-        dispatch(getUser());
+        // dispatch(initUser(fakeUser));
       }, 1000);
     }
   };
@@ -79,14 +89,26 @@ export function register(loginVal, password) {
 
 export function logout() {
   return function(dispatch) {
-    userApi.logout()
+    // userApi.logout()
+    // .then(() => {
+    dispatch(ui.reset());
+    dispatch(board.clearStore());
+    dispatch({
+      type: 'LOGGED_OUT',
+    });
+    // });
+  };
+}
+
+export function updateLogin(id, newLogin) {
+  return function(dispatch, getState) {
+    userApi.update({id: id, login: newLogin})
         .then(() => {
-          dispatch(ui.reset());
-          dispatch(board.clearStore());
-          dispatch({
-            type: 'LOGGED_OUT',
-          });
+          const oldUser = getState().user;
+          dispatch(setUser({...oldUser, login: newLogin}));
+        })
+        .catch(() => {
+          console.log('не мог обновить юзера');
         });
-    // userApi.clearToken();
   };
 }

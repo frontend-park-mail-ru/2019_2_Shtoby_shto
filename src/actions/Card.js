@@ -1,15 +1,30 @@
 import BoardApi from '../apis/BoardApi';
 
+// import * as boardActions from './Board';
+
 const boardApi = new BoardApi();
 
 function addCard(cardModel) {
-  return {
-    type: 'ADD_CARD',
-    id: cardModel.id,
-    caption: cardModel.caption,
-    priority: cardModel.priority,
-    cardGroupId: cardModel['card_group_id'],
-    tasks: cardModel.tasks,
+  return function(dispatch, getState) {
+    const newModel = {};
+
+    Object.entries(cardModel).forEach(([name, value]) => {
+      if (name !== 'card_group_id') {
+        if (name !== 'type') {
+          newModel[name] = value ? value : (name === 'text' ? '' : []);
+        }
+      } else {
+        newModel['cardGroupId'] = value;
+      }
+    });
+
+    dispatch({
+      type: 'ADD_CARD',
+      ...{
+        ...newModel,
+        users: [getState().user.id],
+      },
+    });
   };
 }
 
@@ -22,38 +37,136 @@ export function createCard(caption, cardGroupId) {
   };
 }
 
-function updateCard(cardModel) {
-  console.log(cardModel);
+function updateCard(id, update) {
   return {
     type: 'UPDATE_CARD',
-    id: cardModel.id,
-    caption: cardModel.caption,
-    priority: 0,
-    boardId: cardModel['board_id'],
-    cardUserId: cardModel['card_user_id'],
-    cardGroupId: cardModel['card_group_id'],
+    id,
+    update,
   };
 }
 
-// {
-// "caption": "В работе",
-// "priority": 0,
-// "board_id": "0eeee470-0cd9-442c-b302-e04ddd69233f",
-// "card_user_id": "",
-// "card_group_id": "503510af-c577-46d7-b33d-598f41c0fba4",
-// "id": "da2303a7-5123-4f6b-98a8-2abaa72cc8b0"
+// function getBoardId(state, cardId) {
+//   let foundId = undefined;
+
+//   const {boards} = state;
+
+//   boards.forEach((b) => {
+//     b.cardGroups.forEach((gr) => {
+//       gr.cards.forEach((c) => {
+//         if (c.id === cardId) {
+//           foundId = b.id;
+//         }
+//       });
+//     });
+//   });
+
+//   return foundId;
 // }
 
-export function setCaption(
-    cardId, newCaption, priority, boardId, cardUserId, cardGroupId) {
-  return function(dispatch) {
-    boardApi.updateCard(cardId, newCaption, priority,
-        boardId, cardUserId, cardGroupId)
-        .then((cardModel) => {
-          dispatch(updateCard(cardModel));
+export function addComment(cardId, comment) {
+  return function(dispatch, getState) {
+    const state = getState();
+    const userId = state.user.id;
+
+    boardApi.addComment(cardId, userId, comment)
+        .then((comment) => {
+          dispatch({
+            type: 'ADD_COMMENT',
+            comment: comment,
+          });
         });
   };
 }
+
+export function addTag(cardId, text, color) {
+  return function(dispatch) {
+    boardApi.addTag(cardId, text, color).then(() => {
+      boardApi.getCard(cardId)
+        .then((res) => {dispatch(updateCard(cardId, res))});
+    })
+  }
+}
+
+export function deleteTag(tagId, cardId) {
+  return function(dispatch) {
+    boardApi.deleteTag(tagId).then(() => {
+      boardApi.getCard(cardId)
+        .then((res) => {dispatch(updateCard(cardId, res))});
+    })
+  }
+}
+
+export function downloadAttachment(cardId) {
+  return function() {
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = `https://hb.bizmrg.com/photo_storage/${cardId}`;
+    a.download = 'attachment';
+    document.body.appendChild(a);
+    a.click();
+  }
+}
+
+export function uploadAttachment(cardId, file) {
+  return function(dispatch) {
+    boardApi.uploadFile(cardId, file)
+      .then(() => {
+        boardApi.getCard(cardId).then((res) => {
+          dispatch(updateCard(cardId, res))
+        })
+      })
+  }
+}
+
+
+export function deleteComment(id) {
+  return function(dispatch) {
+    boardApi.deleteComment(id)
+        .then(() => {
+          dispatch({type: 'DELETE_COMMENT', id});
+        });
+  };
+}
+
+export function attachUser(userId, cardId) {
+  return function(dispatch) {
+    boardApi.attachUserToCard(userId, cardId)
+        .then(() => {
+          dispatch({type: 'CARD_ATTACH', userId, cardId});
+        });
+  };
+}
+
+export function detachUser(userId, cardId) {
+  return function(dispatch) {
+    boardApi.detachUserFromCard(userId, cardId)
+        .then(() => {
+          dispatch({type: 'CARD_DETACH', userId, cardId});
+        });
+  };
+}
+
+
+export function setCaption(
+    cardId, newCaption) {
+  return function(dispatch) {
+    boardApi.updateCard(cardId, {caption: newCaption})
+        .then(() => {
+          dispatch(updateCard(cardId, {caption: newCaption}));
+        });
+  };
+}
+
+export function setText(
+    cardId, newText) {
+  return function(dispatch) {
+    boardApi.updateCard(cardId, {text: newText})
+        .then(() => {
+          dispatch(updateCard(cardId, {text: newText}));
+        });
+  };
+}
+
 
 export function deleteCard(id) {
   return function(dispatch) {

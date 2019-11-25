@@ -10,19 +10,10 @@ export default class TransformingInput extends StateComponent {
       other: otherState,
     });
 
-    // this.doClear = doClear || false;
     this.prevContent = this.states['input'].element.value;
     this.afterAction = afterAction || 'keep';
 
     this.isinput = false;
-
-    // this.states['input'].setOnChange((text) => {
-    //   this.executeOnChange(text);
-    //   if (this.isinput) {
-    //     this.toOther();
-    //     this.isnput = false;
-    //   }
-    // });
 
     this.states['input'].setOnBlur((text) => {
       this.executeOnBlur(text);
@@ -32,20 +23,36 @@ export default class TransformingInput extends StateComponent {
       }
     });
 
+    this.states['input'].setOnChange((text) => {
+      this.executeOnChange(text);
+      if (this.isinput) {
+        this.toOther();
+        this.isinput = false;
+      }
+    });
+
+
     this.setState('other');
   }
 
-  // executeOnChange(text) {
-  //   this.onChange(text);
-  // }
   useDblclick() {
     this.states['other'].element.ondblclick = this.toInput.bind(this);
 
     return this;
   }
 
+  useClick() {
+    this.states['other'].element.onclick = this.toInput.bind(this);
+
+    return this;
+  }
+
   executeOnBlur(text) {
     this.onBlur(text);
+  }
+
+  executeOnChange(text) {
+    this.onChange(text);
   }
 
   toInput() {
@@ -76,9 +83,11 @@ export default class TransformingInput extends StateComponent {
     }
   }
 
-  // setOnChange(fun) {
-  //   this.onChange = fun;
-  // }
+  setOnChange(fun) {
+    this.onChange = fun;
+
+    return this;
+  }
 
   setOnBlur(fun) {
     this.onBlur = fun;
@@ -86,6 +95,6 @@ export default class TransformingInput extends StateComponent {
     return this;
   }
 
-  // onChange(text) {}
+  onChange(text) {}
   onBlur(text) {}
 }

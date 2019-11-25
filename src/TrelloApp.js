@@ -8,7 +8,7 @@ import LoginView from './views/LoginView/LoginView';
 import BoardView from './views/BoardView/BoardView';
 import ProfileView from './views/ProfileView/ProfileView';
 
-import Button from './components/Button';
+// import Button from './components/Button';
 
 import makeGlobalStorage from './storage/makeGlobalStore';
 import logger from './middlewares/logger';
@@ -32,28 +32,26 @@ export default class TrelloApp extends App {
     const router = new AuthRouter()
         .addChild(new TrelloHeader(), 'prepend');
 
-    router.registerView('/', false, new MainView());
-    router.registerView('/login', false, new LoginView());
-    router.registerView('/board', true, new BoardView());
-    router.registerView('/profile', true, new ProfileView());
-    router.registerView('/logout', true, () => {
+    router.registerView('/', new MainView());
+    router.registerViewNoAuth('/login', new LoginView(), '/board');
+    router.registerViewAuth('/board', new BoardView());
+    router.registerViewAuth('/profile', new ProfileView());
+    router.registerViewAuth('/logout', () => {
       globalStorage.dispatch(user.logout());
-      router.open('/');
     });
-    router.setAfterLogin('/board');
 
-    // router.setDefaultRoute('/').useHistory().startRouting();
+    router.setAfterLogin('/board');
     router.setDefaultRoute('/').useHistory();
 
     this.globRouter = router;
 
     this.addComponent(router);
 
-    this.addComponent(new Button({
-      content: 'залогать состояние приложения',
-      onclick: () => {
-        console.log(globalStorage.getState());
-      },
-    }));
+    // this.addComponent(new Button({
+    //   content: 'залогать состояние приложения',
+    //   onclick: () => {
+    //     console.log(globalStorage.getState());
+    //   },
+    // }));
   }
 };
