@@ -2,8 +2,7 @@
     "version": 2,
     "build": {
         "env": {
-            "REMOTE_DEPLOY": "remote_deploy",
-            "NOWSECRET": "@nowsecret"
+            "REMOTE_DEPLOY": "remote_deploy"
         }
     },
     "builds": [
