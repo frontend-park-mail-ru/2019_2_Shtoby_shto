@@ -56,7 +56,7 @@ export function login(login, password) {
           });
     } else {
       setTimeout(() => {
-        dispatch(getUser());
+        // dispatch(initUser(fakeUser));
       }, 1000);
     }
   };
@@ -89,13 +89,13 @@ export function register(loginVal, password) {
 export function logout() {
   return function(dispatch) {
     // userApi.logout()
-        // .then(() => {
-          dispatch(ui.reset());
-          dispatch(board.clearStore());
-          dispatch({
-            type: 'LOGGED_OUT',
-          });
-        // });
+    // .then(() => {
+    dispatch(ui.reset());
+    dispatch(board.clearStore());
+    dispatch({
+      type: 'LOGGED_OUT',
+    });
+    // });
   };
 }
 

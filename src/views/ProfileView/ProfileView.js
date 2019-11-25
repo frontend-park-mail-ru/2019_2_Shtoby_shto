@@ -20,7 +20,7 @@ export default class ProfileView extends Component {
   getMounts() {
     return {
       avatar: this.element.querySelector('#avatar'),
-    }
+    };
   }
 
   setup() {
