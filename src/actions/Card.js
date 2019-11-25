@@ -96,6 +96,23 @@ export function deleteTag(tagId, cardId) {
   }
 }
 
+export function downloadAttachment(cardId) {
+  return function() {
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = `https://hb.bizmrg.com/photo_storage/${cardId}`;
+    a.download = 'attachment';
+    document.body.appendChild(a);
+    a.click();
+  }
+}
+
+export function uploadAttachment(cardId, file) {
+  return function() {
+    boardApi.uploadFile(cardId, file);
+  }
+}
+
 
 export function deleteComment(id) {
   return function(dispatch) {

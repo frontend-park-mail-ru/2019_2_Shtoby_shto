@@ -2,7 +2,7 @@ const tokenStorage = {
   token: undefined,
 };
 
-function attachHeaders(method, body) {
+function attachHeaders(method, body, binary) {
   const headers = new Headers();
 
   if (tokenStorage.token) {
@@ -16,7 +16,13 @@ function attachHeaders(method, body) {
   };
 
   request.headers = headers;
-  if (body) request.body = JSON.stringify(body);
+  if (body) {
+    if (!binary) {
+      request.body = JSON.stringify(body);
+    } else {
+      request.body = body;
+    }
+  }
 
   return request;
 }
@@ -46,9 +52,9 @@ class Ajax {
     clearToken();
   }
 
-  request(method, path, body) {
+  request(method, path, body, binary) {
     return new Promise((resolve, reject) => {
-      fetch(this.apiAddr + path, attachHeaders(method, body))
+      fetch(this.apiAddr + path, attachHeaders(method, body, binary))
           .then((res) => {
             if (res.status !== 200) {
               reject(Error('status is not 200'));

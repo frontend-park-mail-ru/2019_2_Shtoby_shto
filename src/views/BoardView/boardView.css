@@ -354,10 +354,23 @@ html, body {
     margin-left: 25%;
 }
 
+.attachment__area {
+    display: flex;
+}
+
+.upload__button {
+    margin: 0px;
+}
+
 .adder__container {
     display: flex;
     border: 1px solid;
     border-radius: 5px;
+}
+
+.download__button {
+    margin: 0px;
+    width: 50%;
 }
 
 .expanded__card__tags {
