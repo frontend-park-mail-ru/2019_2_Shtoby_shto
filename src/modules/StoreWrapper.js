@@ -12,7 +12,7 @@ export default class StoreWrapper {
     );
   }
 
-  get state() { 
+  get state() {
     return this.store.state;
   }
 

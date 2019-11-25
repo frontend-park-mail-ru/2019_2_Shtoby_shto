@@ -9,7 +9,7 @@ export default class Board extends Component {
       attrs: {
         class: 'board',
       },
-      children: [ 'типа доска' ],
-    }
+      children: ['типа доска'],
+    };
   }
 }

@@ -16,12 +16,14 @@ export default class App extends Component {
         tag: HistoryRouter,
         attrs: {
           routes: {
-            '/': { tag: BoardWithLanding, attrs: {store: this.attrs.store} },
-            '/logout': () => {console.log('logging out now')},
+            '/': {tag: BoardWithLanding, attrs: {store: this.attrs.store}},
+            '/logout': () => {
+              console.log('logging out now');
+            },
           },
           default: '/',
-        }
-      }]
-    }
+        },
+      }],
+    };
   }
 }

@@ -15,9 +15,9 @@ export default class HistoryRouter extends Router {
     if (opened) {
       if (!fromPopping) {
         window.history.pushState(
-          null,
-          '',
-          this.attrs.route || this.attrs.default || '',
+            null,
+            '',
+            this.attrs.route || this.attrs.default || '',
         );
       }
     } else {

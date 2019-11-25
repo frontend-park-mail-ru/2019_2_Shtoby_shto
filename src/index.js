@@ -12,10 +12,10 @@ import StoreSaver from './modules/StoreSaver';
 const store = makeGlobalStorage(logger, thunkDispatcher);
 
 const synchronizer = new StoreSaver(store, 'shtoby');
-synchronizer.startSynchronizing()
+synchronizer.startSynchronizing();
 
 const appVdom = {tag: App, attrs: {store}};
-const appNode = AppVDOM.render(appVdom, root)
+const appNode = AppVDOM.render(appVdom, root);
 
 store.subscribe(() => {
   AppVDOM.update(appNode, appVdom);

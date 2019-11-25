@@ -1,6 +1,6 @@
 import './css/modal.css';
 
-import Component from "../modules/Component"
+import Component from '../modules/Component';
 
 export default class Modal extends Component {
   render() {
@@ -14,8 +14,8 @@ export default class Modal extends Component {
         attrs: {
           class: 'modal__content',
         },
-        children: [this.attrs.content ],
-      }]
-    }
+        children: [this.attrs.content],
+      }],
+    };
   }
 }

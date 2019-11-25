@@ -20,12 +20,12 @@ export default class BoardWithLanding extends Component {
             shown: store.state.user.loggedIn ? false : true,
             content: {
               tag: LoginPanel,
-              attrs: { store },
-            }
-          }
+              attrs: {store},
+            },
+          },
         },
-        { tag: Board },
-      ]
-    }
+        {tag: Board},
+      ],
+    };
   }
 }

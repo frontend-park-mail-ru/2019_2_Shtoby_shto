@@ -8,12 +8,12 @@ export default class Component {
 
   updateAttrs(attrs) {
     this.vdom.update(
-      this.el,
-      {
-        tag: this.el._vnode.tag,
-        attrs: {...this.el._vnode.attrs, ...attrs}
-      }
-    )
+        this.el,
+        {
+          tag: this.el._vnode.tag,
+          attrs: {...this.el._vnode.attrs, ...attrs},
+        }
+    );
     // this.vdom.update(
     //   this.el,
     //   {
@@ -27,7 +27,7 @@ export default class Component {
   }
 
   otherAttrs() {
-    
+
   }
 
   // didCreate() {}

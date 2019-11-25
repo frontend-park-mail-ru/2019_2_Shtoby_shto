@@ -1,4 +1,4 @@
-import Component from "../modules/Component";
+import Component from '../modules/Component';
 
 export default class Router extends Component {
   didMount() {
@@ -47,8 +47,7 @@ export default class Router extends Component {
       attrs: {
         class: 'router',
       },
-      children: [...(route ? [{...route, key: this.attrs.route}] : ['no route'])]
-    }
-
+      children: [...(route ? [{...route, key: this.attrs.route}] : ['no route'])],
+    };
   }
 }

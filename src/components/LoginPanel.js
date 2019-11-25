@@ -16,7 +16,7 @@ class LoginForm extends Component {
 
     const [login, pass] = inputs.map((el) => el.value);
 
-    this.attrs.store.dispatch(userActions.login(login, pass))
+    this.attrs.store.dispatch(userActions.login(login, pass));
   }
 
   render() {
@@ -27,26 +27,28 @@ class LoginForm extends Component {
       },
       children: [
         {
-          tag: 'div', attrs: { class: 'form__element'}, children: ['Логин'],
+          tag: 'div', attrs: {class: 'form__element'}, children: ['Логин'],
         },
         {
-          tag: 'input', attrs: { class: 'form__element'}
+          tag: 'input', attrs: {class: 'form__element'},
         },
         {
-          tag: 'div', attrs: { class: 'form__element'}, children: ['Пароль'],
+          tag: 'div', attrs: {class: 'form__element'}, children: ['Пароль'],
         },
         {
-          tag: 'input', attrs: { class: 'form__element'}
+          tag: 'input', attrs: {class: 'form__element'},
         },
         {
           tag: 'button',
-          attrs: { class: 'form__element'}, children: ['войти'],
+          attrs: {class: 'form__element'}, children: ['войти'],
           events: {
-            click: () => {this.tryLogin()},
-          }
+            click: () => {
+              this.tryLogin();
+            },
+          },
         },
       ],
-    }
+    };
   }
 }
 
@@ -63,10 +65,10 @@ export default class LoginPanel extends Component {
           attrs: {
             class: 'login__header',
           },
-          children: [ 'Войти' ],
+          children: ['Войти'],
         },
-        { tag: LoginForm, attrs: {store: this.attrs.store} },
+        {tag: LoginForm, attrs: {store: this.attrs.store}},
       ],
-    }
+    };
   }
 }
