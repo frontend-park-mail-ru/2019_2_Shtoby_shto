@@ -28,6 +28,7 @@ body {
 
 .row {
     display: flex;
+    flex-wrap: wrap-reverse;
 }
 
 .column {

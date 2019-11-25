@@ -31,13 +31,13 @@ export default class ProfileView extends Component {
         });
 
     if (this.userName) {
-      this.setGeneratedAvatar(this.userName);
+      // this.setGeneratedAvatar(this.userName);
     }
   }
 
   updateLoginField(name) {
     const username = this.element.querySelector('#username');
-    this.setGeneratedAvatar(this.userName);
+    // this.setGeneratedAvatar(this.userName);
     username.value = name;
   }
 

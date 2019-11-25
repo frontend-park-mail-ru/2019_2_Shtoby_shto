@@ -51,7 +51,8 @@ export function login(login, password) {
             // dispatch(getUser());
             dispatch(initUser(userModel));
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
             dispatch(loginFailed());
           });
     } else {

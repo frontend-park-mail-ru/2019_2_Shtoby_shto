@@ -16,6 +16,7 @@ module.exports = {
       index: 'index.html'
     }
   },
+  devtool: 'source-map',
   mode: 'development',
   module: {
     rules: [
