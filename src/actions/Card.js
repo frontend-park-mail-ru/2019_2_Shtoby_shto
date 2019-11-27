@@ -96,6 +96,15 @@ export function deleteTag(tagId, cardId) {
   }
 }
 
+export function changeDeadline(cardId, date) {
+  return function(dispatch) {
+    boardApi.changeDeadline(cardId, date).then(() => {
+      boardApi.getCard(cardId)
+      .then((res) => {dispatch(updateCard(cardId, res))});
+    })
+  }
+}
+
 export function downloadAttachment(cardId) {
   return function() {
     const a = document.createElement('a');
