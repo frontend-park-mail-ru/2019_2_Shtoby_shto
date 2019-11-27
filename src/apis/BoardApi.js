@@ -73,7 +73,7 @@ export default class BoardApi extends Api {
   }
 
   changeDeadline(cardId, date) {
-    return this.put(`/card/${cardId}/deadline`, {date: date});
+    return this.put(`/cards/${cardId}`, {deadline: `${date}T15:04:05Z`});
   }
 
   deleteTag(tagId) {

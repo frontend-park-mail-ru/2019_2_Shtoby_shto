@@ -11,6 +11,8 @@ const defaultAva = require('./userAva.png');
 
 import UserApi from '../../../apis/UserApi';
 import invertColor from '../../../modules/Utils/invertColor';
+import parseDate from '../../../modules/Utils/parseDate';
+
 import * as uiActions from '../../../actions/UI';
 import {changeDeadline} from '../../../actions/Card';
 
@@ -357,9 +359,19 @@ export default class ExpandedCard extends Component {
           classes: ['date_input'],
           attrs: {
             type: 'date',
+            value: parseDate(card.deadline),
           },
         },
     ).apply((comp) => {
+      console.log(card.deadline);
+      //const date = [];
+
+      //for (let i =0; i < 10; i++) {
+        //date.push(card.deadline[i]);
+      //}
+
+
+      //comp.element.value = date.join('');
       comp.element.onchange = (e) => {
         this.dispatch(cards.changeDeadline(card.id, e.target.value))
       };
