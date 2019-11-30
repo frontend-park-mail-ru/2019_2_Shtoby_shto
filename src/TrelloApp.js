@@ -19,6 +19,7 @@ import * as user from './actions/User';
 import './style.css';
 
 import {setFake} from './actions/fakes/fake';
+import Rescheduler from "./modules/Rescheduler";
 
 export default class TrelloApp extends App {
   setup() {
@@ -28,6 +29,9 @@ export default class TrelloApp extends App {
     const globalStorage = makeGlobalStorage(logger, thunkDispatcher);
     this.connect(globalStorage);
     this.synchronize('shtoby');
+
+    const rescheduler = new Rescheduler(globalStorage);
+    rescheduler.init();
 
     const router = new AuthRouter()
         .addChild(new TrelloHeader(), 'prepend');
