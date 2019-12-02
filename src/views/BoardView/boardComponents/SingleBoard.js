@@ -57,14 +57,14 @@ export default class SingleBoard extends Component {
   showBoard(board) {
     this.addChild(new GroupsDisplayer(this.dispatch.bind(this),
         ...board.cardGroups), 'groups');
-    this.addChild(new UserDisplayer(
-        {
-          classes: ['user__panel'],
-          avatarClasses: ['card__avatar'],
-        },
-        ...board.users).forEachChild((child) => {
-      dnd(child).makeDraggable();
-    }), 'users'
-    );
+    // this.addChild(new UserDisplayer(
+    //     {
+    //       classes: ['user__panel'],
+    //       avatarClasses: ['card__avatar'],
+    //     },
+    //     ...board.users).forEachChild((child) => {
+    //   dnd(child).makeDraggable();
+    // }), 'users'
+    // );
   }
 }

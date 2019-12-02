@@ -359,19 +359,12 @@ export default class ExpandedCard extends Component {
           classes: ['date_input'],
           attrs: {
             type: 'date',
-            value: parseDate(card.deadline),
           },
         },
     ).apply((comp) => {
-      console.log(card.deadline);
-      //const date = [];
-
-      //for (let i =0; i < 10; i++) {
-        //date.push(card.deadline[i]);
-      //}
-
-
-      //comp.element.value = date.join('');
+      if(card.deadline !== undefined){
+        comp.element.value = parseDate(card.deadline);
+      }
       comp.element.onchange = (e) => {
         this.dispatch(cards.changeDeadline(card.id, e.target.value))
       };
