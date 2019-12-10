@@ -72,20 +72,30 @@ export default class Card extends DNDComponent {
     })
     );
 
-    this.addChild(
-        new Component({
-          tag: 'img',
-          classes: ['card__edit'],
-          attrs: {src: pen},
-        }).apply((comp) => {
-          comp.element.onclick = (e) => {
-            dispatch(uiActions.showCard(card));
-          };
+    this.editButton = new Component({
+      tag: 'img',
+      classes: ['card__edit'],
+      attrs: {src: pen, hidden: true},
+    }).apply((comp) => {
+      comp.element.onclick = (e) => {
+        dispatch(uiActions.showCard(card));
+      };
 
-          comp.element.onmousedown = (e) => {
-            e.stopPropagation();
+      comp.element.onmousedown = (e) => {
+        e.stopPropagation();
+      };
+    });
+    this.addChild(this.editButton);
+
+    this.apply(
+        (comp) => {
+          comp.element.onmouseover = (e) => {
+            this.editButton.element.hidden = false;
           };
-        })
+          comp.element.onmouseout = (e) => {
+            this.editButton.element.hidden = true;
+          };
+        }
     );
 
     if (card.file) {
@@ -96,7 +106,7 @@ export default class Card extends DNDComponent {
 
       downloadButton.element.onclick = () => {
         dispatch(cards.downloadAttachment(card.id));
-      }
+      };
 
       downloadButton.addChild(new Component({
         tag: 'img',
@@ -108,7 +118,6 @@ export default class Card extends DNDComponent {
 
       this.addChild(downloadButton);
     }
-    
 
     // this.addChild(
     const userDisplayer = dnd(new UserDisplayer({
