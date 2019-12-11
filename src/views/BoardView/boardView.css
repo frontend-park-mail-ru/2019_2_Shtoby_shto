@@ -1,15 +1,8 @@
 .board__view {
     position: relative;
-    /* background-image: url(./background.png); */
     display: flex;
-    background-color: #00b7ff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='540' height='450' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='.1'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/svg%3E");
-    height:97%;
-    /* background: url(images/bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; */
+    height: 95%;
+    background-color: #00bb77;
 }
 
 html, body {
@@ -19,26 +12,23 @@ html, body {
 
 .board__tab__controller {
     /* width: 20%; */
-    border: 1px solid #ccc;
-    background-color: #ededed;
+    background-color: rgba(0, 0, 0, 0.5);;
 }
 
 .board__tabs {
-    /* height: 50px; */
-    background-color:#f1f1f1;
 }
 
 .board__tab {
+    padding: 10px;
+    margin: 10px 0px 10px 10px;
     display: flex;
     position: relative;
-    height: 110px;
+    height: 70px;
     width: 150px;
-    /* width: 100%; */
-    border: 1px solid #ccc;
-    background-color: inherit;
+    border-radius: 20px 0px 0px 0px;
+    background-color: #d3dae9;
     justify-content: center;
     align-items: center;
-    /* background-color: azure; */
 }
 
 .board__tab:hover {
@@ -46,7 +36,7 @@ html, body {
 }
 
 .board__tab.selected {
-    background-color: bisque;
+    background-color: white;
 }
 
 .group__name:hover {
@@ -70,40 +60,40 @@ html, body {
 }
 
 .card__modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal__content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 .modal__close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .modal__close:hover,
 .modal__close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .user__panel.user__display {
@@ -150,7 +140,6 @@ html, body {
 .tab__dropzone {
     top: 0;
     left: 0;
-    position: absolute;
     height: 50%;
     width: 100%;
 }
@@ -165,7 +154,7 @@ html, body {
 
 .board__plus {
     text-align: center;
-    background: hsla(0,0%,100%,.40);
+    background: hsla(0, 0%, 100%, .50);
     border: 2px dotted gray;
     height: 40px;
 }
@@ -191,10 +180,7 @@ html, body {
 }
 
 .group__container {
-    /* width: 250px; */
-    border-right: dashed;
-    background-color: #ededed22;
-    /* overflow: scroll; */
+
 }
 
 .card__group {
@@ -203,31 +189,28 @@ html, body {
     flex-direction: column;
     align-items: center;
 
-    border: solid gray 2px;
-    margin: 3px;
+    /*border: solid white 2px;*/
+    margin: 10px;
     padding: 5px;
 
     overflow: hidden;
     border-radius: 3px;
-
-    /* background-color: #ededed;
-    /* height: 100%; */
-    /* border-left: dashed; */
-
-    /* /* width: 200px; */
-    background: linear-gradient(90deg, #00b7ff, transparent);
+    background-color: #d3dae9;
 }
 
 .group__header {
-    border: inset;
     text-align: center;
-    /* width: 90%; */
+    background-color: #00a86b;
+    padding: 10px;
+    color: white;
+    font-size: large;
     width: 250px;
 }
 
 .group__plus {
+    margin: 10px;
     padding: 5px 10px;
-    background: hsla(0,0%,100%,.40);
+    background: hsla(0, 0%, 100%, .40);
     border: 2px dotted gray;
     height: 40px;
     border-radius: 5px;
@@ -255,13 +238,10 @@ html, body {
 }
 
 .user__avatar {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 200%;
+    max-height: 200%;
 
-    border-top-left-radius: 50% 50%;
-    border-top-right-radius: 50% 50%;
-    border-bottom-right-radius: 50% 50%;
-    border-bottom-left-radius: 50% 50%;
+    border-radius: 50% 50%;
 }
 
 .card__plus:hover {
@@ -287,6 +267,11 @@ html, body {
     height: 100px;
 }
 
+.trash__msg {
+    display: block;
+    bottom: 70px;
+}
+
 .single__board {
     display: flex;
     flex-direction: column;
@@ -303,19 +288,16 @@ html, body {
 
 .board__card {
     height: 75px;
-    width: 260px;
+    width: auto;
     position: relative;
 
     background: white;
     padding: 5px 10px;
 
-    margin-top: 10px;
-    /* margin-left: 5px; */
-
+    margin: 10px;
     border-radius: 5px;
 
-    /* transition: 0.4s box-shadow ease ; */
-    transition: 0.3s border-radius ease, 0.4s box-shadow ease ;
+    transition: 0.3s border-radius ease, 0.4s box-shadow ease;
 }
 
 .expanded__card {
@@ -331,7 +313,7 @@ html, body {
     position: absolute;
     left: 3px;
     bottom: 5%;
-    height: 50%;
+    height: 30%;
 }
 
 .card__download__button {
@@ -398,8 +380,8 @@ html, body {
 
 }
 
-.expanded__tag__deleter:hover{
-    cursor: pointer;   
+.expanded__tag__deleter:hover {
+    cursor: pointer;
 }
 
 .expanded__tag__content {
@@ -529,205 +511,94 @@ html, body {
     align-items: center;
     justify-content: center;
     /* background: gray;    */
-    background: hsla(0,0%,100%,.40);
+    background: hsla(0, 0%, 100%, .50);
     border: 2px dotted gray;
     height: 40px;
 }
 
-/* .board__tabs {
-    display: flex;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
-.board__tabs input {
-    width: 10%;
-}
-
-.board__tabs .content {
-    display: flex;
-    float: left;
-    border: none;
-    outline: none;
-    padding: 3px 2px;
-    align-items: center;
-}
-
-.board__tabs button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-.board__tabs :hover {
-    background-color: #ddd;
-}
-
-.board__tabs .active {
-    background-color: #ccc;
-} */
-
-/* .tab__closer {
-    color: #aaa;
-    float: left;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.tab__closer:hover,
-.tab__closer:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-.card__deleter {
-    color: #aaa;
-    float: right;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.modal__input {
-    display: none;
-}
-
-.modal__adder {
-    color: #aaa;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.modal__adder:hover,
-.modal__adder:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.card__deleter:hover,
-.card__deleter:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.group__deleter {
-    color: #aaa;
-    float: right;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.group__deleter:hover,
-.group__deleter:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.board__group {
-    display: flex;
-    flex-direction: column;
-    border-right: double black;
-    margin: 5px;
-    padding: 5px;
-}
-
-.board__group__name {
-    margin-left: 7.5%;
-}
-
-.board__board {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
-
-.board__card {
-    height:100px;
-    width: 200px;
-    border: 3px solid gray;
-    background: white;
-    padding: 5px 10px;
-    margin: 10px;
-    border-radius: 5px;
-}
-
-.board__card__adder {
-    background: gray;
-    height: 45px;
-    border: 2px dotted gray;
-}
-
-.board__modal {
-    display: none; /* Hidden by default */
-    /* position: fixed; /* Stay in place */
-    /* z-index: 1; Sit on top */
-    /* left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    /* height: 100%; Full height */
-    /* overflow: auto; Enable scroll if needed */
-    /* background-color: rgb(0,0,0); Fallback color */
-    /* background-color: rgba(0,0,0,0.4); Black w/ opacity */
-/* } */
-
-/* .board__card__modal { */
-    /* background-color: #fefefe; */
-    /* margin: 15% auto; 15% from the top and centered */
-    /* padding: 20px; */
-    /* border: 1px solid #888;
-    width: 80%;
-}
-
-.board__modal__close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.board__modal__close:hover,
-.board__modal__close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-} */
 
 .tooltip {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
 
     width: 120px;
     bottom: 100%;
     left: 50%;
     margin-left: -60px;
-  z-index: 1;
+    z-index: 1;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+    visibility: visible;
+}
+
+.date_label {
+    margin: 0 auto 0;
+}
+
+.date_input {
+    display: block;
+    width: auto;
+    height: 30px;
+    position: relative;
+    padding: 1rem 3.5rem 1rem 0.75rem;
+
+    font-size: 1rem;
+    font-family: monospace;
+
+    border: 1px solid #8292a2;
+    border-radius: 0.25rem;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E") right 1rem center no-repeat;
+
+    cursor: pointer;
+}
+
+.date_input:focus {
+    outline: none;
+    border-color: #3acfff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
+}
+
+::-webkit-clear-button,
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 2.5rem;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    opacity: 0;
+    cursor: pointer;
+
+    color: rgba(0, 120, 250, 1);
+    background: rgba(0, 120, 250, 1);
+
+}
+
+.date_input:hover::-webkit-calendar-picker-indicator {
+    opacity: 0.05;
+}
+
+.date_input:hover::-webkit-calendar-picker-indicator:hover {
+    opacity: 0.15;
 }

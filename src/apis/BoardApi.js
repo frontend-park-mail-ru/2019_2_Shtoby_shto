@@ -1,6 +1,6 @@
 import Api from '../modules/Api';
 
-const localApiAddr = 'http://localhost:8080';
+const localApiAddr = 'http://localhost';
 const remoteApiAddr = 'https://iamneponyalapi.ru';
 
 const deployVar = process.env.REMOTE_DEPLOY;
@@ -70,6 +70,10 @@ export default class BoardApi extends Api {
       text: text,
       color: color,
     });
+  }
+
+  changeDeadline(cardId, date) {
+    return this.put(`/cards/${cardId}`, {deadline: `${date}T15:04:05Z`});
   }
 
   deleteTag(tagId) {
