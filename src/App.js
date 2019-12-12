@@ -5,6 +5,28 @@ import Component from './modules/Component';
 import HistoryRouter from './components/HistoryRouter';
 import BoardWithLanding from './components/BoardWithLanding';
 
+function clearLocalStore() {
+  localStorage.setItem('shtoby', '');
+  localStorage.setItem('apikey', '');
+}
+
+const resetButton = {
+  tag: 'button',
+  events: {
+    click: clearLocalStore,
+  },
+  attrs: {
+    style: {
+      'position': 'fixed',
+      'bottom': '5%',
+      'z-index': 9999,
+    }
+  },
+  children: [
+    "press me to clean store",
+  ]
+}
+
 export default class App extends Component {
   render() {
     return {
@@ -23,7 +45,9 @@ export default class App extends Component {
           },
           default: '/',
         },
-      }],
+      },
+      resetButton,
+  ],
     };
   }
 }
