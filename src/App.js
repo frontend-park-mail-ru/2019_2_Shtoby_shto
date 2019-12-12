@@ -10,21 +10,25 @@ function clearLocalStore() {
   localStorage.setItem('apikey', '');
 }
 
-const resetButton = {
-  tag: 'button',
-  events: {
-    click: clearLocalStore,
-  },
-  attrs: {
-    style: {
-      'position': 'fixed',
-      'bottom': '5%',
-      'z-index': 9999,
+class ResetButton extends Component {
+  render() {
+    return {
+      tag: 'button',
+      events: {
+        click: clearLocalStore,
+      },
+      attrs: {
+        style: {
+          'position': 'fixed',
+          'bottom': '5%',
+          'z-index': 9999,
+        }
+      },
+      children: [
+        "press me to clean store",
+      ]
     }
-  },
-  children: [
-    "press me to clean store",
-  ]
+  }
 }
 
 export default class App extends Component {
@@ -46,7 +50,9 @@ export default class App extends Component {
           default: '/',
         },
       },
-      resetButton,
+      {
+        tag: ResetButton
+      },
   ],
     };
   }

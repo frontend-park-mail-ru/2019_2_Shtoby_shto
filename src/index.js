@@ -17,10 +17,9 @@ synchronizer.startSynchronizing();
 const appVdom = {tag: App, attrs: {store}};
 const appNode = AppVDOM.render(appVdom, root);
 
-
-// store.subscribe(() => {
-//   AppVDOM.update(appNode, appVdom);
-//   console.log(store.state);
-// });
+store.subscribe(() => {
+  AppVDOM.update(appNode, appVdom);
+  console.log(store.state);
+});
 
 console.log(store.state);
