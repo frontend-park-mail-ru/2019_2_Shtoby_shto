@@ -4,32 +4,7 @@ import Component from './modules/Component';
 
 import HistoryRouter from './components/HistoryRouter';
 import BoardWithLanding from './components/BoardWithLanding';
-
-function clearLocalStore() {
-  localStorage.setItem('shtoby', '');
-  localStorage.setItem('apikey', '');
-}
-
-class ResetButton extends Component {
-  render() {
-    return {
-      tag: 'button',
-      events: {
-        click: clearLocalStore,
-      },
-      attrs: {
-        style: {
-          'position': 'fixed',
-          'bottom': '5%',
-          'z-index': 9999,
-        }
-      },
-      children: [
-        "press me to clean store",
-      ]
-    }
-  }
-}
+import ResetButton from './components/debug/ResetButton';
 
 export default class App extends Component {
   render() {
@@ -51,7 +26,8 @@ export default class App extends Component {
         },
       },
       {
-        tag: ResetButton
+        tag: ResetButton,
+        attrs: {store: this.attrs.store}
       },
   ],
     };
