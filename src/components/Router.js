@@ -1,7 +1,38 @@
 import Component from '../modules/Component';
 
+import * as routerActions from '../actions/Router';
+
+const routerIdentificator = new class {
+  constructor() {
+    this.routerCounter = 0;
+  }
+
+  identificate() {
+    this.routerCounter += 1;
+    return this.routerCounter - 1;
+  }
+}();
+
 export default class Router extends Component {
+  constructor(...args) {
+    super(...args);
+  
+    this.routerId = routerIdentificator.identificate();
+  }
+
   didMount() {
+    const routerState = this.attrs.store.state.router; 
+
+    if (
+      !(this.routerId in routerState)
+    ) {
+      console.log('registering');
+      this.attrs.store.dispatch(routerActions.registerRouter(
+        this.routerId,
+        this.attrs.default,
+      ))
+    }
+
     this.el.addEventListener('click', this.linkOpener.bind(this));
 
     this.openDefault();
@@ -24,6 +55,7 @@ export default class Router extends Component {
 
   open(path) {
     const route = this.attrs.routes[path];
+    // const route = this.attrs.store.getState().router[this.routerId];
 
     if (typeof route === 'function') {
       route();
@@ -40,7 +72,12 @@ export default class Router extends Component {
   }
 
   render() {
-    const view = this.attrs.routes[this.attrs.route];
+    const myRouter = this.attrs.store.state.router[this.routerId];
+    // const view = myRouter ? myRouter.route : undefined;
+    const route = myRouter ? myRouter.route : undefined;
+    const view = this.attrs.routes[route];
+
+    // console.log(view);
 
     return {
       tag: 'div',

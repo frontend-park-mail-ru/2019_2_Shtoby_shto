@@ -4,7 +4,6 @@ import Component from './modules/Component';
 
 import HistoryRouter from './components/HistoryRouter';
 import BoardWithLanding from './components/BoardWithLanding';
-import ResetButton from './components/debug/ResetButton';
 
 export default class App extends Component {
   render() {
@@ -22,12 +21,9 @@ export default class App extends Component {
               console.log('logging out now');
             },
           },
+          store: this.attrs.store,
           default: '/',
         },
-      },
-      {
-        tag: ResetButton,
-        attrs: {store: this.attrs.store}
       },
   ],
     };
