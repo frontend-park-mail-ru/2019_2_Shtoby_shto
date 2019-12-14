@@ -40,14 +40,14 @@ export default class Router extends Component {
   }
 
   render() {
-    const route = this.attrs.routes[this.attrs.route];
+    const view = this.attrs.routes[this.attrs.route];
 
     return {
       tag: 'div',
       attrs: {
         class: 'router',
       },
-      children: [...(route ? [{...route, key: this.attrs.route}] : ['no route'])],
+      children: [...(view ? [{...view, key: this.attrs.route}] : ['no route'])],
     };
   }
 }
