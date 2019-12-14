@@ -7,6 +7,8 @@ import LoginPanel from './LoginPanel';
 export default class BoardWithLanding extends Component {
   render() {
     const store = this.attrs.store;
+    const state = this.attrs.store.state;
+    const loggedIn = state.user.loggedIn ? true : false;
 
     return {
       tag: 'div',
@@ -24,7 +26,7 @@ export default class BoardWithLanding extends Component {
             },
           },
         },
-        {tag: Board},
+        loggedIn ? {tag: Board, attrs: {store}} : "",
       ],
     };
   }
