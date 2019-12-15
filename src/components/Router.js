@@ -55,7 +55,6 @@ export default class Router extends Component {
 
   open(path) {
     const route = this.attrs.routes[path];
-    // const route = this.attrs.store.getState().router[this.routerId];
 
     if (typeof route === 'function') {
       route();

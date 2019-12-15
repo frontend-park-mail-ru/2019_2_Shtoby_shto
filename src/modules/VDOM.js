@@ -216,12 +216,18 @@ export default class VDOM {
       } else {
         // node.insertBefore(this.create(vchild), node.childNodes[i]);
         // node.removeChild(node.childNodes[i+1]);
-        if (typeof node.childNodes[i]._vnode.tag === 'function') {
-          node.childNodes[i]._vnode._instance.willUnmount();
+        // if (typeof node.childNodes[i]._vnode.tag === 'function') {
+        //   node.childNodes[i]._vnode._instance.willUnmount();
+        // }
+        if (prevVchild) {
+          node.childNodes[i].replaceWith(this.create(vchild));
+        } else {
+          node.insertBefore(this.create(vchild), node.childNodes[i]);
+          // node.appendChild(this.create(vchild));
         }
-
-        node.childNodes[i].replaceWith(this.create(vchild));
         j--;
+
+        // node.childNodes[i].replaceWith(this.create(vchild));
       }
     }
   }
