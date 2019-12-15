@@ -16,6 +16,7 @@ const genBoard = (board) => {
 export default class Board extends Component {
   render() {
     console.log('board render');
+    console.log(this.attrs.store.state.boards)
 
     return {
       tag: 'div',

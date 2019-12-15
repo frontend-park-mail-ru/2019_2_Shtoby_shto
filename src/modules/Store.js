@@ -9,8 +9,8 @@ export default class Store {
   dispatch(action) {
     const newState = this.reducer(this.state, action);
     if (newState != this.state) {
-      this.mutated(newState);
       this.state = newState;
+      this.mutated(newState);
     }
   }
 
