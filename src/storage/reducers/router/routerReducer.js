@@ -5,7 +5,13 @@ export default function routerReducer(state, action) {
 
       const defaultRoute = action.defaultRoute;
       const newState = {...state};
-      newState[action.id] = {route: defaultRoute ? defaultRoute : ""};
+
+      const newRouter = {route: undefined, defaultRoute};
+      if (action.defaultRoute) {
+        newRouter.route = action.defaultRoute;
+      }
+
+      newState[action.id] = newRouter;
 
       return newState;
     }
