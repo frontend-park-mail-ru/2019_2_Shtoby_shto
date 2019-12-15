@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>WebSocket</title>
+</head>
+
+<body>
+  <p id="output"></p>
+
+  <script>
+    var loc = window.location;
+    var uri = 'ws:';
+
+    if (loc.protocol === 'https:') {
+      uri = 'wss:';
+    }
+    uri += '//' + "localhost:8080/cards/ws";
+
+    ws = new WebSocket(uri)
+
+    ws.onopen = function() {
+      ws.send('{"user_id":"b23123f0-c657-46eb-9594-b92677562552"}');
+      console.log('Connected')
+    }
+
+    ws.onmessage = function(evt) {
+      var out = document.getElementById('q');
+      out.innerHTML += evt.data + '<br>';
+    }
+
+    
+
+    function send() {
+        console.log('mesage send')
+        ws.send('{"user_id":"b23123f0-c657-46eb-9594-b92677562552", "card_id":"0301c181-fa79-4ed3-91d7-b137af73697f"}');
+    }
+  </script>
+    <form action="">
+            <p><input type="button" value="Проверить" onclick="send()"></p>
+     </form>
+</body>
+
+<textarea id = "q"></textarea>
+
+</html>
