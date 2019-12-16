@@ -29,13 +29,15 @@ export default class BoardTabsController extends Component {
   }
 
   generateContent() {
-    return '<tabscontainer></tabscontainer><tabplus></tabplus><refreshButton></refreshButton>';
+    return '<tabscontainer></tabscontainer><tabplus></tabplus><refreshButton></refreshButton>' +
+        '<nginxReference></nginxReference>';
   }
 
   getMounts() {
     return {
       tabscontainer: this.element.getElementsByTagName('tabscontainer')[0],
       plus: this.element.getElementsByTagName('tabplus')[0],
+      refreshButton: this.element.getElementsByTagName('refreshButton')[0],
     };
   }
 

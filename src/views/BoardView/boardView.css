@@ -1,8 +1,13 @@
 .board__view {
     position: relative;
     display: flex;
-    height: 95%;
-    background-color: #00bb77;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8)), url('./583bf6c6d2797.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /*background-color: #00bb77;*/
 }
 
 html, body {
@@ -12,6 +17,7 @@ html, body {
 
 .board__tab__controller {
     /* width: 20%; */
+    max-width: 203px;
     background-color: rgba(0, 0, 0, 0.5);;
 }
 
@@ -175,7 +181,7 @@ html, body {
 .group__displayer {
     display: flex;
     flex-direction: row;
-    overflow: scroll;
+    overflow: hidden;
     height: 100%;
 }
 
@@ -572,6 +578,29 @@ html, body {
     outline: none;
     border-color: #3acfff;
     box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
+}
+
+.board__attachURL{
+    background-color: #4E729A;
+    color: white;
+    max-width: 200px;
+    margin-left: 10px;
+    padding-left: 5px;
+    border-radius: 5px;
+}
+
+.refresh__button__board{
+    background-color: #4E729A;
+    color: white;
+}
+
+.url__tag__controller{
+    background-color: white;
+}
+
+.text__tag__controller{
+    color: white;
+
 }
 
 ::-webkit-clear-button,

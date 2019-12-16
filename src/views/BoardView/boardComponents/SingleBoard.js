@@ -22,7 +22,7 @@ export default class SingleBoard extends Component {
   }
 
   generateContent() {
-    return '<users></users><groups></groups><attachLink></attachLink>';
+    return '<users></users><groups></groups><attachLink></attachLink><refreshButton></refreshButton>';
   }
 
   getMounts() {
@@ -30,6 +30,7 @@ export default class SingleBoard extends Component {
       users: this.element.getElementsByTagName('users')[0],
       groups: this.element.getElementsByTagName('groups')[0],
       attachLink: this.element.getElementsByTagName('attachLink')[0],
+      refreshButton: this.element.getElementsByTagName('refreshButton')[0],
     };
   }
 
@@ -39,7 +40,6 @@ export default class SingleBoard extends Component {
     if (typeof selectedIndex !== 'undefined') {
       const selectedBoard = state.boards[selectedIndex];
       this.tryShowBoard(selectedBoard);
-      this.refreshbutton(selectedBoard);
     }
 
     this.subscribe((state) => state.boards[state.ui.selectedIndex]);
@@ -65,6 +65,14 @@ export default class SingleBoard extends Component {
     this.addChild(new GroupsDisplayer(this.dispatch.bind(this),
         ...board.cardGroups), 'groups');
     this.addChild(new OutputAttachLink(board.shortUrl || board['short_url']), 'attachLink');
+    this.addChild(new Component({
+      tag: 'button',
+      classes: ['refresh__button__board'],
+      content: 'обновить',
+    }),'refreshButton').element.onclick = () =>{
+      console.log('new button clicked');
+      this.refreshBoard(board);
+    };
     // this.addChild(new UserDisplayer(
     //     {
     //       classes: ['user__panel'],
@@ -76,30 +84,8 @@ export default class SingleBoard extends Component {
     // );
   }
 
-  refreshbutton(board) {
-    this.addChild( new Component({
-      tag: 'button',
-      content: 'обновить',
-    }),'attachLink');
-
-    this.element.onclick = () => {
-      console.log('clicked');
-      this.refreshBoard(board);
-    };
-  }
-
   refreshBoard(board) {
     board.got=false;
     this.tryShowBoard(board);
   }
-
-  // updateBoards(board) {
-  //   this.addChild(new Button({
-  //     content: 'Update',
-  //     onclick: () => {
-  //       fetchBoards();
-  //     },
-  //   }));
-  //   // this.dispatch(boardActions.getBoard(board.id));
-  // }
 }

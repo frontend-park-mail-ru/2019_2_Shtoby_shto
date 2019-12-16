@@ -10,6 +10,7 @@ export default class OutputAttachLink extends Component {
 
     this.linkArea = new Component({
       tag: 'div',
+      classes: ['board__attachURL'],
       content: `URL текущей доски: ${board}`,
     });
 
