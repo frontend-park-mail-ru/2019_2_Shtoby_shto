@@ -158,7 +158,7 @@ export function insertBefore(index, indexBefore) {
           dispatch(uiActions.selectLower());
         }
       }
-    };
+    }
   };
 }
 
@@ -183,4 +183,10 @@ export function clearStore() {
   };
 }
 
+export function attachUser(attachURL) {
+  return boardApi.attachUser(attachURL);
+}
 
+export function getAttachLink() {
+  // return ;
+}

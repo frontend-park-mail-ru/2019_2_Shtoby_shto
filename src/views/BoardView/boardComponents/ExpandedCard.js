@@ -88,9 +88,9 @@ class CommentSection extends Component {
 
     this.addChildren(
         ...comments.map((comment) => (
-            new Comment(
-                comment, comment['user_id'] === userId, dispatch,
-            ))).reverse(),
+          new Comment(
+              comment, comment['user_id'] === userId, dispatch,
+          ))).reverse(),
     );
   }
 }
@@ -184,7 +184,6 @@ class TagPlus extends Component {
 
     // this.addChild(colorPicker);
   }
-
 }
 
 class TagsSection extends Component {
@@ -305,10 +304,10 @@ export default class ExpandedCard extends Component {
           content: card.caption,
         },
         'keep').useDblclick().setOnBlur((text) => {
-          if (text.length && text !== card.caption) {
-            this.dispatch(cards.setCaption(card.id, text));
-          }
-        }), 'header',
+      if (text.length && text !== card.caption) {
+        this.dispatch(cards.setCaption(card.id, text));
+      }
+    }), 'header',
     );
 
     this.addChild(new TagsSection(card.tags, card.id, this.dispatch), 'tags');
@@ -332,10 +331,10 @@ export default class ExpandedCard extends Component {
           content: card.text,
         },
         'keep').useClick().setOnBlur((text) => {
-          if (text.length && text !== card.caption) {
-            this.dispatch(cards.setText(card.id, text));
-          }
-        }), 'text',
+      if (text.length && text !== card.caption) {
+        this.dispatch(cards.setText(card.id, text));
+      }
+    }), 'text',
     );
 
     this.addChild(new AttachmentArea(card, this.dispatch), 'attachment');
@@ -362,11 +361,11 @@ export default class ExpandedCard extends Component {
           },
         },
     ).apply((comp) => {
-      if(card.deadline !== undefined){
+      if (card.deadline !== undefined) {
         comp.element.value = parseDate(card.deadline);
       }
       comp.element.onchange = (e) => {
-        this.dispatch(cards.changeDeadline(card.id, e.target.value))
+        this.dispatch(cards.changeDeadline(card.id, e.target.value));
       };
     }), 'date');
   }

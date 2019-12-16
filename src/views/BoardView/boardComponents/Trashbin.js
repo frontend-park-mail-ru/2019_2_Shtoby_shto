@@ -6,14 +6,14 @@ const img = require('./trash.png');
 export default class Trashbin extends DNDComponent {
   constructor() {
     super({
-      tag: 'div'
+      tag: 'div',
     });
 
     this.msg = new Component({
       tag: 'h4',
       classes: ['trash', 'trash__msg'],
       attrs: {hidden: true},
-      content: "Скройся уже"
+      content: 'Скройся уже',
     });
 
     this.addChild(this.msg);

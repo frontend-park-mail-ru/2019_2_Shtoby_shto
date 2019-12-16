@@ -82,27 +82,33 @@ export function addTag(cardId, text, color) {
   return function(dispatch) {
     boardApi.addTag(cardId, text, color).then(() => {
       boardApi.getCard(cardId)
-        .then((res) => {dispatch(updateCard(cardId, res))});
-    })
-  }
+          .then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+    });
+  };
 }
 
 export function deleteTag(tagId, cardId) {
   return function(dispatch) {
     boardApi.deleteTag(tagId).then(() => {
       boardApi.getCard(cardId)
-        .then((res) => {dispatch(updateCard(cardId, res))});
-    })
-  }
+          .then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+    });
+  };
 }
 
 export function changeDeadline(cardId, date) {
   return function(dispatch) {
     boardApi.changeDeadline(cardId, date).then(() => {
       boardApi.getCard(cardId)
-      .then((res) => {dispatch(updateCard(cardId, res))});
-    })
-  }
+          .then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+    });
+  };
 }
 
 export function downloadAttachment(cardId) {
@@ -113,18 +119,18 @@ export function downloadAttachment(cardId) {
     a.download = 'attachment';
     document.body.appendChild(a);
     a.click();
-  }
+  };
 }
 
 export function uploadAttachment(cardId, file) {
   return function(dispatch) {
     boardApi.uploadFile(cardId, file)
-      .then(() => {
-        boardApi.getCard(cardId).then((res) => {
-          dispatch(updateCard(cardId, res))
-        })
-      })
-  }
+        .then(() => {
+          boardApi.getCard(cardId).then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+        });
+  };
 }
 
 
@@ -188,3 +194,7 @@ export function deleteCard(id) {
         });
   };
 }
+
+// export function getAttachLink() {
+//   return this.board_id;
+// }

@@ -8,6 +8,7 @@ export default function boardReducer(state, action) {
           name: action.model.name,
           cardGroups: action.model['card_groups'] || [],
           users: action.model.users,
+          shortUrl: action.model['short_url'],
         },
       ];
 
