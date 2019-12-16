@@ -268,8 +268,7 @@ html, body {
 }
 
 .trash__msg {
-    display: block;
-    bottom: 70px;
+    bottom: 15%;
 }
 
 .single__board {
@@ -289,6 +288,7 @@ html, body {
 .board__card {
     height: 75px;
     width: auto;
+    max-width: 245px;
     position: relative;
 
     background: white;
