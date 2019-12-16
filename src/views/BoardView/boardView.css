@@ -317,7 +317,8 @@ html, body {
 }
 
 .card__download__button {
-    height: 50%;
+    height: auto;
+    max-height: 20px;
     left: 17%;
     bottom: 5%;
     position: absolute;

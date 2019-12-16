@@ -33,8 +33,7 @@ export default class Trashbin extends DNDComponent {
         placed.element.hidden = true;
         const timerId = setTimeout(placed.del(), 5000);
         setTimeout(() => {this.children[0].component.element.hidden = true}, 5000);
-
-        this.children[0].component.children[0].element.onclick = (e) => {
+        this.children[0].component.children[0].component.element.onclick = (e) => {
           clearTimeout(timerId);
           placed.element.hidden = false;
         };
