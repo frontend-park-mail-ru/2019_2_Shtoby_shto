@@ -1,4 +1,5 @@
 import BoardApi from '../apis/BoardApi';
+import WSCardAttacher from '../modules/WSCardAttacher';
 
 // import * as boardActions from './Board';
 
@@ -43,6 +44,15 @@ function updateCard(id, update) {
     id,
     update,
   };
+}
+
+export function refreshCard(id) {
+  return function(dispatch) {
+    boardApi.getCard(id)
+      .then((card) => {
+        dispatch(updateCard(id, card));
+      })
+  }
 }
 
 // function getBoardId(state, cardId) {
@@ -145,11 +155,17 @@ export function deleteComment(id) {
 
 export function attachUser(userId, cardId) {
   return function(dispatch) {
+    console.log('tryna attach user');
     boardApi.attachUserToCard(userId, cardId)
-        .then(() => {
-          dispatch({type: 'CARD_ATTACH', userId, cardId});
-        });
+    .then(() => {
+        // dispatch({type: 'CARD_ATTACH', userId, cardId});
+        WSCardAttacher.attachToCard(userId, cardId);
+    });
   };
+}
+
+export function trueAttachUser() {
+  return {type: 'CARD_ATTACH', userId, cardId};
 }
 
 export function detachUser(userId, cardId) {

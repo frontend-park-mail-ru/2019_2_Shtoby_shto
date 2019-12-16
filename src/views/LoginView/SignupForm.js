@@ -1,6 +1,7 @@
 import Form from '../../components/Form';
 
 import * as user from '../../actions/User';
+import {checkEmail, checkPassword} from '../../modules/Utils/validation';
 
 const template = require('./signupForm.pug');
 
@@ -10,9 +11,15 @@ export default class SignupForm extends Form {
   }
 
   onSubmit(formValues) {
-    this.dispatch(user.register(
-        formValues.email, formValues.password
-    ));
+    const isvalid = checkEmail(formValues.email).err +' '+ checkPassword(formValues.password, formValues.password).err;
+    if (isvalid !== ' ') {
+      this.errorArea.innerText = isvalid;
+    } else {
+      this.errorArea.innerText = 'Данные корректны';
+      this.dispatch(user.register(
+          formValues.email, formValues.password
+      ));
+    }
   }
 
   setup() {

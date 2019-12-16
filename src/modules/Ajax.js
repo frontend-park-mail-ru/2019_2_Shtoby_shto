@@ -6,7 +6,7 @@ function attachHeaders(method, body, binary) {
   const headers = new Headers();
 
   if (tokenStorage.token) {
-    console.log('appending token', tokenStorage.token);
+    // console.log('appending token', tokenStorage.token);
     headers.set('X-Csrf-Token', tokenStorage.token);
   }
 
