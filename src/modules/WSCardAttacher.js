@@ -1,6 +1,8 @@
 import apiUrl from '../apis/shtobyApiAddr';
 const defaultUrl = `${apiUrl}`;
 
+import * as cardActions from '../actions/Card';
+
 function makeWsUri(url) {
   let uri = window.location.protocol === 'https:'
     ? 'wss:'
@@ -59,7 +61,11 @@ class WSCardAttacher {
   }
 
   msgcallback(evt) {
-    console.log(evt.data);
+    // console.log(JSON.parse(evt.data));
+    const refreshedCardId = JSON.parse(evt.data)['card_id'];
+    this.store.dispatch(cardActions.refreshCard(refreshedCardId));
+    // console.log(refreshedCardId);
+    // this.store.dispatch()
   }
 }
 

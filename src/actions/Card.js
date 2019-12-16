@@ -46,6 +46,15 @@ function updateCard(id, update) {
   };
 }
 
+export function refreshCard(id) {
+  return function(dispatch) {
+    boardApi.getCard(id)
+      .then((card) => {
+        dispatch(updateCard(id, card));
+      })
+  }
+}
+
 // function getBoardId(state, cardId) {
 //   let foundId = undefined;
 
@@ -141,11 +150,11 @@ export function deleteComment(id) {
 export function attachUser(userId, cardId) {
   return function(dispatch) {
     console.log('tryna attach user');
-    WSCardAttacher.attachToCard(userId, cardId);
-    // boardApi.attachUserToCard(userId, cardId)
-    //     .then(() => {
-    //       dispatch({type: 'CARD_ATTACH', userId, cardId});
-    //     });
+    boardApi.attachUserToCard(userId, cardId)
+    .then(() => {
+        // dispatch({type: 'CARD_ATTACH', userId, cardId});
+        WSCardAttacher.attachToCard(userId, cardId);
+    });
   };
 }
 
