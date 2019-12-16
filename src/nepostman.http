@@ -1,4 +1,5 @@
-POST http://localhost/login
+# POST http://localhost/login
+POST https://iamneponyalapi.ru/login
 
 # @name login
 
@@ -35,3 +36,7 @@ X-Csrf-Token: {{csrf_token}}
 GET http://localhost/board/{{board_id}}
 X-Csrf-Token: {{csrf_token}}
 
+###
+
+GET https://iamneponyalapi.ru/SBvvP
+X-Csrf-Token: {{csrf_token}}
