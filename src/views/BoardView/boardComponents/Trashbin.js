@@ -9,7 +9,7 @@ export default class Trashbin extends DNDComponent {
       tag: 'div',
     });
 
-    this.msg = new Component({
+    const msg = new Component({
       tag: 'h4',
       classes: ['trash', 'trash__msg'],
       attrs: {hidden: true},
@@ -26,7 +26,14 @@ export default class Trashbin extends DNDComponent {
 
     this.makeDroppable((_, placed) => {
       if ('del' in placed) {
-        placed.del();
+        this.children[0].component.element.hidden = false;
+        placed.element.hidden = true;
+        const timerId = setTimeout(placed.del(), 5000);
+        setTimeout(() => {this.children[0].component.element.hidden = true}, 5000);
+        this.children[0].component.children[0].component.element.onclick = (e) => {
+          clearTimeout(timerId);
+          placed.element.hidden = false;
+        };
       }
     });
   }

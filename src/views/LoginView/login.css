@@ -1,10 +1,25 @@
-.cont {
-    overflow: hidden;
-    position: relative;
-    /* width: 900px; */
+.modal-body {
+    position: fixed;
+    /*top: 0;*/
+    left: 0;
+    /*background: rgba(0, 0, 0, 0.65);*/
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://media.licdn.com/dms/image/C511BAQF0fAG56Uhq_w/company-background_10000/0?e=2159024400&v=beta&t=iVgH0pnPyLLWgijmSo_2ZDnucK2L6fFv78TZ6pBfG_E) no-repeat center fixed;
+    background-size: cover;
+    overflow: auto;
     width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.cont {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    overflow: hidden;
+    /*position: relative;*/
+    width: 640px;
     height: 500px;
-    margin: 0 auto 100px;
+    /*margin: 0 auto 100px;*/
     background: #fff;
 }
 
@@ -43,7 +58,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 260px;
+    width: 320px;
     height: 100%;
     padding-top: 360px;
 }

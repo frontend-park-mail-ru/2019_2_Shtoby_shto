@@ -1,7 +1,7 @@
 import Form from '../../components/Form';
 
 import * as user from '../../actions/User';
-
+import {checkEmail, checkPassword} from '../../modules/Utils/validation';
 const template = require('./loginForm.pug');
 
 export default class LoginForm extends Form {
@@ -10,9 +10,15 @@ export default class LoginForm extends Form {
   }
 
   onSubmit(formValues) {
-    this.dispatch(user.login(
-        formValues.email, formValues.password
-    ));
+    const isvalid = checkEmail(formValues.email).err +' '+ checkPassword(formValues.password, formValues.password).err;
+    if (isvalid !== ' ') {
+      this.errorArea.innerText = isvalid;
+    } else {
+      this.errorArea.innerText = 'Данные корректны';
+      this.dispatch(user.login(
+          formValues.email, formValues.password
+      ));
+    }
   }
 
   setup() {
@@ -20,11 +26,11 @@ export default class LoginForm extends Form {
     this.errorArea = this.element.querySelector('.login__error');
   }
 
-  init() {
+  init(){
     this.subscribe((state) => state.user.loginFailed);
   }
 
-  stateUpdate(loginFailed) {
+  stateUpdate(loginFailed){
     if (loginFailed) {
       this.errorArea.innerText = 'Не удалось залогиниться!';
     } else {

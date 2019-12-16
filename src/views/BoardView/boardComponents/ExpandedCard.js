@@ -363,6 +363,14 @@ export default class ExpandedCard extends Component {
     ).apply((comp) => {
       if (card.deadline !== undefined) {
         comp.element.value = parseDate(card.deadline);
+        const date = new Date();
+        let now = date.getFullYear() +'-'+ date.getMonth() +'-'+ date.getDate();
+        console.log(now);
+        // if (comp.element.value !== now){
+        //     this.element.style.background = '#b5b8b1';
+        // } else {
+        //   this.element.style.background = 'white';
+        // }
       }
       comp.element.onchange = (e) => {
         this.dispatch(cards.changeDeadline(card.id, e.target.value));
