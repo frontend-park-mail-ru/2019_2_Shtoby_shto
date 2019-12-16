@@ -87,7 +87,7 @@ export default class BoardApi extends Api {
   }
 
   downloadFile(cardId) {
-// https://hb.bizmrg.com/photo_storage/96613a65-2155-44cd-bbfe-32ea5d9d9f02
+    // https://hb.bizmrg.com/photo_storage/96613a65-2155-44cd-bbfe-32ea5d9d9f02
     // console.log('downloading now');
     // return this.download(`/cards/${cardId}/file`);
   }
@@ -105,5 +105,13 @@ export default class BoardApi extends Api {
 
   deleteComment(commentId) {
     return this.del(`/comments/${commentId}`);
+  }
+
+  // getLinkToAttachUser(cardId){
+  //   return this.get('/board.shorturl');
+  // }
+
+  attachUser(boardURL) {
+    return this.get(`/${boardURL}`);
   }
 }

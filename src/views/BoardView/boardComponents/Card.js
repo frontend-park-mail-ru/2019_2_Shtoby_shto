@@ -36,7 +36,7 @@ class TagContainer extends Component {
 
     tags.forEach((tag) => {
       this.addChild(new Tag(tag));
-    })
+    });
   }
 }
 
@@ -52,15 +52,15 @@ export default class Card extends DNDComponent {
           classes: ['card__header'],
           // content: card.caption,
         })
-          .addChild(new TagContainer(card.tags))
+            .addChild(new TagContainer(card.tags))
         //   .addChild(new Component({
         //   classes: ['card__tags'],
         //   content: 'ass fuck',
         // }))
-          .addChild(new Component({
-          classes: ['card__caption'],
-          content: card.caption,
-        })),
+            .addChild(new Component({
+              classes: ['card__caption'],
+              content: card.caption,
+            })),
         {
           classes: ['card__header'],
           content: card.caption,
@@ -99,9 +99,8 @@ export default class Card extends DNDComponent {
     );
 
     if (card.file) {
-
       const downloadButton = new Component({
-        tag: 'button'
+        tag: 'button',
       });
 
       downloadButton.element.onclick = () => {
@@ -113,7 +112,7 @@ export default class Card extends DNDComponent {
         classes: ['card__download__button'],
         attrs: {
           src: require('./file.png'),
-        }
+        },
       }));
 
       this.addChild(downloadButton);

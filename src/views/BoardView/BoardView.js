@@ -6,9 +6,12 @@ import CardModal from './boardComponents/CardModal';
 
 import './boardView.css';
 
+
 export default class BoardView extends Component {
   constructor() {
-    super({classes: ['board__view']});
+    super({
+      classes: ['board__view'],
+    });
 
     this.addChildren({
       boardTabs: new BoardTabsController(),
