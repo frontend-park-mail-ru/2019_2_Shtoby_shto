@@ -187,6 +187,3 @@ export function attachUser(attachURL) {
   return boardApi.attachUser(attachURL);
 }
 
-export function getAttachLink() {
-  // return ;
-}

@@ -39,6 +39,7 @@ export default class SingleBoard extends Component {
     if (typeof selectedIndex !== 'undefined') {
       const selectedBoard = state.boards[selectedIndex];
       this.tryShowBoard(selectedBoard);
+      this.refreshbutton(selectedBoard);
     }
 
     this.subscribe((state) => state.boards[state.ui.selectedIndex]);
@@ -63,7 +64,6 @@ export default class SingleBoard extends Component {
   showBoard(board) {
     this.addChild(new GroupsDisplayer(this.dispatch.bind(this),
         ...board.cardGroups), 'groups');
-
     this.addChild(new OutputAttachLink(board.shortUrl || board['short_url']), 'attachLink');
     // this.addChild(new UserDisplayer(
     //     {
@@ -76,6 +76,23 @@ export default class SingleBoard extends Component {
     // );
   }
 
+  refreshbutton(board) {
+    this.addChild( new Component({
+      tag: 'button',
+      content: 'обновить',
+    }),'attachLink');
+
+    this.element.onclick = () => {
+      console.log('clicked');
+      this.refreshBoard(board);
+    };
+  }
+
+  refreshBoard(board) {
+    board.got=false;
+    this.tryShowBoard(board);
+  }
+
   // updateBoards(board) {
   //   this.addChild(new Button({
   //     content: 'Update',
@@ -85,5 +102,4 @@ export default class SingleBoard extends Component {
   //   }));
   //   // this.dispatch(boardActions.getBoard(board.id));
   // }
-
 }

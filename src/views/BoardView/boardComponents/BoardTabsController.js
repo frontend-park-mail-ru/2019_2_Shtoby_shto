@@ -29,7 +29,7 @@ export default class BoardTabsController extends Component {
   }
 
   generateContent() {
-    return '<tabscontainer></tabscontainer><tabplus></tabplus>';
+    return '<tabscontainer></tabscontainer><tabplus></tabplus><refreshButton></refreshButton>';
   }
 
   getMounts() {
@@ -74,5 +74,9 @@ export default class BoardTabsController extends Component {
       this.selectedIndex = stateUpdate.index;
       this.getChild('tabscontainer').selectTab(this.selectedIndex);
     }
+  }
+
+  refreshAll(boards){
+
   }
 }

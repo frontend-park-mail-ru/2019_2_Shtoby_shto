@@ -20,8 +20,8 @@ export default function boardReducer(state, action) {
     case 'UPDATE_BOARD':
       return state.map((b) => {
         return b.id === action.id ?
-          {...b, name: action.name} :
-          b;
+            {...b, name: action.name} :
+            b;
       });
 
     case 'CREATE_GROUP':
@@ -43,14 +43,16 @@ export default function boardReducer(state, action) {
       return [
         ...state.map((b) => {
           return b.id === action.boardId ?
-          {...b, cardGroups: [
-            ...b.cardGroups.map((gr) => {
-              return gr.id === action.id ?
-              {...gr, name: action.name} :
-              {...gr};
-            }),
-          ]} :
-          {...b};
+              {
+                ...b, cardGroups: [
+                  ...b.cardGroups.map((gr) => {
+                    return gr.id === action.id ?
+                        {...gr, name: action.name} :
+                        {...gr};
+                  }),
+                ],
+              } :
+              {...b};
         }),
       ];
 
@@ -102,18 +104,22 @@ export default function boardReducer(state, action) {
     case 'DELETE_GROUP':
       return [
         ...state.map((b) => {
-          return {...b, cardGroups: b.cardGroups.filter((gr) => {
-            return gr.id !== action.id;
-          })};
+          return {
+            ...b, cardGroups: b.cardGroups.filter((gr) => {
+              return gr.id !== action.id;
+            }),
+          };
         }),
       ];
 
     case 'DELETE_CARD':
       return [
         ...state.map((b) => {
-          return {...b, cardGroups: b.cardGroups.map((gr) => {
-            return {...gr, cards: gr.cards.filter((c) => c.id !== action.id)};
-          })};
+          return {
+            ...b, cardGroups: b.cardGroups.map((gr) => {
+              return {...gr, cards: gr.cards.filter((c) => c.id !== action.id)};
+            }),
+          };
         }),
       ];
 
@@ -128,8 +134,8 @@ export default function boardReducer(state, action) {
           ...state.map((b) => ({
             ...b, cardGroups: b.cardGroups.map((gr) => (
                 gr.id === action.cardGroupId ?
-                {...gr, cards: [...gr.cards, cardModel]} :
-                gr
+                    {...gr, cards: [...gr.cards, cardModel]} :
+                    gr
             )),
           })),
         ];
@@ -145,8 +151,8 @@ export default function boardReducer(state, action) {
                   ...gr, cards: [
                     ...gr.cards.map((c) => {
                       return c.id === action.id ?
-                      {...c, ...action.update} :
-                      {...c};
+                          {...c, ...action.update} :
+                          {...c};
                     }),
                   ],
                 };
@@ -159,16 +165,17 @@ export default function boardReducer(state, action) {
       return [
         ...(state.map((b) => {
           return b.id === action.model.id ?
-            {...b,
-              // ...action.model,
-              cardGroups: action.model['card_groups'],
-              users: action.model.users,
-              // name: action.name,
-              // cardGroups: action['card_groups'].map((gr) => {
-              //   return {...gr, boardId: gr['board_id']};
-              // }),
-              got: true,
-            } : {...b, got: b.got || false};
+              {
+                ...b,
+                // ...action.model,
+                cardGroups: action.model['card_groups'],
+                users: action.model.users,
+                // name: action.name,
+                // cardGroups: action['card_groups'].map((gr) => {
+                //   return {...gr, boardId: gr['board_id']};
+                // }),
+                got: true,
+              } : {...b, got: b.got || false};
         })),
       ];
 
@@ -177,7 +184,7 @@ export default function boardReducer(state, action) {
         ...b, cardGroups: b.cardGroups.map((gr) => ({
           ...gr, cards: gr.cards.map((c) => ({
             ...c, comments: c.id === action.comment['card_id'] ?
-              [...c.comments, action.comment] : c.comments,
+                [...c.comments, action.comment] : c.comments,
           })),
         })),
       }));
@@ -197,11 +204,13 @@ export default function boardReducer(state, action) {
       return state.map((b) => ({
         ...b, cardGroups: b.cardGroups.map((gr) => ({
           ...gr, cards: gr.cards.map((c) => (
-            c.id === action.cardId ?
-            {...c, users: c.users.filter((userId) => (
-              userId !== action.userId
-            ))} :
-            c
+              c.id === action.cardId ?
+                  {
+                    ...c, users: c.users.filter((userId) => (
+                      userId !== action.userId
+                    )),
+                  } :
+                  c
           )),
         })),
       }));
@@ -210,11 +219,11 @@ export default function boardReducer(state, action) {
       return state.map((b) => ({
         ...b, cardGroups: b.cardGroups.map((gr) => ({
           ...gr, cards: gr.cards.map((c) => (
-            c.id === action.cardId ?
-              c.users.filter(
-                  (userId) => (userId === action.userId)).length === 0 ?
-              {...c, users: [...c.users, action.userId]} : c :
-              c
+              c.id === action.cardId ?
+                  c.users.filter(
+                      (userId) => (userId === action.userId)).length === 0 ?
+                      {...c, users: [...c.users, action.userId]} : c :
+                  c
           )),
         })),
       }));
