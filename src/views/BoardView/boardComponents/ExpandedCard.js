@@ -11,6 +11,11 @@ const defaultAva = require('./userAva.png');
 
 import UserApi from '../../../apis/UserApi';
 import invertColor from '../../../modules/Utils/invertColor';
+import parseDate from '../../../modules/Utils/parseDate';
+
+import * as uiActions from '../../../actions/UI';
+import {changeDeadline} from '../../../actions/Card';
+
 const userApi = new UserApi();
 
 class Comment extends Component {
@@ -31,11 +36,10 @@ class Comment extends Component {
 
     this.username = '';
 
-    userApi.getSpecificUser(comment['user_id'])
-        .then((user) => {
-          this.username = user.login;
-          this.render();
-        });
+    userApi.getSpecificUser(comment['user_id']).then((user) => {
+      this.username = user.login;
+      this.render();
+    });
   }
 
   generateContent() {
@@ -64,22 +68,20 @@ class CommentSection extends Component {
     });
 
     this.addChild(
-        new Component({classes: ['comment__container']})
-            .addChild(new Component({
+        new Component({classes: ['comment__container']}).addChild(
+            new Component({
               classes: ['comment__avatar'],
               tag: 'img',
               attrs: {src: defaultAva},
-            }))
-            .addChild(textarea)
-            .addChild(new Button({
-              classes: ['comment__button'],
-              content: 'Сказать',
-              onclick: () => {
-                if (textarea.element.value) {
-                  dispatch(cards.addComment(cardId, textarea.element.value));
-                }
-              },
-            }))
+            })).addChild(textarea).addChild(new Button({
+          classes: ['comment__button'],
+          content: 'Сказать',
+          onclick: () => {
+            if (textarea.element.value) {
+              dispatch(cards.addComment(cardId, textarea.element.value));
+            }
+          },
+        })),
     );
 
     // const state = getState();
@@ -87,9 +89,8 @@ class CommentSection extends Component {
     this.addChildren(
         ...comments.map((comment) => (
           new Comment(
-              comment, comment['user_id'] === userId, dispatch
-          )))
-            .reverse()
+              comment, comment['user_id'] === userId, dispatch,
+          ))).reverse(),
     );
   }
 }
@@ -112,7 +113,7 @@ class ExpandedTag extends Component {
 
     const deleter = new Component({
       classes: ['expanded__tag__deleter'],
-      content: 'X'
+      content: 'X',
     });
 
     deleter.element.onclick = () => {
@@ -120,7 +121,7 @@ class ExpandedTag extends Component {
     };
 
     this.addChild(deleter);
-    
+
     this.tag = tag;
   }
 
@@ -139,10 +140,10 @@ class TagPlus extends Component {
     //   content: 'введите текст',
     // }))
     const colorPicker = new Component({
-        tag: 'input',
-        attrs: {type: 'color'},
-        classes: ['color__picker']
-        // style: {'border-bottom': 'none'},
+      tag: 'input',
+      attrs: {type: 'color'},
+      classes: ['color__picker'],
+      // style: {'border-bottom': 'none'},
     });
 
     const tagText = new Component({tag: 'input'});
@@ -151,7 +152,6 @@ class TagPlus extends Component {
 
     const adderContainer = new Component({classes: ['adder__container']});
 
-    
     // const addButton = new Button();
     const addButton = new Component({
       tag: 'button',
@@ -166,7 +166,7 @@ class TagPlus extends Component {
       if (text && color != '#000000') {
         dispatch(cards.addTag(cardId, text, color));
       }
-    }
+    };
 
     adderContainer.addChild(tagText);
     adderContainer.addChild(colorPicker);
@@ -175,16 +175,15 @@ class TagPlus extends Component {
 
     this.addChild(addButton);
     // this.addChild(new Input());
-      // .setOnChange((text) => {
-      //   const color = colorPicker.element.value;
-      //   if (text) {
-      //     dispatch(cards.addTag(cardId, text, color));
-      //   }
-      // }));
+    // .setOnChange((text) => {
+    //   const color = colorPicker.element.value;
+    //   if (text) {
+    //     dispatch(cards.addTag(cardId, text, color));
+    //   }
+    // }));
 
     // this.addChild(colorPicker);
-    }
-
+  }
 }
 
 class TagsSection extends Component {
@@ -215,11 +214,11 @@ class AttachmentArea extends Component {
 
       downloadButton
       // this.addChild(new Button({classes: ['download_button']})
-        .addChild(new Component({
-        tag: 'img',
-        attrs: {'src': require('./file.png')},
-        style: {'height': '100%'},
-      }))
+          .addChild(new Component({
+            tag: 'img',
+            attrs: {'src': require('./file.png')},
+            style: {'height': '100%'},
+          }));
 
       this.addChild(downloadButton);
     }
@@ -228,28 +227,26 @@ class AttachmentArea extends Component {
       tag: 'input',
       classes: ['attachment__file'],
       attrs: {
-        type: 'file'
-      }
+        type: 'file',
+      },
     });
 
     const uploadButton = new Component({
       tag: 'button',
       classes: ['upload__button'],
-      content: 'прикрепить файл'
-    })
+      content: 'прикрепить файл',
+    });
 
     uploadButton.element.onclick = (e) => {
       const file = fileInput.element.files[0];
       dispatch(cards.uploadAttachment(card.id, file));
-    }
+    };
 
     const uploadContainer = new Component({
       classes: ['upload__container'],
     });
 
-    this.addChild(uploadContainer
-      .addChild(fileInput)
-      .addChild(uploadButton))
+    this.addChild(uploadContainer.addChild(fileInput).addChild(uploadButton));
   }
 }
 
@@ -271,8 +268,12 @@ export default class ExpandedCard extends Component {
       <cheader></cheader>
       <div class='expanded__middle'>
         <textarea></textarea>
+        <label class="date_label">
+        <span>Дата дедлайна</span>
+          <datearea></datearea>
+        </label>
         <tags></tags>
-        </div>
+      </div>
       <attachment></attachment>
       <users></users>
       <comments></comments>
@@ -287,6 +288,7 @@ export default class ExpandedCard extends Component {
       text: this.element.getElementsByTagName('textarea')[0],
       comments: this.element.getElementsByTagName('comments')[0],
       attachment: this.element.getElementsByTagName('attachment')[0],
+      date: this.element.getElementsByTagName('datearea')[0],
     };
   }
 
@@ -305,7 +307,7 @@ export default class ExpandedCard extends Component {
       if (text.length && text !== card.caption) {
         this.dispatch(cards.setCaption(card.id, text));
       }
-    }), 'header'
+    }), 'header',
     );
 
     this.addChild(new TagsSection(card.tags, card.id, this.dispatch), 'tags');
@@ -314,14 +316,14 @@ export default class ExpandedCard extends Component {
         new UserDisplayer({
           classes: ['expanded__card__user__displayer'],
           avatarClasses: ['card__avatar'],
-        }, ...card.users), 'users'
+        }, ...card.users), 'users',
     );
 
     this.addChild(new TransformingInput(
         new Component({
           classes: ['expanded__card__text'],
           content: card.text ? [...card.text].map((ch) => (
-            ch === '\n' ? '<br>' : ch)).join('') : 'Напишите что-нибудь...',
+              ch === '\n' ? '<br>' : ch)).join('') : 'Напишите что-нибудь...',
         }),
         {
           tag: 'textarea',
@@ -332,7 +334,7 @@ export default class ExpandedCard extends Component {
       if (text.length && text !== card.caption) {
         this.dispatch(cards.setText(card.id, text));
       }
-    }), 'text'
+    }), 'text',
     );
 
     this.addChild(new AttachmentArea(card, this.dispatch), 'attachment');
@@ -347,7 +349,32 @@ export default class ExpandedCard extends Component {
         this.userName,
         () => {
           return this.getState();
-        }
+        },
     ), 'comments');
+
+    this.addChild(new Component(
+        {
+          tag: 'input',
+          classes: ['date_input'],
+          attrs: {
+            type: 'date',
+          },
+        },
+    ).apply((comp) => {
+      if (card.deadline !== undefined) {
+        comp.element.value = parseDate(card.deadline);
+        const date = new Date();
+        let now = date.getFullYear() +'-'+ date.getMonth() +'-'+ date.getDate();
+        console.log(now);
+        // if (comp.element.value !== now){
+        //     this.element.style.background = '#b5b8b1';
+        // } else {
+        //   this.element.style.background = 'white';
+        // }
+      }
+      comp.element.onchange = (e) => {
+        this.dispatch(cards.changeDeadline(card.id, e.target.value));
+      };
+    }), 'date');
   }
 }

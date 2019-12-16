@@ -1,4 +1,5 @@
 import BoardApi from '../apis/BoardApi';
+import WSCardAttacher from '../modules/WSCardAttacher';
 
 // import * as boardActions from './Board';
 
@@ -45,6 +46,15 @@ function updateCard(id, update) {
   };
 }
 
+export function refreshCard(id) {
+  return function(dispatch) {
+    boardApi.getCard(id)
+      .then((card) => {
+        dispatch(updateCard(id, card));
+      })
+  }
+}
+
 // function getBoardId(state, cardId) {
 //   let foundId = undefined;
 
@@ -82,18 +92,33 @@ export function addTag(cardId, text, color) {
   return function(dispatch) {
     boardApi.addTag(cardId, text, color).then(() => {
       boardApi.getCard(cardId)
-        .then((res) => {dispatch(updateCard(cardId, res))});
-    })
-  }
+          .then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+    });
+  };
 }
 
 export function deleteTag(tagId, cardId) {
   return function(dispatch) {
     boardApi.deleteTag(tagId).then(() => {
       boardApi.getCard(cardId)
-        .then((res) => {dispatch(updateCard(cardId, res))});
-    })
-  }
+          .then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+    });
+  };
+}
+
+export function changeDeadline(cardId, date) {
+  return function(dispatch) {
+    boardApi.changeDeadline(cardId, date).then(() => {
+      boardApi.getCard(cardId)
+          .then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+    });
+  };
 }
 
 export function downloadAttachment(cardId) {
@@ -104,18 +129,18 @@ export function downloadAttachment(cardId) {
     a.download = 'attachment';
     document.body.appendChild(a);
     a.click();
-  }
+  };
 }
 
 export function uploadAttachment(cardId, file) {
   return function(dispatch) {
     boardApi.uploadFile(cardId, file)
-      .then(() => {
-        boardApi.getCard(cardId).then((res) => {
-          dispatch(updateCard(cardId, res))
-        })
-      })
-  }
+        .then(() => {
+          boardApi.getCard(cardId).then((res) => {
+            dispatch(updateCard(cardId, res));
+          });
+        });
+  };
 }
 
 
@@ -130,11 +155,17 @@ export function deleteComment(id) {
 
 export function attachUser(userId, cardId) {
   return function(dispatch) {
+    console.log('tryna attach user');
     boardApi.attachUserToCard(userId, cardId)
-        .then(() => {
-          dispatch({type: 'CARD_ATTACH', userId, cardId});
-        });
+    .then(() => {
+        // dispatch({type: 'CARD_ATTACH', userId, cardId});
+        WSCardAttacher.attachToCard(userId, cardId);
+    });
   };
+}
+
+export function trueAttachUser() {
+  return {type: 'CARD_ATTACH', userId, cardId};
 }
 
 export function detachUser(userId, cardId) {
@@ -179,3 +210,7 @@ export function deleteCard(id) {
         });
   };
 }
+
+// export function getAttachLink() {
+//   return this.board_id;
+// }

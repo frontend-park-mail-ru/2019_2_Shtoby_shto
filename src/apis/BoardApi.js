@@ -1,12 +1,7 @@
 import Api from '../modules/Api';
 
-const localApiAddr = 'http://localhost:8080';
-const remoteApiAddr = 'https://iamneponyalapi.ru';
+import apiAddr from './shtobyApiAddr';
 
-const deployVar = process.env.REMOTE_DEPLOY;
-
-const apiAddr = (deployVar && remoteApiAddr) ||
-    localApiAddr;
 
 export default class BoardApi extends Api {
   constructor() {
@@ -72,6 +67,10 @@ export default class BoardApi extends Api {
     });
   }
 
+  changeDeadline(cardId, date) {
+    return this.put(`/cards/${cardId}`, {deadline: `${date}T15:04:05Z`});
+  }
+
   deleteTag(tagId) {
     return this.del(`/tags/${tagId}`);
   }
@@ -88,7 +87,7 @@ export default class BoardApi extends Api {
   }
 
   downloadFile(cardId) {
-// https://hb.bizmrg.com/photo_storage/96613a65-2155-44cd-bbfe-32ea5d9d9f02
+    // https://hb.bizmrg.com/photo_storage/96613a65-2155-44cd-bbfe-32ea5d9d9f02
     // console.log('downloading now');
     // return this.download(`/cards/${cardId}/file`);
   }
@@ -106,5 +105,13 @@ export default class BoardApi extends Api {
 
   deleteComment(commentId) {
     return this.del(`/comments/${commentId}`);
+  }
+
+  // getLinkToAttachUser(cardId){
+  //   return this.get('/board.shorturl');
+  // }
+
+  attachUser(boardURL) {
+    return this.get(`/${boardURL}`);
   }
 }

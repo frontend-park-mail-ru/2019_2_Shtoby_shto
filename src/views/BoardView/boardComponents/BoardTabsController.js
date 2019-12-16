@@ -1,6 +1,7 @@
 import Component from '../../../modules/Component';
 import BoardTabsContainer from './BoardTabsContainer';
 import BoardPlus from './BoardPlus';
+import InputAttachLink from './InputAttachLink';
 
 import * as board from '../../../actions/Board';
 // import * as uiActions from '../../../actions/UI';
@@ -20,19 +21,23 @@ export default class BoardTabsController extends Component {
 
     this.selectedIndex = undefined;
 
+    this.addChildren(new InputAttachLink());
+
     // this.element.onclick = () => {
     //   this.dispatch(uiActions.deselectBoard());
     // };
   }
 
   generateContent() {
-    return '<tabscontainer></tabscontainer><tabplus></tabplus>';
+    return '<tabscontainer></tabscontainer><tabplus></tabplus><refreshButton></refreshButton>' +
+        '<nginxReference></nginxReference>';
   }
 
   getMounts() {
     return {
       tabscontainer: this.element.getElementsByTagName('tabscontainer')[0],
       plus: this.element.getElementsByTagName('tabplus')[0],
+      refreshButton: this.element.getElementsByTagName('refreshButton')[0],
     };
   }
 
@@ -71,5 +76,9 @@ export default class BoardTabsController extends Component {
       this.selectedIndex = stateUpdate.index;
       this.getChild('tabscontainer').selectTab(this.selectedIndex);
     }
+  }
+
+  refreshAll(boards){
+
   }
 }
