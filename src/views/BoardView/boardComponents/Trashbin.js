@@ -12,11 +12,14 @@ export default class Trashbin extends DNDComponent {
     const msg = new Component({
       tag: 'h4',
       classes: ['trash', 'trash__msg'],
-      attrs: {hidden: true},
-      content: 'Скройся уже',
-    });
-
-    this.addChild(this.msg);
+      content: 'Объект удален, ',
+    }).addChild(new Component({
+      tag: 'a',
+      attrs: {href: '/board'},
+      content: 'Восстановить',
+    }));
+    this.addChild(msg);
+    this.children[0].component.element.hidden = true;
 
     this.addChild(new Component({
       tag: 'img',

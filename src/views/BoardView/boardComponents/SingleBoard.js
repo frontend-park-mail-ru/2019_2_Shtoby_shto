@@ -82,6 +82,7 @@ export default class SingleBoard extends Component {
     //   dnd(child).makeDraggable();
     // }), 'users'
     // );
+
   }
 
   refreshBoard(board) {
