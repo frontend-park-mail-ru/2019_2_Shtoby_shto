@@ -3,7 +3,7 @@
 
 
 Ссылки:
-* Фронтенд: https://front.aleshka2012.now.sh/#/
+* Фронтенд: https://эточтоапи.рф
 * Бекенд: https://iamneponyalapi.ru/registration
 * Гитхаб с бекендом: https://github.com/go-park-mail-ru/2019_2_Shtoby_shto
 
