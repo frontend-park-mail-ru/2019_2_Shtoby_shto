@@ -69,19 +69,22 @@ export default class SingleBoard extends Component {
       tag: 'button',
       classes: ['refresh__button__board'],
       content: 'обновить',
-    }),'refreshButton').element.onclick = () =>{
-      console.log('new button clicked');
-      this.refreshBoard(board);
-    };
-    // this.addChild(new UserDisplayer(
-    //     {
-    //       classes: ['user__panel'],
-    //       avatarClasses: ['card__avatar'],
-    //     },
-    //     ...board.users).forEachChild((child) => {
-    //   dnd(child).makeDraggable();
-    // }), 'users'
-    // );
+      }).apply((comp) => {
+        comp.element.onclick = () =>{
+          console.log('new button clicked');
+          this.refreshBoard(board);
+        };
+    }),
+    'refreshButton')
+    this.addChild(new UserDisplayer(
+        {
+          classes: ['user__panel'],
+          avatarClasses: ['card__avatar'],
+        },
+        ...board.users).forEachChild((child) => {
+      dnd(child).makeDraggable();
+    }), 'users'
+    );
 
   }
 
