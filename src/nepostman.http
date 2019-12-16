@@ -1,0 +1,37 @@
+POST http://localhost/login
+
+# @name login
+
+{
+    "login": "aaa@mail.ru",
+    "password": "123456"
+}
+
+@csrf_token = {{ login.response.headers.X-Csrf-Token }}
+@my_id = {{ login.response.body.$.id }}
+
+###
+# @name get_users
+
+GET http://localhost/users/all
+X-Csrf-Token: {{csrf_token}}
+
+###
+# @name get_boards
+GET http://localhost/board/user/{{my_id}}
+X-Csrf-Token: {{csrf_token}}
+
+###
+# @name get_card
+
+GET http://localhost/cards/{{card_id}}
+X-Csrf-Token: {{csrf_token}}
+
+###
+# @name board
+@board_id = 23ffb826-1376-4888-8be0-665c27a9ee8b
+@card_id = 70439308-ea92-41c1-920c-006a85ac099e
+
+GET http://localhost/board/{{board_id}}
+X-Csrf-Token: {{csrf_token}}
+

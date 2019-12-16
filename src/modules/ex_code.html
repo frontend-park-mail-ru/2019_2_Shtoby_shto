@@ -16,12 +16,22 @@
     if (loc.protocol === 'https:') {
       uri = 'wss:';
     }
-    uri += '//' + "localhost:8080/cards/ws";
+    uri += '//' + "localhost:80/cards/ws";
 
     ws = new WebSocket(uri)
 
+    const myId = "76ab8527-6a9f-484a-adaf-5b822a2bfc58";
+    const userId = "3b5f295c-a447-4831-922a-b0745e1f471d";
+    // const cardId = "abf70d83-43dc-4301-b1bd-3c999bf8935b";
+    const cardId = "70439308-ea92-41c1-920c-006a85ac099e";
+
     ws.onopen = function() {
-      ws.send('{"user_id":"b23123f0-c657-46eb-9594-b92677562552"}');
+      // ws.send('{"user_id": ${myId}}');
+      // ws.send('{"user_id": "76ab8527-6a9f-484a-adaf-5b822a2bfc58"}');
+      ws.send(JSON.stringify({
+        "user_id": userId,
+      }))
+
       console.log('Connected')
     }
 
@@ -30,11 +40,18 @@
       out.innerHTML += evt.data + '<br>';
     }
 
+    ws.onerror = (e) => {
+      console.log(e);
+    }
     
+    // const userId = "76ab8527-6a9f-484a-adaf-5b822a2bfc58";
 
     function send() {
         console.log('mesage send')
-        ws.send('{"user_id":"b23123f0-c657-46eb-9594-b92677562552", "card_id":"0301c181-fa79-4ed3-91d7-b137af73697f"}');
+        ws.send(JSON.stringify({
+          "user_id": myId,
+          "card_id": cardId
+        }));
     }
   </script>
     <form action="">
