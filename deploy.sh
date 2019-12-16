@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export REMOTE_DEPLOY="okey"
+npm run build
+
 DEPLOY_ITEMS="server.js index.html favicon.ico dist"
 DEPLOY_DIR="deploy/"
 
