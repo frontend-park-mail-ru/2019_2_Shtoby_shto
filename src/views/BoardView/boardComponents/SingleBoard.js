@@ -73,15 +73,15 @@ export default class SingleBoard extends Component {
       console.log('new button clicked');
       this.refreshBoard(board);
     };
-    // this.addChild(new UserDisplayer(
-    //     {
-    //       classes: ['user__panel'],
-    //       avatarClasses: ['card__avatar'],
-    //     },
-    //     ...board.users).forEachChild((child) => {
-    //   dnd(child).makeDraggable();
-    // }), 'users'
-    // );
+    this.addChild(new UserDisplayer(
+        {
+          classes: ['user__panel'],
+          avatarClasses: ['card__avatar'],
+        },
+        ...board.users).forEachChild((child) => {
+      dnd(child).makeDraggable();
+    }), 'users'
+    );
 
   }
 
