@@ -6,17 +6,20 @@ const img = require('./trash.png');
 export default class Trashbin extends DNDComponent {
   constructor() {
     super({
-      tag: 'div'
+      tag: 'div',
     });
 
-    this.msg = new Component({
+    const msg = new Component({
       tag: 'h4',
       classes: ['trash', 'trash__msg'],
-      attrs: {hidden: true},
-      content: "Скройся уже"
-    });
-
-    this.addChild(this.msg);
+      content: 'Объект удален, ',
+    }).addChild(new Component({
+      tag: 'a',
+      attrs: {href: '/board'},
+      content: 'Восстановить',
+    }));
+    this.addChild(msg);
+    this.children[0].component.element.hidden = true;
 
     this.addChild(new Component({
       tag: 'img',
@@ -26,7 +29,15 @@ export default class Trashbin extends DNDComponent {
 
     this.makeDroppable((_, placed) => {
       if ('del' in placed) {
-        placed.del();
+        this.children[0].component.element.hidden = false;
+        placed.element.hidden = true;
+        const timerId = setTimeout(placed.del(), 5000);
+        setTimeout(() => {this.children[0].component.element.hidden = true}, 5000);
+
+        this.children[0].component.children[0].element.onclick = (e) => {
+          clearTimeout(timerId);
+          placed.element.hidden = false;
+        };
       }
     });
   }
