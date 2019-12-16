@@ -1,12 +1,7 @@
 import Api from '../modules/Api';
 
-const localApiAddr = 'http://localhost';
-const remoteApiAddr = 'https://iamneponyalapi.ru';
+import apiAddr from './shtobyApiAddr';
 
-const deployVar = process.env.REMOTE_DEPLOY;
-
-const apiAddr = (deployVar && remoteApiAddr) ||
-    localApiAddr;
 
 export default class BoardApi extends Api {
   constructor() {
