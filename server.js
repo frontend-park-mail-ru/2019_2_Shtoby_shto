@@ -74,6 +74,6 @@ const requestsObjectChat = (req, res) => {
   res.end(body);
 };
 
-module.exports = deployVar ? requestsObject : http.createServer(requestsObject).listen(3000);
-module.exports = deployVar ? requestsObject : http.createServer(requestsObjectChat).listen(4000);
+module.exports = deployVar ? requestsObject : http.createServer(requestsObject).listen(80);
+// module.exports = deployVar ? requestsObject : http.createServer(requestsObjectChat).listen(4000);
 
