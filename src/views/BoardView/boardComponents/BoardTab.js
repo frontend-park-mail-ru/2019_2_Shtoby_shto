@@ -6,6 +6,7 @@ import UserDisplayer from './UserDisplayer';
 
 import * as boardActions from '../../../actions/Board';
 import * as uiActions from '../../../actions/UI';
+import UserAva from './UserAva';
 
 export default class BoardTab extends DNDComponent {
   constructor(ownProps, index, board) {

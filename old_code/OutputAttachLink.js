@@ -1,4 +1,4 @@
-import Component from '../../../modules/Component';
+import Component from '../src/modules/Component';
 
 export default class OutputAttachLink extends Component {
   constructor(board) {

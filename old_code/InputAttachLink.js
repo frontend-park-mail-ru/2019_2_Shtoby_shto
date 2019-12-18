@@ -1,5 +1,5 @@
-import Component from '../../../modules/Component';
-import {attachUser} from '../../../actions/Board';
+import Component from '../src/modules/Component';
+import {attachUser} from '../src/actions/Board';
 
 export default class InputAttachLink extends Component {
   constructor() {
