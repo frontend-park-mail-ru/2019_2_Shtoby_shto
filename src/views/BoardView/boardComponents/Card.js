@@ -46,7 +46,6 @@ export default class Card extends DNDComponent {
     // console.log(card);
 
     super({classes: ['board__card']});
-
     this.addChild(new TransformingInput(
         new Component({
           classes: ['card__header'],

@@ -231,10 +231,6 @@ html, body {
 .group__input {
 }
 
-.user__avatar__container {
-
-}
-
 .board__tab__avatars {
     position: absolute;
     bottom: 3%;
@@ -246,7 +242,6 @@ html, body {
 .user__avatar {
     max-width: 200%;
     max-height: 200%;
-
     border-radius: 50% 50%;
 }
 
@@ -286,9 +281,9 @@ html, body {
 }
 
 .user__panel {
-    height: 5%;
-    background: #ededed;
-    border-bottom: dashed;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    padding-left: 10px;
 }
 
 .board__card {

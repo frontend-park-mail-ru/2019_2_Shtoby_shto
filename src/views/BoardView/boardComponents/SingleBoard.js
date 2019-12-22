@@ -4,7 +4,7 @@ import GroupsDisplayer from './GroupsDisplayer';
 import UserDisplayer from './UserDisplayer';
 
 import Trashbin from './Trashbin';
-import OutputAttachLink from './OutputAttachLink';
+import OutputAttachLink from '../../../../old_code/OutputAttachLink';
 
 import dnd from '../../../modules/dnd';
 
@@ -75,7 +75,7 @@ export default class SingleBoard extends Component {
           this.refreshBoard(board);
         };
     }),
-    'refreshButton')
+    'refreshButton');
     this.addChild(new UserDisplayer(
         {
           classes: ['user__panel'],

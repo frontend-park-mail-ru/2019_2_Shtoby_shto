@@ -26,7 +26,6 @@ export default class UserAva extends DNDComponent {
       content: () => this.username,
     }));
 
-    console.log(userId);
     userApi.getSpecificUser(userId)
         .then((user) => {
           this.username = user.login;

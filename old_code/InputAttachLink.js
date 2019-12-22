@@ -1,4 +1,5 @@
-import Component from '../../../modules/Component';
+import Component from '../src/modules/Component';
+import {attachUser} from '../src/actions/Board';
 
 export default class InputAttachLink extends Component {
   constructor() {
@@ -28,7 +29,7 @@ export default class InputAttachLink extends Component {
       console.log('clicked');
       const link = boardShortURL.element.value;
       console.log(link);
-      attachUser(link);
+      this.dispatch(attachUser(link));
     };
 
     this.addChildren(helpText);
