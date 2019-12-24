@@ -2,6 +2,7 @@ import apiUrl from '../apis/shtobyApiAddr';
 const defaultUrl = `${apiUrl}`;
 
 import * as cardActions from '../actions/Card';
+import * as board from '../actions/Board';
 
 function makeWsUri(url) {
   let uri = window.location.protocol === 'https:'
@@ -17,6 +18,7 @@ class WSCardAttacher {
   setup(store, url=defaultUrl) {
     this.store = store;
     this.uri = makeWsUri(url);
+    this.callbacks = [];
   }
   // constructor(store, url=defaultUrl) {
   //   this.uri = makeWsUri(url);
@@ -39,6 +41,7 @@ class WSCardAttacher {
     };
 
     this.ws.onmessage = this.msgcallback.bind(this);
+    this.ws.onmessage = this.updateCallback.bind(this);
   }
 
   disconnect() {
@@ -48,6 +51,10 @@ class WSCardAttacher {
     }
 
     this.connected = false;
+  }
+
+  addCallback(fun) {
+    this.callbacks.push(fun);
   }
 
   attachToCard(userId, cardId) {
@@ -66,7 +73,15 @@ class WSCardAttacher {
     this.store.dispatch(cardActions.refreshCard(refreshedCardId));
     // console.log(refreshedCardId);
     // this.store.dispatch()
+
+    this.callbacks.forEach((fun) => {fun()});
+  }
+
+  updateCallback(evt) {
+    const BoardId = JSON.parse(evt.data)['board_id'];
+    this.store.dispatch(board.getBoard(BoardId));
   }
 }
+
 
 export default new WSCardAttacher();

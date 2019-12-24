@@ -14,7 +14,7 @@ export default class LoginForm extends Form {
     if (isvalid !== ' ') {
       this.errorArea.innerText = isvalid;
     } else {
-      this.errorArea.innerText = 'Данные корректны';
+      this.errorArea.innerText = 'Отправляем данные на сервер...';
       this.dispatch(user.login(
           formValues.email, formValues.password
       ));

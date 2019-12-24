@@ -30,12 +30,14 @@ export default class Trashbin extends DNDComponent {
     this.makeDroppable((_, placed) => {
       if ('del' in placed) {
         this.children[0].component.element.hidden = false;
-        placed.element.hidden = true;
-        const timerId = setTimeout(placed.del(), 5000);
+        console.log(placed)
+        placed.element.style = 'display: none';
+        const timerId = setTimeout(placed.del.bind(placed), 5000);
         setTimeout(() => {this.children[0].component.element.hidden = true}, 5000);
         this.children[0].component.children[0].component.element.onclick = (e) => {
           clearTimeout(timerId);
-          placed.element.hidden = false;
+          placed.element.style = 'display: flex';
+          this.children[0].component.element.hidden = true;
         };
       }
     });

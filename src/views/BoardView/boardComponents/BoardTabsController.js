@@ -1,7 +1,6 @@
 import Component from '../../../modules/Component';
 import BoardTabsContainer from './BoardTabsContainer';
 import BoardPlus from './BoardPlus';
-import InputAttachLink from './InputAttachLink';
 
 import * as board from '../../../actions/Board';
 // import * as uiActions from '../../../actions/UI';
@@ -20,8 +19,6 @@ export default class BoardTabsController extends Component {
     });
 
     this.selectedIndex = undefined;
-
-    this.addChildren(new InputAttachLink());
 
     // this.element.onclick = () => {
     //   this.dispatch(uiActions.deselectBoard());
