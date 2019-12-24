@@ -40,6 +40,34 @@ export default class TrelloApp extends App {
     router.registerViewAuth('/logout', () => {
       globalStorage.dispatch(user.logout());
     });
+    router.registerView('/ref', () => {
+      const queryStr = document.location.search;
+      const shortUrl = queryStr.substring(1, queryStr.length);
+
+      console.log(shortUrl);
+
+      const prikrepit = () => {console.log('прикрепляем юзера к доске')};
+
+      console.log(globalStorage.getState());
+
+      if (globalStorage.getState().user.loggedIn) {
+        prikrepit();
+        router.open('/board');
+        // console.log('прикрепляем юзера к доске');
+      } else {
+        let didStuff = false;
+        globalStorage.subscribe((loggedIn) => {
+          if (loggedIn && !didStuff) {
+            prikrepit();
+            // router.open('board'); <--- даже не нужно,
+            // оно само переходит на /board после авторизации
+            didStuff = true;
+          }
+        }, (state) => state.user.loggedIn);
+        
+        router.open('/login');
+      }
+    });
 
     router.setAfterLogin('/board');
     router.setDefaultRoute('/').useHistory();
