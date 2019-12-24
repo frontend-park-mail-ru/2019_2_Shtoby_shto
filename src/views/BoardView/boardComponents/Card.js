@@ -97,7 +97,9 @@ export default class Card extends DNDComponent {
         }
     );
 
-    if (card.file) {
+    if (card.file && !(card.file instanceof Array)) {
+      console.log(card.file);
+
       const downloadButton = new Component({
         tag: 'button',
       });
