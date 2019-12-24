@@ -21,6 +21,33 @@ import './style.css';
 import {setFake} from './actions/fakes/fake';
 import wsCardAttacher from './modules/WSCardAttacher';
 
+const attacher = (router, store) => {
+  const queryStr = document.location.search;
+
+  const shortUrl = queryStr.substring(queryStr.indexOf("?") + 1, queryStr.length);
+  // это шорт урл из ссылки
+
+  const prikrepit = () => {console.log('прикрепляем юзера к доске')};
+
+  if (store.getState().user.loggedIn) {
+    prikrepit();
+    router.open('/board');
+    // console.log('прикрепляем юзера к доске');
+  } else {
+    let didStuff = false;
+    store.subscribe((loggedIn) => {
+      if (loggedIn && !didStuff) {
+        prikrepit();
+        // router.open('board'); <--- даже не нужно,
+        // оно само переходит на /board после авторизации
+        didStuff = true;
+      }
+    }, (state) => state.user.loggedIn);
+    
+    router.open('/login');
+  }
+}
+
 export default class TrelloApp extends App {
   setup() {
     // this.enableDebug();
@@ -40,34 +67,7 @@ export default class TrelloApp extends App {
     router.registerViewAuth('/logout', () => {
       globalStorage.dispatch(user.logout());
     });
-    router.registerView('/ref', () => {
-      const queryStr = document.location.search;
-      const shortUrl = queryStr.substring(1, queryStr.length);
-
-      console.log(shortUrl);
-
-      const prikrepit = () => {console.log('прикрепляем юзера к доске')};
-
-      console.log(globalStorage.getState());
-
-      if (globalStorage.getState().user.loggedIn) {
-        prikrepit();
-        router.open('/board');
-        // console.log('прикрепляем юзера к доске');
-      } else {
-        let didStuff = false;
-        globalStorage.subscribe((loggedIn) => {
-          if (loggedIn && !didStuff) {
-            prikrepit();
-            // router.open('board'); <--- даже не нужно,
-            // оно само переходит на /board после авторизации
-            didStuff = true;
-          }
-        }, (state) => state.user.loggedIn);
-        
-        router.open('/login');
-      }
-    });
+    router.registerView('/ref', () => attacher(router, globalStorage));
 
     router.setAfterLogin('/board');
     router.setDefaultRoute('/').useHistory();
