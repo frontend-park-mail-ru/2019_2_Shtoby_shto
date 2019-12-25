@@ -15,6 +15,7 @@ import logger from './middlewares/logger';
 import thunkDispatcher from './middlewares/thunkDispatcher';
 
 import * as user from './actions/User';
+import {attachUser} from './actions/Board';
 
 import './style.css';
 
@@ -39,6 +40,36 @@ export default class TrelloApp extends App {
     router.registerViewAuth('/profile', new ProfileView());
     router.registerViewAuth('/logout', () => {
       globalStorage.dispatch(user.logout());
+    });
+    router.registerView('/ref', () => {
+      const queryStr = document.location.search;
+      const shortUrl = queryStr.substring(1, queryStr.length);
+
+      console.log(shortUrl);
+
+      const prikrepit = () => {
+        console.log('прикрепляем юзера к доске');
+      };
+
+      console.log(globalStorage.getState());
+
+      if (globalStorage.getState().user.loggedIn) {
+        prikrepit();
+        router.open('/board');
+        globalStorage.dispatch(attachUser(shortUrl));
+        // console.log('прикрепляем юзера к доске');
+      } else {
+        let didStuff = false;
+        globalStorage.subscribe((loggedIn) => {
+          if (loggedIn && !didStuff) {
+            prikrepit();
+            globalStorage.dispatch(attachUser(shortUrl));
+            didStuff = true;
+          }
+        }, (state) => state.user.loggedIn);
+
+        router.open('/login');
+      }
     });
 
     router.setAfterLogin('/board');
@@ -73,20 +104,20 @@ export default class TrelloApp extends App {
     const notifContainer = document.createElement('div');
     document.body.appendChild(notifContainer);
 
-    notifContainer.style["position"] = "fixed";
-    notifContainer.style["right"] = "5%";
-    notifContainer.style["bottom"] = "5%";
+    notifContainer.style['position'] = 'fixed';
+    notifContainer.style['right'] = '5%';
+    notifContainer.style['bottom'] = '5%';
 
 
     const makeNotif = () => {
       const elem = document.createElement('div');
-      elem.innerText = "WOW ITS A NOTIFICATION VERY KRYUTO";
+      elem.innerText = 'WOW ITS A NOTIFICATION VERY KRYUTO';
 
       return elem;
-    }
+    };
 
     wsCardAttacher.addCallback(() => {
       notifContainer.appendChild(makeNotif());
-    })
+    });
   }
 };

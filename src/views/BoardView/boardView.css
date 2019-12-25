@@ -6,6 +6,7 @@
     background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8)), url('./583bf6c6d2797.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 
     /*background-color: #00bb77;*/
 }
@@ -16,12 +17,16 @@ html, body {
 }
 
 .board__tab__controller {
-    /* width: 20%; */
+    width: 20%;
+    min-width: 100px;
     max-width: 203px;
-    background-color: rgba(0, 0, 0, 0.5);;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-x:hidden;
+    /*scroll*/
 }
 
 .board__tabs {
+    width: -moz-max-content;
 }
 
 .board__tab {
@@ -30,7 +35,8 @@ html, body {
     display: flex;
     position: relative;
     height: 70px;
-    width: 150px;
+    width: 100%;
+    max-width: 200px;
     border-radius: 20px 0px 0px 0px;
     background-color: #d3dae9;
     justify-content: center;
@@ -181,7 +187,7 @@ html, body {
 .group__displayer {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
 }
 
@@ -626,4 +632,23 @@ html, body {
 
 .date_input:hover::-webkit-calendar-picker-indicator:hover {
     opacity: 0.15;
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #4E729A;
+    background-color: #4E729A;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    border-width: 1px 1px 1px 2px;
+    border-color: #555;
+    background-color: #777;
+}
+
+::-webkit-scrollbar-thumb:vertical{
+    background-color: rgba(0,0,0,0);
 }
