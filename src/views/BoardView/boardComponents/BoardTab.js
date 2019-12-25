@@ -29,11 +29,7 @@ export default class BoardTab extends DNDComponent {
           content: `${board.name}`,
         },
         'reset'
-    ).useDblclick().setOnBlur((text) => {
-      if (text) {
-        ownProps.dispatch(boardActions.updateBoard(board.users[0], board.id, text));
-      }
-    }).setOnChange((text) => {
+    ).useDblclick().setOnChange((text) => {
       if (text) {
         ownProps.dispatch(boardActions.updateBoard(board.users[0], board.id, text));
       }
