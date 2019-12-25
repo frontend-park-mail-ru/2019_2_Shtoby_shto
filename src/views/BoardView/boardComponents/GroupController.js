@@ -27,7 +27,7 @@ export default class GroupController extends DNDComponent {
               content: `${group.name}`,
               classes: ['group__name'],
             }, 'reset')
-            .setOnBlur((text) => {
+            .setOnChange((text) => {
               if (text && group.name !== text) {
                 dispatch(groupActions.rename(text, group.boardId, group.id));
               }

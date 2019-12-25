@@ -366,7 +366,7 @@ export default class ExpandedCard extends Component {
         const date = new Date();
         const Month = Number(date.getMonth())+1;
         let now = date.getFullYear() +'-'+ Month +'-'+ date.getDate();
-        console.log(now);
+        //console.log(now);
          if (comp.element.value !== now){
              this.element.style.background = '#ffa812';
          } else {

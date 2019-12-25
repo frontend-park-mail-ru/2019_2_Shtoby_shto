@@ -4,6 +4,7 @@ import {fakeBoards, makeFakeBoard} from './fakes/fakeBoards';
 import {fake} from './fakes/fake';
 
 import * as uiActions from './UI';
+import WSUpdate from '../modules/WSUpdate';
 
 const boardApi = new BoardApi();
 
@@ -101,13 +102,14 @@ function trueUpdateBoard(id, name) {
   };
 }
 
-export function updateBoard(id, name) {
+export function updateBoard(user_id, id, name) {
   return function(dispatch) {
     if (!fake) {
       boardApi.updateBoard(id, name)
           .then(() => {
             dispatch(trueUpdateBoard(id, name));
-          });
+            WSUpdate.change(user_id, id);
+      });
     }
   };
 }

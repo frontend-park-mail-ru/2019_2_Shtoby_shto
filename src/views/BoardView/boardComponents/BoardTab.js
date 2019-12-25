@@ -6,7 +6,7 @@ import UserDisplayer from './UserDisplayer';
 
 import * as boardActions from '../../../actions/Board';
 import * as uiActions from '../../../actions/UI';
-import UserAva from './UserAva';
+import WSUpdate from '../../../modules/WSUpdate';
 
 export default class BoardTab extends DNDComponent {
   constructor(ownProps, index, board) {
@@ -29,13 +29,9 @@ export default class BoardTab extends DNDComponent {
           content: `${board.name}`,
         },
         'reset'
-    ).setOnBlur((text) => {
+    ).useDblclick().setOnChange((text) => {
       if (text) {
-        ownProps.dispatch(boardActions.updateBoard(board.id, text));
-      }
-    }).setOnChange((text) => {
-      if (text) {
-        ownProps.dispatch(boardActions.updateBoard(board.id, text));
+        ownProps.dispatch(boardActions.updateBoard(board.users[0], board.id, text));
       }
     });
 

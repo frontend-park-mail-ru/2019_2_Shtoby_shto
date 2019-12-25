@@ -4,7 +4,7 @@ import GroupsDisplayer from './GroupsDisplayer';
 import UserDisplayer from './UserDisplayer';
 
 import Trashbin from './Trashbin';
-import OutputAttachLink from '../../../../old_code/OutputAttachLink';
+//import OutputAttachLink from '../../../../old_code/OutputAttachLink';
 
 import dnd from '../../../modules/dnd';
 
@@ -64,18 +64,18 @@ export default class SingleBoard extends Component {
   showBoard(board) {
     this.addChild(new GroupsDisplayer(this.dispatch.bind(this),
         ...board.cardGroups), 'groups');
-    this.addChild(new OutputAttachLink(board.shortUrl || board['short_url']), 'attachLink');
-    this.addChild(new Component({
-      tag: 'button',
-      classes: ['refresh__button__board'],
-      content: 'обновить',
-      }).apply((comp) => {
-        comp.element.onclick = () =>{
-          console.log('new button clicked');
-          this.refreshBoard(board);
-        };
-    }),
-    'refreshButton');
+    //this.addChild(new OutputAttachLink(board.shortUrl || board['short_url']), 'attachLink');
+    // this.addChild(new Component({
+    //   tag: 'button',
+    //   classes: ['refresh__button__board'],
+    //   content: 'обновить',
+    //   }).apply((comp) => {
+    //     comp.element.onclick = () =>{
+    //       console.log('new button clicked');
+    //       this.refreshBoard(board);
+    //     };
+    // }),
+    // 'refreshButton');
     this.addChild(new UserDisplayer(
         {
           classes: ['user__panel'],
