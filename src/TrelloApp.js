@@ -49,7 +49,6 @@ export default class TrelloApp extends App {
 
     this.addComponent(router);
 
-    // this.attacher = new WSCardAttacher(globalStorage);
     wsCardAttacher.setup(globalStorage);
     wsUpdate.setup(globalStorage);
 
@@ -74,24 +73,5 @@ export default class TrelloApp extends App {
         console.log(globalStorage.getState());
       },
     }));
-
-    const notifContainer = document.createElement('div');
-    document.body.appendChild(notifContainer);
-
-    notifContainer.style["position"] = "fixed";
-    notifContainer.style["right"] = "5%";
-    notifContainer.style["bottom"] = "5%";
-
-
-    const makeNotif = () => {
-      const elem = document.createElement('div');
-      elem.innerText = "WOW ITS A NOTIFICATION VERY KRYUTO";
-
-      return elem;
-    }
-
-    wsCardAttacher.addCallback(() => {
-      notifContainer.appendChild(makeNotif());
-    })
   }
 };
