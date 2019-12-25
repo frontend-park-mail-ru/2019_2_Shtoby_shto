@@ -48,6 +48,7 @@ function updateCard(id, update) {
 
 export function refreshCard(id) {
   return function(dispatch) {
+    console.log('refreshin card', id);
     boardApi.getCard(id)
       .then((card) => {
         dispatch(updateCard(id, card));
@@ -172,7 +173,8 @@ export function detachUser(userId, cardId) {
   return function(dispatch) {
     boardApi.detachUserFromCard(userId, cardId)
         .then(() => {
-          dispatch({type: 'CARD_DETACH', userId, cardId});
+          // dispatch({type: 'CARD_DETACH', userId, cardId});
+          WSCardAttacher.attachToCard(userId, cardId);
         });
   };
 }

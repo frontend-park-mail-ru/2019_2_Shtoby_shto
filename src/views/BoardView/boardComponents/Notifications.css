@@ -1,0 +1,28 @@
+.notifications {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 15%;
+    right: 0%
+}
+
+.notifications__notification {
+    display: flex;
+    background-color: whitesmoke;
+    padding-top: 0.25em;
+    padding-bottom: 0.5em;
+    border-radius: 2px;
+    border-width: 1px;
+    border-color: black;
+    margin: 0.15em;
+    /* margin: 1em; */
+}
+
+.notifications__notification:hover {
+    cursor: pointer;
+}
+
+.notifications__notification__closer {
+    margin-right: 1em;
+    margin-left: 0.5em;
+}

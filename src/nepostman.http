@@ -1,5 +1,5 @@
-# POST http://localhost/login
-POST https://iamneponyalapi.ru/login
+POST http://localhost/login
+# POST https://iamneponyalapi.ru/login
 
 # @name login
 
@@ -37,6 +37,14 @@ GET http://localhost/board/{{board_id}}
 X-Csrf-Token: {{csrf_token}}
 
 ###
-
 GET https://iamneponyalapi.ru/SBvvP
 X-Csrf-Token: {{csrf_token}}
+
+### 
+POST http://localhost/board/user/attach
+X-Csrf-Token: {{csrf_token}}
+
+{
+    "board_id" : "f72a95ad-442e-4ad6-9e6a-306b48021846",
+    "user_id": "3b5f295c-a447-4831-922a-b0745e1f471d"
+}
