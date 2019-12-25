@@ -2,7 +2,6 @@ import Api from '../modules/Api';
 
 import apiAddr from './shtobyApiAddr';
 
-
 export default class BoardApi extends Api {
   constructor() {
     super(apiAddr);
