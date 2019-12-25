@@ -57,7 +57,7 @@ export function rename(name, boardId, id) {
   return function(dispatch) {
     boardApi.renameGroup(name, boardId, id)
         .then((groupModel) => {
-          console.log(groupModel),
+          console.log(groupModel);
           dispatch(editGroup(
               groupModel['board_id'],
               groupModel.id,

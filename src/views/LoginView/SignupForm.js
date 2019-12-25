@@ -15,7 +15,7 @@ export default class SignupForm extends Form {
     if (isvalid !== ' ') {
       this.errorArea.innerText = isvalid;
     } else {
-      this.errorArea.innerText = 'Данные корректны';
+      this.errorArea.innerText = 'Отправляем данные на сервер...';
       this.dispatch(user.register(
           formValues.email, formValues.password
       ));

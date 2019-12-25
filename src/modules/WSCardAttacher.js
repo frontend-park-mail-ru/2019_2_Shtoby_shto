@@ -1,4 +1,5 @@
 import apiUrl from '../apis/shtobyApiAddr';
+
 const defaultUrl = `${apiUrl}`;
 
 import * as cardActions from '../actions/Card';
@@ -6,8 +7,8 @@ import * as board from '../actions/Board';
 
 function makeWsUri(url) {
   let uri = window.location.protocol === 'https:'
-    ? 'wss:'
-    : 'ws:';
+      ? 'wss:'
+      : 'ws:';
 
   const retUri = `${uri}//${url.replace(/^http:\/\//, '')}/cards/ws`;
   console.log(retUri);
@@ -15,7 +16,7 @@ function makeWsUri(url) {
 }
 
 class WSCardAttacher {
-  setup(store, url=defaultUrl) {
+  setup(store, url = defaultUrl) {
     this.store = store;
     this.uri = makeWsUri(url);
     this.callbacks = [];
@@ -28,16 +29,15 @@ class WSCardAttacher {
       setTimeout(() => {
 
         this.ws.send(JSON.stringify({
-          "user_id": userId,
+          'user_id': userId,
         }));
-        console.log('Connected')
-      }, 100)
+        console.log('Connected');
+      }, 100);
 
       this.connected = true;
     };
 
     this.ws.onmessage = this.msgcallback.bind(this);
-    this.ws.onmessage = this.updateCallback.bind(this);
   }
 
   disconnect() {
@@ -57,8 +57,8 @@ class WSCardAttacher {
     if (this.connected) {
       console.log('sending info', userId, cardId);
       this.ws.send(JSON.stringify({
-        "user_id": userId,
-        "card_id": cardId,
+        'user_id': userId,
+        'card_id': cardId,
       }));
     }
   }
@@ -67,7 +67,10 @@ class WSCardAttacher {
     const refreshedCardId = JSON.parse(evt.data)['card_id'];
     console.log(refreshedCardId);
     this.store.dispatch(cardActions.refreshCard(refreshedCardId));
-
+    this.callbacks.forEach((fun) => {
+      fun();
+    });
+    
     console.log('calling callbacks');
 
     this.callbacks.forEach((fun) => {fun({card: refreshedCardId})});
@@ -87,5 +90,5 @@ class WSCardAttacher {
   }
 }
 
-
 export default new WSCardAttacher();
+

@@ -20,6 +20,7 @@ import './style.css';
 
 import {setFake} from './actions/fakes/fake';
 import wsCardAttacher from './modules/WSCardAttacher';
+import wsUpdate from './modules/WSUpdate';
 
 export default class TrelloApp extends App {
   setup() {
@@ -49,12 +50,16 @@ export default class TrelloApp extends App {
     this.addComponent(router);
 
     wsCardAttacher.setup(globalStorage);
+    wsUpdate.setup(globalStorage);
 
     globalStorage.subscribe((state) => {
       const user = state.user;
       if (user.loggedIn) {
         if (!(wsCardAttacher.connected)) {
           wsCardAttacher.connect(user.id);
+        }
+        if (!(wsUpdate.connected)) {
+          wsUpdate.connect(user.id);
         }
       } else {
         wsCardAttacher.disconnect();
