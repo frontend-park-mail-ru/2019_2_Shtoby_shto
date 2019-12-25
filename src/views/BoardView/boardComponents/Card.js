@@ -68,7 +68,11 @@ export default class Card extends DNDComponent {
       if (text.length && text !== card.caption) {
         dispatch(cards.setCaption(card.id, text));
       }
-    })
+    }).setOnChange((text) => {
+          if (text.length && text !== card.caption) {
+            dispatch(cards.setCaption(card.id, text));
+          }
+        })
     );
 
     this.editButton = new Component({
