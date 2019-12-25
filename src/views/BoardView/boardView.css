@@ -181,7 +181,7 @@ html, body {
 .group__displayer {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
 }
 
@@ -275,7 +275,7 @@ html, body {
 .single__board {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
     width: 100%;
 }
