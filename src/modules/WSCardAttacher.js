@@ -20,10 +20,6 @@ class WSCardAttacher {
     this.uri = makeWsUri(url);
     this.callbacks = [];
   }
-  // constructor(store, url=defaultUrl) {
-  //   this.uri = makeWsUri(url);
-  //   this.store = store;
-  // }
 
   connect(userId) {
     this.ws = new WebSocket(this.uri);
@@ -68,18 +64,26 @@ class WSCardAttacher {
   }
 
   msgcallback(evt) {
-    // console.log(JSON.parse(evt.data));
     const refreshedCardId = JSON.parse(evt.data)['card_id'];
+    console.log(refreshedCardId);
     this.store.dispatch(cardActions.refreshCard(refreshedCardId));
-    // console.log(refreshedCardId);
-    // this.store.dispatch()
 
-    this.callbacks.forEach((fun) => {fun()});
+    console.log('calling callbacks');
+
+    this.callbacks.forEach((fun) => {fun({card: refreshedCardId})});
   }
 
   updateCallback(evt) {
-    const BoardId = JSON.parse(evt.data)['board_id'];
-    this.store.dispatch(board.getBoard(BoardId));
+    console.log(evt.data);
+    try {
+      const cardId = JSON.parse(evt.data)['card_id'];
+      console.log(cardId);
+      this.store.dispatch(cardActions.refreshCard(cardId));
+      this.callbacks.forEach((fun) => {fun({card: cardId})});
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 }
 
