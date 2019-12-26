@@ -4,16 +4,8 @@ const defaultUrl = `${apiUrl}`;
 
 import * as cardActions from '../actions/Card';
 import * as board from '../actions/Board';
+import makeWsUri from './Utils/makeWsUri';
 
-function makeWsUri(url) {
-  let uri = window.location.protocol === 'https:'
-      ? 'wss:'
-      : 'ws:';
-
-  const retUri = `${uri}//${url.replace(/^http:\/\//, '')}/cards/ws`;
-  console.log(retUri);
-  return retUri;
-}
 
 class WSCardAttacher {
   setup(store, url = defaultUrl) {
