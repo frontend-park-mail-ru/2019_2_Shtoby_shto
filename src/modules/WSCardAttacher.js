@@ -65,30 +65,11 @@ class WSCardAttacher {
 
   msgcallback(evt) {
     const refreshedCardId = JSON.parse(evt.data)['card_id'];
-    console.log(refreshedCardId);
+    console.log('asfdsafdfas', evt);
+
     this.store.dispatch(cardActions.refreshCard(refreshedCardId));
-    this.callbacks.forEach((fun) => {
-      fun();
-    });
-    
-    console.log('calling callbacks');
-
     this.callbacks.forEach((fun) => {fun({card: refreshedCardId})});
-  }
-
-  updateCallback(evt) {
-    console.log(evt.data);
-    try {
-      const cardId = JSON.parse(evt.data)['card_id'];
-      console.log(cardId);
-      this.store.dispatch(cardActions.refreshCard(cardId));
-      this.callbacks.forEach((fun) => {fun({card: cardId})});
-    }
-    catch (e) {
-      console.log(e);
-    }
   }
 }
 
 export default new WSCardAttacher();
-

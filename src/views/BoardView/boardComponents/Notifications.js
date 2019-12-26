@@ -46,7 +46,8 @@ export default class Notifications extends Component {
   }
 
   addNotification(refreshedCardId) {
-    console.log('adding a notification')
+    // console.log('adding a notification')
+    console.log(refreshedCardId.card);
     this.addChild(new Notification(refreshedCardId.card));
   }
 

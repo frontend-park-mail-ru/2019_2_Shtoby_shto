@@ -11,18 +11,24 @@ import dnd from '../../../modules/dnd';
 import * as boardActions from '../../../actions/Board';
 import Button from '../../../components/Button';
 import {fetchBoards} from '../../../actions/Board';
+import Notifications from './Notifications';
 
 export default class SingleBoard extends Component {
   constructor() {
     super({classes: ['single__board']});
 
     this.addChild(new Trashbin());
-    // this.addChild(new OutputAttachLink(this.state.board));
-    // console.log(this.attrs.board_id);
+    this.addChild(new Notifications());
   }
 
   generateContent() {
-    return '<users></users><groups></groups><attachLink></attachLink><refreshButton></refreshButton>';
+    return `
+      <users></users>
+      <groups></groups>
+      <attachLink></attachLink>
+      <refreshButton></refreshButton>
+      <notifications></notifications>
+    `;
   }
 
   getMounts() {
@@ -31,6 +37,7 @@ export default class SingleBoard extends Component {
       groups: this.element.getElementsByTagName('groups')[0],
       attachLink: this.element.getElementsByTagName('attachLink')[0],
       refreshButton: this.element.getElementsByTagName('refreshButton')[0],
+      notifications: this.element.getElementsByTagName('notifications')[0],
     };
   }
 
@@ -64,18 +71,7 @@ export default class SingleBoard extends Component {
   showBoard(board) {
     this.addChild(new GroupsDisplayer(this.dispatch.bind(this),
         ...board.cardGroups), 'groups');
-    //this.addChild(new OutputAttachLink(board.shortUrl || board['short_url']), 'attachLink');
-    // this.addChild(new Component({
-    //   tag: 'button',
-    //   classes: ['refresh__button__board'],
-    //   content: 'обновить',
-    //   }).apply((comp) => {
-    //     comp.element.onclick = () =>{
-    //       console.log('new button clicked');
-    //       this.refreshBoard(board);
-    //     };
-    // }),
-    // 'refreshButton');
+
     this.addChild(new UserDisplayer(
         {
           classes: ['user__panel'],
@@ -85,7 +81,6 @@ export default class SingleBoard extends Component {
       dnd(child).makeDraggable();
     }), 'users'
     );
-
   }
 
   refreshBoard(board) {
